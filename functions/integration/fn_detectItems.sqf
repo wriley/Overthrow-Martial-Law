@@ -133,7 +133,12 @@ private _getprice = {
 {
     private _cls = configName _x;
     if ((_cls find "_Base") isEqualTo -1) then {
-        [_cls,"Surplus"] call _categorize;
+		_IsTripod = getText (configfile >> "CfgVehicles" >> _cls >> "editorSubcategory"); 
+		_strName = getText (configfile >> "CfgVehicles" >> _cls >> "displayName");
+		if !((_IsTripod isEqualTo "EdSubcat_DismantledWeapons") || ({_strName isEqualTo ""}) || ({_strName isEqualTo "Bag"})) then {
+			_cls = _cls call BIS_fnc_basicBackpack;
+			[_cls,"Surplus"] call _categorize;
+		};
     };
 }foreach("_parents = ([_x,true] call BIS_fnc_returnParents); 'Bag_Base' in _parents && !('Weapon_Bag_Base' in _parents) && (count (_x >> 'TransportItems') isEqualTo 0) && (count (_x >> 'MagazineItems') isEqualTo 0)" configClasses ( configFile >> "CfgVehicles" ));
 //add craftable magazines
