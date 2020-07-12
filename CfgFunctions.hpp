@@ -33,6 +33,7 @@ class CfgFunctions
 			class revealToNATO {};
 			class revealToCRIM {};
 			class revealToResistance {};
+			class revealNATOFOB {};
 		};
 
 		/* Persistent Save */
@@ -336,6 +337,7 @@ class CfgFunctions
 			class nearestMobster {};
 			class nearestObjective {};
 			class nearestObjectiveNoComms {};
+			class nearestObjectiveOrFOB {};
 			class nearestPositionRegion {};
 			class nearestTown {};
 			class getRegion {};

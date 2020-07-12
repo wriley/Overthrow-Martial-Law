@@ -231,8 +231,11 @@ publicVariable "OT_nextNATOTurn";
 
 		//Check on FOBs
 		_clearedFOBs = [];
+		_revealed = server getVariable ["revealedFOBs",[]];
 		{
 			_x params ["_pos","_garrison"];
+			_id = _x;
+			//Check for clear
 			_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
 			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",50]);
 			if(_nummil isEqualTo 0 && {_numres > 0}) then {
@@ -244,12 +247,20 @@ publicVariable "OT_nextNATOTurn";
 				};
 				deleteMarker format["natofob%1",str _pos];
 			};
+			//Check for reveal
+			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",125]);
+			if (!(_id in _revealed) && _numres > 0) then {
+				[_id] call OT_fnc_revealNATOFOB;
+			    private _town = [_pos] call OT_fnc_nearestTown;
+				format["The resistance has discovered a NATO FOB at ",_town] remoteExec ["OT_fnc_notifyMinor",0,false];
+			};	
 		}foreach(_fobs);
 
 		{
 			_fobs deleteAt (_fobs find _x);
-		}foreach(_clearedFOBs);
-
+		}foreach(_clearedFOBs);		
+		
+		
 		//expire targets
 		private _expired = [];
 		{

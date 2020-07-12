@@ -164,12 +164,13 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 			};
 			private _unitpos = getPosATL _unit;
-			private _base = _unitpos call OT_fnc_nearestObjective;
+			private _base = _unitpos call OT_fnc_nearestObjectiveOrFOB;
 			if !(isNil "_base") then {
 				_base params ["_obpos","_obname"];
 				private _dist = _obname call {
 					if (_this in OT_allComms) exitWith {40};
 					if(_this in OT_NATO_priority) exitWith {500};
+					if(typeName _this == "SCALAR") exitWith {50};
 					200
 				};
 				if((_obpos distance _unitpos) < _dist) exitWith {
