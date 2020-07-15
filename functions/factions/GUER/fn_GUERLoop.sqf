@@ -201,7 +201,7 @@ if ((date select 4) != _lastmin) then {
 		_support = [_town] call OT_fnc_support;
 		if (!(_id in _revealed) && (_support > (random 2000))) then {
 			[_id] call OT_fnc_revealNATOFOB;
-			format["Citizens of %1 have revealed intelligence of a nearby NATO FOB",_town] remoteExec ["OT_fnc_notifyMinor",0,false];
+			
 		};
 	}foreach(server getVariable ["NATOfobs",[]]);
 
