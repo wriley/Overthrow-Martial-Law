@@ -15,10 +15,14 @@ private _road = [_start] call BIS_fnc_nearestRoad;
 if(isNil "_road") exitWith {diag_log format["Overthrow: WARNING: Couldnt find road for %1 %2",_name,_start];[]};
 
 _start = getPos _road;
+_mk = createMarker ["road",_start];
+_mk setMarkerType "hd_dot";
+_mk setMarkerText "Road";
 
 if((count _start) isEqualTo 0 || _start#1 isEqualTo 0) exitWith {diag_log format["Overthrow: WARNING: Couldnt find road for %1 %2",_name,_start];[]};
 
-private _vehtype = OT_vehTypes_civ call BIS_Fnc_selectRandom;
+//This is not used
+//private _vehtype = OT_vehTypes_civ call BIS_Fnc_selectRandom; 
 
 private _roadscon = roadsConnectedto _road;
 private _dir = [_road, _roadscon select 0] call BIS_fnc_DirTo;
@@ -77,7 +81,7 @@ while {_count < _numNATO} do {
 		_start = [_start,20,_dir+90] call BIS_fnc_relPos;
 	};
 };
-_group spawn OT_fnc_initNATOCheckpoint;
+[_group, _dir] spawn OT_fnc_initNATOCheckpoint; 
 {
 	_x addCuratorEditableObjects [units _group];
 }foreach(allcurators);
