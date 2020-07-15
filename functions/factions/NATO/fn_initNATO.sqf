@@ -472,12 +472,7 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 
 	private _id = str _pos;
 	if(_id in _revealed) then {
-		//create marker
-		_mrkid = createMarker [format["natofob%1",_id],_pos];
-		_mrkid setMarkerShape "ICON";
-		_mrkid setMarkerType "mil_Flag";
-		_mrkid setMarkerColor "ColorBLUFOR";
-		_mrkid setMarkerAlpha 1;
+		[_id, "INIT"] call OT_fnc_revealNATOFOB;
 	};
 }foreach(server getVariable ["NATOfobs",[]]);
 

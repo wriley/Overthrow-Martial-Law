@@ -248,11 +248,10 @@ publicVariable "OT_nextNATOTurn";
 				deleteMarker format["natofob%1",str _pos];
 			};
 			//Check for reveal
-			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",125]);
-			if (!(_id in _revealed) && _numres > 0) then {
-				[_id] call OT_fnc_revealNATOFOB;
-			    private _town = [_pos] call OT_fnc_nearestTown;
-				format["The resistance has discovered a NATO FOB at ",_town] remoteExec ["OT_fnc_notifyMinor",0,false];
+			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",150]);
+			if (!(str _pos in _revealed) && _numres > 0) then {
+				[_id, "PLAYER"] call OT_fnc_revealNATOFOB;
+			    
 			};	
 		}foreach(_fobs);
 
@@ -528,7 +527,7 @@ publicVariable "OT_nextNATOTurn";
 							};
 						}foreach(_fobs);
 
-						if(!_near && {(_pos distance _bpos) > 400} && {(_pos distance _townPos) > 250}) exitWith {
+						if(!_near && {(_pos distance _bpos) > 400} && {(_pos distance _townPos) > 250} && isNull {[_pos, 50] call BIS_fnc_nearestRoad}) exitWith {
 							_gotpos = _pos;
 						};
 					}foreach (selectBestPlaces [_pp, 1000,"(1 - forest - trees) * (1 - houses) * (1 - sea)",5,4]);

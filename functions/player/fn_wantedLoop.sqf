@@ -170,7 +170,7 @@ if !(captive _unit) then {
 				private _dist = _obname call {
 					if (_this in OT_allComms) exitWith {40};
 					if(_this in OT_NATO_priority) exitWith {500};
-					if(typeName _this == "SCALAR") exitWith {50};
+					if(typeName _this == "SCALAR") exitWith {30};
 					200
 				};
 				if((_obpos distance _unitpos) < _dist) exitWith {
