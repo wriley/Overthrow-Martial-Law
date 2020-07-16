@@ -331,8 +331,7 @@ private _allVehs = "
 	&&
     { (getText ( _x >> ""vehicleClass"" ) isEqualTo ""Car"") || (getText ( _x >> ""vehicleClass"" ) isEqualTo ""Support"")}
 	&&
-    { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"") or
-     (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")})
+    { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"")})
 
 " configClasses ( configFile >> "cfgVehicles" );
 
