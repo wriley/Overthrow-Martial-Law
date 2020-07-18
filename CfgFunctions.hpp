@@ -459,6 +459,7 @@ class CfgFunctions
 			class getSquad {};
 			class parachuteAll {};
 			class NATOsearch {};
+			class NATOCpSearch {};
 			class createSquad {};
 			class experience {};
 			class dangerCaused {};
