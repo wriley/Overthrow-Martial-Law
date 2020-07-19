@@ -67,8 +67,7 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 	{
 		_unit = _x;
 		_iscar = false;
-		if(_unit isKindOf "LandVehicle" && !(side _x isEqualTo west)) then {
-			_unit = driver _unit;
+		if(_unit isKindOf "LandVehicle" && !(side _x isEqualTo west)) then {			
 			_iscar = true;
 			_f = false;
 

@@ -56,7 +56,6 @@ if !(_foundWeapons || _foundStolen || _foundStatic) then { //If there is no stat
 	//Get items
 	if !(_unit isKindOf "Man") then {		
 		_items = (itemCargo _unit) + (weaponCargo _unit) + (magazineCargo _unit) + (backpackCargo _unit);
-		systemChat str _units;
 	} else {
 		_items = (items _unit) + (magazines _unit);
 	};	
