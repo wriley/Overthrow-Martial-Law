@@ -44,7 +44,7 @@ if(!isNil "OT_QRFstart" && (time - OT_QRFstart) > 600) then {
 
 //Offroad
 private _offroad = "";
-if(vehicle _player != _player && isNull ([position _player, 125] call BIS_fnc_nearestRoad)) then {
+if(vehicle _player != _player && vehicle _player isKindOf "LandVehicle" && isNull ([position _player, 125] call BIS_fnc_nearestRoad)) then {
 	_offroad = "OFFROAD";
 };
 

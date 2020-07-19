@@ -156,7 +156,7 @@ if !(captive _unit) then {
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
 			};
-			if(vehicle _unit != _unit) then {
+			if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
 				private _offroadDist = 125; //Distance you are alloud off road
 				private _checkpointOffroadRange = 200; //Distance from a checkpoint for the stricter off road distance
 				private _checkpointOffroadDist = 30;
