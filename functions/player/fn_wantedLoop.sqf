@@ -156,6 +156,21 @@ if !(captive _unit) then {
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
 			};
+			if(vehicle _unit != _unit) then {
+				private _offroadDist = 125; //Distance you are alloud off road
+				private _checkpointOffroadRange = 200; //Distance from a checkpoint for the stricter off road distance
+				private _checkpointOffroadDist = 30;
+				if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
+						_offroadDist = _checkpointOffroadDist
+				};
+				if(isNull ([position _unit, _offroadDist] call BIS_fnc_nearestRoad)) then {
+					if(isPlayer _unit) then {
+						"You are driving offroad" call OT_fnc_notifyMinor;
+					};
+					_unit setCaptive false;
+					[_unit] call OT_fnc_revealToNATO;
+				};
+			};
 			if !(hmd _unit isEqualTo "") exitWith {
 				if(isPlayer _unit) then {
 					"NATO has spotted your NV Goggles" call OT_fnc_notifyMinor;
