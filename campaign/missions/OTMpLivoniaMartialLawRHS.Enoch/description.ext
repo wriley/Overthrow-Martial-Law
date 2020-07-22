@@ -23,3 +23,5 @@ class CfgRemoteExec
 		class VCM_fnc_KnowAbout { allowedTargets = 0;jip = 1; };
 	};
 };
+
+cba_settings_hasSettingsFile = 1;
