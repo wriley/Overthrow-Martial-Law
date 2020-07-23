@@ -82,6 +82,14 @@ if(_hasPrimary) then {
 
     private _count = getNumber(configFile >> "CfgMagazines" >> _mag >> "count");
     (_newloadout select 0) set [4,[_mag,_count]];
+    
+    if (_wpn == "rhs_weap_M590_8RD") then {_mag = "rhsusf_8Rnd_00buck"};
+	if (_wpn == "rhs_weap_savz61") then {_mag = "rhsgref_20rnd_765x17_vz61"};
+	if (_wpn == "sgun_Mp153_classic_F") then {_mag = "4Rnd_12Gauge_Pellets"};
+	if (_mag == "rhs_mag_30Rnd_556x45_M200_Stanag") then {_mag = "rhs_mag_30Rnd_556x45_M855_Stanag"};
+	if (_mag == "rhs_mag_20Rnd_556x45_M200_Stanag") then {_mag = "rhs_mag_30Rnd_556x45_M855_Stanag"};
+	if (_mag == "rhsusf_100Rnd_762x51_m82_blank") then {_mag = "rhsusf_100Rnd_762x51_m62_tracer"};
+	if (_mag == "rhsusf_50Rnd_762x51_m82_blank") then {_mag = "rhsusf_50Rnd_762x51_m62_tracer"};
 
     //add mags to vest
     if(_hasVest) then {
