@@ -34,7 +34,7 @@ _abandoned = server getvariable ["NATOabandoned",[]];
 
 ([_pos] call OT_fnc_NATOGetAttackVectors) params ["_ground","_air"];
 
-if(_strength > 255 && (count _air) > 0) then {// changed strength from 500
+if(_strength > 425 && (count _air) > 0) then {// changed strength from 500
 	//Send CAS
 	_obpos = (_air select 0) select 0;
 	_name = (_air select 0) select 1;
