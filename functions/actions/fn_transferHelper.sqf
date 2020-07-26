@@ -105,6 +105,12 @@ _this spawn {
 				if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
 					[_target, _cls, _count] call CBA_fnc_removeWeaponCargo;
 				};
+				if(_cls isKindOf ["NVGoggles",configFile >> "CfgWeapons"]) exitWith {
+					[_target, _cls, _count] call CBA_fnc_removeItemCargo;
+				};
+				if(_cls isKindOf ["Binocular",configFile >> "CfgWeapons"]) exitWith {
+					[_target, _cls, _count] call CBA_fnc_removeWeaponCargo;
+				};
 				if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 					[_target, _cls, _count] call CBA_fnc_removeMagazineCargo;
 				};
