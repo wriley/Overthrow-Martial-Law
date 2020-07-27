@@ -176,7 +176,7 @@ OT_item_DefaultBlueprints = [];
 OT_itemCategoryDefinitions = [
     ["General",["ACE_fieldDressing","Banana","Map","ToolKit","ACE_EarPlugs","Watch","Radio","Compass","ACE_Spraypaint","Altimiter","MapTools","Binocular","CableTie"]],
     ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet","ACE_splint"]],
-    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal"]],
+    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","ACE_microDAGR","Battery","ATragMX","ACE_Flashlight","I_UavTerminal"]],
     ["Hardware",["Tool","CableTie","ACE_Spraypaint","wirecutter","ACE_rope","ACE_EntrenchingTool"]],
     ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","ACE_Vector","ACE_Yardage"]]
 ];
@@ -1023,13 +1023,13 @@ OT_Placeables = [
 OT_allSquads = OT_Squadables apply { _x params ["_name"]; _name };
 
 OT_workshop = [
-	["Static MG","C_Offroad_01_F",51250,"I_HMG_01_high_weapon_F","I_HMG_01_high_F",[[0.25,-2,1]],0],
+	["Static MG","C_Offroad_01_F",51250,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.25,-2,1]],0],
 	["Static GL","C_Offroad_01_F",64750,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.25,-2,1]],0],
 	["Static AT","C_Offroad_01_F",187500,"I_AT_01_weapon_F","I_static_AT_F",[[0,-1.5,0.25],180]],
 	["Static AA","C_Offroad_01_F",187500,"I_AA_01_weapon_F","I_static_AA_F",[[0,-1.5,0.25],180]],
-	["Mounted HMG","RHS_Ural_Open_Civ_01",69500,"I_HMG_01_high_weapon_F","I_HMG_01_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted HMG","RHS_Ural_Open_Civ_02",69500,"I_HMG_01_high_weapon_F","I_HMG_01_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted HMG","RHS_Ural_Open_Civ_03",69500,"I_HMG_01_high_weapon_F","I_HMG_01_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted HMG","RHS_Ural_Open_Civ_01",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted HMG","RHS_Ural_Open_Civ_02",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted HMG","RHS_Ural_Open_Civ_03",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted GMG","RHS_Ural_Open_Civ_01",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted GMG","RHS_Ural_Open_Civ_02",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted GMG","RHS_Ural_Open_Civ_03",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
