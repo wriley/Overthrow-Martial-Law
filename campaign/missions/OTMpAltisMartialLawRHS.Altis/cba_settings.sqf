@@ -1,4 +1,3 @@
-
 // Vandeanson's Apocalypse - AI
 force force VA_SpecialFAKits = 10;
 force force VA_vDogFerAmnt = 1;
@@ -277,13 +276,13 @@ force VD_Rnd_Respawn_range = 3000;
 force force VA_BC_Dogchance = 0;
 force force VA_CS_Dogchance = 0;
 force force VA_HO_Dogchance = 0;
-force force VABC_Cnt = 5.40804;
+force force VABC_Cnt = 2;
 force force VABT_Cnt = 0;
 force force VACS_Cnt = 1.43558;
 force force VACS_UptimeFix = 600;
 force force VACS_UptimeRnd = 1200;
-force force VAHO_Cnt = 14.5;
-force force VAHS_Cnt = 2.58544;
+force force VAHO_Cnt = 3;
+force force VAHS_Cnt = 1;
 force force VAHS_DistChk = 5250;
 force force VAPL_Cnt = 0;
 force force VASW_Cnt = 0;
