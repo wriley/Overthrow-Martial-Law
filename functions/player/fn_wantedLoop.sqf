@@ -145,17 +145,23 @@ if !(captive _unit) then {
 				//Record any threats as known targets
 				(vehicle _unit) call OT_fnc_NATOreportThreat;
 			};
-			if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
-				_unit setCaptive false;
-				[_unit] call OT_fnc_revealToNATO;
-			};
-			if ((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) exitWith {
-				if(isPlayer _unit) then {
-					"You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
-				};
-				_unit setCaptive false;
-				[_unit] call OT_fnc_revealToNATO;
-			};
+			   if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
+			      _unit setCaptive false;
+			      [_unit] call OT_fnc_revealToNATO;
+			  };
+			      if ((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) exitWith {
+			      if(isPlayer _unit) then {
+			          "You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
+			       };
+			         };
+				//OT_illegalUniform added 			 
+			       if ((uniform _unit in OT_illegalUniform) || { (uniform _unit in OT_illegalUniform) }) exitWith {
+			       if(isPlayer _unit) then {
+			          "You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
+			        };
+			          _unit setCaptive false;
+			          [_unit] call OT_fnc_revealToNATO;
+			   };
 			if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
 				private _offroadDist = 125; //Distance you are alloud off road
 				private _checkpointOffroadRange = 200; //Distance from a checkpoint for the stricter off road distance
