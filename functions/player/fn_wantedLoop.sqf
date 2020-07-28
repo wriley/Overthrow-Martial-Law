@@ -145,16 +145,37 @@ if !(captive _unit) then {
 				//Record any threats as known targets
 				(vehicle _unit) call OT_fnc_NATOreportThreat;
 			};
-			if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
-				_unit setCaptive false;
-				[_unit] call OT_fnc_revealToNATO;
-			};
-			if ((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) exitWith {
-				if(isPlayer _unit) then {
-					"You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
+			   if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
+			      _unit setCaptive false;
+			      [_unit] call OT_fnc_revealToNATO;
+			  };
+			      if ((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) exitWith {
+			      if(isPlayer _unit) then {
+			          "You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
+			       };
+			         };
+				//OT_illegalUniform added 			 
+			       if ((uniform _unit in OT_illegalUniform) || { (uniform _unit in OT_illegalUniform) }) exitWith {
+			       if(isPlayer _unit) then {
+			          "You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
+			        };
+			          _unit setCaptive false;
+			          [_unit] call OT_fnc_revealToNATO;
+			   };
+			if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
+				private _offroadDist = 125; //Distance you are alloud off road
+				private _checkpointOffroadRange = 200; //Distance from a checkpoint for the stricter off road distance
+				private _checkpointOffroadDist = 30;
+				if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
+						_offroadDist = _checkpointOffroadDist
 				};
-				_unit setCaptive false;
-				[_unit] call OT_fnc_revealToNATO;
+				if(isNull ([position _unit, _offroadDist] call BIS_fnc_nearestRoad)) then {
+					if(isPlayer _unit) then {
+						"You are driving offroad" call OT_fnc_notifyMinor;
+					};
+					_unit setCaptive false;
+					[_unit] call OT_fnc_revealToNATO;
+				};
 			};
 			if !(hmd _unit isEqualTo "") exitWith {
 				if(isPlayer _unit) then {

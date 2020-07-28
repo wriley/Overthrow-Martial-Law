@@ -290,7 +290,7 @@ if(_scale <= 0.1) then {
 		};
 	}foreach(_towns);
 
-	if(visibleMap) then {
+/*	if(visibleMap) then {
 		{
 			if (typeof _x != "B_UAV_AI") then {
 				_p = getPosASL _x;
@@ -306,6 +306,7 @@ if(_scale <= 0.1) then {
 				};
 			};
 		}foreach(alldeadmen);
+*/
 
 		{
 			if(((_x select 2) distance2D _mousepos) < 3000) then {

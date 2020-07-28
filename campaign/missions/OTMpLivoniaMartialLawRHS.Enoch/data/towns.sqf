@@ -2,12 +2,12 @@ OT_townData = [
     [[4992.62,9921.74,0],"Gliniska"],
     [[3529.65,11966.5,0],"Lukow"],
     [[4007.78,7939.91,0],"Radacz"],
-    [[6256.94,10252.9,0],"Sobótka"],
+    [[6256.94,10252.9,0],"Sobotka"],
     [[1573.45,9677.45,0],"Bielawa"],
     [[4819.03,7674.13,0],"Olszanka"],
     [[6617.63,11211,0],"Brena"],
     [[6128.89,8013.34,0],"Nidek"],
-    [[3076.31,6851.26,0],"Adamów"],
+    [[3076.31,6851.26,0],"Adamow"],
     [[1858.82,7330.87,0],"Topolin"],
     [[4567.5,6384.4,0],"Muratyn"],
     [[5941.87,6820.01,0],"Lipina"],
@@ -20,18 +20,18 @@ OT_townData = [
     [[8680.47,6635.7,0],"Lembork"],
     [[7695.28,5317.47,0],"Roztoka"],
     [[9807.49,8495.07,0],"Borek"],
-    [[6109.5,3983.17,0],"Nadbór"],
+    [[6109.5,3983.17,0],"Nadbor"],
     [[10666.2,11025.6,0],"Grabin"],
     [[10072.7,6956.96,0],"Karlin"],
     [[11502.3,9573.01,0],"Sitnik"],
     [[3279.61,2132.15,0],"Polana"],
-    [[11240,4380.37,0],"Gieraltów"],
+    [[11240,4380.37,0],"Gieraltow"],
     [[11312.4,655.73,0],"Dolnik"],
     [[9057.4,4408,0],"Wrzeszoz"],
     [[5856.45,5107.65,0],"Drewniki"]
 ];
 
 
-OT_spawnTowns = ["Dolnik","Polana","Gieraltów","Wrzeszoz","Nadbór","Gliniska","Brena"];
-OT_capitals = ["Nadbór","Topolin"]; //region capitals
+OT_spawnTowns = ["Dolnik","Polana","Gieraltow","Wrzeszoz","Nadbor","Gliniska","Brena"];
+OT_capitals = ["Nadbor","Topolin"]; //region capitals
 OT_sprawling = [];

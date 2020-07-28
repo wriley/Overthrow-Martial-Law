@@ -65,6 +65,9 @@ OT_priceData = [
 ['ACE_HuntIR_monitor',[400,0,1,2]],
 ['Ace_splint',[10,0.1,0.1]],
 ['MineDetector',[100,0,0.5,0.5]],
+['m24_bino',[100,0,2,2]],
+['rhsusf_bino_m24',[100,0,2,2]],
+['rhsusf_bino_m24_ARD',[105,0,2,2]],
 
 //Weapons
 ['SMG_01_F',[3000,0,1,0.5]],
@@ -667,6 +670,7 @@ OT_priceData = [
 ['C_Rubberboat',[500,0,5,15]],
 //Static Weapon Backpacks
 ['I_HMG_01_high_weapon_F',[36000,1,0,1]],
+['I_HMG_02_high_weapon_F',[36000,1,0,1]],
 ['I_GMG_01_high_weapon_F',[55000,1,0,1]],
 ['I_HMG_01_support_high_F',[150,1,0,0]],
 ['I_Mortar_01_weapon_F',[250000,1,0,1]],

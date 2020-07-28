@@ -18,7 +18,10 @@ if !(_pos isEqualType []) then {
 };
 
 private _group = creategroup blufor;
-private _veh = createVehicle [_vehtype, _pos, [], 0,""];
+
+private _result = [_pos, _dir, _vehtype, west] call BIS_fnc_spawnVehicle;
+private _veh = _result select 0;
+
 _veh setVariable ["garrison","HQ",false];
 
 clearWeaponCargoGlobal _veh;
@@ -26,9 +29,7 @@ clearMagazineCargoGlobal _veh;
 clearItemCargoGlobal _veh;
 clearBackpackCargoGlobal _veh;
 
-_veh setDir (_dir);
 _group addVehicle _veh;
-createVehicleCrew _veh;
 {
 	[_x] joinSilent _group;
 	_x setVariable ["garrison","HQ",false];

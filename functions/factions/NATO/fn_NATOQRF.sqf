@@ -34,7 +34,7 @@ _abandoned = server getvariable ["NATOabandoned",[]];
 
 ([_pos] call OT_fnc_NATOGetAttackVectors) params ["_ground","_air"];
 
-if(_strength > 255 && (count _air) > 0) then {// changed strength from 500
+if(_strength > 425 && (count _air) > 0) then {// changed strength from 500
 	//Send CAS
 	_obpos = (_air select 0) select 0;
 	_name = (_air select 0) select 1;
@@ -146,6 +146,15 @@ if((count _ground > 0) && (_strength > 1000) && (_popControl > 500)) then {// ch
 	diag_log format["Overthrow: NATO Sent tank from %1 %2",_name,str _obpos];
 };
 sleep 2;
+
+//Send in smoke to cover troops
+if(_strength > 350 || ((random 100) > 25)) then {
+	_obpos = (_ground select 1) select 0;
+	_name = (_ground select 1) select 1;
+	_dir = [_pos,_obpos] call BIS_fnc_dirTo;
+	_ao = [_pos,_dir] call OT_fnc_getAO;
+	["",_ao,"",260,1] spawn OT_fnc_NATOArtySupport; // 1 = smoke, 2 = smoke + mines
+};
 
 //Send delayed APC in mid-game
 if(_popControl > 1000) then {

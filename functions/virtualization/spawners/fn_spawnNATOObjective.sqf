@@ -267,7 +267,18 @@ private _road = objNull;
 	_groups pushback _vgroup;
 	private _vehtype = _x;
 	private _got = false;
-	private _pos = _posTown findEmptyPosition [25,250,_vehtype];
+	
+	private _pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
+	if (_vehtype == "RHS_MELB_AH6M") then {
+		private _pos = [_posTown, 25, 250, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
+	}else{
+		if(_x isKindOf "StaticWeapon") then {
+			private _pos = [_posTown, 25, 250, 1, 0, 1, 0] call BIS_fnc_findSafePos;
+		}else{
+			private _pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
+		};
+	};
+	
 	if ((count _pos)==0) then {//added to correct error
 	    _pos = [0,0,0];
 	};

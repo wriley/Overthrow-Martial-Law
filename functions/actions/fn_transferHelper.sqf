@@ -67,10 +67,12 @@ _this spawn {
 			_x params [["_cls",""], ["_max",0]];
 			private _count = 0;
 			private _full = false;
-			private _istruck = (_veh isKindOf "Truck_F" || _veh isKindOf "ReammoBox_F");
+			private _OverFill = false; //Added in special exception for factory container
+			if (isNil {OT_salvageVehicle getVariable "CanOverFill"}) then {_OverFill = true};
+			private _istruck = (_veh isKindOf "Car" || _veh isKindOf "B_CargoNet_01_ammo_F" || _veh isKindOf "Tank" || _veh isKindOf "B_Slingload_01_Cargo_F" );
 
 			while {_count < _max} do {
-				if(!(_veh canAdd [_cls,1]) && !_istruck) exitWith {_full = true};
+				if( !(_veh canAdd [_cls,1]) && {(!_OverFill)}) exitWith {_full = true};
 				_count = _count + 1;
 				call {
 					if(_cls isKindOf "Bag_Base") exitWith {
@@ -103,6 +105,12 @@ _this spawn {
 					[_target, _cls, _count] call CBA_fnc_removeWeaponCargo;
 				};
 				if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
+					[_target, _cls, _count] call CBA_fnc_removeWeaponCargo;
+				};
+				if(_cls isKindOf ["NVGoggles",configFile >> "CfgWeapons"]) exitWith {
+					[_target, _cls, _count] call CBA_fnc_removeItemCargo;
+				};
+				if(_cls isKindOf ["Binocular",configFile >> "CfgWeapons"]) exitWith {
 					[_target, _cls, _count] call CBA_fnc_removeWeaponCargo;
 				};
 				if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
