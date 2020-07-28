@@ -176,7 +176,7 @@ OT_item_DefaultBlueprints = [];
 OT_itemCategoryDefinitions = [
     ["General",["ACE_fieldDressing","Banana","Map","ToolKit","ACE_EarPlugs","Watch","Radio","Compass","ACE_Spraypaint","Altimiter","MapTools","Binocular","CableTie"]],
     ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet","ACE_splint"]],
-    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","ACE_microDAGR","Battery","ATragMX","ACE_Flashlight","I_UavTerminal"]],
+    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","ACE_microDAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal"]],
     ["Hardware",["Tool","CableTie","ACE_Spraypaint","wirecutter","ACE_rope","ACE_EntrenchingTool"]],
     ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","ACE_Vector","ACE_Yardage"]]
 ];
