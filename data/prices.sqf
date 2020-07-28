@@ -670,6 +670,7 @@ OT_priceData = [
 ['C_Rubberboat',[500,0,5,15]],
 //Static Weapon Backpacks
 ['I_HMG_01_high_weapon_F',[36000,1,0,1]],
+['I_HMG_02_high_weapon_F',[36000,1,0,1]],
 ['I_GMG_01_high_weapon_F',[55000,1,0,1]],
 ['I_HMG_01_support_high_F',[150,1,0,0]],
 ['I_Mortar_01_weapon_F',[250000,1,0,1]],
