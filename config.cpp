@@ -38,7 +38,8 @@ class CfgMainMenuSpotlight
 		actionText = $STR_A3_RscDisplayMain_Spotlight_Play; // Text displayed in top left corner of on-hover white frame
 		condition = "true"; // Condition for showing the spotlight
 	};
-	class ApexProtocol
+};
+/*	class ApexProtocol
 	{
 		condition = "false";
 	};
@@ -83,7 +84,7 @@ class CfgMainMenuSpotlight
 		condition = "false";
 	};
 
-};
+};*/
 
 class CfgMissions
 {
@@ -94,50 +95,24 @@ class CfgMissions
 			directory = "overthrow_main\campaign";
 		};
 	};
+
 	class Missions
 	{
-		class OverthrowSpTanoa
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpTanoa.Tanoa";
-		};
-		class OverthrowSpAltis
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpAltis.Altis";
-		};
-		class OverthrowSpMalden
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpMalden.Malden";
-		};
-	};
+
+  };
 	class MPMissions
 	{
-		class OverthrowMpTanoa
-		{
-			directory="overthrow_main\campaign\missions\OverthrowMpTanoa.Tanoa";
-		};
-		class OTMpTanoaMartialLawRHS
+    class OTMpTanoaMartialLawRHS
 		{
 			directory="overthrow_main\campaign\missions\OTMpTanoaMartialLawRHS.Tanoa";
-		};
-		class OverthrowMpAltis
-		{
-			directory="overthrow_main\campaign\missions\OverthrowMpAltis.Altis";
 		};
 		class OTMpAltisMartialLawRHS
 		{
 			directory="overthrow_main\campaign\missions\OTMpAltisMartialLawRHS.Altis";
 		};
-		class OverthrowMpMalden
-		{
-			directory="overthrow_main\campaign\missions\OverthrowMpMalden.Malden";
-		};
 		class OTMpMaldenMartialLawRHS
 		{
 			directory="overthrow_main\campaign\missions\OTMpMaldenMartialLawRHS.Malden";
-		};
-		class OverthrowMpLivonia
-		{
-			directory="overthrow_main\campaign\missions\OverthrowMpLivonia.Enoch";
 		};
 		class OTMpLivoniaMartialLawRHS
 		{
