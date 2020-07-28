@@ -12,7 +12,6 @@ private _numStatic = 0;
 
 private _start = [(_xStart / _numStatic),(_yStart / _numStatic)];
 
-private _avoidCheckRange = 175;
 private _outerRange = 70;
 private _innerRange = 30;
 private _searchingRange = 5;
@@ -21,6 +20,7 @@ private _bSide = [];
 private _inrange = [];
 private _searching = [];
 private _searched = [];
+private _searchedFoot = [];
 private _gone = [];
 private _vehs = [];
 private _warned = [];
@@ -67,8 +67,7 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 	{
 		_unit = _x;
 		_iscar = false;
-		if(_unit isKindOf "LandVehicle" && !(side _x isEqualTo west)) then {
-			_unit = driver _unit;
+		if(_unit isKindOf "LandVehicle" && !(side _x isEqualTo west)) then {			
 			_iscar = true;
 			_f = false;
 
@@ -81,6 +80,9 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 		};
 		if !(_unit in _inrange || _unit in _searching || _unit in _searched) then {
 			if(_unit call OT_fnc_unitSeenNATO) then {
+				if(! isPlayer _unit) then {
+					NOTPLAYER = true;
+				};
 
 				if((isPlayer _unit) && (captive _unit)) then {
 					if(_iscar) then {
@@ -95,10 +97,10 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 								
 							};
 						}
-					}else{
-						if(_unit distance _start < _searchingRange) then {
-							[_unit] spawn OT_fnc_NATOsearch;
-							_searching pushback _unit;
+					}else{						
+						if(_unit distance _start < _innerRange && !(_unit in _inrange)) then {
+							_inrange pushBack _unit;
+							[_leader, {_this globalchat "Stand still inside the checkpoint while we search you."}] remoteExec ["call", _unit, false];
 						};
 					};
 				};
@@ -172,108 +174,68 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 	_gone = [];
 	
 	{
-		private _foundillegal = false;
-		private _foundweapons = false;
-		
+		//Wanted
+		if(! captive _x) then {
+			_gone pushback _x;
+		};
+
 		//Leaving
-		if(_x distance _start > _innerRange && isPlayer _x && !(_x in _searched) && !(_x in _leaving)) then {
+		if(_x distance _start > _innerRange && isPlayer _x && !(_x in _searched) && !(_x in _leaving) ) then {
 			//Unit is leaving without a search
 			_leaving pushback _x;
 			[_leader, {_this globalchat "Get back here or we WILL open fire!"}] remoteExec ["call", _x, false];
 		};
-		if(_x distance _start > _outerRange) then {
-			//Unit has left the area
+
+		//Unit has left the area
+		if(_x distance _start > _outerRange) then {			
 			_gone pushback _x;
+
+			//Was not searched
 			if(isPlayer _x && !(_x in _searched)) then {
 				_x setCaptive false;
 				[_x] call OT_fnc_revealToNATO;
 			};
+
+		//Is still in area
 		}else{
-			_iscar = false;
-			_veh = false;
 
+			//Is in search range
 			if(_x distance _start < _searchingRange) then {
+				//If not being searched or already searched
 				if !(_x in _searching || _x in _searched) then {
-					if(isPlayer _x) then {
+						//Start searching
 						_searching pushback _x;
-						[_leader, {_this globalchat "Please wait... personal items will be stored in your vehicle"}] remoteExec ["call", _x, false];
-						if(vehicle _x != _x) then {
-							_v = vehicle _x;
-							_v setVelocity [0,0,0];
-							{
-								[_x,_v,true] call OT_fnc_dumpStuff;
-							}foreach(units _v);
-						};
-					};
+
 				}else{
-					if(isPlayer _x && !(_x in _searched)) then {
-						_msg = "Search complete, be on your way";
-						_items = [];
-						_unit = _x;
-						if(vehicle _x != _x) then {
-							_v = vehicle _x;
-							_v setVelocity [0,0,0];
+					//Being searched
+					if(!(_x in _searched)) then {
+						if([_x,_leader] call OT_fnc_NATOCpSearch) then {
+							_searched pushBack _x;
+							_searching deleteAt(_searching find _x);
+						} else {
+							_gone pushBack _x;
 						};
-
-						_items = (vehicle _x) call OT_fnc_unitStock;
-
-						{
-                            _cls = _x select 0;
-                            if ((_cls in OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_allStaticBackpacks + OT_allOptics) && {!(_cls in OT_legal)}) then {  //changed to allow legal credit MaxP
-                                _foundweapons = true;
-                            };
-							if(_cls in OT_illegalItems) then {
-								_count = _x select 1;
-								if(vehicle _unit != _unit) then {
-									[_unit,_cls,_count] call CBA_fnc_removeItemCargo;
-								}else{
-									for "_i" from 1 to _count do {
-										_unit removeItem _cls;
-									};
-								};
-								_foundillegal = true;
-							};
-						}foreach(_items);
-
-						if(primaryWeapon _unit != "") then {_foundweapons = true};
-						if(secondaryWeapon _unit != "") then {_foundweapons = true};
-						if(handgunWeapon _unit != "") then {_foundweapons = true};
-
-						if(_foundillegal || _foundweapons) then {
-							if(_foundweapons) then {
-								_msg = "What's this??!?";
-								{
-									_x setCaptive false;
-									[_x] call OT_fnc_revealToNATO;
-								}foreach(units vehicle _unit);
-							}else{
-								_msg = "We found some illegal items and confiscated them, be on your way";
-							};
-						}else {
-							if((vehicle _x) getVariable ["stolen",false]) then {
-								_msg = "This vehicle has been reported stolen!";
-								{
-									_x setCaptive false;
-									[_x] call OT_fnc_revealToNATO;
-								}foreach(units vehicle _unit);
-							};
-						};
-						[[_leader,_msg], {(_this select 0) globalchat (_this select 1)}] remoteExec ["call", _x, false];
-						_searched pushback _x;
-						_searching deleteAt(_searching find _x);
 					};
 				};
+
 			}else{
-				if (_x in _searching && isPlayer _x) then {
-					[_leader, {_this globalchat "Return to the checkpoint immediately and wait while you are searched"}] remoteExec ["call", _x, false];
+				//Was being searched and moved out of the search area
+				if (_x in _searching) then {
+					if(isPlayer _x) then {[_leader, {_this globalchat "Return to the checkpoint immediately and wait while you are searched"}] remoteExec ["call", _x, false];};
 					_searching deleteAt(_searching find _x);
 				}
 			};
+		};
+		if(! alive _x) then {
+			_gone pushBack _x;
 		};
 	}foreach(_inrange);
 
 	//For every thing that has left the checkpoint area
 	{
+		if (crew _x select 0 != _x) then {
+		  _gone append crew _x;
+		};
 		_inrange deleteAt (_inrange find _x);
 		if(_x in _searched) then {
 			_searched deleteAt (_searched find _x);
@@ -287,6 +249,11 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 			_warned deleteAt (_warned find _x);
 		};
 		
-	}foreach(_gone);
+	}foreach(_gone);	
 	sleep 2;
+
+	if(count _inrange > 0) then {
+		OT_DEBUG_CP = [_inrange,_searched,_searching,_vehs,_searchedFoot,_inrange select 0 distance _start];
+		OT_DEBUG_CP_L = _leader;
+	}
 };

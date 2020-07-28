@@ -15,9 +15,6 @@ private _road = [_start] call BIS_fnc_nearestRoad;
 if(isNil "_road") exitWith {diag_log format["Overthrow: WARNING: Couldnt find road for %1 %2",_name,_start];[]};
 
 _start = getPos _road;
-_mk = createMarker ["road",_start];
-_mk setMarkerType "hd_dot";
-_mk setMarkerText "Road";
 
 if((count _start) isEqualTo 0 || _start#1 isEqualTo 0) exitWith {diag_log format["Overthrow: WARNING: Couldnt find road for %1 %2",_name,_start];[]};
 
