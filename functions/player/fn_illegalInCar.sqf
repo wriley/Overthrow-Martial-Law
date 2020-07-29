@@ -11,7 +11,7 @@ if(driver (vehicle _this) isEqualTo _this) exitWith{false};
 // carrying a weapon or illegal gear
 if (
 	_this call OT_fnc_hasWeaponEquipped
-	|| { ((headgear _this) in OT_illegalHeadgear) || ((vest _this) in OT_illegalVests) }
+	|| { ((headgear _this) in OT_illegalHeadgear) || ((vest _this) in OT_illegalVests) || ((uniform _this) in OT_illegalUniform) }
 ) exitWith {
 	true
 };

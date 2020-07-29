@@ -133,7 +133,7 @@ if(isplayer _target) then {
 	private _foundweapons = false;
 	{
                             _cls = _x select 0;
-                            if ((_cls in OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_allStaticBackpacks + OT_allOptics) && {!(_cls in OT_legal)}) then { //changed to allow legals credit MaxP
+                            if ((_cls in OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_illegalUniform + OT_allStaticBackpacks + OT_allOptics) && {!(_cls in OT_legal)}) then { //changed to allow legals credit MaxP
                                 _foundweapons = true;
                             };
 		if(_cls in OT_illegalItems) then {

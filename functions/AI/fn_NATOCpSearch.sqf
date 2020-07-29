@@ -41,7 +41,7 @@ if(isPlayer _target) then {
 if !(_foundWeapons || _foundStolen || _foundStatic) then { //If there is no static weapon in ace cargo
 {
 	_unit = _x;
-	
+
 
 	//Calculate chance per player unit
 	if(isPlayer _unit || _unit isKindOf "LandVehicle") then {
@@ -54,20 +54,20 @@ if !(_foundWeapons || _foundStolen || _foundStatic) then { //If there is no stat
 	} else {_drugsHidden = false};
 
 	//Get items
-	if !(_unit isKindOf "Man") then {		
+	if !(_unit isKindOf "Man") then {
 		_items = (itemCargo _unit) + (weaponCargo _unit) + (magazineCargo _unit) + (backpackCargo _unit);
 	} else {
 		_items = (items _unit) + (magazines _unit);
-	};	
+	};
 	//Check items
 	{
-		
+
 		//If weapon found then stop and make wanted
-		if(_x in (OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_allStaticBackpacks + OT_allOptics)) exitWith {
+		if(_x in (OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_illegalUniform + OT_allStaticBackpacks + OT_allOptics)) exitWith {
 				_foundWeapons = true;
 		};
 		//If illegal items found
-		if(_x in OT_illegalItems && ! _drugsHidden) then {			
+		if(_x in OT_illegalItems && ! _drugsHidden) then {
 			_foundDrugs = true;
 			if(_unit isKindOf "LandVehicle") then {
 				[_unit,_x,1] call CBA_fnc_removeItemCargo;
@@ -98,7 +98,7 @@ if(_foundWeapons || _foundStolen || _foundStatic) then {
 } else {
 	if (isPlayer _target) then {
 		if (_foundDrugs) then {
-			[_leader, {_this globalchat "We have taken these illegal items"}] remoteExec ["call",crew _target, false];		
+			[_leader, {_this globalchat "We have taken these illegal items"}] remoteExec ["call",crew _target, false];
 		} else {
 			[_leader, {_this globalchat (["We found nothing this time.", "You are clean.", "No illegal items"] call BIS_fnc_selectRandom);}] remoteExec ["call",crew _target, false];
 		};
