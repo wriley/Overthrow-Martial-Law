@@ -90,11 +90,23 @@ if(_create isEqualType 1) then {
                 ) exitWith {
                     private _ang = (getDir _building) - 190;
     				private _p = [_building buildingPos 1, 2.3, _ang] call BIS_Fnc_relPos;
-    				private _dir = (getDir _building) - 180;
+    				private _dir = (getDir _building) + 170;
 
                     private _guns = {alive _x} count(nearestObjects [_p, ["I_HMG_01_high_F","I_GMG_01_high_F"], 5]);
                     if(_guns == 0) then {
-                        [ getDir _building, _p ];
+                        [ _dir, _p ];
+                    } else {
+                        [];
+                    };
+                };
+				if(
+                    (_type == "Land_Bunker_01_tall_F")
+                ) exitWith {
+                    private _p = (_building buildingPos 1);
+                    private _dir = (getDir _building) - 180;
+                    private _guns = ({alive _x} count (nearestObjects [_p, ["I_HMG_01_high_F","I_GMG_01_high_F"], 5]));
+                    if(_guns == 0) then {
+                        [_dir, _p];
                     } else {
                         [];
                     };
