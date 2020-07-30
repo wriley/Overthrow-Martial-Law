@@ -27,6 +27,9 @@ private _abandoned = server getVariable ["NATOabandoned",[]];
 }foreach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 
 //Find a destination town
+
+private _Alltowns = OT_allTowns - [_pickupTown];
+
 {
     private _town = _x;
     private _posTown = server getVariable _town;
@@ -38,7 +41,7 @@ private _abandoned = server getVariable ["NATOabandoned",[]];
             _destination = _posTown findEmptyPosition [5,100,OT_civType_local];
         };
     };
-}foreach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
+}foreach([_Alltowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 
 
 //Give our VIP a name
@@ -50,7 +53,7 @@ private _params = [_faction,_pickup,_destination,_fullname];
 private _markerPos = _destination;
 
 //Build a mission description and title
-private _description = format["Our intelligence operative %1 is in need of transport from %2 to %3. He is of local descent so you should have no problems passing through NATO checkpoints unnoticed. Please take care of it within 12 hrs.<br/><br/>Reward: +15 (%4), $250",_fullname select 0,_pickupTown,_destinationTown,_factionName];
+private _description = format["Our intelligence operative %1 is in need of transport from %2 to %3. He is of local descent so you should have no problems passing through NATO checkpoints unnoticed. Please take care of it within 12 hrs.<br/><br/>Reward: +15 (%4), $500",_fullname select 0,_pickupTown,_destinationTown,_factionName];
 private _title = format["Operative transport for %1",_factionName];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
@@ -111,7 +114,7 @@ private _title = format["Operative transport for %1",_factionName];
                     private _factionName = server getvariable format["factionname%1",_faction];
                     format ["Incoming message from %1: Thank you for delivering our operative. (+15 %1)",_factionName] remoteExec ["OT_fnc_notifyMinor",0,false];
                     server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) + 15,true];
-                    [550] call OT_fnc_money;
+                    [500] call OT_fnc_money;
                 },
                 [_faction],
                 2
