@@ -1,12 +1,18 @@
-params ["_p","_create",["_charge",true]];
+params ["_p","_create",["_charge",true],["_rank",3]];
 
 private _b = _p call OT_fnc_nearestBase;
-private _pos = _b select 0;
+private _bp = _b select 0;
+private _pos = _bp;
+
+private _o = _p call OT_fnc_nearestObjective;
+private _op = _o select 0;
+private _oradius = _o select 2;
+
 private _code = format["fob%1",_pos];
-if((_pos distance player) > 100) then {
-    _b = _p call OT_fnc_nearestObjective;
-    _pos = _b select 0;
-    _code = _b select 1;
+
+if((_bp distance _op) < (_oradius/2)) then {
+	_pos = _op;
+    _code = _o select 1;
 };
 
 if(
@@ -40,7 +46,7 @@ if(_create isEqualType 1) then {
         [-_cost] call OT_fnc_money;
     };
 
-    private _civ = [_soldier,_pos,_group] call OT_fnc_createSoldier;
+    private _civ = [_soldier,_pos,_group,true,_rank] call OT_fnc_createSoldier;
 
     if(_doinit) then {
         _group call OT_fnc_initMilitaryPatrol;
