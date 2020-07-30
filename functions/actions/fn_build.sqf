@@ -90,6 +90,7 @@ buildCamRotating = false;
 canBuildHere = false;
 
 modeCenter = _center;
+modeSurface = false;
 
 buildOnMouseMove = {
 	params ["_control","_mouseX","_mouseY"];
@@ -98,9 +99,13 @@ buildOnMouseMove = {
 	if(!isNull modeTarget) then {
 		modeTarget setPos modeValue;
 		modeVisual setPos modeValue;
-		modeVisual setVectorDirAndUp [[0,0,-1],[0,1,0]];
-		modeTarget setVectorDirAndUp [[0,1,0],[0,1,0]];
 		modeTarget setDir buildRotation;
+		modeVisual setVectorDirAndUp [[0,0,-1],[0,1,0]];
+		if (modeSurface) then {
+			modeTarget setVectorUp surfaceNormal position modeTarget;
+		} else {
+			modeTarget setVectorUp [0,0,1];
+		};
 
 		if(modeMode == 0) then {
 			if(surfaceIsWater modeValue || (modeTarget distance modeCenter > modeMax) || ({!(_x isKindOf "Man") && (typeof _x != OT_flag_IND) && !(_x isEqualTo modeTarget) && !(_x isEqualTo modeVisual)} count(nearestObjects [modeTarget,[],10]) > 0)) then {
@@ -232,8 +237,14 @@ buildOnKeyDown = {
 			modeTarget = createVehicle [_cls, modeValue, [], 0, "CAN_COLLIDE"];
 			modeTarget enableDynamicSimulation true;
 			modeTarget setDir _dir;
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
 		};
-		_amt = 5;
+		_amt = 1;
+		if (OT_shiftHeld) then { _amt = 5; };
 		if (_key isEqualTo 16) exitWith {
 			//Q
 			_handled = true;
@@ -241,6 +252,11 @@ buildOnKeyDown = {
 			if(_newdir < 0) then {_newdir = 359};
 			modeTarget setDir (_newdir);
 			buildRotation = _newDir;
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
 		};
 		if (_key isEqualTo 18) exitWith {
 			//E
@@ -249,6 +265,21 @@ buildOnKeyDown = {
 			if(_newdir > 359) then {_newdir = 0};
 			modeTarget setDir (_newdir);
 			buildRotation = _newDir;
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
+		};
+		if (_key isEqualTo 33) exitWith {
+			//F
+			_handled = true;
+			modeSurface = !modeSurface;
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
 		};
 	};
 	_handled
@@ -383,14 +414,19 @@ build = {
 	modeVisual setVectorDirAndUp [[0,0,-1],[0,1,0]];
 	modeVisual setObjectTexture [0,'#(argb,8,8,3)color(1,0,0,0.5)'];
 	modeVisual allowDamage false;
-	modeTarget setMass 0;
 	modeVisual setMass 0;
+	modeTarget setMass 0;
 	modeTarget setDir buildRotation;
 	modeTarget allowDamage false;
+	if (modeSurface) then {
+		modeTarget setVectorUp surfaceNormal position modeTarget;
+	} else {
+		modeTarget setVectorUp [0,0,1];
+	};
 
 	[
 		format [
-			"<t size='1.1' color='#eeeeee'>%1</t><br/><t size='0.8' color='#bbbbbb'>$%2</t><br/><t size='0.4' color='#bbbbbb'>%3</t><br/><br/><t size='0.5' color='#bbbbbb'>Q,E = Rotate (Shift for smaller)<br/>Space = Change Type<br/>Left Click = Build It<br/>Right Click = Move Camera<br/>Mouse Wheel = Zoom<br/>Shift = Build multiple</t>",
+			"<t size='1.1' color='#eeeeee'>%1</t><br/><t size='0.8' color='#bbbbbb'>$%2</t><br/><t size='0.4' color='#bbbbbb'>%3</t><br/><br/><t size='0.5' color='#bbbbbb'>Q,E = Rotate (Shift for larger)<br/><t size='0.5' color='#bbbbbb'>F = Toggle Surface Mode<br/>Space = Change Type<br/>Left Click = Build It<br/>Right Click = Move Camera<br/>Mouse Wheel = Zoom<br/>Shift = Build multiple</t>",
 			_name,
 			[modePrice, 1, 0, true] call CBA_fnc_formatNumber,
 			_description
@@ -427,3 +463,4 @@ modeValues = nil;
 modeSelected = nil;
 modeMode = nil;
 modeCode = nil;
+modeSurface = nil;
