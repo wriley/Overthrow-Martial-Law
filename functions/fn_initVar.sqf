@@ -128,6 +128,8 @@ OT_adminMode = false;
 OT_deepDebug = false;
 OT_allIntel = [];
 OT_notifies = [];
+OT_looters = 0;
+OT_lastlooterorder = time;
 
 OT_NATO_HQPos = [0,0,0];
 
