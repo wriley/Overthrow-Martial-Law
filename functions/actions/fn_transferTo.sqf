@@ -16,8 +16,8 @@ private _iswarehouse = false;
 
 if (!_notvehicle) then {
 	{
-		if (!(_x isEqualTo _target) && {(_x isKindOf "Car" or _x isKindOf "Air" or _x isKindOf "ReammoBox_F" or _x isKindOf "Ship") && !(side _x isEqualTo west) && !({alive _x} count crew _x > 0)}) then {_objects pushback _x};
-	} foreach (player nearEntities [["Car","ReammoBox_F","Air","Ship"],20]);
+		if (!(_x isEqualTo _target) && {(_x isKindOf "ReammoBox_F" || _x isKindOf "Land" || _x isKindOf "Air" || _x isKindOf "Ship") && !(side _x isEqualTo west) && !({alive _x} count crew _x > 0)}) then {_objects pushback _x};
+	} foreach (player nearEntities [["ReammoBox_F","Land","Air","Ship","B_Slingload_01_Cargo_F"],20]);
 };
 
 if (!_notvehicle  && _objects isEqualTo []) exitWith {

@@ -67,10 +67,7 @@ _this spawn {
 			_x params [["_cls",""], ["_max",0]];
 			private _count = 0;
 			private _full = false;
-			private _OverFill = false; //Added in special exception for factory container
-			if (isNil {OT_salvageVehicle getVariable "CanOverFill"}) then {_OverFill = true};
-			private _istruck = (_veh isKindOf "Car" || _veh isKindOf "B_CargoNet_01_ammo_F" || _veh isKindOf "Tank" || _veh isKindOf "B_Slingload_01_Cargo_F" );
-
+			private _OverFill = ((_veh isKindOf "B_Slingload_01_Cargo_F") || (isNil {OT_salvageVehicle getVariable "CanOverFill"}));
 			while {_count < _max} do {
 				if( !(_veh canAdd [_cls,1]) && {(!_OverFill)}) exitWith {_full = true};
 				_count = _count + 1;
