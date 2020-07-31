@@ -16,12 +16,13 @@ OT_objectiveData = [
     [[14273.5,13007.8,0],"Katalaki Naval Base",600],
     [[23028.6,7245.26,0],"Feres Base",600],
 	  [[5336.3,21801,0],"Solo Base",350],
-	  [[9119.16,22567.7,0],"Sister Base",300],
+	  [[9699.99,22244.8,0],"Seaside Base",300],
 	  [[14198.2,21225.1,0],"Frini Base",350],
 	  [[11476.2,15093.9,0],"Nadom Base",400],
 	  [[10353.9,9528.07,0],"Hades Base",400],
 	  [[5408.04,17915.2,0],"Hidden Valley Base",300],
-    [[5407.07,15817.1,0],"Nagades Base",250]
+    [[5407.07,15817.1,0],"Nagades Base",250],
+    [[22125.7,15636.3,0],"Thelos Bay Base",350]
 ];
 OT_NATO_HQ = "Selakano Airfield";
 OT_NATO_priority = ["Selakano Airfield","Gravia Airport","Comms Alpha","Pyrgos","Kavala","Neochori","Selakano Base","Salt Lake Base"];
