@@ -478,5 +478,6 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 
 publicVariable "OT_allObjectives";
 publicVariable "OT_allComms";
+publicVariable "OT_NATOHelipads";
 OT_NATOInitDone = true;
 publicVariable "OT_NATOInitDone";
