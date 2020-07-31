@@ -507,6 +507,7 @@ class CfgFunctions
 			class initGunDealer {};
 			class initHarbor {};
 			class initMilitary {};
+			class initMilitaryVeh {};
 			class initMilitaryPatrol {};
 			class initMobBoss {};
 			class initMobster {};
