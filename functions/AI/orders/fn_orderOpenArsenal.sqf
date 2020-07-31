@@ -34,7 +34,7 @@ if(vehicle _unit != _target && (_unit distance _target) > 10) then {
 [_unit, _target, _iswarehouse] spawn {
 	params ["_unit", "_target", "_iswarehouse"];
 	_timeout = time + 30;
-	waitUntil {sleep 1; (!alive _unit || (_unit distance _target < 10) || _timeout == time)};
+	waitUntil {sleep 1; (!alive _unit || (_unit distance _target < 10) || _timeout < time)};
 	if(alive _unit && _unit distance _target < 10) then {
 		if(_iswarehouse) then {
 			["WAREHOUSE",_unit,_target] call OT_fnc_openArsenal;

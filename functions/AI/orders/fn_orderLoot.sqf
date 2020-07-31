@@ -18,7 +18,7 @@ if(vehicle _tt != _tt) then {
 
 if(count _sorted isEqualTo 0) exitWith {};
 private _target = _sorted select 0;
-
+(_myunits select 0) groupchat format["<%1>: Looting bodies within 100m into the %2", name (_myunits select 0), (typeof _target) call OT_fnc_vehicleGetName];
 {
     if ((typeOf vehicle _x) == "OT_I_Truck_recovery" && (driver vehicle _x) == _x) exitWith {
         [_x] spawn OT_fnc_recover;
@@ -27,8 +27,16 @@ private _target = _sorted select 0;
 	[_x,_target,OT_looters] spawn {
 		private _active = true;
 		private _unit = _this select 0;
+		private _t = _this select 1;
 		private _count = _this select 2;
 
+
+		if !([_unit,_t] call OT_fnc_dumpStuff) exitWith {
+			_unit groupchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
+			_active = false;
+		};
+
+		_unit setVariable ["OT_looter", true];
 		_unit setVariable ["NOAI",true,true];
 		_unit setBehaviour "CARELESS";
 
@@ -48,21 +56,11 @@ private _target = _sorted select 0;
 			_unit action ["Eject", _veh];
 		};
 
-		_t = _this select 1;
-
-        if (_count == 1) then { _unit groupchat format["<%1>: Looting bodies within 100m into the %2", name _unit, (typeof _t) call OT_fnc_vehicleGetName]; };
-
-        private _istruck = false;
-		_timeout = time + 30;
+		_timeOut = time + 30;
 		waitUntil {(unitReady _unit) || (!alive _unit) || (isNull _t) || (_timeOut < time)};
 		_unit doMove getpos _t;
 		waitUntil {sleep .1; (!alive _unit) || (isNull _t) || (_unit distance _t < 10) || (unitReady _unit)};
 		if(!alive _unit || (isNull _t) || (_timeOut < time)) exitWith {};
-
-		if !([_unit,_t] call OT_fnc_dumpStuff) then {
-			_unit groupchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
-			_active = false;
-		};
 
 		while {_active} do {
 			private _deadguy = objNull;
@@ -85,7 +83,7 @@ private _target = _sorted select 0;
 			OT_lastlooterorder = time + 2;
 			{
 				if !(isNull _x) then { //failsafe from objnull unknown reason
-					_timeout = time + 30;
+					_timeOut = time + 30;
 					waitUntil {unitReady _unit || !alive _unit || isNull _t || _timeOut < time};
 					_unit doMove position _x;
 					waitUntil { (unitReady _unit) && ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _x < 5)) };
@@ -96,7 +94,7 @@ private _target = _sorted select 0;
 				};
 			} forEach (_deadguy getVariable ["WeaponHolderSimulated",[]]);
 
-			_timeout = time + 30;
+			_timeOut = time + 30;
 			waitUntil {(unitReady _unit) || (!alive _unit) || (isNull _t) || (_timeOut < time)};
 			_unit doMove position _deadguy;
 			waitUntil { (unitReady _unit) && ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _deadguy < 5)) };
@@ -112,7 +110,7 @@ private _target = _sorted select 0;
 			[_deadguy,_unit] call OT_fnc_takeStuff;
 			_deadguy remoteExecCall ["deleteVehicle",_deadguy];
 
-			_timeout = time + 30;
+			_timeOut = time + 30;
 			waitUntil {(unitReady _unit) || (!alive _unit) || (isNull _t) || (_timeOut < time)};
 			_unit doMove getpos _t;
 			waitUntil { (unitReady _unit) && ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _t < 8)) };
@@ -126,7 +124,7 @@ private _target = _sorted select 0;
 			};
 		};
 
-		_timeout = time + 30;
+		_timeOut = time + 30;
 		if (_role != "" &&  !isNull _veh) then {
 			//waitUntil {(unitReady _unit) || (!alive _unit) || (_timeOut < time)};
 			_unit doMove getpos _veh;
@@ -149,6 +147,7 @@ private _target = _sorted select 0;
 			_unit doMove getpos _t;
 		};
 		_unit setVariable ["NOAI",true,true];
+		_unit setVariable ["OT_looter", nil];
 		OT_looters = OT_looters - 1;
 		if (OT_looters == 0) then {
 			_unit groupchat format ["<%1>: We're done here! Let's go!", name _unit];

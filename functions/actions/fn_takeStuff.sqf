@@ -3,6 +3,9 @@ private ["_unit","_t"];
 _unit = _this select 0;
 _t = _this select 1;
 
+if(uniform _unit != "") then {
+	_t addUniform uniform _unit;
+};
 if(vest _unit != "") then {
 	_t addVest vest _unit;
 };
