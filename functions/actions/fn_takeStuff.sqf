@@ -3,6 +3,9 @@ private ["_unit","_t"];
 _unit = _this select 0;
 _t = _this select 1;
 
+if(uniform _unit != "") then {
+	_t addUniform uniform _unit;
+};
 if(vest _unit != "") then {
 	_t addVest vest _unit;
 };
@@ -56,7 +59,7 @@ if(handgunWeapon _unit != "") then {
 	_unit removeWeapon handgunWeapon _unit;
 };
 {
-	if(_x != "ItemMap") then {
+	//if(_x != "ItemMap" || _unit getVariable ["OT_looter", false]) then {
 		if (([(configFile >> "CfgWeapons" >> _x),"useAsBinocular",0] call BIS_fnc_returnConfigEntry) > 0) then {
 			_unit unassignItem _x;
 			_unit removeWeapon _x;
@@ -66,5 +69,5 @@ if(handgunWeapon _unit != "") then {
 			_unit unlinkItem _x;
 			_t linkItem _x;
 		};
-	};
+	//};
 }foreach(assignedItems _unit);

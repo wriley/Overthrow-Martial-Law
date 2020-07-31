@@ -11,7 +11,7 @@ if((vehicle _unit) != _unit) then {
     private _objects = [];
     {
     	if!(_x isEqualTo _unit) then {_objects pushback _x};
-    }foreach(_unit nearEntities [["Car","ReammoBox_F","Air","Ship"],5]);
+    }foreach(_unit nearEntities [["Land","ReammoBox_F","Air","Ship"],5]);
 	if(count _objects isEqualTo 0) exitWith {
 		_unit action ["Gear",objNull];
 	};

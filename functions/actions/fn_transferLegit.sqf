@@ -16,7 +16,7 @@ if(typename _b isEqualTo "ARRAY") then {
 
 {
 	if!(_x isEqualTo _veh) then {_objects pushback _x};
-}foreach(player nearEntities [["Car","ReammoBox_F","Air","Ship"],20]);
+}foreach(player nearEntities [["ReammoBox_F","Land","Air","Ship","B_Slingload_01_Cargo_F"],20]);
 
 if(_objects isEqualTo []) exitWith {
 	"Cannot find any containers or other vehicles within 20m of this vehicle" call OT_fnc_notifyMinor;

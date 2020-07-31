@@ -597,8 +597,9 @@ if (_canSell) then {
 if (_isShop) then {
 	_options pushBack [format["Do you have any jobs for me?"], {
 		OT_jobsOffered = [];
-		private _support = [_town] call OT_fnc_support;
-		if(_support < 0) then {
+		private _town = (getpos player) call OT_fnc_nearestTown;
+		private _standing = [_town] call OT_fnc_support;
+		if(_standing < 0) then {
 			format["Resistance Support in this town is too low (%1)",_support] call OT_fnc_notifyMinor;
 		}else{
 			call OT_fnc_requestJobShop;

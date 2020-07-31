@@ -2,15 +2,43 @@ params ["_me",["_killer", objNull]];
 
 if !(local _me) exitWith {}; //Only run this on the machine where unit is local
 
-if ((isNull _killer) || {_killer == _me}) then {
+_aikiller = objNull;
+
+_myitems = weaponsItems _me;
+[_me,_myitems] spawn {
+	params ["_me","_myitems"];
+	_holders = [];
+	sleep 1;
+	{
+		if (((weaponsItems _x select 0) in _myitems) && !(isNull _x)) then {
+			_holders append [_x];
+		};
+	}foreach(_me nearentities ["WeaponHolderSimulated",5]);
+	if (count _holders > 0) then {
+		_me setVariable ["WeaponHolderSimulated", _holders, true];
+	};
+};
+
+if ((isNull _killer) || (_killer == _me)) then {
 	private _aceSource = _me getVariable ["ace_medical_lastDamageSource", objNull];
 	if ((!isNull _aceSource) && {_aceSource != _unit}) then {
 		_killer = _aceSource;
 	};
 };
 
-if !((typeOf _killer) isKindOf "CAManBase") then {
-	_killer = driver _killer;
+if (!(typeOf _killer isKindOf "CAManBase") && (side _killer == resistance)) then {
+	if (isNull driver _killer) then {
+		_aikiller = gunner _killer;
+		_killer = leader _aikiller;
+	} else {
+		_aikiller = (_killer);
+		_killer = driver _killer;
+	};
+};
+
+if (!(isPlayer _killer) && (side _killer == resistance) && (vehicle _killer == _killer)) then {
+	_aikiller = (_killer);
+	_killer = leader _killer;
 };
 
 if(_killer call OT_fnc_unitSeen) then {
@@ -27,6 +55,11 @@ if(isPlayer _me) exitWith {
 		[_town,-1] call OT_fnc_stability;
 	};
 	[_me,true] remoteExecCall ["setCaptive",_me];
+	private _money = player getVariable ["money",0];
+	private _take = floor(_money * 0.05);
+	if(_take > 0) then {
+		[-_take] call OT_fnc_money;
+	};
 	if !(isMultiplayer) then {
 		_this params ["_unit", "_killer", "_instigator", "_useEffects"];
 		if (_unit isEqualTo player) then {
@@ -58,7 +91,6 @@ if(isPlayer _me) exitWith {
 _civ = _me getvariable "civ";
 _garrison = _me getvariable "garrison";
 _employee = _me getvariable "employee";
-_vehgarrison = _me getvariable "vehgarrison";
 _polgarrison = _me getvariable "polgarrison";
 _airgarrison = _me getvariable "airgarrison";
 _criminal = _me getvariable "criminal";
@@ -73,7 +105,11 @@ _standingChange = 0;
 _bounty = _me getVariable ["OT_bounty",0];
 if(_bounty > 0) then {
 	[_killer,_bounty] call OT_fnc_rewardMoney;
-	[_killer,_bounty] call OT_fnc_experience;
+	if (!isNull _aikiller) then { 
+		[_aikiller,_bounty] call OT_fnc_experience;
+	} else {
+		[_killer,_bounty] call OT_fnc_experience;
+	};
 	_me setVariable ["OT_bounty",0,false];
 };
 
@@ -177,7 +213,7 @@ call {
 		_mrkid = format["%1-police",_polgarrison];
 		_mrkid setMarkerText format["%1",_pop];
 	};
-	if(!isNil "_garrison" || !isNil "_vehgarrison" || !isNil "_airgarrison") then {
+	if(!isNil "_garrison" || !isNil "_airgarrison") then {
 		_killer setVariable ["BLUkills",(_killer getVariable ["BLUkills",0])+1,true];
 		if(!isNil "_garrison") then {
 			server setVariable ["NATOresourceGain",(server getVariable ["NATOresourceGain",0])+1,true];
@@ -206,11 +242,11 @@ call {
 			};
 		};
 
-		if(!isNil "_vehgarrison") then {
-			_vg = server getVariable format["vehgarrison%1",_vehgarrison];
+		/*if(!isNil "_vehgarrison") then {
+			_vg = missionNamespace getVariable format["vehgarrison%1",_vehgarrison];
 			_vg deleteAt (_vg find (typeof _me));
-			server setVariable [format["vehgarrison%1",_vehgarrison],_vg,false];
-		};
+			missionNamespace setVariable [format["vehgarrison%1",_vehgarrison],_vg,false];
+		};*/
 
 		if(!isNil "_airgarrison") then {
 			_vg = server getVariable format["airgarrison%1",_airgarrison];

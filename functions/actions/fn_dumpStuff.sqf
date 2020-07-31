@@ -1,13 +1,9 @@
 params ["_unit","_t",["_linkedItems",false]];
 
 _full = false;
-_istruck = true;
-if(count _this isEqualTo 2) then {
-	_istruck = (_t isKindOf "Truck_F") || (_t isKindOf "ReammoBox_F");
-};
 
 if(binocular _unit != "") then {
-	if (!(_t canAdd binocular _unit) && !_isTruck) exitWith {
+	if !(_t canAdd binocular _unit) exitWith {
 		_full = true;
 	};
 	_t addWeaponCargoGlobal [binocular _unit,1];
@@ -15,7 +11,7 @@ if(binocular _unit != "") then {
 };
 
 if(hmd _unit != "") then {
-	if (!(_t canAdd hmd _unit) && !_isTruck) exitWith {
+	if !(_t canAdd hmd _unit) exitWith {
 		_full = true;
 	};
 	_t addItemCargoGlobal [hmd _unit,1];
@@ -28,7 +24,7 @@ if(_full) exitWith {false};
 	_count = 0;
 	_cls = _x select 0;
 	while {_count < (_x select 1)} do {
-		if (!(_t canAdd _cls) && !_isTruck) exitWith {
+		if !(_t canAdd _cls) exitWith {
 			_full = true;
 		};
 		[_t, _cls] call {
@@ -63,7 +59,7 @@ if(_full) exitWith {false};
 if(_full) exitWith {false};
 
 if(headgear _unit != "") then {
-	if (!(_t canAdd headgear _unit) && !_isTruck) exitWith {
+	if !(_t canAdd headgear _unit) exitWith {
 		_full = true;
 	};
 	_t addItemCargoGlobal [headgear _unit,1];
@@ -73,7 +69,7 @@ if(_full) exitWith {false};
 
 if(backpack _unit != "") then {
 	_cls = (backpack _unit) call BIS_fnc_basicBackpack;
-	if (!(_t canAdd _cls) && !_isTruck) exitWith {
+	if !(_t canAdd _cls) exitWith {
 		_full = true;
 	};
 	_t addBackpackCargoGlobal [_cls,1];
@@ -82,7 +78,7 @@ if(backpack _unit != "") then {
 if(_full) exitWith {false};
 
 if(vest _unit != "") then {
-	if (!(_t canAdd vest _unit) && !_isTruck) exitWith {
+	if !(_t canAdd vest _unit) exitWith {
 		_full = true;
 	};
 	_t addItemCargoGlobal [vest _unit,1];
@@ -90,8 +86,17 @@ if(vest _unit != "") then {
 };
 if(_full) exitWith {false};
 
+if(uniform _unit != "") then {
+	if !(_t canAdd uniform _unit) exitWith {
+		_full = true;
+	};
+	_t addItemCargoGlobal [uniform _unit,1];
+	removeUniform _unit;
+};
+if(_full) exitWith {false};
+
 if(goggles _unit != "") then {
-	if (!(_t canAdd goggles _unit) && !_isTruck) exitWith {
+	if !(_t canAdd goggles _unit) exitWith {
 		_full = true;
 	};
 	_t addItemCargoGlobal [goggles _unit,1];
@@ -100,7 +105,7 @@ if(goggles _unit != "") then {
 if(_full) exitWith {false};
 
 if(primaryWeapon _unit != "") then {
-	if (!(_t canAdd primaryWeapon _unit) && !_isTruck) exitWith {
+	if !(_t canAdd primaryWeapon _unit) exitWith {
 		_full = true;
 	};
 	{
@@ -113,7 +118,7 @@ if(primaryWeapon _unit != "") then {
 if(_full) exitWith {false};
 
 if(secondaryWeapon _unit != "") then {
-	if (!(_t canAdd secondaryWeapon _unit) && !_isTruck) exitWith {
+	if !(_t canAdd secondaryWeapon _unit) exitWith {
 		_full = true;
 	};
 	_t addWeaponCargoGlobal [secondaryWeapon _unit,1];
@@ -121,9 +126,8 @@ if(secondaryWeapon _unit != "") then {
 };
 if(_full) exitWith {false};
 
-
 if(handgunWeapon _unit != "") then {
-	if (!(_t canAdd handgunWeapon _unit) && !_isTruck) exitWith {
+	if !(_t canAdd handgunWeapon _unit) exitWith {
 		_full = true;
 	};
 	{
@@ -135,10 +139,10 @@ if(handgunWeapon _unit != "") then {
 };
 if(_full) exitWith {false};
 
-if((!isplayer _unit) || _linkedItems) then {
+if (((!isplayer _unit) || _linkedItems) || (_unit getVariable ["OT_looter", false])) then {
 	{
-		if !(_x isEqualTo "ItemMap") then {
-			if (!(_t canAdd _x) && !_isTruck) exitWith {
+		if (!(_x isEqualTo "ItemMap") || (_unit getVariable ["OT_looter", false])) then {
+			if !(_t canAdd _x) exitWith {
 				_full = true;
 			};
 			if (([(configFile >> "CfgWeapons" >> _x),"useAsBinocular",0] call BIS_fnc_returnConfigEntry) > 0) then {

@@ -254,6 +254,9 @@ private _getGroupSoldiers = {
 		};
 	};
 }foreach(server getVariable ["bases",[]]);
+_revealed = server getVariable ["revealedFOBs",[]];
+_server pushback ["revealedFOBs",_revealed];
+
 
 if !(_quiet) then {
 	"Step 10/11 - Saving garrisons" remoteExecCall ["OT_fnc_notifyAndLog",0,false];

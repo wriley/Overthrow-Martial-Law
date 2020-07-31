@@ -4,6 +4,9 @@ _old = _this select 1;
 
 if(isNull(_old)) exitWith {};
 
+[0,true] call OT_fnc_progressBar;
+player setVariable ["COMMSCapturing", false, false];
+
 //remove last body from spawn distance check
 {
 	if (!(_x isEqualTo _old) && (getplayeruid player) isEqualTo (_x getVariable ["player_uid",false])) then {
@@ -36,12 +39,6 @@ _newrecruits = [];
 	};
 }foreach (_recruits);
 
-private _money = player getVariable ["money",0];
-private _take = floor(_money * 0.05);
-if(_take > 0) then {
-	[-_take] call OT_fnc_money;
-};
-
 removeHeadgear player;
 removeAllWeapons player;
 removeAllAssignedItems player;
@@ -50,6 +47,7 @@ removeBackpack player;
 removeVest player;
 
 player setVariable ["ot_isSmoking", false];
+player setVariable ["BeingSearched",nil,true];
 player addWeaponGlobal "ItemMap";
 
 _housepos = _old getVariable "home";
@@ -57,6 +55,9 @@ _town = _housepos call OT_fnc_nearestTown;
 player setPos (_housepos findEmptyPosition [1,20,typeof _new]);
 _clothes = uniform _old;
 player forceAddUniform _clothes;
+
+for "_i" from 1 to 10 do {player removeEventHandler["InventoryOpened",_i]}; //Saftey measure for search
+
 [] spawn OT_fnc_setupPlayer;
 
 call {

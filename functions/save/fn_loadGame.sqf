@@ -454,6 +454,24 @@ private _revealed = server getVariable ["revealedGangs",[]];
 	};
 }foreach(_revealed);
 
+private _revealed = server getVariable ["revealedFOBs",[]];
+{
+	_x params ["_pos","_garrison","_upgrades"];
+	if (str _pos in _revealed) then {
+		_mrkid = createMarker [format["natofob%1",str _pos],_pos];
+		_mrkid setMarkerShape "ICON";
+		_mrkid setMarkerType "mil_Flag";
+		_mrkid setMarkerColor "ColorBLUFOR";
+		_mrkid setMarkerAlpha 1;
+		_mrkid = createMarker [format["natofobWarning%1",str _pos],_pos];
+		_mrkid setMarkerShape "ELLIPSE";
+		_mrkid setMarkerBrush "FDiagonal";
+		_mrkid setMarkerColor "ColorRed";
+		_mrkid setMarkerAlpha 1;
+		_mrkid setMarkerSize [30, 30];
+	};
+}foreach(server getVariable ["NATOfobs",[]]);
+
 private _built = (allMissionObjects "Static");
 {
 	private _uid = _x;
