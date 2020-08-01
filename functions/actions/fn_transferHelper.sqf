@@ -67,10 +67,9 @@ _this spawn {
 			_x params [["_cls",""], ["_max",0]];
 			private _count = 0;
 			private _full = false;
-			//private _OverFill = ((_veh isKindOf "B_Slingload_01_Cargo_F") || !(isNil {OT_salvageVehicle getVariable "CanOverFill"}));
+			private _OverFill = (_veh isKindOf "B_Slingload_01_Cargo_F");
 			while {_count < _max} do {
-				//if( !(_veh canAdd [_cls,1]) && {(!_OverFill)}) exitWith {_full = true};
-				if!(_veh canAdd [_cls,1]) exitWith {_full = true};
+				if( !(_veh canAdd [_cls,1]) && {(!_OverFill)}) exitWith {_full = true};
 				_count = _count + 1;
 				call {
 					if(_cls isKindOf "Bag_Base") exitWith {
