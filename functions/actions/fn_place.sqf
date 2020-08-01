@@ -74,6 +74,7 @@ modeCost = _cost;
 modeDescription = _description;
 modeFinished = false;
 modeCancelled = false;
+modeSurface = false;
 
 if !([getpos player,_typecls] call OT_fnc_canPlace) exitWith {
 	if(_typecls == "Camp") exitWith {
@@ -110,24 +111,42 @@ if(modeCost > 0) then {
 			//R
 			false
 		};
+		private _amt = 1;
+		if (_shift) then { _amt = 5; };
 		if (_key isEqualTo 16) exitWith {
 			//Q
-			private _amt = 1;
-			if(_shift) then {_amt = 45};
 			private _newdir = _dir - _amt;
 			if(_newdir < 0) then {_newdir = _newdir + 360};
 			modeTarget setDir (_newdir);
 			modeRotation = _newDir;
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
 			true
 		};
 		if (_key isEqualTo 18) exitWith {
 			//E
-			private _amt = 1;
-			if(_shift) then {_amt = 45};
 			private _newdir = _dir + _amt;
 			if(_newdir > 359) then {_newdir = _newdir - 360};
 			modeTarget setDir (_newdir);
 			modeRotation = _newDir;
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
+			true
+		};
+		if (_key isEqualTo 33) exitWith {
+			//F
+			modeSurface = !modeSurface;
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
 			true
 		};
 		if(_key isEqualTo 57) exitWith {
@@ -158,7 +177,7 @@ if(modeCost > 0) then {
 			}foreach(OT_Placeables);
 
 			[format [
-				"<t size='1.1' color='#eeeeee'>%1</t><br/><t size='0.8' color='#bbbbbb'>$%2</t><br/><t size='0.4' color='#bbbbbb'>%3</t><br/><br/><t size='0.5' color='#bbbbbb'>Q,E = Rotate<br/>Space = Change Type<br/>Enter = Done<br/>Shift = Rotate faster/Place multiple<br/>Esc = Cancel</t>",
+				"<t size='1.1' color='#eeeeee'>%1</t><br/><t size='0.8' color='#bbbbbb'>$%2</t><br/><t size='0.4' color='#bbbbbb'>%3</t><br/><br/><t size='0.5' color='#bbbbbb'>Q,E = Rotate (Shift for larger rotate)<br/><t size='0.5' color='#bbbbbb'>F = Toggle Surface Mode<br/>Space = Change Type<br/>Enter = Done<br/>Shift = Rotate faster/Place multiple<br/>Esc = Cancel</t>",
 				modeType,
 				[modeCost, 1, 0, true] call CBA_fnc_formatNumber,
 				modeDescription
@@ -166,7 +185,12 @@ if(modeCost > 0) then {
 
 			modeTarget attachTo [player,attachAt];
 			modeTarget setDir _dir;
-			true
+			if (modeSurface) then {
+				modeTarget setVectorUp surfaceNormal position modeTarget;
+			} else {
+				modeTarget setVectorUp [0,0,1];
+			};
+		true
 		};
 		if(_key isEqualTo 28) exitWith {
 			//Enter
