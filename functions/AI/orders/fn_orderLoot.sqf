@@ -9,7 +9,7 @@ _myunits params ["_tt"];
 if(vehicle _tt != _tt) then {
 	_sorted = [vehicle _tt];
 }else{
-	private _objects = _tt nearEntities [["Car","ReammoBox_F","Air","Ship","Tank"],20];
+	private _objects = _tt nearEntities [["ReammoBox_F","Land","Air","Ship"],20];
 	if(count _objects isEqualTo 0) exitWith {
 		"Cannot find any containers or vehicles within 20m of first selected unit" call OT_fnc_notifyMinor;
 	};
@@ -23,8 +23,8 @@ private _target = _sorted select 0;
     if ((typeOf vehicle _x) == "OT_I_Truck_recovery" && (driver vehicle _x) == _x) exitWith {
         [_x] spawn OT_fnc_recover;
     };
-	OT_looters = OT_looters + 1;
-	[_x,_target,OT_looters] spawn {
+	OT_Looters = OT_Looters + 1;
+	[_x,_target,OT_Looters] spawn {
 		private _active = true;
 		private _unit = _this select 0;
 		private _t = _this select 1;
@@ -65,7 +65,7 @@ private _target = _sorted select 0;
 		while {_active} do {
 			private _deadguy = objNull;
 			private _deadguys = [];
-			waitUntil {(OT_lastlooterorder < time)};
+			waitUntil {(OT_LootersLastOrder < time)};
 			{
 				if !((_x distance _t > 100) || (alive _x) || (_x getVariable ["OT_looted",false])) then {
 					_deadguys append [_x];
@@ -80,7 +80,7 @@ private _target = _sorted select 0;
 			// Take deadguys weapons
             _unit groupchat format["<%1>: %2 bodies left to loot",name _unit, count _deadguys];
 			_deadguy setVariable ["OT_looted",true,true];
-			OT_lastlooterorder = time + 2;
+			OT_LootersLastOrder = time + 2;
 			{
 				if !(isNull _x) then { //failsafe from objnull unknown reason
 					_timeOut = time + 30;
@@ -148,8 +148,8 @@ private _target = _sorted select 0;
 		};
 		_unit setVariable ["NOAI",true,true];
 		_unit setVariable ["OT_looter", nil];
-		OT_looters = OT_looters - 1;
-		if (OT_looters == 0) then {
+		OT_Looters = OT_Looters - 1;
+		if (OT_Looters == 0) then {
 			_unit groupchat format ["<%1>: We're done here! Let's go!", name _unit];
 		};
 	};

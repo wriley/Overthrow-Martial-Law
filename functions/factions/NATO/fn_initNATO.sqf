@@ -472,7 +472,7 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 
 	private _id = str _pos;
 	if(_id in _revealed) then {
-		[_id, "INIT"] call OT_fnc_revealNATOFOB;
+		[_pos, "INIT"] call OT_fnc_revealNATOFOB;
 	};
 }foreach(server getVariable ["NATOfobs",[]]);
 

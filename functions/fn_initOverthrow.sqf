@@ -39,6 +39,8 @@ call OT_fnc_initBaseVar;
 call compile preprocessFileLineNumbers "initVar.sqf";
 call OT_fnc_initVar;
 
+{enableDynamicSimulationSystem false;} remoteExec ["bis_fnc_call", 0];
+
 if(isServer) then {
     diag_log "Overthrow: Server Pre-Init";
 
@@ -68,11 +70,13 @@ OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templat
 	//Init factions
 	[] spawn OT_fnc_initNATO;
 	waitUntil {!isNil "OT_NATOInitDone"};
+
+	[] spawn OT_fnc_initEconomyLoad;
+	
 	[] spawn OT_fnc_factionNATO;
 	[] spawn OT_fnc_factionGUER;
 	[] spawn OT_fnc_factionCRIM;
-
-	[] spawn OT_fnc_initEconomyLoad;
+	[] spawn OT_fnc_factionCIV;
 
 	//Game systems
 	[] spawn OT_fnc_propagandaSystem;
@@ -103,7 +107,8 @@ OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templat
 	["ace_common_setFuel",OT_fnc_refuelHandler] call CBA_fnc_addEventHandler;
 	["ace_explosives_place",OT_fnc_explosivesPlacedHandler] call CBA_fnc_addEventHandler;
 	["ace_tagCreated", OT_fnc_taggedHandler] call CBA_fnc_addEventHandler;
-
+	["ace_repair_setWheelHitPointDamage", OT_fnc_WheelRemovedHandler] call CBA_fnc_addEventHandler;
+	
 	//Overthrow events
 	["OT_QRFstart", OT_fnc_QRFStartHandler] call CBA_fnc_addEventHandler;
 	["OT_QRFend", OT_fnc_QRFEndHandler] call CBA_fnc_addEventHandler;
@@ -139,6 +144,7 @@ OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templat
 
 	OT_serverInitDone = true;
 	publicVariable "OT_serverInitDone";
+	{enableDynamicSimulationSystem false;} remoteExec ["bis_fnc_call", 0];
 	if(isServer) then {
 	    diag_log "Overthrow: Server Pre-Init Done";
 	};
