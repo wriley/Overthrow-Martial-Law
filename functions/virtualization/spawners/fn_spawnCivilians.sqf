@@ -1,7 +1,7 @@
 params ["_town","_spawnid"];
 sleep random 0.2;
 
-spawner setvariable [format["townspawnid%1",_town],_spawnid,false];
+spawner setvariable [format["townspawnid%1",_town],_spawnid,true];
 
 private _hometown = _town;
 private _groups = [];

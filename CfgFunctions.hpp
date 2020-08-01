@@ -131,10 +131,10 @@ class CfgFunctions
 			class respawnHandler {};
 			class keyHandler {};
 			class taggedHandler {};
+			class WheelRemovedHandler {};
 			class EnemyDamagedHandler {};
 			class QRFStartHandler {};
 			class QRFEndHandler {};
-			class WheelRemovedHandler {};
 		};
 
 		class UI

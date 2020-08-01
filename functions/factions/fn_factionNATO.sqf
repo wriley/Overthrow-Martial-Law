@@ -631,7 +631,7 @@ publicVariable "OT_nextNATOTurn";
 				private _frombase = "";
 				{
 					_x params ["_obpos","_name"];
-					if !(_name in _abandoned) then {
+					if !(_name in _abandoned) exitWith {
 						_frombase = _name;
 					};
 				}foreach([OT_airportData,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
@@ -641,15 +641,19 @@ publicVariable "OT_nextNATOTurn";
 						_x params ["_pos"];
 						_waypoints pushback _pos;
 					}foreach(_fobs);
+					
+					/*
 					{
 						if((server getVariable [format ["garrison%1",_x],-1]) > 0) then {
 							private _pos = markerPos _x;
-							_waypoints pushback _x
+							_waypoints pushback _x;
 						};
 						if((count _waypoints) > 6) exitWith {};
 					}foreach ([OT_NATO_control,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+					[""control_10"",""control_30"",""control_11"",""control_14""] ???
+					*/
 
-					if((count _waypoints) > 0) then {
+					if((count _waypoints) > 6) then {
 						_spend = _spend - 250;
 						_resources = _resources - 250;
 						spawner setVariable ["NATOlastairpatrol",time,false];

@@ -472,11 +472,12 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 
 	private _id = str _pos;
 	if(_id in _revealed) then {
-		[_id, "INIT"] call OT_fnc_revealNATOFOB;
+		[_pos, "INIT"] call OT_fnc_revealNATOFOB;
 	};
 }foreach(server getVariable ["NATOfobs",[]]);
 
 publicVariable "OT_allObjectives";
 publicVariable "OT_allComms";
+publicVariable "OT_NATOHelipads";
 OT_NATOInitDone = true;
 publicVariable "OT_NATOInitDone";

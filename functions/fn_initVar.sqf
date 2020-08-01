@@ -128,8 +128,8 @@ OT_adminMode = false;
 OT_deepDebug = false;
 OT_allIntel = [];
 OT_notifies = [];
-OT_looters = 0;
-OT_lastlooterorder = time;
+OT_Looters = 0;
+OT_LootersLastOrder = time;
 
 OT_NATO_HQPos = [0,0,0];
 
@@ -225,6 +225,14 @@ if(OT_hasTFAR) then {
 		["tf_anarc210",1500,0,0,0.1],
 		["tf_anarc164",200,0,0,0.5],
 		["tf_anprc155_coyote",100,0,0,0.5]
+	];
+};
+if(OT_hasAPEX) then {
+	OT_backpacks append [
+		["B_Bergen_dgtl_F",500,0,0,1],
+		["B_Bergen_hex_F",500,0,0,1],
+		["B_Bergen_mcamo_F",500,0,0,1],
+		["B_Bergen_tna_F",500,0,0,1]
 	];
 };
 
@@ -963,9 +971,6 @@ if(isServer) then {
 OT_staticMachineGuns = ["I_HMG_01_F","I_HMG_01_high_F","I_HMG_01_A_F","O_HMG_01_F","O_HMG_01_high_F","O_HMG_01_A_F","B_HMG_01_F","B_HMG_01_high_F","B_HMG_01_A_F"];
 OT_staticWeapons = ["I_Mortar_01_F","I_static_AA_F","I_static_AT_F","I_GMG_01_F","I_GMG_01_high_F","I_GMG_01_A_F","I_HMG_01_F","I_HMG_01_high_F","I_HMG_01_A_F","O_static_AA_F","O_static_AT_F","O_Mortar_01_F","O_GMG_01_F","O_GMG_01_high_F","O_GMG_01_A_F","O_HMG_01_F","O_HMG_01_high_F","O_HMG_01_A_F","B_static_AA_F","B_static_AT_F","B_Mortar_01_F","B_GMG_01_F","B_GMG_01_high_F","B_GMG_01_A_F","B_HMG_01_F","B_HMG_01_high_F","B_HMG_01_A_F"];
 
-OT_miscables = ["ACE_Wheel","ACE_Track","Land_Workbench_01_F","Land_PortableLight_double_F","Land_PortableLight_single_F","Land_Camping_Light_F","Land_PortableHelipadLight_01_F","PortableHelipadLight_01_blue_F",
-"PortableHelipadLight_01_green_F","PortableHelipadLight_01_red_F","PortableHelipadLight_01_white_F","PortableHelipadLight_01_yellow_F","Land_Campfire_F","Land_PortableLight_02_single_yellow_F","Land_PortableLight_02_double_yellow_F",
-"Land_PortableLight_02_quad_yellow_F","Land_PowerPoleWooden_L_F","RoadBarrier_F","RoadBarrier_small_F","RoadCone_F","RoadCone_L_F","Land_Sleeping_bag_F","Land_Sleeping_bag_blue_F"];
 
 //Stuff you can build: [name,price,array of possible classnames,init function,??,description]
 OT_Buildables = [
@@ -1012,14 +1017,102 @@ OT_Buildables = [
 	}
 }foreach(OT_Buildables);
 
-//Items you can place
+//Stuff you can place: ["Category",[classname, cost, item description],[offset, category description]]
 OT_Placeables = [
-	["Sandbags",20,["Land_SandbagBarricade_01_F","Land_SandbagBarricade_01_hole_F","Land_SandbagBarricade_01_half_F","Land_BagFence_Short_F","Land_BagFence_Round_F","Land_BagFence_Long_F","Land_BagFence_End_F","Land_BagFence_Corner_F","Land_BagFence_01_long_green_F","Land_BagFence_01_short_green_F","Land_BagFence_01_round_green_F","Land_BagFence_01_corner_green_F","Land_BagFence_01_end_green_F"],[0,3,0.8],"Bags filled with lots of sand. Apparently this can stop bullets or something?"],
-	["Camo Nets",40,["CamoNet_INDP_open_F","CamoNet_INDP_F","CamoNet_ghex_F","CamoNet_ghex_open_F","CamoNet_ghex_big_F"],[0,7,2],"Large && terribly flimsy structures that may or may not obscure your forces from airborne units."],
-	["Barriers",60,["Land_HBarrier_1_F","Land_HBarrier_3_F","Land_HBarrier_5_F","Land_HBarrier_Big_F","Land_HBarrierWall_corner_F","Land_HBarrier_01_line_5_green_F","Land_HBarrier_01_line_3_green_F","Land_HBarrier_01_line_1_green_F"],[0,4,1.2],"Really big sandbags, basically."],
-	["Map",30,[OT_item_Map],[0,2,1.2],"Use these to save your game, change options or check town info."],
-	["Safe",50,[OT_item_Safe],[0,2,0.5],"Store && retrieve money"],
-	["Misc",30,OT_miscables,[0,3,1.2],"Various other items, including spare wheels && lights"]
+	["Sandbags",
+	[
+		["Land_SandbagBarricade_01_F",20,""],
+		["Land_SandbagBarricade_01_hole_F",20,""],
+		["Land_SandbagBarricade_01_half_F",20,""],
+		["Land_BagFence_Short_F",20,""],
+		["Land_BagFence_Round_F",20,""],
+		["Land_BagFence_Long_F",20,""],
+		["Land_BagFence_End_F",20,""],
+		["Land_BagFence_Corner_F",20,""],
+		["Land_BagFence_01_long_green_F",20,""],
+		["Land_BagFence_01_short_green_F",20,""],
+		["Land_BagFence_01_round_green_F",20,""],
+		["Land_BagFence_01_corner_green_F",20,""],
+		["Land_BagFence_01_end_green_F",20,""]
+	],
+	[0,3,0.8],
+	"Bags filled with lots of sand. Apparently this can stop bullets or something?"
+	],
+	["Camo Nets",
+	[
+		["CamoNet_INDP_open_F",40,""],
+		["CamoNet_INDP_F",40,""],
+		["CamoNet_ghex_F",40,""],
+		["CamoNet_ghex_open_F",40,""],
+		["CamoNet_ghex_big_F",40,""]
+	],
+	[0,7,2],
+	"Large && terribly flimsy structures that may or may not obscure your forces from airborne units."],
+	["Barriers",
+	[
+		["Land_HBarrier_1_F",60,""],
+		["Land_HBarrier_3_F",60,""],
+		["Land_HBarrier_5_F",60,""],
+		["Land_HBarrier_Big_F",60,""],
+		["Land_HBarrierWall_corner_F",60,""],
+		["Land_HBarrier_01_line_5_green_F",60,""],
+		["Land_HBarrier_01_line_3_green_F",60,""],
+		["Land_HBarrier_01_line_1_green_F",60,""]
+	],
+	[0,4,1.2],
+	"Really big sandbags, basically."
+	],
+	["Map",
+	[
+		[OT_item_Map,30,""]
+	],
+	[0,2,1.2],
+	"Use these to save your game, change options or check town info."
+	],
+	["Safe",
+	[
+		[OT_item_Safe,50,""]
+	],
+	[0,2,0.5],
+	"Store && retrieve money"
+	],
+	["Misc",
+	[
+		["ACE_Wheel",150,"Spare Wheel"],
+		["ACE_Track",15000,"Spare Track"],
+		["Land_Workbench_01_F",30,""],
+		["Land_PortableLight_double_F",30,""],
+		["Land_PortableLight_single_F",30,""],
+		["Land_Camping_Light_F",30,""],
+		["Land_PortableHelipadLight_01_F",30,""],
+		["PortableHelipadLight_01_blue_F",30,""],
+		["PortableHelipadLight_01_green_F",30,""],
+		["PortableHelipadLight_01_red_F",30,""],
+		["PortableHelipadLight_01_white_F",30,""],
+		["PortableHelipadLight_01_yellow_F",30,""],
+		["Land_Campfire_F",30,""],
+		["Land_PortableLight_02_single_yellow_F",30,""],
+		["Land_PortableLight_02_double_yellow_F",30,""],
+		["Land_PortableLight_02_quad_yellow_F",30,""],
+		["Land_PowerPoleWooden_L_F",30,""],
+		["RoadBarrier_F",30,""],
+		["RoadBarrier_small_F",30,""],
+		["RoadCone_F",30,""],
+		["RoadCone_L_F",30,""],
+		["Land_Sleeping_bag_F",30,""],
+		["Land_Sleeping_bag_blue_F",30,""],
+		["TapeSign_F",30,"new item"],
+		["Land_LampDecor_F",30,"new item"],
+		["Land_WheelChock_01_F",30,"new item"],
+		["Land_WoodenLog_F",30,"new item"],
+		["FlagChecked_F",30,"new item"],
+		["FlagSmall_F",30,"new item"],
+		["Land_LandMark_F",30,"new item"],
+		["Land_Bollard_01_F",30,"new item"]
+	],
+	[0,3,1.2],
+	"Various other items, including spare wheels && lights"
+	]
 ];
 
 OT_allSquads = OT_Squadables apply { _x params ["_name"]; _name };
@@ -1061,17 +1154,6 @@ OT_allRepairableRuins = [];
 }foreach(OT_repairableRuins);
 
 OT_loadingMessages = ["Adding Hidden Agendas","Adjusting Bell Curves","Aesthesizing Industrial Areas","Aligning Covariance Matrices","Applying Feng Shui Shaders","Applying Theatre Soda Layer","Asserting Packed Exemplars","Attempting to Lock Back-Buffer","Binding Sapling Root System","Breeding Fauna","Building Data Trees","Bureacritizing Bureaucracies","Calculating Inverse Probability Matrices","Calculating Llama Expectoration Trajectory","Calibrating Blue Skies","Charging Ozone Layer","Coalescing Cloud Formations","Cohorting Exemplars","Collecting Meteor Particles","Compounding Inert Tessellations","Compressing Fish Files","Computing Optimal Bin Packing","Concatenating Sub-Contractors","Containing Existential Buffer","Debarking Ark Ramp","Debunching Unionized Commercial Services","Deciding What Message to Display Next","Decomposing Singular Values","Decrementing Tectonic Plates","Deleting Ferry Routes","Depixelating Inner Mountain Surface Back Faces","Depositing Slush Funds","Destabilizing Economic Indicators","Determining Width of Blast Fronts","Deunionizing Bulldozers","Dicing Models","Diluting Livestock Nutrition Variables","Downloading Satellite Terrain Data","Exposing Flash Variables to Streak System","Extracting Resources","Factoring Pay Scale","Fixing Election Outcome Matrix","Flood-Filling Ground Water","Flushing Pipe Network","Gathering Particle Sources","Generating Jobs","Gesticulating Mimes","Graphing Whale Migration","Hiding Willio Webnet Mask","Implementing Impeachment Routine","Increasing Accuracy of RCI Simulators","Increasing Magmafacation","Initializing Rhinoceros Breeding Timetable","Initializing Robotic Click-Path AI","Inserting Sublimated Messages","Integrating Curves","Integrating Illumination Form Factors","Integrating Population Graphs","Iterating Cellular Automata","Lecturing Errant Subsystems","Mixing Genetic Pool","Modeling Object Components","Mopping Occupant Leaks","Normalizing Power","Obfuscating Quigley Matrix","Overconstraining Dirty Industry Calculations","Partitioning City Grid Singularities","Perturbing Matrices","Pixellating Nude Patch","Polishing Water Highlights","Populating Lot Templates","Preparing Sprites for Random Walks","Prioritizing Landmarks","Projecting Law Enforcement Pastry Intake","Realigning Alternate Time Frames","Reconfiguring User Mental Processes","Relaxing Splines","Removing Road Network Speed Bumps","Removing Texture Gradients","Removing Vehicle Avoidance Behavior","Resolving GUID Conflict","Reticulating Splines","Retracting Phong Shader","Retrieving from Back Store","Reverse Engineering Image Consultant","Routing Neural Network Infanstructure","Scattering Rhino Food Sources","Scrubbing Terrain","Searching for Llamas","Seeding Architecture Simulation Parameters","Sequencing Particles","Setting Advisor ","Setting Inner Deity ","Setting Universal Physical Constants","Sonically Enhancing Occupant-Free Timber","Speculating Stock Market Indices","Splatting Transforms","Stratifying Ground Layers","Sub-Sampling Water Data","Synthesizing Gravity","Synthesizing Wavelets","Time-Compressing Simulator Clock","Unable to Reveal Current Activity","Weathering Buildings","Zeroing Crime Network"];
-
-//Find markers
-OT_ferryDestinations = [];
-OT_NATO_control = [];
-OT_regions = [];
-{
-	if((_x select [0,12]) isEqualTo "destination_") then {OT_ferryDestinations pushback _x};
-	if((_x select [0,8]) isEqualTo "control_") then {OT_NATO_control pushback _x};
-	if((_x select [0,7]) isEqualTo "island_") then {OT_regions pushback _x};
-	if((_x select [0,7]) isEqualTo "region_") then {OT_regions pushback _x};
-}foreach(allMapMarkers);
 
 OT_cigsArray = ["EWK_Cigar1", "EWK_Cigar2", "EWK_Cig1", "EWK_Cig2", "EWK_Cig3", "EWK_Cig4", "EWK_Glasses_Cig1", "EWK_Glasses_Cig2", "EWK_Glasses_Cig3", "EWK_Glasses_Cig4", "EWK_Glasses_Shemag_GRE_Cig6", "EWK_Glasses_Shemag_NB_Cig6", "EWK_Glasses_Shemag_tan_Cig6", "EWK_Cig5", "EWK_Glasses_Cig5", "EWK_Cig6", "EWK_Glasses_Cig6", "EWK_Shemag_GRE_Cig6", "EWK_Shemag_NB_Cig6", "EWK_Shemag_tan_Cig6", "murshun_cigs_cig0", "murshun_cigs_cig1", "murshun_cigs_cig2", "murshun_cigs_cig3", "murshun_cigs_cig4"];
 
