@@ -4,6 +4,8 @@ private _typecls = _this;
 
 ([_typecls] call {
 	params ["_typecls"];
+	private _ft = server getVariable ["OT_fastTravelType",1];
+	if(!OT_adminMode && _ft > 1 && _typecls == "Camp") exitWith {hint "Fast Travel is disabled";};
 	if(_typecls == "Camp") exitWith {
 		[
 			[0,3.5,1.1],
@@ -16,7 +18,7 @@ private _typecls = _this;
 		[
 			[0,6,4],
 			[OT_flag_IND],
-			250,
+			5000,
 			"Creates a fast travel destination for all friendlies and enables build mode for basic military structures"
 		]
 	};
@@ -38,11 +40,24 @@ private _typecls = _this;
 	};
 	{
 		if((_x select 0) == _typecls) exitWith {
+			private _classes = [];
+			{
+				_class = _x select 0;
+				_classes append [_class];				
+			}foreach (_x select 1);
+			
+			if(isNil "modeValue") then {
+				modeValue = 0;
+			};
+			private _cls = _classes select modeValue;
+			private _cost = ((_x select 1) select modeValue) select 1;
+			private _description = ((_x select 1) select modeValue) select 2;
+
 			[
-				_x select 3,
 				_x select 2,
-				_x select 1,
-				nil
+				_classes,
+				_cost,
+				_description
 			]
 		};
 	}foreach(OT_Placeables);
@@ -54,13 +69,11 @@ private _typecls = _this;
 ];
 attachAt = _attachAt;
 modeValues = _modeValues;
-
+modeType = _typecls;
+modeCost = _cost;
+modeDescription = _description;
 modeFinished = false;
 modeCancelled = false;
-
-//Price check (on aisle 3)
-private _money = player getVariable "money";
-if(_cost > _money) exitWith {format["You cannot afford that, you need $%1",_cost] call OT_fnc_notifyMinor};
 
 if !([getpos player,_typecls] call OT_fnc_canPlace) exitWith {
 	if(_typecls == "Camp") exitWith {
@@ -72,24 +85,22 @@ if !([getpos player,_typecls] call OT_fnc_canPlace) exitWith {
 	"You must be near a base or owned structure" call OT_fnc_notifyMinor
 };
 
+modeTarget = objNULL;
+modeRedo = false;
 if(isNil "modeValue") then {
 	modeValue = 0;
 };
-
-modeTarget = objNULL;
-modeRedo = false;
 if(isNil "modeRotation") then {
 	modeRotation = 180;
 };
 
-if(_cost > 0) then {
+if(modeCost > 0) then {
 	[format [
 		"<t size='1.1' color='#eeeeee'>%1</t><br/><t size='0.8' color='#bbbbbb'>$%2</t><br/><t size='0.4' color='#bbbbbb'>%3</t><br/><br/><t size='0.5' color='#bbbbbb'>Q,E = Rotate<br/>Space = Change Type<br/>Enter = Done<br/>Shift = Rotate faster/Place multiple<br/>Esc = Cancel</t>",
 		_typecls,
-		[_cost, 1, 0, true] call CBA_fnc_formatNumber,
+		[modeCost, 1, 0, true] call CBA_fnc_formatNumber,
 		_description
 	], [safeZoneX + (0.8 * safeZoneW), (0.2 * safeZoneW)], 0.5, 10, 0, 0, 2] call OT_fnc_dynamicText;
-
 
 	_keyhandler = {
 		params ["_ctrl", "_key", "_shift", "_ctrlKey", "_alt"];
@@ -138,6 +149,20 @@ if(_cost > 0) then {
 			clearMagazineCargoGlobal modeTarget;
 			clearBackpackCargoGlobal modeTarget;
 			clearItemCargoGlobal modeTarget;
+			{
+				if((_x select 0) == modeType) exitWith {
+					private _classes = _x select 1;
+					modeCost = _classes select modeValue select 1;
+					modeDescription = _classes select modeValue select 2;
+				};
+			}foreach(OT_Placeables);
+
+			[format [
+				"<t size='1.1' color='#eeeeee'>%1</t><br/><t size='0.8' color='#bbbbbb'>$%2</t><br/><t size='0.4' color='#bbbbbb'>%3</t><br/><br/><t size='0.5' color='#bbbbbb'>Q,E = Rotate<br/>Space = Change Type<br/>Enter = Done<br/>Shift = Rotate faster/Place multiple<br/>Esc = Cancel</t>",
+				modeType,
+				[modeCost, 1, 0, true] call CBA_fnc_formatNumber,
+				modeDescription
+			], [safeZoneX + (0.8 * safeZoneW), (0.2 * safeZoneW)], 0.5, 10, 0, 0, 2] call OT_fnc_dynamicText;
 
 			modeTarget attachTo [player,attachAt];
 			modeTarget setDir _dir;
@@ -145,6 +170,13 @@ if(_cost > 0) then {
 		};
 		if(_key isEqualTo 28) exitWith {
 			//Enter
+			//Price check (on aisle 3)
+			private _money = player getVariable "money";
+			if(modeCost > _money) exitWith {
+				format["You cannot afford that, you need $%1",modeCost] call OT_fnc_notifyMinor;
+				modeCancelled = true;
+				true
+			};
 			modeFinished = true;
 			if(_shift) then {
 				modeRedo = true;
@@ -205,7 +237,7 @@ if(_cost > 0) then {
 		deleteVehicle modeTarget;
 	}else{
 		if ([getpos player,_typecls] call OT_fnc_canPlace) then {
-			[-_cost] call OT_fnc_money;
+			[-modeCost] call OT_fnc_money;
 			modeTarget setPosATL [getPosATL modeTarget select 0,getPosATL modeTarget select 1,getPosATL player select 2];
 			[modeTarget,getPlayerUID player] call OT_fnc_setOwner;
 			modeTarget remoteExec["OT_fnc_initObjectLocal",0,modeTarget];
