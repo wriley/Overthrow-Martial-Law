@@ -1,7 +1,7 @@
-//Scramble a helicopter to take out a target
+//Scramble a helicopter to take out a target (what target?)
 params ["_frombase","_waypoints",["_delay",0]];
 
-if((count _waypoints) < 2) exitWith {};
+if((count _waypoints) < 1) exitWith {};
 
 private _abandoned = server getVariable ["NATOabandoned",[]];
 if !(_frombase in _abandoned) then {
@@ -36,8 +36,7 @@ if !(_frombase in _abandoned) then {
     	_x setVariable ["NOAI",true,false];
     }foreach(crew _veh);
     sleep 1;
-    private _attackpos = [_topos,[0,200]] call SHK_pos_fnc_pos;
-
+    //private _attackpos = [_topos,[0,200]] call SHK_pos_fnc_pos;
     {
         _wp = _group addWaypoint [_x,50];
         _wp setWaypointType "SAD";
