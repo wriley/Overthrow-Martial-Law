@@ -20,18 +20,6 @@ _unit addEventHandler ["Take", {
 		};
 	};
 
-/* _vehicle = OT_NATO_vehicles; then {
- if ((isPlayer _unit) && (_vehicle isAlive)) then {
-		//Removing wheels/tracks from Blufor is illegal
-		   if(([_unit, _vehicle, ""] call ace_repair_fnc_doRemoveWheel) isEqualTo true) or
-				 (([_unit, _vehicle, ""] call ace_repair_fnc_doRemoveTrack) isEqualTo true) then {
-				_unit setCaptive false;
-				_unit call OT_fnc_revealToNATO;
-				_unit call OT_fnc_wantedLoop;
-			};
-		};
-	};*/
-
 	//Looting NATO supply cache
 	private _supplycache = _container getVariable ["NATOsupply",false];
 	if(_supplycache isEqualType "") then {
