@@ -253,13 +253,13 @@ if (_newplayer) then {
     _clothes = (OT_clothes_guerilla call BIS_fnc_selectRandom);
 	player forceAddUniform _clothes;
     player setVariable ["uniform",_clothes,true];
-	private _money = 100;
+	private _money = 5000;
 	private _diff = server getVariable ["OT_difficulty",1];
 	if(_diff isEqualTo 0) then {
-		_money = 1000;
+		_money = 3000;
 	};
 	if(_diff isEqualTo 2) then {
-		_money = 0;
+		_money = 1000;
 	};
     player setVariable ["money",_money,true];
     [player,getplayeruid player] call OT_fnc_setOwner;

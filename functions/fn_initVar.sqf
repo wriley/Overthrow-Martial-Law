@@ -975,26 +975,20 @@ OT_staticWeapons = ["I_Mortar_01_F","I_static_AA_F","I_static_AT_F","I_GMG_01_F"
 //Stuff you can build: [name,price,array of possible classnames,init function,??,description]
 OT_Buildables = [
 	["Training Camp",3000,[
-		["Land_IRMaskingCover_02_F",[-0.039865,0.14918,0],0,1,0,[],"","",true,false],
-		["Box_NATO_Grenades_F",[1.23933,-1.05774,0],93.4866,1,0,[],"","",true,false],
-		["Land_CampingTable_F",[-0.0490456,-1.74478,0],0,1,0,[],"","",true,false],
-		["Land_CampingChair_V2_F",[-1.44146,-1.7173,0],223.485,1,0,[],"","",true,false],
-		["Land_ClutterCutter_large_F",[0,0,0],0,1,0,[],"","",true,false]
+	  ["Land_WoodenTable_02_large_F",[-4.72402,-0.182449,0.0129075],261.38,1,0,[0.000213137,-0.19328],"","",true,false],
+    ["Land_Garbage_square5_F",[-4.89414,-0.188629,0],286.632,1,0,[0,0],"","",true,false],
+    ["Land_CanvasCover_02_F",[-7.69089,-0.473363,0],0,1,0,[0,0],"","",true,false], 
+    ["Box_NATO_Grenades_F",[-8.66742,0.682662,-1.43051e-006],22.6307,1,0,[0.000369633,-0.000828827],"","",true,false],
+    ["Land_Pallet_MilBoxes_F",[-9.68021,-0.782342,0],324.09,1,0,[0,0],"","",true,false]
 	],"OT_fnc_initTrainingCamp",true,"Allows training of recruits && hiring of people with military experience"],
 	["Bunkers",5000,["Land_Hangar_F","Land_BagBunker_Tower_F","Land_BagBunker_Small_F","Land_HBarrierTower_F","Land_Bunker_01_blocks_3_F","Land_Bunker_01_blocks_1_f","Land_Bunker_01_big_F","Land_Bunker_01_small_F","Land_Bunker_01_tall_F","Land_Bunker_01_HQ_F","Land_BagBunker_01_small_green_F","Land_HBarrier_01_big_tower_green_F","Land_HBarrier_01_tower_green_F"],"",false,"Small Defensive Structures. CONTAINS TEST OBJECTS. Press space to change type."],
-	["Walls",500,["Land_ConcreteWall_01_l_8m_F","Land_ConcreteWall_01_l_gate_F","Land_HBarrier_01_wall_6_green_F","Land_HBarrier_01_wall_4_green_F","Land_HBarrier_01_wall_corner_green_F"],"",false,"Stop people (or tanks) from getting in. Press space to change type."],
+	["Walls",100,["Land_HBarrier_1_F","Land_HBarrier_3_F","Land_HBarrier_5_F","Land_HBarrier_Big_F","Land_HBarrierWall_corner_F","Land_HBarrierWall_corridor_F","Land_HBarrierWall4_F","Land_HBarrierWall6_F","Land_HBarrier_01_line_1_green_F","Land_HBarrier_01_line_3_green_F","Land_HBarrier_01_line_5_green_F","Land_HBarrier_01_big_4_green_F","Land_HBarrier_01_wall_corner_green_F","Land_HBarrier_01_wall_corridor_green_F","Land_HBarrier_01_wall_4_green_F","Land_HBarrier_01_wall_6_green_F"],"",false,"Stop people (or tanks) from getting in. Press space to change type."],
 	["Helipad",150,["Land_HelipadCircle_F","Land_HelipadCivil_F","Land_HelipadRescue_F","Land_HelipadSquare_F"],"",false,"Informs helicopter pilots of where might be a nice place to land"],
 	["Observation Post",1800,["Land_Cargo_Patrol_V4_F","Land_Cargo_Patrol_V3_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V1_F"],"",false,"A small tower, can garrison a static HMG/GMG in it"],
 	["Barracks",50000,[OT_barracks],"",false,"Allows recruiting of squads"],
 	["Guard Tower",50000,["Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V1_F"],"",false,"It's a huge tower, what else do you need?."],
 	["Hangar",12000,["Land_Airport_01_hangar_F"],"",false,"A big empty building, could probably fit a plane inside it."],
 	["Workshop",5000,[
-		/*["Land_Cargo_House_V4_F",[0,0,0],0,1,0,[],"","",true,false],
-		["Land_ClutterCutter_large_F",[0,0,0],0,1,0,[],"","",true,false],
-		["Box_NATO_AmmoVeh_F",[-2.91,-2.008,0],90,1,0,[],"","",true,false],
-		["Land_WeldingTrolley_01_F",[-3.53163,1.73366,0],87.0816,1,0,[],"","",true,false],
-		["Land_ToolTrolley_02_F",[-3.47775,3.5155,0],331.186,1,0,[],"","",true,false]
-		*/
 		["Land_ToolTrolley_02_F",[-0.943165,0.888457,-1.90735e-006],184.978,1,0,[-0.000586218,0.000940886],"","",true,false],
 		["Land_WeldingTrolley_01_F",[-2.5792,-1.39631,-4.76837e-007],292.933,1,0,[-0.000260068,1.87621e-005],"","",true,false],
 		["Land_cargo_house_slum_F",[-5.28708,1.71423,0],0,1,0,[0,0],"","",true,false],
@@ -1050,14 +1044,24 @@ OT_Placeables = [
 	"Large && terribly flimsy structures that may or may not obscure your forces from airborne units."],
 	["Barriers",
 	[
-		["Land_HBarrier_1_F",60,""],
-		["Land_HBarrier_3_F",60,""],
-		["Land_HBarrier_5_F",60,""],
-		["Land_HBarrier_Big_F",60,""],
-		["Land_HBarrierWall_corner_F",60,""],
-		["Land_HBarrier_01_line_5_green_F",60,""],
-		["Land_HBarrier_01_line_3_green_F",60,""],
-		["Land_HBarrier_01_line_1_green_F",60,""]
+	  ["Land_Barricade_01_4m_F",10,""],
+		["Land_Barricade_01_10m_F",10,""],
+		["Land_HBarrier_1_F",50,""],
+		["Land_HBarrier_3_F",70,""],
+		["Land_HBarrier_5_F",90,""],
+		["Land_HBarrier_Big_F",100,""],
+		["Land_HBarrierWall_corner_F",120,""],
+		["Land_HBarrierWall_corridor_F",90,""],
+		["Land_HBarrierWall4_F",150,""],
+		["Land_HBarrierWall6_F",170,""],
+		["Land_HBarrier_01_line_1_green_F",50,""],
+		["Land_HBarrier_01_line_3_green_F",70,""],
+		["Land_HBarrier_01_line_5_green_F",90,""],
+		["Land_HBarrier_01_big_4_green_F",100,""],
+		["Land_HBarrier_01_wall_corner_green_F",120,""],
+		["Land_HBarrier_01_wall_corridor_green_F",90,""],
+		["Land_HBarrier_01_wall_4_green_F",150,""],
+		["Land_HBarrier_01_wall_6_green_F",170,""]
 	],
 	[0,4,1.2],
 	"Really big sandbags, basically."
@@ -1100,15 +1104,7 @@ OT_Placeables = [
 		["RoadCone_F",30,""],
 		["RoadCone_L_F",30,""],
 		["Land_Sleeping_bag_F",30,""],
-		["Land_Sleeping_bag_blue_F",30,""],
-		["TapeSign_F",30,"new item"],
-		["Land_LampDecor_F",30,"new item"],
-		["Land_WheelChock_01_F",30,"new item"],
-		["Land_WoodenLog_F",30,"new item"],
-		["FlagChecked_F",30,"new item"],
-		["FlagSmall_F",30,"new item"],
-		["Land_LandMark_F",30,"new item"],
-		["Land_Bollard_01_F",30,"new item"]
+		["Land_Sleeping_bag_blue_F",30,""]
 	],
 	[0,3,1.2],
 	"Various other items, including spare wheels && lights"
@@ -1153,7 +1149,7 @@ OT_allRepairableRuins = [];
 	OT_allRepairableRuins pushback _ruin;
 }foreach(OT_repairableRuins);
 
-OT_loadingMessages = ["Adding Hidden Agendas","Adjusting Bell Curves","Aesthesizing Industrial Areas","Aligning Covariance Matrices","Applying Feng Shui Shaders","Applying Theatre Soda Layer","Asserting Packed Exemplars","Attempting to Lock Back-Buffer","Binding Sapling Root System","Breeding Fauna","Building Data Trees","Bureacritizing Bureaucracies","Calculating Inverse Probability Matrices","Calculating Llama Expectoration Trajectory","Calibrating Blue Skies","Charging Ozone Layer","Coalescing Cloud Formations","Cohorting Exemplars","Collecting Meteor Particles","Compounding Inert Tessellations","Compressing Fish Files","Computing Optimal Bin Packing","Concatenating Sub-Contractors","Containing Existential Buffer","Debarking Ark Ramp","Debunching Unionized Commercial Services","Deciding What Message to Display Next","Decomposing Singular Values","Decrementing Tectonic Plates","Deleting Ferry Routes","Depixelating Inner Mountain Surface Back Faces","Depositing Slush Funds","Destabilizing Economic Indicators","Determining Width of Blast Fronts","Deunionizing Bulldozers","Dicing Models","Diluting Livestock Nutrition Variables","Downloading Satellite Terrain Data","Exposing Flash Variables to Streak System","Extracting Resources","Factoring Pay Scale","Fixing Election Outcome Matrix","Flood-Filling Ground Water","Flushing Pipe Network","Gathering Particle Sources","Generating Jobs","Gesticulating Mimes","Graphing Whale Migration","Hiding Willio Webnet Mask","Implementing Impeachment Routine","Increasing Accuracy of RCI Simulators","Increasing Magmafacation","Initializing Rhinoceros Breeding Timetable","Initializing Robotic Click-Path AI","Inserting Sublimated Messages","Integrating Curves","Integrating Illumination Form Factors","Integrating Population Graphs","Iterating Cellular Automata","Lecturing Errant Subsystems","Mixing Genetic Pool","Modeling Object Components","Mopping Occupant Leaks","Normalizing Power","Obfuscating Quigley Matrix","Overconstraining Dirty Industry Calculations","Partitioning City Grid Singularities","Perturbing Matrices","Pixellating Nude Patch","Polishing Water Highlights","Populating Lot Templates","Preparing Sprites for Random Walks","Prioritizing Landmarks","Projecting Law Enforcement Pastry Intake","Realigning Alternate Time Frames","Reconfiguring User Mental Processes","Relaxing Splines","Removing Road Network Speed Bumps","Removing Texture Gradients","Removing Vehicle Avoidance Behavior","Resolving GUID Conflict","Reticulating Splines","Retracting Phong Shader","Retrieving from Back Store","Reverse Engineering Image Consultant","Routing Neural Network Infanstructure","Scattering Rhino Food Sources","Scrubbing Terrain","Searching for Llamas","Seeding Architecture Simulation Parameters","Sequencing Particles","Setting Advisor ","Setting Inner Deity ","Setting Universal Physical Constants","Sonically Enhancing Occupant-Free Timber","Speculating Stock Market Indices","Splatting Transforms","Stratifying Ground Layers","Sub-Sampling Water Data","Synthesizing Gravity","Synthesizing Wavelets","Time-Compressing Simulator Clock","Unable to Reveal Current Activity","Weathering Buildings","Zeroing Crime Network"];
+OT_loadingMessages = ["Adding Hidden Agendas","Adjusting Bell Curves","Aesthesizing Industrial Areas","Aligning Covariance Matrices","Applying Feng Shui Shaders","Applying Theatre Soda Layer","Asserting Packed Exemplars","Don't answer the phone","Binding Sapling Root System","Breeding Fauna","Building Data Trees","Bureacritizing Bureaucracies","Calculating Inverse Probability Matrices","Calculating Llama Expectoration Trajectory","Calibrating Blue Skies","Charging Ozone Layer","Coalescing Cloud Formations","Please help me","Collecting Meteor Particles","Dad is that you?","Compressing Fish Files","Help I'm trapped in here","Concatenating Sub-Contractors","Please have a seat","Debarking Ark Ramp","Debunching Unionized Commercial Services","Deciding What Message to Display Next","Decomposing Singular Values","Decrementing Tectonic Plates","Deleting Ferry Routes","Depixelating Inner Mountain Surface Back Faces","Depositing Slush Funds","Destabilizing Economic Indicators","Hiding from my Ex","Deunionizing Bulldozers","Dicing Models","Diluting Livestock Nutrition Variables","RUUUUNNNN!!!","Exposing Flash Variables to Streak System","Extracting Resources","Factoring Pay Scale","I can see you","Flood-Filling Ground Water","Flushing Pipe Network","Gathering Particle Sources","Generating Jobs","Gesticulating Mimes","Graphing Whale Migration","Hiding Willio Webnet Mask","Working without sleep","Increasing Accuracy of RCI Simulators","Increasing Magmafacation","Call the cops","Initializing Robotic Click-Path AI","Inserting Sublimated Messages","Integrating Curves","Integrating Illumination Form Factors","Integrating Population Graphs","Beating Devs","Lecturing Errant Subsystems","Waking up AI","Modeling Object Components","Mopping Occupant Leaks","Normalizing Power","Obfuscating Quigley Matrix","Overconstraining Dirty Industry Calculations","Partitioning City Grid Singularities","Perturbing Matrices","Pixellating Nude Patch","Polishing Water Highlights","Populating Lot Templates","Ohhh the colors","Prioritizing Landmarks","Projecting Law Enforcement Pastry Intake","Realigning Alternate Time Frames","Reconfiguring User Mental Processes","Relaxing Splines","Removing Road Network Speed Bumps","Removing Texture Gradients","Removing Vehicle Avoidance Behavior","Resolving GUID Conflict","Looking through help wanted","Retracting Phong Shader","Retrieving from Back Store","Reverse Engineering Image Consultant","Routing Neural Network Infanstructure","Scattering Rhino Food Sources","Turn around, I dare you","Searching for Llamas","Jeffery did not kill himself","Sequencing Particles","Setting Advisor ","Put pants on freak","Setting Universal Physical Constants","Sonically Enhancing Occupant-Free Timber","Speculating Stock Market Indices","Splatting Transforms","Stratifying Ground Layers","Sub-Sampling Water Data","Synthesizing Gravity","Synthesizing Wavelets","Looking in your window","Unable to Reveal Current Activity","Weathering Buildings","Zeroing Crime Network"];
 
 OT_cigsArray = ["EWK_Cigar1", "EWK_Cigar2", "EWK_Cig1", "EWK_Cig2", "EWK_Cig3", "EWK_Cig4", "EWK_Glasses_Cig1", "EWK_Glasses_Cig2", "EWK_Glasses_Cig3", "EWK_Glasses_Cig4", "EWK_Glasses_Shemag_GRE_Cig6", "EWK_Glasses_Shemag_NB_Cig6", "EWK_Glasses_Shemag_tan_Cig6", "EWK_Cig5", "EWK_Glasses_Cig5", "EWK_Cig6", "EWK_Glasses_Cig6", "EWK_Shemag_GRE_Cig6", "EWK_Shemag_NB_Cig6", "EWK_Shemag_tan_Cig6", "murshun_cigs_cig0", "murshun_cigs_cig1", "murshun_cigs_cig2", "murshun_cigs_cig3", "murshun_cigs_cig4"];
 
