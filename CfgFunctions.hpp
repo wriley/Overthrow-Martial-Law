@@ -106,6 +106,7 @@ class CfgFunctions
 			class detectedByReputation {};
 			class detectedByReputationNATO {};
 			class gangRep {};
+			class holsterHandGun {};
 		};
 
 		class Interaction

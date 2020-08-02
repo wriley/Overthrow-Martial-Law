@@ -495,7 +495,11 @@ if(isMultiplayer) then {
 	player addEventHandler ["Respawn",OT_fnc_respawnHandler];
 };
 
-OT_keyHandlerID = [21, [false, false, false], OT_fnc_keyHandler] call CBA_fnc_addKeyHandler;
+// Custom Keybinds
+// 21=Y
+_id = [21, [false, false, false], OT_fnc_keyHandler] call CBA_fnc_addKeyHandler;
+// 5=4 (Keys 1-0 are 2-11)
+_id = [5, [false, false, false], OT_fnc_holsterHandGun] call CBA_fnc_addKeyHandler;
 
 player call OT_fnc_mapSystem;
 //Scroll actions
