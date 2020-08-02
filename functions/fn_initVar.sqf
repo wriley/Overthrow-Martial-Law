@@ -130,6 +130,7 @@ OT_allIntel = [];
 OT_notifies = [];
 OT_Looters = 0;
 OT_LootersLastOrder = time;
+OT_finishedHolster = true;
 
 OT_NATO_HQPos = [0,0,0];
 
@@ -1083,8 +1084,11 @@ OT_Placeables = [
 	["Misc",
 	[
 		["ACE_Wheel",150,"Spare Wheel"],
-		["ACE_Track",15000,"Spare Track"],
-		["Land_Workbench_01_F",30,""],
+		["ACE_Track",15000,"Spare Tank Tracks"],
+		["Land_Workbench_01_F",30,"Workbench used to craft items"],
+		["Box_Syndicate_Wps_F",100,"Weapons  Supply Box"],
+		["Box_Syndicate_Ammo_F",100,"Ammo Supply Box"],
+		["Box_Syndicate_WpsLaunch_F",100,"Launchers Supply Box"],
 		["Land_PortableLight_double_F",30,""],
 		["Land_PortableLight_single_F",30,""],
 		["Land_Camping_Light_F",30,""],
