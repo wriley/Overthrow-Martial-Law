@@ -223,7 +223,7 @@ OT_warehouses = [OT_warehouse];
 OT_barracks = "Land_Barracks_01_grey_F";
 OT_workshopBuilding = "Land_cargo_house_slum_F";//changed by Gerhart
 OT_refugeeCamp = "Land_Caravan_01_green_F";//changed by Gerhart aka PapaGee
-OT_trainingCamp = "Land_IRMaskingCover_02_F";
+OT_trainingCamp = "Land_CanvasCover_02_F";
 OT_hardwareStore = "Land_Shop_Town_02_F";
 OT_radarBuilding = "Land_Radar_Small_F";
 
