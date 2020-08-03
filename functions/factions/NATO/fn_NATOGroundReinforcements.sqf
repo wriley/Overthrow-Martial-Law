@@ -42,6 +42,7 @@ if !(_pos isEqualType []) then {
 };
 _pos set [2,0];
 _veh = _vehtype createVehicle _pos;
+[_veh,"","",""] call OT_fnc_initMilitaryVeh;
 _veh setDir (_dir);
 _veh setVariable ["garrison","HQ",false];
 [_veh] call OT_fnc_initMilitaryVeh;
