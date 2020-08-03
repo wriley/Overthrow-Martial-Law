@@ -976,9 +976,9 @@ OT_staticWeapons = ["I_Mortar_01_F","I_static_AA_F","I_static_AT_F","I_GMG_01_F"
 //Stuff you can build: [name,price,array of possible classnames,init function,??,description]
 OT_Buildables = [
 	["Training Camp",3000,[
+	  ["Land_CanvasCover_02_F",[-7.69089,-0.473363,0],0,1,0,[0,0],"","",true,false],
 	  ["Land_WoodenTable_02_large_F",[-4.72402,-0.182449,0.0129075],261.38,1,0,[0.000213137,-0.19328],"","",true,false],
     ["Land_Garbage_square5_F",[-4.89414,-0.188629,0],286.632,1,0,[0,0],"","",true,false],
-    ["Land_CanvasCover_02_F",[-7.69089,-0.473363,0],0,1,0,[0,0],"","",true,false], 
     ["Box_NATO_Grenades_F",[-8.66742,0.682662,-1.43051e-006],22.6307,1,0,[0.000369633,-0.000828827],"","",true,false],
     ["Land_Pallet_MilBoxes_F",[-9.68021,-0.782342,0],324.09,1,0,[0,0],"","",true,false]
 	],"OT_fnc_initTrainingCamp",true,"Allows training of recruits && hiring of people with military experience"],
@@ -990,9 +990,9 @@ OT_Buildables = [
 	["Guard Tower",50000,["Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V1_F"],"",false,"It's a huge tower, what else do you need?."],
 	["Hangar",12000,["Land_Airport_01_hangar_F"],"",false,"A big empty building, could probably fit a plane inside it."],
 	["Workshop",5000,[
+	  ["Land_cargo_house_slum_F",[-5.28708,1.71423,0],0,1,0,[0,0],"","",true,false],
 		["Land_ToolTrolley_02_F",[-0.943165,0.888457,-1.90735e-006],184.978,1,0,[-0.000586218,0.000940886],"","",true,false],
 		["Land_WeldingTrolley_01_F",[-2.5792,-1.39631,-4.76837e-007],292.933,1,0,[-0.000260068,1.87621e-005],"","",true,false],
-		["Land_cargo_house_slum_F",[-5.28708,1.71423,0],0,1,0,[0,0],"","",true,false],
 		["Box_NATO_AmmoVeh_F",[-6.28864,-2.78878,0.0305414],9.03579e-005,1,0,[1.25353e-005,-6.98109e-006],"","",true,false]
 	],"OT_fnc_initWorkshop",true,"Attach weapons to vehicles"],
 	["House",10000,["Land_House_Small_06_F","Land_House_Small_02_F","Land_House_Small_03_F","Land_GarageShelter_01_F","Land_Slum_04_F"],"",false,"4 walls, a roof, && if you're lucky a door that opens."],
