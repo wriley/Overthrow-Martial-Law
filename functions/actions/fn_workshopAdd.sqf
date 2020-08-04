@@ -6,7 +6,7 @@ private _money = player getVariable ["money",0];
 if(_money < _price) exitWith {"You cannot afford that!" call OT_fnc_notifyMinor};
 
 private _veh = cursorTarget;
-if(_veh getVariable ["OT_attachedClass",""] != "") exitWith {hint "This vehicle already has a weapon attached"};
+if(_veh getVariable ["OT_attachedClass",""] != "") exitWith {hint "This vehicle already has a modification"};
 
 closeDialog 0;
 if(!alive _veh) exitWith {};
@@ -26,7 +26,7 @@ if(count _item > 0) then {
 
 disableUserInput true;
 
-"Attaching weapon to vehicle" call OT_fnc_notifyMinor;
+"Making modifications to vehicle" call OT_fnc_notifyMinor;
 [30,false] call OT_fnc_progressBar;
 [
 	{
@@ -39,7 +39,7 @@ disableUserInput true;
 		player setvariable ["money",_money,true];
 
 		_veh setVariable ["OT_attachedClass",_cls,true];
-		[_veh] call OT_fnc_initAttached;
+		_veh call OT_fnc_initAttached;
 	},
 	[_veh,_cls,_price],
 	30
