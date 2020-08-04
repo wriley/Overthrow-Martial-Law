@@ -1130,7 +1130,11 @@ OT_workshop = [
 	["Mounted GMG","RHS_Ural_Open_Civ_03",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted Mortar","RHS_Ural_Open_Civ_01",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
 	["Mounted Mortar","RHS_Ural_Open_Civ_02",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
-	["Mounted Mortar","RHS_Ural_Open_Civ_03",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0]
+	["Mounted Mortar","RHS_Ural_Open_Civ_03",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
+	["Cargo Boxes","RHS_Ural_Open_Civ_01",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
+	["Cargo Boxes","RHS_Ural_Open_Civ_02",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
+	["Cargo Boxes","RHS_Ural_Open_Civ_03",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
+	["Cargo Boxes","C_Van_01_transport_F",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.01,-1.683,0.2]],0]
 ];
 
 OT_repairableRuins = [
