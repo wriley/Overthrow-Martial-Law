@@ -39,7 +39,7 @@ disableUserInput true;
 		player setvariable ["money",_money,true];
 
 		_veh setVariable ["OT_attachedClass",_cls,true];
-		_veh call OT_fnc_initAttached;
+		[_veh] call OT_fnc_initAttached;
 	},
 	[_veh,_cls,_price],
 	30

@@ -1,4 +1,4 @@
-private _veh = _this;
+private _veh = _this select 0;
 _am = [];
 if(count _this > 1) then {_am = _this select 1};
 private _cls = _veh getVariable ["OT_attachedClass",""];
