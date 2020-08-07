@@ -3,6 +3,7 @@ private _doSalvage = {
   [_this] spawn {
     private _veh = _this select 0;
     private _wreck = OT_salvageVehicle;
+	_wreck setVariable ["Salvaging", true, true];
     private _steel = 3;
     private _plastic = 0;
     private _cost = cost getVariable [typeof _wreck,[100,0,0,0]];
@@ -80,14 +81,16 @@ private _doSalvage = {
   };
 };
 
-private _objects = player nearEntities [["Car","ReammoBox_F","Air","Ship"],20];
+private _objects = player nearEntities [["ReammoBox_F","Land","Air","Ship"],20];
 _filtered = [];
 {
     if !(_x isEqualTo OT_salvageVehicle) then {_filtered pushback _x};
 }foreach(_objects);
 
 if((count _filtered) isEqualTo 1) then {
-	(_filtered select 0) call _doSalvage;
+	if (isNil {OT_salvageVehicle getVariable "Salvaging"}) then {
+		(_filtered select 0) call _doSalvage;
+	};
 }else{
     if(count _filtered > 1) then {
     	private _options = [];

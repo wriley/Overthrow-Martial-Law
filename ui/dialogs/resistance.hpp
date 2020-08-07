@@ -205,95 +205,230 @@ class OT_dialog_garrison
 			h = 0.033 * safezoneH;
 			colorBackground[] = {0,0,0,0};
 		};
-		class RscButton_1600: RscOverthrowButton
-		{
-			idc = 1600;
-			text = "+1 Rifleman"; //--- ToDo: Localize;
-			x = 0.37625 * safezoneW + safezoneX;
-			y = 0.291 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,0] spawn OT_fnc_addGarrison";
-		};
-		class RscButton_1601: RscOverthrowButton
-		{
-			idc = 1601;
-			text = "+1 Autorifleman"; //--- ToDo: Localize;
-			x = 0.438125 * safezoneW + safezoneX;
-			y = 0.291 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,1] spawn OT_fnc_addGarrison";
-		};
-		class RscButton_1602: RscOverthrowButton
-		{
-			idc = 1602;
-			text = "+1 Grenadier"; //--- ToDo: Localize;
-			x = 0.5 * safezoneW + safezoneX;
-			y = 0.291 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,12] spawn OT_fnc_addGarrison";
-		};
-		class RscButton_1603: RscOverthrowButton
-		{
-			idc = 1603;
-			text = "+1 Medic"; //--- ToDo: Localize;
-			x = 0.561875 * safezoneW + safezoneX;
-			y = 0.291 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,8] spawn OT_fnc_addGarrison";
-		};
-		class RscButton_1604: RscOverthrowButton
-		{
-			idc = 1604;
-			text = "+1 Anti-Tank"; //--- ToDo: Localize;
-			x = 0.37625 * safezoneW + safezoneX;
-			y = 0.379 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,9] spawn OT_fnc_addGarrison";
-		};
-		class RscButton_1605: RscOverthrowButton
-		{
-			idc = 1605;
-			text = "+1 Anti-Air"; //--- ToDo: Localize;
-			x = 0.438125 * safezoneW + safezoneX;
-			y = 0.379 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,10] spawn OT_fnc_addGarrison";
-		};
-		class RscButton_1606: RscOverthrowButton
-		{
-			idc = 1606;
-			text = "+1 HMG"; //--- ToDo: Localize;
-			x = 0.5 * safezoneW + safezoneX;
-			y = 0.379 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,'HMG'] spawn OT_fnc_addGarrison";
-		};
-		class RscButton_1607: RscOverthrowButton
-		{
-			idc = 1607;
-			text = "+1 GMG"; //--- ToDo: Localize;
-			x = 0.561875 * safezoneW + safezoneX;
-			y = 0.379 * safezoneH + safezoneY;
-			w = 0.0567187 * safezoneW;
-			h = 0.077 * safezoneH;
-			action = "[getpos player,'GMG'] spawn OT_fnc_addGarrison";
-		};
 		class RscStructuredText_1101: RscOverthrowStructuredText
 		{
 			idc = 1101;
 			x = 0.314375 * safezoneW + safezoneX;
-			y = 0.489 * safezoneH + safezoneY;
+			y = 0.270 * safezoneH + safezoneY;
 			w = 0.37125 * safezoneW;
-			h = 0.264 * safezoneH;
+			h = 0.48 * safezoneH;
 			colorBackground[] = {0,0,0,0.3};
 		};
+		class RscButton_1699: RscOverthrowButton
+        {
+            idc = 1699;
+            text = "X"; //--- ToDo: Localize;
+			action = "closeDialog 0";
+            x = 0.68 * safezoneW + safezoneX;
+            y = 0.181 * safezoneH + safezoneY;
+            w = 0.0257812 * safezoneW;
+            h = 0.044 * safezoneH;
+        };
+		class RscButton_1600: RscOverthrowButton
+		{
+			idc = 1600;
+			text = "+1 Lt. Rifleman"; //--- ToDo: Localize;
+			x = 0.37625 * safezoneW + safezoneX;
+			y = 0.291 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1601: RscOverthrowButton
+		{
+			idc = 1601;
+			text = "+1 Lt. Autorifleman"; //--- ToDo: Localize;
+			x = 0.438125 * safezoneW + safezoneX;
+			y = 0.291 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,1,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1602: RscOverthrowButton
+		{
+			idc = 1602;
+			text = "+1 Lt. Rifleman (AT)"; //--- ToDo: Localize;
+			x = 0.5 * safezoneW + safezoneX;
+			y = 0.291 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,2,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1603: RscOverthrowButton
+		{
+			idc = 1603;
+			text = "+1 Lt. Marksman"; //--- ToDo: Localize;
+			x = 0.561875 * safezoneW + safezoneX;
+			y = 0.291 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,3,true,3] spawn OT_fnc_addGarrison";
+		};
+
+		class RscButton_1604: RscOverthrowButton
+		{
+			idc = 1604;
+			text = "+1 Lt. Sniper"; //--- ToDo: Localize;
+			x = 0.37625 * safezoneW + safezoneX;
+			y = 0.379 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,4,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1605: RscOverthrowButton
+		{
+			idc = 1605;
+			text = "+1 Lt. Spotter"; //--- ToDo: Localize;
+			x = 0.438125 * safezoneW + safezoneX;
+			y = 0.379 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,5,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1606: RscOverthrowButton
+		{
+			idc = 1606;
+			text = "+1 Lt. Squad Leader"; //--- ToDo: Localize;
+			x = 0.5 * safezoneW + safezoneX;
+			y = 0.379 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,6,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1607: RscOverthrowButton
+		{
+			idc = 1607;
+			text = "+1 Lt. Medic"; //--- ToDo: Localize;
+			x = 0.561875 * safezoneW + safezoneX;
+			y = 0.379 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,7,true,3] spawn OT_fnc_addGarrison";
+		};
+
+		class RscButton_1608: RscOverthrowButton
+		{
+			idc = 1608;
+			text = "+1 Lt. AT"; //--- ToDo: Localize;
+			x = 0.37625 * safezoneW + safezoneX;
+			y = 0.467 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,8,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1609: RscOverthrowButton
+		{
+			idc = 1609;
+			text = "+1 Lt. AA"; //--- ToDo: Localize;
+			x = 0.438125 * safezoneW + safezoneX;
+			y = 0.467 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,9,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1610: RscOverthrowButton
+		{
+			idc = 1610;
+			text = "+1 Lt. Assist AT"; //--- ToDo: Localize;
+			x = 0.5 * safezoneW + safezoneX;
+			y = 0.467 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,10,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1611: RscOverthrowButton
+		{
+			idc = 1611;
+			text = "+1 Lt. Assist AA"; //--- ToDo: Localize;
+			x = 0.561875 * safezoneW + safezoneX;
+			y = 0.467 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,11,true,3] spawn OT_fnc_addGarrison";
+		};
+
+		class RscButton_1612: RscOverthrowButton
+		{
+			idc = 1612;
+			text = "+1 Lt. Grenadier"; //--- ToDo: Localize;
+			x = 0.37625 * safezoneW + safezoneX;
+			y = 0.555 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,12,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1613: RscOverthrowButton
+		{
+			idc = 1613;
+			text = "+1 Cpt. Grenadier"; //--- ToDo: Localize;
+			x = 0.438125 * safezoneW + safezoneX;
+			y = 0.555 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,12,true,4] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1614: RscOverthrowButton
+		{
+			idc = 1614;
+			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			x = 0.5 * safezoneW + safezoneX;
+			y = 0.555 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1615: RscOverthrowButton
+		{
+			idc = 1615;
+			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			x = 0.561875 * safezoneW + safezoneX;
+			y = 0.555 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+		};
+
+		class RscButton_1616: RscOverthrowButton
+		{
+			idc = 1616;
+			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			x = 0.37625 * safezoneW + safezoneX;
+			y = 0.643 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1617: RscOverthrowButton
+		{
+			idc = 1617;
+			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			x = 0.438125 * safezoneW + safezoneX;
+			y = 0.643 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1618: RscOverthrowButton
+		{
+			idc = 1618;
+			text = "+1 HMG"; //--- ToDo: Localize;
+			x = 0.5 * safezoneW + safezoneX;
+			y = 0.643 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,'HMG',true,3] spawn OT_fnc_addGarrison";
+		};
+		class RscButton_1619: RscOverthrowButton
+		{
+			idc = 1619;
+			text = "+1 GMG"; //--- ToDo: Localize;
+			x = 0.561875 * safezoneW + safezoneX;
+			y = 0.643 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.077 * safezoneH;
+			action = "[getpos player,'GMG',true,3] spawn OT_fnc_addGarrison";
+		};
+
 		////////////////////////////////////////////////////////
 		// GUI EDITOR OUTPUT END
 		////////////////////////////////////////////////////////
@@ -459,6 +594,18 @@ class OT_dialog_logistics
 			h = 0.099 * safezoneH;
 			colorBackground[] = {0,0,0,0.8};
 			action = "[] call OT_fnc_clearPlayerWaypoint;";
+		};
+		class RscButton_1602: RscOverthrowButton
+		{
+			idc = 1602;
+			text = "Remove Vehicle"; //--- ToDo: Localize;
+			x = 0.716562 * safezoneW + safezoneX;
+			y = 0.676 * safezoneH + safezoneY;
+			w = 0.1338749‬ * safezoneW;
+			h = 0.099 * safezoneH;
+			colorBackground[] = {0,0,0,0.8};
+			tooltip = "Comepetly removes the vehicle without leaving a wreck, only the owner/general can do this."; //--- ToDo: Localize;
+			action = "[] call OT_fnc_UnownVehicle;";
 		};
 		class RscStructuredText_1100: RscOverthrowStructuredText
 		{

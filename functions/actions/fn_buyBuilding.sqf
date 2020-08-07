@@ -10,7 +10,7 @@ if(typename _b isEqualTo "ARRAY") then {
 		private _owner = _building call OT_fnc_getOwner;
 		if(_owner isEqualTo getplayeruid player) then {
 			_home = player getVariable "home";
-			if(_home distance _building < 5) exitWith {"You cannot sell your home" call OT_fnc_notifyMinor;_err = true};
+			if(_home distance _building < 5 && !(typeof _building isEqualTo OT_flag_IND)) exitWith {"You cannot sell your home" call OT_fnc_notifyMinor;_err = true};
 			_type = "sell";
 			_handled = true;
 		};

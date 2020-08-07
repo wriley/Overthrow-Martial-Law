@@ -5,13 +5,13 @@ private _wanted = "<br/>";
 if !(captive _player) then {
 	private _hiding = _player getVariable ["OT_hiding", 0];
 	if((_hiding > 0) && (_hiding < 30)) then {
-		_wanted = format["(%1) WANTED",_hiding];
+		_wanted = format["<t color='#C0392B'>(%1) WANTED</t>",_hiding];
 	}else{
-		_wanted = "WANTED";
+		_wanted = "<t color='#C0392B'>WANTED</t>";
 	};
 };
 
-private _seen = "";
+private _seen = "^.^";
 if(_player call OT_fnc_unitSeenNATO) then {
 	_seen = "<t color='#0000FF'>O_O</t>";//changed from 5D8AA8 and o_o
 }else{

@@ -29,7 +29,7 @@ class CfgOverthrowMissions
         condition = "params['','','_town'];!(_town in (server getVariable ['NATOabandoned',[]]))";
         script = "\overthrow_main\missions\kill.sqf";
         chance = 100;
-        expires = 2;
+        expires = 12;
         requestable = 1;
     };
 
@@ -63,7 +63,7 @@ class CfgOverthrowMissions
         script = "\overthrow_main\missions\fugitive.sqf";
         chance = 5;
         expires = 24;
-        requestable = 0;
+        requestable = 1;
     };
 
     class CaptureTown

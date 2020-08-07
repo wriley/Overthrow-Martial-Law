@@ -68,7 +68,7 @@ private _count = 0;
 sleep 2;
 
 //Send ground forces by land
-if(_strength >= 100) then {//changed from 150
+if(count _ground > 0 && _strength >= 100) then {//changed from 150
 	{
 		_x params ["_obpos","_name","_pri"];
 
@@ -148,7 +148,7 @@ if((count _ground > 0) && (_strength > 1000) && (_popControl > 500)) then {// ch
 sleep 2;
 
 //Send in smoke to cover troops
-if(_strength > 350 || ((random 100) > 25)) then {
+if((count _ground > 0) && (_strength > 350 || (random 100) > 25)) then {
 	_obpos = (_ground select 1) select 0;
 	_name = (_ground select 1) select 1;
 	_dir = [_pos,_obpos] call BIS_fnc_dirTo;
@@ -157,7 +157,7 @@ if(_strength > 350 || ((random 100) > 25)) then {
 };
 
 //Send delayed APC in mid-game
-if(_popControl > 1000) then {
+if((count _ground > 0) && _popControl > 1000) then {
 	{
 		_x params ["_obpos","_name","_pri"];
 		if(_strength >= 200) then {

@@ -210,19 +210,88 @@ publicVariable "OT_nextNATOTurn";
 		{
 			_pos = _x select 0;
 			_name = _x select 1;
-			if !(_name in _abandoned) then {
+			if !(_name in _abandoned && OT_serverInitDone) then {
 				if(_pos call OT_fnc_inSpawnDistance) then {
-					_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",100]);
-					if(_nummil < _numres) then {
-						_abandoned pushback _name;
-						server setVariable ["NATOabandoned",_abandoned,true];
-						_name setMarkerColor "ColorGUER";
-						_t = _pos call OT_fnc_nearestTown;
-						format["Resistance has captured the %1 tower",_name] remoteExec ["OT_fnc_notifyGood",0,false];
-						_resources = _resources - 100;
-						_countered = true;
-						format["%1_restrict",_name] setMarkerAlpha 0;
+					_progress = 0;
+					_influence = 0;
+					_nummil = {side _x isEqualTo west} count (_pos nearEntities [["CAManBase","Land"],100]);
+					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
+					_players = [];
+					{
+						if(isPlayer _x && alive _x) then {
+							_players pushback _x;
+							if (_x distance _pos > 50 && _x getVariable ["COMMSCapturing", false]) then {
+								[0,true] remoteExec ["OT_fnc_progressBar",_x,false];
+								_x setVariable ["COMMSCapturing", false, false]
+							};
+						};
+					}foreach(_pos nearEntities ["Man",OT_spawnDistance]);
+					if(_nummil isEqualTo 0 && _numres > 0) then {
+						{
+							if (_x distance _pos < 50 && !(_x getvariable ["ace_isunconscious",false])) then {
+								format ["You are capturing the %1 tower", _name] remoteExec ["OT_fnc_notifyMinor",_x,false];
+								_x setVariable ["COMMSCapturing", true, false];
+							} else {
+								[0,true] remoteExec ["OT_fnc_progressBar",_x,false];
+								_x setVariable ["COMMSCapturing", false, false]
+							};
+						} foreach _players;
+						if (!(server getVariable [format["NATOcleared%1", _name], false])) then { // Capture start
+							server setVariable [format["NATOcleared%1", _name], true, false];
+							server setVariable [format["NATOcleartime%1", _name], 0, false];
+							{[0,false,false] remoteExec ["OT_fnc_progressBar",_x,false]} foreach _players;
+							format["Capture the %1 tower started",_name] remoteExec ["OT_fnc_notifyGood",-2,false];
+						} else { // Capture progress
+							_progress = server getVariable format["NATOcleartime%1", _name];
+							if (_progress >= 1) then { // Capture success
+								{[0,true] remoteExec ["OT_fnc_progressBar",0,false];} foreach _players;
+								_abandoned pushback _name;
+								server setVariable ["NATOabandoned",_abandoned,true];
+								_name setMarkerColor "ColorGUER";
+								_t = _pos call OT_fnc_nearestTown;
+								format["Resistance has captured the %1 tower",_name] remoteExec ["OT_fnc_notifyGood",-2,false];
+								_resources = _resources - 100;
+								_countered = true;
+								format["%1_restrict",_name] setMarkerAlpha 0;
+							} else {
+								{
+									if(_x distance _pos < 75) then {
+										if((side _x isEqualTo resistance || captive _x) && (_x call OT_fnc_hasWeaponEquipped) && (alive _x) && !(_x getvariable ["ace_isunconscious",false])) then {
+											if(isPlayer _x) then {
+												_progress = _progress + 0.04;
+											} else {
+												_progress = _progress + 0.02;
+											};
+										} else {
+											if((side _x isEqualTo resistance || captive _x) && (alive _x) && !(_x getvariable ["ace_isunconscious",false])) then {
+												if(isPlayer _x) then {
+													_progress = _progress + 0.02;
+												} else {
+													_progress = _progress + 0.01;
+												};
+											};
+										};
+									};
+								} foreach(allunits);
+								{[_progress,false,false] remoteExec ["OT_fnc_progressBar",_x,false];} foreach _players;
+								server setVariable [format["NATOcleartime%1", _name], _progress, false];
+							};
+						};
+					} else {
+						// previously cleared but more nato arrived or resistance left the area
+						if (server getVariable [format["NATOcleared%1", _name], false]) then {
+							[0,true] remoteExec ["OT_fnc_progressBar",0,false]; // Do it silently
+							_progress = server getVariable format["NATOcleartime%1", _name,0];
+							_influence = ((_nummil - _numres) / 100) max 0.01;
+							_progress = _progress - _influence;
+							if (_progress <= 0) then { // Task Failed
+								server setVariable [format["NATOcleared%1", _name], false, false];
+								server setVariable [format["NATOcleartime%1", _name], nil, false];
+								format["Resistance failed to capture the %1 tower",_name] remoteExec ["OT_fnc_notifyBad",-2,false];
+							} else { // Losing
+								server setVariable [format["NATOcleartime%1", _name], _progress, false];
+							};
+						};
 					};
 				};
 			};
@@ -234,10 +303,10 @@ publicVariable "OT_nextNATOTurn";
 		_revealed = server getVariable ["revealedFOBs",[]];
 		{
 			_x params ["_pos","_garrison"];
-			_id = _x;
+			_fob = _x;
 			//Check for clear
-			_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",50]);
+			_nummil = {side _x isEqualTo west && alive _x} count (_pos nearEntities ["CAManBase",200]);
+			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",50]);
 			if(_nummil isEqualTo 0 && {_numres > 0}) then {
 				_clearedFOBs pushback _x;
 				"Cleared NATO FOB" remoteExec ["OT_fnc_notifyMinor",0,false];
@@ -246,20 +315,20 @@ publicVariable "OT_nextNATOTurn";
 					deleteVehicle (_flag select 0);
 				};
 				deleteMarker format["natofob%1",str _pos];
+				deleteMarker format["natofobWarning%1",str _pos];
 			};
 			//Check for reveal
 			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",150]);
 			if (!(str _pos in _revealed) && _numres > 0) then {
-				[_id, "PLAYER"] call OT_fnc_revealNATOFOB;
+				[_fob, "PLAYER"] call OT_fnc_revealNATOFOB;
 			    
 			};	
 		}foreach(_fobs);
 
 		{
 			_fobs deleteAt (_fobs find _x);
-		}foreach(_clearedFOBs);		
-		
-		
+		}foreach(_clearedFOBs);
+
 		//expire targets
 		private _expired = [];
 		{
@@ -500,7 +569,7 @@ publicVariable "OT_nextNATOTurn";
 				_chance = _chance - 5;
 			};
 
-			if(!(spawner getVariable ["NATOdeploying",false]) && {(_spend > 500)} && {(count _fobs) < 3} && {(random 100) > _chance}) then {
+			if(!(spawner getVariable ["NATOdeploying",false]) && {(_spend > 500)} && {(count _fobs) < OT_MaximumNanoFobs} && {(random 100) > _chance}) then {
 				//Deploy an FOB
 				_lowest = "";
 				{
@@ -527,7 +596,7 @@ publicVariable "OT_nextNATOTurn";
 							};
 						}foreach(_fobs);
 
-						if(!_near && {(_pos distance _bpos) > 400} && {(_pos distance _townPos) > 250} && isNull {[_pos, 50] call BIS_fnc_nearestRoad}) exitWith {
+						if(!_near && ((_pos distance _bpos) > 400) && ((_pos distance _townPos) > 250) && (isNull ([_pos, 50] call BIS_fnc_nearestRoad))) exitWith {
 							_gotpos = _pos;
 						};
 					}foreach (selectBestPlaces [_pp, 1000,"(1 - forest - trees) * (1 - houses) * (1 - sea)",5,4]);

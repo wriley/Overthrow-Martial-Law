@@ -8,6 +8,8 @@ params [
     ["_handguns",OT_allBLUPistols]
 ];
 
+if (_loadout isEqualTo []) exitWith {[]};
+
 //helper functions
 private _removeMagazines = {
     params ["_newloadout","_forcls"];

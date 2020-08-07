@@ -33,10 +33,12 @@ if (_attach isKindOf "StaticWeapon") then {
 	_veh animate ["hideRearDoor",1];
 	_veh animate["hideSeatsRear",1];
 
-	[[_attach,"GetOut",{(_this select 2) moveInany (attachedTo(_this select 0)); 	doGetOut (_this select 2); }],"addEventHandler",true,true] spawn BIS_fnc_MP;
+	[[_attach,"GetOut",{(_this select 2) moveInany (attachedTo(_this select 0));
+ 	doGetOut (_this select 2); }],"addEventHandler",true,true] spawn BIS_fnc_MP;
+	[_attach] call OT_fnc_initStaticMGLocal;
 
-	 _Dname = getText (configFile >> "cfgVehicles" >> (typeof _attach) >> "displayName");
-	 [[_veh,format["Get in %1 as Gunner",_Dname],"<img size='2' image='\a3\ui_f\data\IGUI\Cfg\Actions\getingunner_ca.paa'/>"],"OT_UpdateGetInState",true,true] spawn BIS_fnc_MP;
+	_Dname = getText (configFile >> "cfgVehicles" >> (typeof _attach) >> "displayName");
+	[[_veh,format["Get in %1 as Gunner",_Dname],"<img size='2' image='\a3\ui_f\data\IGUI\Cfg\Actions\getingunner_ca.paa'/>"],"OT_UpdateGetInState",true,true] spawn BIS_fnc_MP;
 
 	_ls = [ (_this select 0),"","","","speed _target <= 1 && speed _target >= -1 && _target distance _this < 5  && vehicle _this isEqualTo _this && ( !((_target getVariable 'OT_Attached') isEqualType false) || !((_target getVariable 'OT_Local') isEqualType false))","true",{},{},{},{},[],13,nil,false,false] call BIS_fnc_holdActionAdd;
 	_vls = (_this select 0) addAction ["", {[(_this select 0),(_this select 1)] spawn OT_fnc_mountAttached;},[],5.5,true,true,"","typeNAME (_target getVariable 'OT_Attached') != 'BOOL' && _target distance _this < 5"];
@@ -45,8 +47,10 @@ if (_attach isKindOf "StaticWeapon") then {
 	_veh setVariable["OT_Attached",false,true];
 	_veh setVariable["OT_Local",false,true];
 } else {
-	clearItemCargoGlobal _attach;
-	clearWeaponCargoGlobal _attach;
-	clearMagazineCargoGlobal _attach;
-	clearBackpackCargoGlobal _attach;
+	[_attach,getPlayerUID player] call OT_fnc_setOwner;
+	_attach remoteExec["OT_fnc_initObjectLocal",0,_attach];
+	//clearItemCargoGlobal _attach;
+	//clearWeaponCargoGlobal _attach;
+	//clearMagazineCargoGlobal _attach;
+	//clearBackpackCargoGlobal _attach;
 };

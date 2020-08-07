@@ -282,7 +282,7 @@ if ((date select 4) != _lastmin) then {
 					if(_base > 50000) then {
 							_b = 60;
 					};
-					_timetoproduce = _b + (round (_wood+1)) + (round(_steel * 0.2)) + (round (_plastic * 5));
+				_timetoproduce = _b + (round (_wood+1)) + (round(_steel * 0.2)) + (round (_plastic * 5));
 				if(_timetoproduce > 120) then {_timetoproduce = 120};
 				if(_timetoproduce < 5) then {_timetoproduce = 5};
 				_timespent = server getVariable ["GEURproducetime",0];
@@ -305,6 +305,7 @@ if ((date select 4) != _lastmin) then {
 						_p = OT_factoryPos findEmptyPosition [5,100,OT_item_CargoContainer];
 						if(count _p > 0) then {
 							_veh = OT_item_CargoContainer createVehicle _p;
+							_veh setVariable ["CanOverFill", true, true];
 							[_veh,(server getVariable ["generals",[]]) select 0] call OT_fnc_setOwner;
 							clearWeaponCargoGlobal _veh;
 							clearMagazineCargoGlobal _veh;

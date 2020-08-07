@@ -1,7 +1,11 @@
 if (!hasInterface) exitWith {};
 
-private _counter = _this select 0;
-private _del = _this select 1;
+params ["_counter", "_del", ["_timed", true]];
+
+//private _counter = _this select 0;
+//private _del = _this select 1;
+//private _timed = _this select 2;
+
 if !(_del) then {
  with uiNamespace do {
 	 ctrlDelete (uiNamespace getVariable "pBar");
@@ -16,17 +20,22 @@ if !(_del) then {
 	 pBarText ctrlSetTextColor [1,1,1,1];
 	 pBarText ctrlCommit 0;
 
-	 [ "TIMER", "onEachFrame", {
-		 params[ "_start", "_end" ];
-		 private _progress = linearConversion[ _start, _end, time, 0, 1 ];
-		 (uiNamespace getVariable "pBar") progressSetPosition _progress;
-		 (uiNamespace getVariable "pBarText") ctrlSetStructuredText parseText format["<t align='center' font='PuristaMedium' size='0.65'>%1%2</t>",round (_progress*100),"%"];
-		 if ( _progress > 1 ) then {
-			 [ "TIMER", "onEachFrame" ] call BIS_fnc_removeStackedEventHandler;
-			 ctrlDelete (uiNamespace getVariable "pBar");
-			 ctrlDelete (uiNamespace getVariable "pBarText");
-		 };
-   }, [ time, time + _counter ] ] call BIS_fnc_addStackedEventHandler;
+	if (_timed) then {
+		[ "TIMER", "onEachFrame", {
+			params[ "_start", "_end" ];
+			private _progress = linearConversion[ _start, _end, time, 0, 1 ];
+			(uiNamespace getVariable "pBar") progressSetPosition _progress;
+			(uiNamespace getVariable "pBarText") ctrlSetStructuredText parseText format["<t align='center' font='PuristaMedium' size='0.65'>%1%2</t>",round (_progress*100),"%"];
+			if ( _progress > 1 ) then {
+				[ "TIMER", "onEachFrame" ] call BIS_fnc_removeStackedEventHandler;
+				ctrlDelete (uiNamespace getVariable "pBar");
+				ctrlDelete (uiNamespace getVariable "pBarText");
+			};
+		}, [ time, time + _counter ] ] call BIS_fnc_addStackedEventHandler;
+	} else {
+		(uiNamespace getVariable "pBar") progressSetPosition _counter;
+		(uiNamespace getVariable "pBarText") ctrlSetStructuredText parseText format["<t align='center' font='PuristaMedium' size='0.65'>%1%2</t>",round (_counter*100),"%"];
+	};
  };
 }	else {
 	with uiNamespace do {

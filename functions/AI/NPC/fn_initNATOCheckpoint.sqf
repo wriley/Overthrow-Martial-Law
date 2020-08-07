@@ -32,12 +32,12 @@ private _bbargates = [];
 private _coneDir1 = 90+_dirOff;
 private _coneDir2 = 270+_dirOff;
 
-	if(_coneDir1 > 360) then {
-		_coneDir1 = _coneDir1 - 360;
-	};
-	if(_coneDir2 > 360) then {
-		_coneDir2 = _coneDir2 - 360;
-	};
+if(_coneDir1 > 360) then {
+	_coneDir1 = _coneDir1 - 360;
+};
+if(_coneDir2 > 360) then {
+	_coneDir2 = _coneDir2 - 360;
+};
 {
 	private _dir = [_x, _start] call BIS_fnc_dirTo;
 	if(_dir >= _coneDir1 && _dir < _coneDir2) then {
@@ -253,7 +253,6 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 	sleep 2;
 
 	if(count _inrange > 0) then {
-		OT_DEBUG_CP = [_inrange,_searched,_searching,_vehs,_searchedFoot,_inrange select 0 distance _start];
-		OT_DEBUG_CP_L = _leader;
+		diag_log format ["_inrange:%1 _searched:%2 _searching:%3 _vehs:%4 _searchedFoot:%5 (_inrange select 0 distance _start):%6 _leader:%7", _inrange, _searched, _searching, _vehs, _searchedFoot, (_inrange select 0 distance _start), _leader];
 	}
 };

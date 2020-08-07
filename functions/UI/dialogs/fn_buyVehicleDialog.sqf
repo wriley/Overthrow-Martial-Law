@@ -36,7 +36,7 @@ createDialog "OT_dialog_buy";
 		if !(_cls == "Set_HMG") then {
 			_price = [_town,_cls,_standing] call OT_fnc_getPrice;
 		};
-		if("fuel depot" in (server getVariable "OT_NATOabandoned")) then {
+		if("Fuel Depot" in (server getVariable "OT_NATOabandoned")) then {
 			_price = round(_price * 0.5);
 		};
 		([_cls,_price] call {

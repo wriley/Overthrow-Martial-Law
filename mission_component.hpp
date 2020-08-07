@@ -68,15 +68,15 @@ class Params {
 	};
 	class ot_showplayermarkers {
 		title = "Show Player Markers on HUD";
-		values[] = {1,0};
-		texts[] = {"Yes", "No"};
+		values[] = {0,1};
+		texts[] = {"No", "Yes"};
 		default = 1;
 	};
 	class ot_showenemygroup {
 		title = "Show known enemy groups on map";
-		values[] = {1,0};
-		texts[] = {"Yes", "No"};
-		default = 1;
+		values[] = {0,1};
+		texts[] = {"No", "Yes"};
+		default = 0;
 	};
 	class ace_medical_level {
         title = "ACE Medical Level";
@@ -94,8 +94,16 @@ class Params {
     };
 	class ot_armedres {
         title = "Count Unarmed Resistance Members Towards QRF Missions";
-        values[] = {0, 1};
-        texts[] = {"Yes", "No"};
+        values[] = {0,1};
+        texts[] = {"No", "Yes"};
         default = 0;
     };
+	class headlessClient
+	{
+		title = "Headless Client";
+		texts[] = {"Disabled","Enabled"};
+		values[] = {0, 1};
+		default = 0;
+		isGlobal = 1;
+	};
 };
