@@ -78,3 +78,5 @@ private _idx = lbAdd [1500,format["Quadcopter"]];
 lbSetPicture [1500,_idx,OT_item_UAV call OT_fnc_vehicleGetPic];
 lbSetData [1500,_idx,OT_item_UAV];
 lbSetValue [1500,_idx,_price];
+ctrlShow [1601,false];
+ctrlShow [1602,false];

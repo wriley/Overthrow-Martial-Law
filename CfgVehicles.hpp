@@ -232,7 +232,19 @@ class CfgVehicles {
 		ot_isPlayerHouse = 1;
         ot_template = '[["Land_MetalCase_01_small_F",[-0.507421,-0.278264,0.377357],0,1,0,[],"","",true,false], ["B_CargoNet_01_ammo_F",[-1.09897,-1.48947,0.377357],0,1,0,[],"","",true,false], ["Land_Workbench_01_F",[-4.09043,2.20817,0.324941],270,1,0,[],"","",true,false], ["Land_MapBoard_F",[-4.07916,-4.87537,0.325],210,1,0,[],"","",true,false] ]';
 	};
-
+	//Houses (Livonia)
+	class Land_House_1W01_F : House_Small_f {
+		ot_isPlayerHouse = 1;
+        ot_template = '[["Land_MetalCase_01_small_F",[-0.0391073,-2.38339,-0.00100088],269.766,1,0,[2.80922e-005,-0.000455107],"","",true,false],["Land_CampingChair_V2_F",[-0.95352,2.19191,-0.000998974],205.312,1,0,[0.000419523,0.00036544],"","",true,false],["OfficeTable_01_new_F",[-0.669114,2.76221,-0.000998974],3.3096e-005,1,0,[-6.48772e-005,0.000181224],"","",true,false],["Land_MapBoard_Enoch_F",[2.80548,0.361253,-0.00155544],86.6927,1,0,[-0.294008,-0.0546504],"","",true,false],["B_CargoNet_01_ammo_F",[2.65323,-1.62338,-0.00099659],360,1,0,[-0.000187827,0.000360995],"","",true,false],["Land_Workbench_01_F",[2.20189,2.67528,-0.000597],359.805,1,0,[0.103474,-0.00103475],"","",true,false]]';
+	};
+	class Land_House_1W10_F : House_Small_f {
+		ot_isPlayerHouse = 1;
+        ot_template = '[["Land_CampingChair_V2_F",[0.920077,-0.901972,0.034317],24.7907,1,0,[-0.124043,0.271041],"","",true,false],["OfficeTable_01_new_F",[0.640592,-1.47487,0.0357647],179.487,1,0,[-0.00276878,-0.297944],"","",true,false],["Land_MetalCase_01_small_F",[1.14552,1.94735,0.0331335],92.3128,1,0,[-0.297861,-0.0119579],"","",true,false],["Land_Workbench_01_F",[-2.52448,-1.38322,0.0522304],180.992,1,0,[0.0054578,-0.297945],"","",true,false],["B_CargoNet_01_ammo_F",[-3.02816,1.29547,0.0548558],179.482,1,0,[-0.00272333,-0.298135],"","",true,false],["Land_MapBoard_Enoch_F",[3.00379,-1.43205,0.061625],134.089,1,0,[0.654025,0.845397],"","",true,false]]';
+	};
+	class Land_House_1W02_F : House_Small_f {
+		ot_isPlayerHouse = 1;
+        ot_template = '[["Land_MetalCase_01_small_F",[-0.538328,0.901626,-0.0010004],174.741,1,0,[-9.37514e-005,9.29899e-005],"","",true,false],["Land_CampingChair_V2_F",[2.85857,-0.415011,-0.000994682],292.015,1,0,[-0.00038614,-0.00123639],"","",true,false],["OfficeTable_01_new_F",[3.44428,-0.666138,-0.000999928],86.7032,1,0,[0.000145824,6.21702e-005],"","",true,false],["Land_MapBoard_Enoch_F",[-1.49216,3.31236,0.0428715],355.179,1,0,[-0.360939,0.0461294],"","",true,false],["B_CargoNet_01_ammo_F",[2.64869,3.16984,-0.0010004],179.483,1,0,[-0.000110829,1.88703e-005],"","",true,false],["Land_Workbench_01_F",[-4.55341,1.23832,-0.00100088],269.89,1,0,[0.00126416,2.55769e-005],"","",true,false]]';
+	};
     //Shops (Tanoa)
     class Land_FuelStation_01_shop_F: House_F {
         ot_isShop = 1;
@@ -275,6 +287,7 @@ class CfgVehicles {
     };
 	class Land_u_Shop_02_V3_F: Land_i_Shop_02_V3_F {
         ot_isShop = 0;
+		ot_template = '[]';
     };
 
 	//Shops (CUP)
@@ -291,6 +304,15 @@ class CfgVehicles {
     class Land_FuelStation_02_workshop_F: House_F {
         ot_isCarDealer = 1;
         ot_template = '[["Land_CashDesk_F",[2.21226,0.566814,0.53],0,1,0,[],"","",true,false]]';
+    };
+	 class Land_FuelStation_03_shop_F: House_F {
+        ot_isCarDealer = 1;
+        ot_template = '[]';
+    };
+	//Car Dealers (Livonia)
+	class Land_FuelStation_Build_F: House_F {
+        ot_isCarDealer = 1;
+        ot_template = '[]';
     };
 
 	//Car Dealers (Altis)

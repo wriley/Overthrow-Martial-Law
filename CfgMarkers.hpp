@@ -81,4 +81,14 @@ class CfgMarkers
 		shadow = true;
 		scope = 1;
 	};
+	class ot_CarStore
+	{
+		name = "Car Store";
+		icon = "\overthrow_main\ui\markers\CarStore.paa";
+		color[] = {1, 1, 1, 1};
+		size = 32;
+		shadow = true;
+		scope = 1;
+		markerClass = "Flags";
+	};
 };

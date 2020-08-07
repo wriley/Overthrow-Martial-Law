@@ -27,6 +27,9 @@ if(_hasdrugs && _ftrules > 0) exitWith {"You cannot fast travel while carrying d
 
 private _exit = false;
 if((vehicle player) != player) then {
+	
+	if(_ftrules > 1) exitWith{hint "Current settings do not allow fast travelling while in a vehicle.";_exit=true};
+	
 	{
 		if(_x in OT_allDrugs) exitWith {_hasdrugs = true};
 	}foreach(itemCargo vehicle player);
@@ -34,7 +37,7 @@ if((vehicle player) != player) then {
 	if(_hasdrugs && _ftrules > 0) exitWith {hint "You cannot fast travel while carrying drugs";_exit=true};
 	if (driver (vehicle player) != player)  exitWith {hint "You are not the driver of this vehicle";_exit=true};
 	if({!captive _x && alive _x} count (crew vehicle player) != 0)  exitWith {hint "There are wanted people in this vehicle";_exit=true};
-	if(_ftrules > 1 && ((typeOf(vehicle player)) in (OT_allVehicleThreats + OT_allHeliThreats + OT_allPlaneThreats)))  exitWith {hint "You cannot fast travel in an offensive vehicle";_exit=true};  //Merge from Rudyblah vrsn
+	if(_ftrules > 0 && ((typeOf(vehicle player)) in (OT_allVehicleThreats + OT_allHeliThreats + OT_allPlaneThreats)))  exitWith {hint "You cannot fast travel in an offensive vehicle";_exit=true};  //Merge from Rudyblah vrsn
 };
 if(_exit) exitWith {};
 
@@ -58,6 +61,18 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 	};
 
 	private _exit = false;
+	
+	
+	private _ob = (_pos) call OT_fnc_nearestLocation;
+	if((_ob select 1) isEqualTo "Business") then {
+		_obpos = (_ob select 2) select 0;
+		_obname = (_ob select 0);
+		if(_obpos distance _pos < 50 ) then {
+			if(_obname in (server getVariable ["GEURowned",[]])) then {
+				_handled = true;
+			};
+		};
+	};
 
 	if !(_handled) then {
 		if([_pos,"Misc"] call OT_fnc_canPlace) then {

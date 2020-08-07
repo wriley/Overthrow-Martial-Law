@@ -11,8 +11,8 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"cba_ui",
-      "cba_xeh",
-      "cba_jr",
+			"cba_xeh",
+			"cba_jr",
 			"ace_main",
 			"ace_medical",
 			"a3_ui_f",
@@ -99,10 +99,10 @@ class CfgMissions
 	class Missions
 	{
 
-  };
+	};
 	class MPMissions
 	{
-    class OTMpTanoaMartialLawRHS
+    	class OTMpTanoaMartialLawRHS
 		{
 			directory="overthrow_main\campaign\missions\OTMpTanoaMartialLawRHS.Tanoa";
 		};

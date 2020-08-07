@@ -39,6 +39,9 @@ while {_count < _numNATO} do {
 		_civ setRank "CORPORAL";
 		_civ setBehaviour "SAFE";
 		[_civ,_town] call OT_fnc_initGendarm;
+		if (OT_HCEnabled) then {
+			[_civ,HC1] spawn OT_fnc_MoveToHC;
+		};
 
 
 		_civ = _group createUnit [OT_NATO_Unit_Police, _pos, [],0, "NONE"];
@@ -47,6 +50,9 @@ while {_count < _numNATO} do {
 		_civ setRank "PRIVATE";
 		[_civ,_town] call OT_fnc_initGendarm;
 		_civ setBehaviour "SAFE";
+		if (OT_HCEnabled) then {
+			[_civ,HC1] spawn OT_fnc_MoveToHC;
+		};
 
 		sleep 0.5;
 		_group call OT_fnc_initGendarmPatrol;
