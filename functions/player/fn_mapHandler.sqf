@@ -319,7 +319,7 @@ if(_scale <= 0.1) then {
 			};
 		}foreach(OT_mapcache_vehicles);
 	};
-//};
+};
 private _qrf = server getVariable "QRFpos";
 if(!isNil "_qrf") then {
 	private _progress = server getVariable ["QRFprogress",0];
