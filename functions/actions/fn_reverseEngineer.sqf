@@ -27,21 +27,5 @@ if((count _cost) > 0 && !(_cls in _blueprints)) then {
 		"Item is now available for production" call OT_fnc_notifyMinor;
     };
 }else{
-	if(_cls isEqualTo "OT_NatoData") then {
-			closeDialog 0;
-			if ((count OT_NATOBluprints) > 0) then {
-				player removeItem _cls;
-				private _rancls = selectRandom OT_NATOBluprints;
-				OT_NATOBluprints deleteAt (OT_NATOBluprints find _rancls);
-				publicVariable "OT_NATOBluprints";
-				_blueprints pushBack _rancls;
-				server setVariable ["GEURblueprints",_blueprints,true];
-				private _displayName = getText (configFile >>  "CfgVehicles" >> _rancls >> "displayName"); 
-				format ["The laptop has been cracked and granted us the neccesary data to construct the %1",_displayName] call OT_fnc_notifyMinor;
-		}else{
-			format ["We have gained all we can learn from NATO technology"] call OT_fnc_notifyMinor;
-		};
-	}else{
-		"This item cannot be reverse-engineered " call OT_fnc_notifyMinor;
-	};
+	"This item cannot be reverse-engineered " call OT_fnc_notifyMinor;
 };
