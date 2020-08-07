@@ -276,7 +276,7 @@ private _road = objNull;
 	_groups pushback _vgroup;
 	private _vehtype = _x;
 	private _got = false;
-	
+
 	private _pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
 	if (_vehtype == "RHS_MELB_AH6M") then {
 		private _pos = [_posTown, 25, 250, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
@@ -287,7 +287,7 @@ private _road = objNull;
 			private _pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
 		};
 	};
-	
+
 	if ((count _pos)==0) then {//added to correct error
 	    _pos = [0,0,0];
 	};
@@ -300,6 +300,7 @@ private _road = objNull;
 	};
 
 	if(count _pos > 0) then {
+		_pos = [_pos select 0, _pos select 1, 0];
 		if(_vehtype in OT_staticWeapons) then {
 			//put sandbags
 			private _p = [_pos,1.5,_dir] call BIS_fnc_relPos;
