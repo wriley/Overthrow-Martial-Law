@@ -1114,21 +1114,7 @@ class OT_dialog_main
 			h = 0.044 * safezoneH;
 			tooltip = "Persistent save, clear bodies/fog and more"; //--- ToDo: Localize;
 		};
-		
-		class RscButton_1680: RscOverthrowButton
-		{
-			idc = 1680;
-			action = "call OT_fnc_optionsDialog";
 
-			text = "Options"; //--- ToDo: Localize;
-			x = 0.005 * safezoneW + safezoneX;
-			y = 0.863 * safezoneH + safezoneY;
-			w = 0.149531 * safezoneW;
-			h = 0.044 * safezoneH;
-			tooltip = "Upgrade your character"; //--- ToDo: Localize;
-		};
-		
-		
 		class RscButton_1620: RscOverthrowButton
 		{
 			idc = 1620;
