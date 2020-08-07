@@ -68,6 +68,10 @@ while {_count < _numCiv} do {
 
 		private _identity = call OT_fnc_randomLocalIdentity;
 		[_civ,_identity] call OT_fnc_applyIdentity;
+		if (OT_HCEnabled) then {
+			[_civ,HC2] spawn OT_fnc_MoveToHC;
+		};
+
 		_count = _count + 1;
 		_groupcount = _groupcount + 1;
 		sleep 0.5;

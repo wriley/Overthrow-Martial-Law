@@ -1,3 +1,4 @@
+params [["_buyToCrate", false],"_numToCrate"];
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 
@@ -9,6 +10,10 @@ if(_price isEqualTo -1) exitWith {};
 
 private _chems = server getVariable ["reschems",0];
 private _cost = cost getVariable [_cls,[0,0,0,0]];
+private _weapon = false;
+private _type = "";
+private _box = objNull;
+
 if(_cls in OT_allExplosives && _chems < (_cost select 3)) exitWith {format["You need %1 chemicals",_cost select 3] call OT_fnc_notifyMinor};
 
 private _money = player getVariable "money";
@@ -130,65 +135,151 @@ if(_cls isKindOf "Ship") exitWith {
 	format["You bought a %1",_cls call OT_fnc_vehicleGetName] call OT_fnc_notifyMinor;
 	playSound "3DEN_notificationDefault";
 };
+
+{
+	private _owner = _x call OT_fnc_getOwner;
+	if(!isNil "_owner") then {
+		if(_owner == getplayerUID player) exitWith {_box = _x};
+	};
+}foreach(nearestObjects [getpos player, [OT_item_Storage],20]);
+
 if(_cls in OT_allClothing) exitWith {
-	[-_price] call OT_fnc_money;
-
-	if((player getVariable ["OT_shopTarget","Self"]) == "Vehicle") then {
-		(vehicle player) addItemCargoGlobal [_cls,1];
-	}else{
-		if((backpack player != "") && (player canAdd _cls)) then {
-			player addItemToBackpack _cls;
-			"Clothing added to your backpack" call OT_fnc_notifyMinor;
+	if!(_buyToCrate) then {
+		if((player getVariable ["OT_shopTarget","Self"]) == "Vehicle") then {
+			if ((vehicle player) canAdd _cls) then {
+				(vehicle player) addItemCargoGlobal [_cls,1];
+				[-_price] call OT_fnc_money;
+				playSound "3DEN_notificationDefault";
+			} else {
+				private _veh = vehicle player;
+				if ((!(_veh isKindOf "Truck_F")) && (!(_veh canAdd [_cls,1]))) then {
+					"This vehicle is full, use a truck for more storage" call OT_fnc_notifyMinor;
+				};
+				if (((_veh isKindOf "Truck_F")) && (!(_veh canAdd [_cls,1])) && !(_veh getVariable ["OT_attachedClass", ""] in OT_item_Storage)) then {
+					"This truck is full, install a Supply Crate using the workshop for more storage capacity." call OT_fnc_notifyMinor;
+				};
+			};
 		}else{
-			player forceAddUniform _cls;
+			if((backpack player != "") && (player canAdd _cls)) then {
+				player addItemToBackpack _cls;
+				"Clothing added to your backpack" call OT_fnc_notifyMinor;
+				[-_price] call OT_fnc_money;
+			}else{
+				player forceAddUniform _cls;
+				[-_price] call OT_fnc_money;
+			};
+			playSound "3DEN_notificationDefault";
+		};
+	} else {
+		if (_box canAdd [_cls,_numToCrate]) then {
+			_box addItemCargoGlobal [_cls,_numToCrate];
+			[-_price] call OT_fnc_money;
+			playSound "3DEN_notificationDefault";
+			hint "Clothing sent to supply crate";
+		} else {
+			"This supply crate is full." call OT_fnc_notifyMinor;
 		};
 	};
-
-	playSound "3DEN_notificationDefault";
 };
+
 if(_cls == "V_RebreatherIA") exitWith {
-	[-_price] call OT_fnc_money;
-
-	if((backpack player != "") && (player canAdd _cls)) then {
-		player addItemToBackpack _cls;
-		"Rebreather added to your backpack" call OT_fnc_notifyMinor;
-	}else{
-		player addVest _cls;
-	};
-	playSound "3DEN_notificationDefault";
-};
-if(
-	(_cls isKindOf ["Launcher",configFile >> "CfgWeapons"])
-	||
-	(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"])
-	||
-	(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"])
-) exitWith {
-	[-_price] call OT_fnc_money;
-
-	private _box = objNull;
-	{
-		private _owner = _x call OT_fnc_getOwner;
-		if(!isNil "_owner") then {
-			if(_owner == getplayerUID player) exitWith {_box = _x};
+	if!(_buyToCrate) then {
+		if((backpack player != "") && (player canAdd _cls)) then {
+			"Rebreather put on your back." call OT_fnc_notifyMinor;
+			player addItemToBackpack _cls;
+			[-_price] call OT_fnc_money;
+			playSound "3DEN_notificationDefault";
+		}else{
+			if!((vest player) isEqualTo objNull) then {
+				player addVest _cls;
+				[-_price] call OT_fnc_money;
+				playSound "3DEN_notificationDefault";
+			} else {
+				"You are currently wearing a vest." call OT_fnc_notifyMinor;
+			};
 		};
-	}foreach(nearestObjects [getpos player, [OT_item_Storage],1200]);
+	} else {
+		if (_box canAdd [_cls,_numToCrate]) then {
+			_box addItemCargoGlobal [_cls, _numToCrate];
+			[-_price*_numToCrate] call OT_fnc_money;
+			playSound "3DEN_notificationDefault";
+			"Vest sent to supply crate." call OT_fnc_notifyMinor;
+		} else {
+			"This supply crate is full." call OT_fnc_notifyMinor;
+		};
+	};
+};
 
-	// @todo probably add to box if possible
-	player addWeaponGlobal _cls;
-
-	playSound "3DEN_notificationDefault";
+if (_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) then { _weapon = true; _type = "Rifle"; };
+if (_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) then { _weapon = true; _type = "Launcher"; };
+if (_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) then { _weapon = true; _type = "Pistol"; };
+if (_weapon) exitWith {
+	if!(_buyToCrate) then {
+		switch (_type) do {
+			case "Rifle": {
+				if ((primaryWeapon player) isEqualTo "") then {
+					player addWeaponGlobal _cls;
+					[-_price] call OT_fnc_money;
+					playSound "3DEN_notificationDefault";
+				} else {
+					"You are already carrying a rifle." call OT_fnc_notifyMinor;
+				};
+			};
+			case "Launcher": {
+				if ((secondaryWeapon player) isEqualTo "") then {
+					player addWeaponGlobal _cls;
+					[-_price] call OT_fnc_money;
+					playSound "3DEN_notificationDefault";
+				} else {
+					"You are already carrying a launcher." call OT_fnc_notifyMinor;
+				};
+			};
+			case "Pistol": {
+				if ((handGunWeapon player) isEqualTo "") then {
+					player addWeaponGlobal _cls;
+					[-_price] call OT_fnc_money;
+					playSound "3DEN_notificationDefault";
+				} else {
+					"You are already carrying a pistol." call OT_fnc_notifyMinor;
+				};
+			};
+		};
+	} else {
+		if (_box canAdd [_cls,_numToCrate]) then {
+			_box addWeaponCargoGlobal [_cls, _numToCrate];
+			[-_price*_numToCrate] call OT_fnc_money;
+			playSound "3DEN_notificationDefault";
+			hint "Weapon(s) sent to supply crate.";
+		} else {
+			"This supply crate is full." call OT_fnc_notifyMinor;
+		};
+	};
 };
 if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 	if(_cls in OT_allExplosives) then {
 		server setVariable ["reschems",_chems - (_cost select 3),true];
 	};
-	[-_price] call OT_fnc_money;
-	player addMagazine _cls;
-	playSound "3DEN_notificationDefault";
+	if!(_buyToCrate) then {
+		if (player canAdd _cls) then {
+			[-_price] call OT_fnc_money;
+			player addMagazine _cls;
+			playSound "3DEN_notificationDefault";
+		} else {
+			"You cannot carry any more." call OT_fnc_notifyMinor;
+		};
+	} else {
+		if (_box canAdd [_cls,_numToCrate]) then {
+			[-_price*_numToCrate] call OT_fnc_money;
+			_box addMagazineCargoGlobal [_cls, _numToCrate];
+			playSound "3DEN_notificationDefault";
+			hint "Item sent to Supply Crate";
+		} else {
+			"This supply crate is full." call OT_fnc_notifyMinor;
+		};
+	};
 };
-private _handled = true;
 private _b = player getVariable ["OT_shopTarget","Self"];
+private _handled = true;
 if(_b != "Vehicle") then {
 	if(_cls isKindOf "Bag_Base") then {
 		if(backpack player != "") then {
@@ -196,21 +287,25 @@ if(_b != "Vehicle") then {
 			_handled = false;
 		};
 	}else{
-		if !(player canAdd [_cls,1]) then {
+		if (!(player canAdd [_cls,1]) && !_buyToCrate && !_weapon) then {
 			"There is not enough room in your inventory" call OT_fnc_notifyMinor;
 			_handled = false;
 		};
 	};
 }else{
-	_veh = vehicle player;
+	private _veh = vehicle player;
 	if ((!(_veh isKindOf "Truck_F")) && (!(_veh canAdd [_cls,1]))) then {
 		"This vehicle is full, use a truck for more storage" call OT_fnc_notifyMinor;
 		_handled = false;
 	};
+	if (((_veh isKindOf "Truck_F")) && (!(_veh canAdd [_cls,1])) && !(_veh getVariable ["OT_attachedClass", ""] in OT_item_Storage)) then {
+		"This truck is full, install a Supply Crate using the workshop for more storage capacity." call OT_fnc_notifyMinor;
+		_handled = false;
+	};
 };
 
+private _charge = true;
 if(_handled) then {
-	playSound "3DEN_notificationDefault";
 	if (_cls in OT_illegalItems) exitWith {
 		[-_price] call OT_fnc_money;
 		player addItem _cls;
@@ -227,19 +322,27 @@ if(_handled) then {
 		[-_price] call OT_fnc_money;
 		player addItem _cls;
 	};
-	player setVariable ["money",_money-_price,true];
 
 	if(_b == "Vehicle") then {
 		if(_cls isKindOf "Bag_Base") then {
-			(vehicle player) addBackpackCargoGlobal [_cls,1];
+			"Backpack purchases in vehicle disabled while ammo bag ""feature"" is resolved" call OT_fnc_notifyAndLog;
+			_vehicleBackpacks = everyBackpack vehicle player;
+			playSound "3DEN_notificationDefault";
+			player setVariable ["money",_money-_price,true];
+			diag_log str _vehicleBackpacks;
 		}else{
 			(vehicle player) addItemCargoGlobal [_cls,1];
 		};
 	}else{
 		if(_cls isKindOf "Bag_Base") then {
 			player addBackpack _cls;
+			clearAllItemsFromBackpack player;
 		}else{
 			player addItem _cls;
 		};
+	};
+	if (_charge) then {
+		playSound "3DEN_notificationDefault";
+		player setVariable ["money",_money-_price,true];
 	};
 };

@@ -19,13 +19,13 @@ if (_numToKill == 0) then {
 	if (_diff >= 85 && _diff < 95)	then { _numToKill = 8+ceil(random 4) };
 	if (_diff >= 95) 				then { _numToKill = 16+ceil(random 8) };
 	_numToKill = _numToKill min (_unitsInArea max 1);
-	player setVariable ["NATOKillOffer", _numToKill]; // prevent spamming decline to get more to kill
+	player setVariable ["NATOKillOffer", _numToKill];
 };
 private _reward = _numToKill * 550;//changed from 25
 
 //Build a mission description
 private _description = format["Nothing spurs on the resistance more than just killing some blues. Go find %1 NATO scumbags and take care of them.<br/><br/>Reward: $%2",_numToKill,_reward];
-private _params = [_reward,_numToKill, _bluKillsStart];
+private _params = [_reward,_numToKill,_bluKillsStart];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [

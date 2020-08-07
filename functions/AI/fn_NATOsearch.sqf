@@ -1,5 +1,6 @@
 private _target = objNull;
 private _cop = objNull;
+private _playersearch = false;
 
 if((count _this) isEqualTo 3) then {
 	//its a position
@@ -24,6 +25,7 @@ if((count _this) isEqualTo 3) then {
 };
 if(isNil "_cop" || isNil "_target") exitWith{};
 
+_target setVariable ["BeingSearched","Yes",true];
 _cop setVariable ["OT_searching",true,true];
 
 if((isplayer _target) && !(captive _target)) exitWith{};
@@ -68,6 +70,7 @@ private _cleanup = {
 	};
 	if(isplayer _target) then {
 		_target removeEventHandler ["InventoryOpened",_handler];
+		_target setVariable ["BeingSearched",nil,true];
 	}else{
 		[_target, "MOVE"] remoteExec ["enableAI",_target,false];
 	};
@@ -132,10 +135,10 @@ if(isplayer _target) then {
 	private _foundillegal = false;
 	private _foundweapons = false;
 	{
-                            _cls = _x select 0;
-                            if ((_cls in OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_illegalUniform + OT_allStaticBackpacks + OT_allOptics) && {!(_cls in OT_legal)}) then { //changed to allow legals credit MaxP
-                                _foundweapons = true;
-                            };
+        _cls = _x select 0;
+        if ((_cls in OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_illegalUniform + OT_allStaticBackpacks + OT_allOptics) && {!(_cls in OT_legal)}) then { //changed to allow legals credit MaxP
+            _foundweapons = true;
+        };
 		if(_cls in OT_illegalItems) then {
 			_count = _x select 1;
 			for "_i" from 1 to _count do {

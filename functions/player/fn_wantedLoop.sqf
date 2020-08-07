@@ -145,33 +145,33 @@ if !(captive _unit) then {
 				//Record any threats as known targets
 				(vehicle _unit) call OT_fnc_NATOreportThreat;
 			};
-			   if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
-			      _unit setCaptive false;
-			      [_unit] call OT_fnc_revealToNATO;
-			  };
-				//added illegal uniforms 
-			      if (((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) || { (uniform _unit in OT_illegalUniform) }) exitWith {
-			      if(isPlayer _unit) then {
-			          "You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
-			       };
-						 _unit setCaptive false;
-						 [_unit] call OT_fnc_revealToNATO;
-			    };
+			if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
+				_unit setCaptive false;
+				[_unit] call OT_fnc_revealToNATO;
+			};
+			//added illegal uniforms 
+		      if (((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) || { (uniform _unit in OT_illegalUniform) }) exitWith {
+		      if(isPlayer _unit) then {
+		          "You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
+		       };
+					 _unit setCaptive false;
+					 [_unit] call OT_fnc_revealToNATO;
+		    };
 
-			if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
-				private _offroadDist = 125; //Distance you are alloud off road
-				private _checkpointOffroadRange = 200; //Distance from a checkpoint for the stricter off road distance
-				private _checkpointOffroadDist = 30;
-				if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
-						_offroadDist = _checkpointOffroadDist
+		if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
+			private _offroadDist = 125; //Distance you are alloud off road
+			private _checkpointOffroadRange = 200; //Distance from a checkpoint for the stricter off road distance
+			private _checkpointOffroadDist = 30;
+			if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
+					_offroadDist = _checkpointOffroadDist
+			};
+			if(isNull ([position _unit, _offroadDist] call BIS_fnc_nearestRoad)) then {
+				if(isPlayer _unit) then {
+					"You are driving offroad" call OT_fnc_notifyMinor;
 				};
-				if(isNull ([position _unit, _offroadDist] call BIS_fnc_nearestRoad)) then {
-					if(isPlayer _unit) then {
-						"You are driving offroad" call OT_fnc_notifyMinor;
-					};
-					_unit setCaptive false;
-					[_unit] call OT_fnc_revealToNATO;
-				};
+				_unit setCaptive false;
+				[_unit] call OT_fnc_revealToNATO;
+			};
 			};
 			if !(hmd _unit isEqualTo "") exitWith {
 				if(isPlayer _unit) then {
@@ -180,22 +180,46 @@ if !(captive _unit) then {
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
 			};
+			if(isPlayer _unit) then { //Who dosn't like a random search
+				if (random 1000 < 3) exitWith { //1/1000 chance every second to have chance of being searched
+					private _foundillegal = _unit call OT_fnc_IllegalInInventory; //Don't waste time searching an innocent player
+					private _playersearch = _unit getVariable ["BeingSearched",""];
+					if (_playersearch isEqualTo "") then {
+						if (_foundillegal) then {
+						[_unit] spawn OT_fnc_NATOsearch;
+						};
+					};
+				};
+			};
 			private _unitpos = getPosATL _unit;
 			private _base = _unitpos call OT_fnc_nearestObjectiveOrFOB;
 			if !(isNil "_base") then {
-				_base params ["_obpos","_obname"];
-				private _dist = _obname call {
-					if (_this in OT_allComms) exitWith {40};
-					if(_this in OT_NATO_priority) exitWith {500};
-					if(typeName _this == "SCALAR") exitWith {30};
-					200
-				};
-				if((_obpos distance _unitpos) < _dist) exitWith {
-					if(isPlayer _unit) then {
-						"You are in a restricted area" call OT_fnc_notifyMinor;
+				if !(_base in _fobs) then {
+					_base params ["_obpos","_obname"];
+					if(_obname in (server getvariable "NATOabandoned")) exitwith {};
+					private _dist = _obname call {
+						if (_this in OT_allComms) exitWith {40};
+						if(_this in OT_NATO_priority) exitWith {500};
+						200
 					};
-					_unit setCaptive false;
-					[_unit] call OT_fnc_revealToNATO;
+					if((_obpos distance _unitpos) < _dist) exitWith {
+						if(isPlayer _unit) then {
+							"You are in a restricted area" call OT_fnc_notifyMinor;
+						};
+						_unit setCaptive false;
+						[_unit] call OT_fnc_revealToNATO;
+					};
+				}else{
+					_base params ["_obpos","_unitcount"];
+					UnitCount = _unitcount;
+					private _dist = 30;
+					if((_obpos distance _unitpos) < _dist) exitWith {
+						if(isPlayer _unit) then {
+							"You are in a restricted area" call OT_fnc_notifyMinor;
+						};
+						_unit setCaptive false;
+						[_unit] call OT_fnc_revealToNATO;
+					};
 				};
 			};
 		};

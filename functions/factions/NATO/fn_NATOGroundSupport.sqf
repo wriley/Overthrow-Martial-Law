@@ -27,6 +27,7 @@ while {_count < _num} do {
 	_veh setDir (_dir);
 	_group addVehicle _veh;
 	createVehicleCrew _veh;
+	_veh allowCrewInImmobile true;
 	{
 		[_x] joinSilent _group;
 		_x setVariable ["garrison","HQ",false];

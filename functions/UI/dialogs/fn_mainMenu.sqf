@@ -92,11 +92,14 @@ if(typename _b isEqualTo "ARRAY") then {
 		if(typeof _building isEqualTo OT_warehouse) exitWith {
 			ctrlEnable [1609,true];
 			ctrlSetText [1609,"Procurement"];
+			findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "Purchase Vehicles from Warehouse";
 
 			ctrlSetText [1608,"Sell"];
+			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "";
 			ctrlEnable [1608,false];
 
 			ctrlSetText [1610,"Repair"];
+			findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "Repair damaged building";
 			if((damage _building) isEqualTo 1) then {
 				ctrlEnable [1610,true];
 			}else{
@@ -119,6 +122,7 @@ if(typename _b isEqualTo "ARRAY") then {
 
 			if(typeof _building isEqualTo OT_item_Tent) exitWith {
 				ctrlSetText [1608,"Sell"];
+				findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Sell this building";
 				ctrlEnable [1608,false];
 				ctrlEnable [1609,false];
 				ctrlEnable [1610,false];
@@ -130,6 +134,7 @@ if(typename _b isEqualTo "ARRAY") then {
 			};
 
 			ctrlSetText [1608,format["Sell ($%1)",[_sell, 1, 0, true] call CBA_fnc_formatNumber]];
+			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Sell this building";
 
 			if(_id in _leased) then {
 				ctrlEnable [1609,false];
@@ -220,6 +225,7 @@ if(typename _b isEqualTo "ARRAY") then {
 			ctrlSetText [1608,"Sell"];
 			ctrlEnable [1608,true];
 			ctrlSetText [1608,"Garrison"];
+			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Garrison this FOB with pre-equipped soldiers";
 			ctrlEnable [1609,false];
 			//ctrlEnable [1609,false];
 			ctrlEnable [1610,false];
@@ -353,7 +359,7 @@ if(_obpos distance player < 250) then {
 
 		if(_obpos distance player < 250) then {
 			if(_obname in (server getVariable ["GEURowned",[]])) then {
-				ctrlSetText [1201,"\A3\ui_f\data\map\markers\flags\Tanoa_ca.paa"];
+				ctrlSetText [1201,OT_flagImage];
 				_areaText = format["
 					<t align='left' size='0.8'>%1</t><br/>
 					<t align='left' size='0.65'>Operational</t><br/>

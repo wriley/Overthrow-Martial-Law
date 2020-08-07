@@ -60,6 +60,8 @@ createVehicleCrew _veh;
 	_x setVariable ["NOAI",true,false];
 }foreach(crew _veh);
 _allunits = (units _tgroup);
+
+_veh allowCrewInImmobile true;
 {
 	_x addCuratorEditableObjects [(units _tgroup) + [_veh],true];
 } forEach allCurators;

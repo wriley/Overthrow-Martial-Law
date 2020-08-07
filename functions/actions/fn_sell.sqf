@@ -41,7 +41,11 @@ if((player getVariable ["OT_shopTarget","Self"]) == "Vehicle") then {
 		};
 	};
 }else{
-	_target removeItem _cls;
+	if !(_cls isEqualTo binocular _target) then { 
+		_target removeItem _cls;
+	}else{
+		_target removeWeapon _cls;
+	};
 };
 
 lbClear 1500;

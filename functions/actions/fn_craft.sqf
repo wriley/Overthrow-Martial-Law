@@ -55,6 +55,9 @@ if(count _def > 0) then {
                 _x params ["_needed","_qtyneeded"];
                 {
                     _x params ["_c","_amt"];
+					if(_c == "Binocular") exitWith {
+                        [_container, _c, _qtyneeded] call CBA_fnc_removeWeaponCargo;
+					};
                     if(_c isKindOf [_needed,configFile >> "CfgMagazines"]) exitWith {
                         [_container, _c, _qtyneeded] call CBA_fnc_removeMagazineCargo;
                     };

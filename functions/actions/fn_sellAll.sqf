@@ -93,7 +93,11 @@ if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
 				}foreach(items player);
 			};
 		};
-		player removeItem _sellcls;
+	if !(_sellcls isEqualTo binocular _target) then { 
+		_target removeItem _sellcls;
+	}else{
+		_target removeWeapon _sellcls;
+		};
 	};
 };
 

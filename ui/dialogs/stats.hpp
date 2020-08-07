@@ -71,7 +71,7 @@ class RscTitles {
 
 		};
 	};
-    class OT_statsHUD {
+class OT_StatsHUD { //Definitly not "borrowed" from antistasi >.>
         idd = 745;
         movingEnable =  0;
         enableSimulation = 1;
@@ -82,15 +82,31 @@ class RscTitles {
         name = "OT_statsHUD";
 		onLoad = "with uiNameSpace do { OT_statsHUD = _this select 0 }";
 		class controls {
-		    class RscStructuredText_1106: RscOverthrowStructuredText {
+		    class structuredText {
+                access = 0;
+                type = 13;
                 idc = 1001;
-				x = safezoneX + (0.8 * safezoneW);
-				y = safezoneY + (0.15 * safezoneH);
-				w = 0.19 * safezoneW;
-				h = 0.4 * safezoneH;
-                colorBackground[] = {0,0,0,0.2};
+                style = 0x00;
+                lineSpacing = 1;
+				x = 0.110896 * safezoneW + safezoneX;//0.103165
+				y = 0.007996 * safezoneH + safezoneY;//0.757996
+				w = 0.778208 * safezoneW;
+				h = 0.0660106 * safezoneH;
+                size = 0.055;//0.020
+                colorBackground[] = {0,0,0,0};
                 colorText[] = {0.34,0.33,0.33,0};//{1,1,1,1}
                 text = "";
+                font = "EtelkaMonospaceProBold";
+				class Attributes {
+					font = "EtelkaMonospaceProBold";
+					color = "#FFFFFF";//"#FFFFFF";
+					align = "CENTER";
+					valign = "top";
+					shadow = true;
+					shadowColor = "#000000";
+					underline = false;
+					size = "4";//4
+				};
             };
 		};
 	};

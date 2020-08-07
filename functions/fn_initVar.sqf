@@ -84,8 +84,8 @@ OT_voices_eastern = [];
 }foreach("getNumber(_x >> 'scope') isEqualTo 2" configClasses (configfile >> "CfgVoice"));
 
 //Find houses
-OT_hugePopHouses = ["Land_MultistoryBuilding_01_F","Land_MultistoryBuilding_03_F","Land_MultistoryBuilding_04_F","Land_House_2W04_F","Land_House_2W03_F"]; //buildings with potentially lots of people living in them
-OT_mansions = ["Land_House_Big_02_F","Land_House_Big_03_F","Land_Hotel_01_F","Land_Hotel_02_F"]; //buildings that rich guys like to live in
+OT_hugePopHouses = ["Land_MultistoryBuilding_01_F","Land_MultistoryBuilding_03_F","Land_MultistoryBuilding_04_F","Land_House_2W04_F","Land_House_2W03_F","Land_Offices_01_V1_F"]; //buildings with potentially lots of people living in them
+OT_mansions = ["Land_House_Big_02_F","Land_House_Big_03_F","Land_Hotel_01_F","Land_Hotel_02_F","Land_Hospital_main_F"]; //buildings that rich guys like to live in
 OT_lowPopHouses = ["Land_Shed_09_F","Land_Shed_10_F","Land_Shed_12_F","Land_Shed_13_F","Land_Shed_14_F","Land_GarageShelter_01_F","Land_Slum_01_F","Land_Slum_02_F","Land_Slum_03_F","Land_Shed_02_F","Land_Shed_05_F","Land_House_Native_02_F","Land_u_House_Small_01_V1_F","Land_d_House_Small_01_V1_F","Land_u_House_Small_02_V1_F","Land_d_House_Small_02_V1_F","Land_i_House_Small_02_V3_F","Land_i_House_Small_02_V1_F","Land_i_House_Small_02_V2_F","Land_i_Addon_02_V1_F","Land_u_Addon_02_V1_F","Land_d_Addon_02_V1_F","Land_Slum_House01_F","Land_Slum_House02_F","Land_Slum_House03_F","Land_i_Stone_Shed_V2_F","Land_d_Stone_Shed_V1_F","Land_i_Stone_Shed_V1_F","Land_i_Stone_Shed_V3_F","Land_d_House_Big_02_V1_F","Land_d_House_Big_01_V1_F","Land_Shed_08_brown_F","Land_Shed_08_grey_F","Land_i_Stone_Shed_01_b_clay_F","Land_i_Stone_Shed_01_b_raw_F","Land_i_Stone_Shed_01_b_white_F","Land_i_Stone_Shed_01_c_clay_F","Land_i_Stone_Shed_01_c_raw_F","Land_i_Stone_Shed_01_c_white_F","Land_i_House_Small_02_b_blue_F","Land_i_House_Small_02_b_pink_F","Land_i_House_Small_02_b_whiteblue_F","Land_i_House_Small_02_b_white_F","Land_i_House_Small_02_b_brown_F","Land_i_House_Small_02_b_yellow_F","Land_i_House_Small_02_c_blue_F","Land_i_House_Small_02_c_pink_F","Land_i_House_Small_02_c_whiteblue_F","Land_i_House_Small_02_c_white_F","Land_i_House_Small_02_c_brown_F","Land_i_House_Small_02_c_yellow_F","Land_i_Addon_02_b_white_F"];
 OT_medPopHouses = ["Land_i_House_Small_01_b_blue_F","Land_i_House_Small_01_b_pink_F","Land_i_House_Small_01_b_whiteblue_F","Land_i_House_Small_01_b_white_F","Land_i_House_Small_01_b_brown_F","Land_i_House_Small_01_b_yellow_F","Land_i_Stone_House_Big_01_b_clay_F","Land_i_House_Small_01_V3_F","Land_i_House_Small_01_V2_F","Land_i_House_Small_01_V1_F","Land_i_Stone_HouseBig_V3_F","Land_d_Stone_HouseBig_V1_F","Land_i_Stone_HouseBig_V1_F","Land_i_Stone_HouseBig_V2_F","Land_i_Stone_HouseSmall_V3_F","Land_d_Stone_HouseSmall_V1_F","Land_i_Stone_HouseSmall_V1_F","Land_i_Stone_HouseSmall_V2_F","Land_i_House_Small_03_V1_F","Land_u_House_Big_02_V1_F","Land_u_House_Big_01_V1_F","Land_House_Small_01_F","Land_House_Small_06_F","Land_House_Small_03_F","Land_House_Small_02_F","Land_School_01_F","Land_Barn_03_large_F","Land_Barn_03_small_F","Land_House_2W01_F","Land_House_2W02_F","Land_House_2W03_F","Land_House_2W04_F","Land_House_2W05_F","Land_House_1B01_F","Land_House_1W01_F","Land_House_1W02_F","Land_House_1W03_F","Land_House_1W04_F","Land_House_1W05_F","Land_House_1W06_F","Land_House_1W07_F","Land_House_1W08_F","Land_House_1W09_F","Land_House_1W10_F","Land_House_1W11_F","Land_House_1W12_F","Land_House_1W13_F"];
 OT_highPopHouses = ["Land_i_House_Big_02_b_blue_F","Land_i_House_Big_02_b_pink_F","Land_i_House_Big_02_b_whiteblue_F","Land_i_House_Big_02_b_white_F","Land_i_House_Big_02_b_brown_F","Land_i_House_Big_02_b_yellow_F","Land_i_House_Big_01_b_blue_F","Land_i_House_Big_01_b_pink_F","Land_i_House_Big_01_b_whiteblue_F","Land_i_House_Big_01_b_white_F","Land_i_House_Big_01_b_brown_F","Land_i_House_Big_01_b_yellow_F","Land_i_House_Big_02_V3_F","Land_i_House_Big_02_V1_F","Land_i_House_Big_02_V2_F","Land_i_House_Big_01_V3_F","Land_i_House_Big_01_V1_F","Land_i_House_Big_01_V2_F","Land_House_Big_01_F","Land_House_Native_01_F","Land_House_2B01_F","Land_House_2B02_F","Land_House_2B03_F","Land_House_2B04_F"];
@@ -126,6 +126,12 @@ OT_rankXP = [100,250,500,1000,4000,10000,100000];
 
 OT_adminMode = false;
 OT_deepDebug = false;
+private _GetParam = [0, 1] select (paramsArray select 9);
+switch (_GetParam) do {
+	case 0: {OT_HCEnabled = false;};
+	case 1: {OT_HCEnabled = true;};
+};
+
 OT_allIntel = [];
 OT_notifies = [];
 OT_Looters = 0;
@@ -148,6 +154,7 @@ OT_activeShops = [];
 OT_selling = false;
 OT_taking = false;
 OT_interactingWith = objNull;
+OT_maximumNATOFobs = 5;
 
 OT_garrisonBuildings = ["Land_Bunker_01_tall_F","Land_Cargo_Patrol_V1_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V3_F","Land_Cargo_Patrol_V4_F","Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F","Land_Cargo_HQ_V4_F","Land_Cargo_Tower_V1_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V1_No1_F","Land_Cargo_Tower_V1_No2_F","Land_Cargo_Tower_V1_No3_F","Land_Cargo_Tower_V1_No4_F","Land_Cargo_Tower_V1_No5_F","Land_Cargo_Tower_V1_No6_F","Land_Cargo_Tower_V1_No7_F","Land_Cargo_Tower_V2_F", "Land_Cargo_Tower_V3_F"]; //Put HMGs in these buildings
 
@@ -179,9 +186,9 @@ OT_item_DefaultBlueprints = [];
 OT_itemCategoryDefinitions = [
     ["General",["ACE_fieldDressing","Banana","Map","ToolKit","ACE_EarPlugs","Watch","Radio","Compass","ACE_Spraypaint","Altimiter","MapTools","Binocular","CableTie"]],
     ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet","ACE_splint"]],
-    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","ACE_microDAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal"]],
+    ["Electronics",["MineDetector","Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","ACE_microDAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal","Rangefinder","Binocular","Compass","ACE_Vector","ACE_Yardage","ACE_NVG_Gen1"]],
     ["Hardware",["Tool","CableTie","ACE_Spraypaint","wirecutter","ACE_rope","ACE_EntrenchingTool"]],
-    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","ACE_Vector","ACE_Yardage"]]
+    ["Surplus",[]]
 ];
 
 OT_items = [];
@@ -259,15 +266,15 @@ OT_boats = [
 	["C_Boat_Transport_02_F",3000,1,0,1]
 ];
 OT_vehicles = [
-["RHS_Ural_Civ_01",7000,2,25,2],
-["RHS_Ural_Open_Civ_01",7000,2,25,2],
-["RHS_Ural_Civ_02",7000,2,25,2],
-["RHS_Ural_Open_Civ_02",7000,2,25,2],
-["RHS_Ural_Civ_03",7000,2,25,2],
-["RHS_Ural_Open_Civ_03",7000,2,25,2]
+	["RHS_Ural_Civ_01",7000,2,25,2],
+	["RHS_Ural_Open_Civ_01",7000,2,25,2],
+	["RHS_Ural_Civ_02",7000,2,25,2],
+	["RHS_Ural_Open_Civ_02",7000,2,25,2],
+	["RHS_Ural_Civ_03",7000,2,25,2],
+	["RHS_Ural_Open_Civ_03",7000,2,25,2]
 ];
 OT_helis = [
-["rhs_uh1h_idap",150000,0,45,10]
+	["rhs_uh1h_idap",150000,0,45,10]
 ];
 OT_allVehicles = [];
 OT_allBoats = ["B_Boat_Transport_01_F"];
@@ -996,7 +1003,7 @@ OT_Buildables = [
 		["Box_NATO_AmmoVeh_F",[-6.28864,-2.78878,0.0305414],9.03579e-005,1,0,[1.25353e-005,-6.98109e-006],"","",true,false]
 	],"OT_fnc_initWorkshop",true,"Attach weapons to vehicles"],
 	["House",10000,["Land_House_Small_06_F","Land_House_Small_02_F","Land_House_Small_03_F","Land_GarageShelter_01_F","Land_Slum_04_F"],"",false,"4 walls, a roof, && if you're lucky a door that opens."],
-	["Police Station",12500,[OT_policeStation],"OT_fnc_initPoliceStation",false,"Allows hiring of policeman to raise stability in a town && keep the peace. Comes with 2 units."],
+	["Police Station",12500,[OT_policeStation],"OT_fnc_initPoliceStation",false,"Allows hiring of policeman to raise stability in a town \& keep the peace. Comes with 2 units."],
 	["Warehouse",20000,[OT_warehouse],"OT_fnc_initWarehouse",false,"A house that you put wares in."],
 	["Refugee Camp",1600,[OT_refugeeCamp],"",false,"Can recruit civilians here without needing to chase them down"],
 	["Radar",250000,[OT_radarBuilding],"OT_fnc_initRadar",false,"Reveals enemy drones, helicopters and planes within 2.5km"]

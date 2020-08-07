@@ -18,11 +18,13 @@ if(vehicle _tt != _tt) then {
 
 if(count _sorted isEqualTo 0) exitWith {};
 private _target = _sorted select 0;
-(_myunits select 0) groupchat format["<%1>: Looting bodies within 100m into the %2", name (_myunits select 0), (typeof _target) call OT_fnc_vehicleGetName];
+if ((typeOf vehicle ((_myunits select 0))) == "OT_I_Truck_recovery" && (driver vehicle _x) == _x) exitWith {
+	[_x] spawn OT_fnc_recover;
+};
+if (count _myunits > 1) then {
+	(_myunits select 1) globalchat format["<%1>: Looting bodies within 100m into the %2", name (_myunits select 0), (typeof _target) call OT_fnc_vehicleGetName];
+};
 {
-    if ((typeOf vehicle _x) == "OT_I_Truck_recovery" && (driver vehicle _x) == _x) exitWith {
-        [_x] spawn OT_fnc_recover;
-    };
 	OT_Looters = OT_Looters + 1;
 	[_x,_target,OT_Looters] spawn {
 		private _active = true;
@@ -32,7 +34,7 @@ private _target = _sorted select 0;
 
 
 		if !([_unit,_t] call OT_fnc_dumpStuff) exitWith {
-			_unit groupchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
+			_unit globalchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
 			_active = false;
 		};
 
@@ -43,10 +45,17 @@ private _target = _sorted select 0;
 		private _role = "";
 		private _roleindex = -1;
 		private _veh = objNull;
+		private _hasSupply = false;
+		private _supply = objNull;
+		private _veh = vehicle _unit;
 
-		if (count assignedVehicleRole _unit > 0) then {
+		if ((count assignedVehicleRole _unit > 0) || ((driver _veh == _unit) && (typeof _veh != "OT_I_Truck_recovery"))) then {
 			_role = assignedVehicleRole _unit select 0;
-			_veh = vehicle _unit;
+			_hasSupply = ((_veh getVariable ["OT_attachedClass",""]) in ["B_CargoNet_01_ammo_F"]);
+			if (_hasSupply) then {
+				_unit globalchat format["<%1>: Using supply box as additional storage, sir!", name _unit];
+				_supply = _t getVariable ["OT_attachedWeapon",objNull];
+			};
 			if (_role == "cargo") then {
 				_roleindex = _veh getCargoIndex _unit;
 			};
@@ -73,12 +82,12 @@ private _target = _sorted select 0;
 			}foreach(entities "Man");
 			if (count _deadguys == 0) exitWith {
 				_active = false;
-				_unit groupchat format ["<%1>: I'm done!", name _unit];
+				_unit globalchat format ["<%1>: I'm done!", name _unit];
 			};
 			_deadguy = ([_deadguys,[],{_x distance _t},"ASCEND"] call BIS_fnc_SortBy) select 0;
 
 			// Take deadguys weapons
-            _unit groupchat format["<%1>: %2 bodies left to loot",name _unit, count _deadguys];
+            _unit globalchat format["<%1>: %2 bodies left to loot",name _unit, count _deadguys];
 			_deadguy setVariable ["OT_looted",true,true];
 			OT_LootersLastOrder = time + 2;
 			{
@@ -100,7 +109,7 @@ private _target = _sorted select 0;
 			waitUntil { (unitReady _unit) && ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _deadguy < 5)) };
 
 			if((!alive _unit) || (_timeOut < time) || (isNull _t) || (isNull _deadguy)) exitWith {
-				_unit groupchat format ["<%1>: Cant get to a corpse, cancelling loot order", name _unit];
+				_unit globalchat format ["<%1>: Cant get to a corpse, cancelling loot order", name _unit];
 				if (!isNull _deadguy) then {
 					_deadguy setVariable ["OT_looted",false,true];
 				};
@@ -117,11 +126,20 @@ private _target = _sorted select 0;
 
 			// Dump stuff
 			if((!alive _unit) || (isNull _t)) exitWith {};
-			[_unit,5] call OT_fnc_experience;
-			if !([_unit,_t] call OT_fnc_dumpStuff) exitWith {
-				_unit groupchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
-				_active = false;
+			if !([_unit,_t] call OT_fnc_dumpStuff) then {
+				if (_hasSupply) then {
+					if!(_supply isEqualTo objNull) then {
+						if !([_unit,_supply] call OT_fnc_dumpStuff) exitWith {
+							_unit globalchat format ["<%1>: This supply box is full, cancelling loot order", name _unit];
+							_active = false;
+						};
+					};
+				} else {
+					_unit globalchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
+					_active = false;
+				};
 			};
+			[_unit,5] call OT_fnc_experience;
 		};
 
 		_timeOut = time + 30;
@@ -150,7 +168,7 @@ private _target = _sorted select 0;
 		_unit setVariable ["OT_looter", nil];
 		OT_Looters = OT_Looters - 1;
 		if (OT_Looters == 0) then {
-			_unit groupchat format ["<%1>: We're done here! Let's go!", name _unit];
+			_unit globalchat format ["<%1>: We're done here! Let's go!", name _unit];
 		};
 	};
 }foreach(_myunits);

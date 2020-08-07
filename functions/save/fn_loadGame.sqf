@@ -456,7 +456,7 @@ private _revealed = server getVariable ["revealedGangs",[]];
 
 private _revealed = server getVariable ["revealedFOBs",[]];
 {
-	_x params ["_pos","_garrison","_upgrades"];
+	_x params ["_pos"];
 	if (str _pos in _revealed) then {
 		_mrkid = createMarker [format["natofob%1",str _pos],_pos];
 		_mrkid setMarkerShape "ICON";

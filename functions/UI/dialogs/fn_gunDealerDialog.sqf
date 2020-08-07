@@ -89,3 +89,11 @@ createDialog "OT_dialog_buy";
 		lbSetPicture [1500,_idx,_pic];
 	};
 }foreach(_stock);
+ctrlEnable [1602, false];
+ctrlEnable [1601, false];
+{
+	private _owner = _x call OT_fnc_getOwner;
+	if(!isNil "_owner") then {
+		if(_owner == getplayerUID player) exitWith {ctrlEnable [1601, true];ctrlEnable [1602, true];};
+	};
+}foreach(nearestObjects [getpos player, [OT_item_Storage],20]);

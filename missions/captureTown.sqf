@@ -45,7 +45,7 @@ private _title = format["Capture %1 for %2",_destinationName,_factionName];
                     server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) + 10,true];
 
                     private _factionName = server getvariable format["factionname%1",_faction];
-                    format ["Incoming message from %1: %2 captured. Donating $4500 to the resistance and will help with efforts to ease the local populace. (+10 stability, +10 %1)",_factionName,_destinationName] remoteExec ["OT_fnc_notifyMinor",0,false];
+                    format ["Incoming message from %1: %2 captured. Donating $25000 to the resistance and will help with efforts to ease the local populace. (+10 stability, +10 %1)",_factionName,_destinationName] remoteExec ["OT_fnc_notifyMinor",0,false];
                 },
                 [_faction,_destinationName],
                 2

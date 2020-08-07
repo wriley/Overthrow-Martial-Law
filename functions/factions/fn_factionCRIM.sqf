@@ -4,7 +4,7 @@
     if(count _gangs > 0) then {
         private _gangid = _gangs select 0;
         private _gang = OT_civilians getVariable [format["gang%1",_gangid],[]];
-        if(_gang isEqualType []) then {
+        if(_gang isEqualType [] && count _gang > 0) then {
             private _loadout = [];
             if(count _gang > 5) then {
                 //new gang format (0.7.8.5) with loadout

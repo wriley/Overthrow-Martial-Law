@@ -45,13 +45,38 @@ class OT_dialog_buy
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
+			action = "[false] call OT_fnc_buy;";
+
 			text = "Buy"; //--- ToDo: Localize;
-			x = 0.752656 * safezoneW + safezoneX;
+			x = 0.840312 * safezoneW + safezoneX;
 			y = 0.676 * safezoneH + safezoneY;
-			w = 0.139219 * safezoneW;
+			w = 0.0515625 * safezoneW;
 			h = 0.099 * safezoneH;
 			colorBackground[] = {0,0,0,0.8};
-			action = "[] call OT_fnc_buy;";
+		};
+		class RscButton_1601: RscOverthrowButton
+		{
+			idc = 1601;
+			action = "[true,1] call OT_fnc_buy;";
+
+			text = "Buy to Crate"; //--- ToDo: Localize;
+			x = 0.778437 * safezoneW + safezoneX;
+			y = 0.676 * safezoneH + safezoneY;
+			w = 0.0515625 * safezoneW;
+			h = 0.099 * safezoneH;
+			colorBackground[] = {0,0,0,0.8};
+		};
+		class RscButton_1602: RscOverthrowButton
+		{
+			idc = 1602;
+			action = "[true,10] call OT_fnc_buy;";
+
+			text = "Buy 10 to Crate"; //--- ToDo: Localize;
+			x = 0.716562 * safezoneW + safezoneX;
+			y = 0.676 * safezoneH + safezoneY;
+			w = 0.0515625 * safezoneW;
+			h = 0.099 * safezoneH;
+			colorBackground[] = {0,0,0,0.8};
 		};
 		class RscStructuredText_1100: RscOverthrowStructuredText
 		{
@@ -65,8 +90,9 @@ class OT_dialog_buy
 		class RscButton_1699: RscOverthrowButton
         {
             idc = 1699;
-            text = "X"; //--- ToDo: Localize;
 			action = "closeDialog 0";
+
+            text = "X"; //--- ToDo: Localize;
             x = 0.732031 * safezoneW + safezoneX;
             y = 0.181 * safezoneH + safezoneY;
             w = 0.0257812 * safezoneW;
@@ -222,7 +248,7 @@ class OT_dialog_sell
 		};
 		class RscButton_1602: RscOverthrowButton
 		{
-			idc = 1600;
+			idc = 1602;
 			action = "[] call OT_fnc_sellAll;";
 
 			text = "Sell All"; //--- ToDo: Localize;
@@ -410,7 +436,7 @@ class OT_dialog_warehouse
 		};
 		class RscButton_1601: RscOverthrowButton
 		{
-			idc = 1600;
+			idc = 1601;
 			action = "[100] call OT_fnc_warehouseTake;";
 
 			text = "Take 100"; //--- ToDo: Localize;
@@ -422,7 +448,7 @@ class OT_dialog_warehouse
 		};
 		class RscButton_1602: RscOverthrowButton
 		{
-			idc = 1600;
+			idc = 1602;
 			action = "[10] call OT_fnc_warehouseTake;";
 
 			text = "Take 10"; //--- ToDo: Localize;
@@ -434,7 +460,7 @@ class OT_dialog_warehouse
 		};
 		class RscButton_1603: RscOverthrowButton
 		{
-			idc = 1600;
+			idc = 1603;
 			action = "[1] call OT_fnc_warehouseTake;";
 
 			text = "Take 1"; //--- ToDo: Localize;
@@ -447,6 +473,24 @@ class OT_dialog_warehouse
 		////////////////////////////////////////////////////////
 		// GUI EDITOR OUTPUT END
 		////////////////////////////////////////////////////////
+
+		class RscButton_1604: RscOverthrowButton
+		{
+			idc = 1604;
+			text = "Search";
+			x = 0.65  * safezoneW + safezoneX;
+			y = 0.155 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.05 * safezoneH;
+		};
+		class RscEdit_1700: RscEditOverthrow
+		{
+			idc = 1700;
+			x = 0.247344  * safezoneW + safezoneX;
+			y = 0.155 * safezoneH + safezoneY;
+			w = 0.402187 * safezoneW;
+			h = 0.05 * safezoneH;
+		};
 	};
 };
 
@@ -519,7 +563,7 @@ class OT_dialog_import
 		};
 		class RscButton_1601: RscOverthrowButton
 		{
-			idc = 1600;
+			idc = 1601;
 			action = "[100] call OT_fnc_import;";
 
 			text = "Import 100"; //--- ToDo: Localize;
@@ -531,7 +575,7 @@ class OT_dialog_import
 		};
 		class RscButton_1602: RscOverthrowButton
 		{
-			idc = 1600;
+			idc = 1602;
 			action = "[10] call OT_fnc_import;";
 
 			text = "Import 10"; //--- ToDo: Localize;
@@ -544,6 +588,25 @@ class OT_dialog_import
 		////////////////////////////////////////////////////////
 		// GUI EDITOR OUTPUT END
 		////////////////////////////////////////////////////////
+		
+		class RscButton_1603: RscOverthrowButton
+		{
+			idc = 1603;
+			text = "Search";
+			x = 0.65  * safezoneW + safezoneX;
+			y = 0.155 * safezoneH + safezoneY;
+			w = 0.0567187 * safezoneW;
+			h = 0.05 * safezoneH;
+		};
+		class RscEdit_1700: RscEditOverthrow
+		{
+			idc = 1700;
+			x = 0.247344  * safezoneW + safezoneX;
+			y = 0.155 * safezoneH + safezoneY;
+			w = 0.402187 * safezoneW;
+			h = 0.05 * safezoneH;
+		};
+
 	};
 };
 

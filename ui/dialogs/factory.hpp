@@ -167,6 +167,18 @@ class OT_dialog_factory
 			h = 0.044 * safezoneH;
 			colorBackground[] = {0,0,0,0};
 		};
+		
+		class RscStructuredText_1105: RscOverthrowStructuredText
+		{
+			idc = 1105;
+			text = "<t align=""center"" size=""1"">Factory Level: ~/3</t>"; //--- ToDo: Localize;
+			x = 0.365 * safezoneW + safezoneX;
+			y = 0.775 * safezoneH + safezoneY;
+			w = 0.128906 * safezoneW;
+			h = 0.066 * safezoneH;
+			colorBackground[] = {0,0,0,0};
+		};
+		
 		class RscButton_1608: RscOverthrowButton
 		{
 			idc = 1608;

@@ -36,7 +36,7 @@ createDialog "OT_dialog_buy";
 		if !(_cls == "Set_HMG") then {
 			_price = [_town,_cls,_standing] call OT_fnc_getPrice;
 		};
-		if("fuel depot" in (server getVariable "OT_NATOabandoned")) then {
+		if("Fuel Depot" in (server getVariable "OT_NATOabandoned")) then {
 			_price = round(_price * 0.5);
 		};
 		([_cls,_price] call {
@@ -78,3 +78,5 @@ private _idx = lbAdd [1500,format["Quadcopter"]];
 lbSetPicture [1500,_idx,OT_item_UAV call OT_fnc_vehicleGetPic];
 lbSetData [1500,_idx,OT_item_UAV];
 lbSetValue [1500,_idx,_price];
+ctrlShow [1601,false];
+ctrlShow [1602,false];

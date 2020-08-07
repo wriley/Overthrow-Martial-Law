@@ -35,9 +35,7 @@ private _params = [_town,_startValue];
         //If mission was a success
         if(_wassuccess) then {
             private _player = spawner getVariable [format["lasttagin%1",_town],player];
-            [
-                200
-            ] remoteExec ["OT_fnc_money",_player,false];
+            [200] remoteExec ["OT_fnc_money",_player,false];
             [_town,5] call OT_fnc_support;
         };
     },

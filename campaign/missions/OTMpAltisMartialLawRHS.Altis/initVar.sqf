@@ -1,4 +1,3 @@
-
 OT_nation = "Altis";
 OT_saveName = "Overthrow.altismartiallawRHS.001";
 
@@ -22,7 +21,7 @@ OT_flag_NATO = "Flag_NATO_F";
 OT_flag_CRIM = "Flag_Syndikat_F";
 OT_flag_IND = "Flag_Altis_F";
 OT_flagImage = "\A3\ui_f\data\map\markers\flags\Altis_ca.paa";
-OT_flagMarker = "flag_Tanoa";
+OT_flagMarker = "flag_Altis";
 
 OT_populationMultiplier = 1.2; //Used to tweak populations per map
 

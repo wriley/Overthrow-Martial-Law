@@ -248,6 +248,7 @@ class CfgFunctions
 			class warehouseTake {};
 			class recover {};
 			class storeAll {};
+			class UnownVehicle {};
 
 			/* Port */
 			class exportAll {};
@@ -629,6 +630,7 @@ class CfgFunctions
 			class exportPrices {};
 			class datestamp {};
 			class logVerbose {};
+			class MoveToHC {};
 		};
 
 		/*
@@ -887,7 +889,7 @@ class CfgFunctions
             class hideInside{};
             class immediateAction{};
             class immediateActionEH{};
-			      class indoor{};
+			class indoor{};
             class leaderArtillery{};
             class leaderAssess{};
             class leaderBuildings{};

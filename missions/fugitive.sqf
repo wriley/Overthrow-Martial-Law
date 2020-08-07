@@ -132,10 +132,10 @@ private _difficulty = 3.8;
                 {
                     params ["_faction"];
 
-					[3500] call OT_fnc_resistanceFunds;//changed funds to 3500
+					[2500] call OT_fnc_resistanceFunds;//changed funds to 2500
 
                     private _factionName = server getvariable format["factionname%1",_faction];
-                    format ["Incoming message from %1: Traitor neutralized. Sending our regards and $3500 to the Resistance. (+20 %1)",_factionName] remoteExec ["OT_fnc_notifyMinor",0,false];
+                    format ["Incoming message from %1: Traitor neutralized. Sending our regards and $2500 to the Resistance. (+20 %1)",_factionName] remoteExec ["OT_fnc_notifyMinor",0,false];
                     server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) + 20,true];
                 },
                 [_faction],
