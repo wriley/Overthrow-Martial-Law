@@ -8,7 +8,7 @@ class EditorData
 	toggles=1545;
 	class ItemIDProvider
 	{
-		nextID=2486;
+		nextID=2503;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=634;
+		nextID=639;
 	};
 	class Camera
 	{
-		pos[]={4410.7012,434.94815,6065.8447};
-		dir[]={-0.58517981,-0.51488906,0.62650907};
-		up[]={-0.35147431,0.85724354,0.37630087};
-		aside[]={0.73082441,6.1890023e-007,0.68261445};
+		pos[]={5035.8584,140.4285,5180.7183};
+		dir[]={-0.7118547,-0.16006899,0.68401897};
+		up[]={-0.11544766,0.98706859,0.11093622};
+		aside[]={0.6929608,-1.9079016e-007,0.72116303};
 	};
 };
 binarizationWanted=0;
@@ -87,7 +87,9 @@ addons[]=
 	"eo_tents",
 	"A3_Structures_F_Civ_Accessories",
 	"A3_Structures_F_EPA_Civ_Camping",
-	"A3_Structures_F_Items_Tools"
+	"A3_Structures_F_Items_Tools",
+	"A3_Props_F_Orange_Humanitarian_Garbage",
+	"A3_Props_F_Orange_Humanitarian_Camps"
 };
 class AddonsMetaData
 {
@@ -409,7 +411,7 @@ class ScenarioData
 };
 class CustomAttributes
 {
-	class Category1
+	class Category0
 	{
 		name="Multiplayer";
 		class Attribute0
@@ -622,7 +624,7 @@ class CustomAttributes
 		};
 		nAttributes=11;
 	};
-	class Category2
+	class Category1
 	{
 		name="Scenario";
 		class Attribute0
@@ -30903,7 +30905,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=141;
+		items=151;
 		class Item0
 		{
 			dataType="Layer";
@@ -36902,8 +36904,6 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				createAsSimpleObject=1;
-				dynamicSimulation=1;
 			};
 			id=2427;
 			type="Box_Syndicate_Ammo_F";
@@ -36913,18 +36913,17 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3506.2778,0.59280789,3277.3132};
-				angles[]={6.060534,3.7282503,0.31766737};
+				position[]={3500.4917,-0.97598588,3279.0142};
+				angles[]={6.0605392,3.7282503,0.31766486};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				createAsSimpleObject=1;
-				dynamicSimulation=1;
 			};
 			id=2428;
 			type="Box_Syndicate_Wps_F";
+			atlOffset=-0.051413894;
 		};
 		class Item120
 		{
@@ -37262,38 +37261,6 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3498.5046,0.88210106,3180.2314};
-				angles[]={0,2.1843944,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-			};
-			id=2463;
-			type="ACE_medicalSupplyCrate";
-			atlOffset=7.7486038e-005;
-		};
-		class Item132
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={3496.23,0.88176537,3180.042};
-			};
-			side="Empty";
-			class Attributes
-			{
-			};
-			id=2465;
-			type="ACE_medicalSupplyCrate_advanced";
-			atlOffset=17.529001;
-		};
-		class Item133
-		{
-			dataType="Object";
-			class PositionInfo
-			{
 				position[]={7711.4121,4.4291201,3086.9949};
 				angles[]={0,2.3518865,0};
 			};
@@ -37305,7 +37272,7 @@ class Mission
 			type="C_Boat_Civil_04_F";
 			atlOffset=9.2260265;
 		};
-		class Item134
+		class Item132
 		{
 			dataType="Object";
 			class PositionInfo
@@ -37321,7 +37288,7 @@ class Mission
 			id=2473;
 			type="Campfire_burning_F";
 		};
-		class Item135
+		class Item133
 		{
 			dataType="Object";
 			class PositionInfo
@@ -37333,8 +37300,6 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				createAsSimpleObject=1;
-				dynamicSimulation=1;
 			};
 			id=2477;
 			type="eo_dome_tent_gry";
@@ -37363,7 +37328,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item136
+		class Item134
 		{
 			dataType="Object";
 			class PositionInfo
@@ -37380,7 +37345,7 @@ class Mission
 			type="Land_Garbage_square3_F";
 			atlOffset=3.0517578e-005;
 		};
-		class Item137
+		class Item135
 		{
 			dataType="Object";
 			class PositionInfo
@@ -37396,7 +37361,7 @@ class Mission
 			id=2480;
 			type="Land_Garbage_line_F";
 		};
-		class Item138
+		class Item136
 		{
 			dataType="Object";
 			class PositionInfo
@@ -37413,7 +37378,7 @@ class Mission
 			id=2481;
 			type="Land_WoodPile_F";
 		};
-		class Item139
+		class Item137
 		{
 			dataType="Object";
 			class PositionInfo
@@ -37455,7 +37420,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item140
+		class Item138
 		{
 			dataType="Object";
 			class PositionInfo
@@ -37494,6 +37459,215 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item139
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5027.3765,139.40063,5190.3501};
+				angles[]={6.1677017,2.0648577,6.1519446};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2486;
+			type="Box_IED_Exp_F";
+			atlOffset=-3.0517578e-005;
+		};
+		class Item140
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5028.1714,139.2935,5191.563};
+				angles[]={6.1677017,0,6.1519446};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2487;
+			type="Box_Syndicate_Wps_F";
+			atlOffset=1.5258789e-005;
+		};
+		class Item141
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5030.4072,139.23221,5193.9058};
+				angles[]={6.167697,0,6.1519365};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2488;
+			type="MedicalGarbage_01_1x1_v3_F";
+		};
+		class Item142
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5030.5078,139.47446,5195.3179};
+				angles[]={6.0491543,0,6.2735863};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2489;
+			type="MedicalGarbage_01_5x5_v1_F";
+			atlOffset=-0.010986328;
+		};
+		class Item143
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5029.5767,139.63721,5194.6509};
+				angles[]={6.167697,0,6.1519365};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				createAsSimpleObject=1;
+				dynamicSimulation=1;
+			};
+			id=2490;
+			type="Land_Stretcher_01_sand_F";
+		};
+		class Item144
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5029.8828,139.33525,5194.438};
+				angles[]={6.167697,0.41240385,6.1519365};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2493;
+			type="BloodSplatter_01_Medium_Old_F";
+		};
+		class Item145
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5029.4321,139.03485,5191.335};
+				angles[]={6.167697,0,6.1519365};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2494;
+			type="BloodTrail_01_Old_F";
+		};
+		class Item146
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5031.6602,137.79909,5185.0361};
+				angles[]={6.070447,0.4059636,6.1519365};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2496;
+			type="Land_Garbage_square5_F";
+			atlOffset=0.00099182129;
+		};
+		class Item147
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5032.4165,138.48657,5189.6377};
+				angles[]={6.167697,0,6.1519365};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2498;
+			type="Land_FirePlace_F";
+		};
+		class Item148
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5034.6099,137.55194,5185.7622};
+				angles[]={6.070447,0,6.1519365};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2499;
+			type="Land_Sleeping_bag_F";
+			atlOffset=-1.5258789e-005;
+		};
+		class Item149
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5034.4331,138.48335,5191.3096};
+				angles[]={6.0491543,5.3801169,6.2735858};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2500;
+			type="Land_Sleeping_bag_blue_F";
+			atlOffset=-6.1035156e-005;
+		};
+		class Item150
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5035.8218,138.17142,5188.9648};
+				angles[]={6.167697,6.2352762,6.1519365};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2502;
+			type="Land_WoodPile_F";
 		};
 	};
 	class Connections

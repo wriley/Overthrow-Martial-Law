@@ -256,10 +256,10 @@ if (_newplayer) then {
 	private _money = 5000;
 	private _diff = server getVariable ["OT_difficulty",1];
 	if(_diff isEqualTo 0) then {
-		_money = 3000;
+		_money = 5000;
 	};
 	if(_diff isEqualTo 2) then {
-		_money = 1000;
+		_money = 5000;
 	};
     player setVariable ["money",_money,true];
     [player,getplayeruid player] call OT_fnc_setOwner;
@@ -305,9 +305,20 @@ if (_newplayer) then {
     {
 		if(typeof _x isEqualTo OT_item_Storage) then {
             _x addItemCargoGlobal ["ToolKit", 1];
-			_x addBackpackCargoGlobal ["B_AssaultPack_khk", 1];
-			_x addItemCargoGlobal ["ACE_Flashlight_Maglite_ML300L", 1];//removed NVGoggles_INDEP
-			_x addItemCargoGlobal ["ACRE_PRC343", 1];
+			      _x addBackpackCargoGlobal ["B_AssaultPack_khk", 1];
+		    	  _x addItemCargoGlobal ["ACE_Flashlight_Maglite_ML300L", 1];//removed NVGoggles_INDEP
+			      _x addItemCargoGlobal ["ACRE_PRC343", 1];
+			      _x addItemCargoGlobal ["U_C_E_LooterJacket_01_F", 1];
+			      _x addItemCargoGlobal ["U_C_Mechanic_01_F", 1];
+			      _x addItemCargoGlobal ["U_I_C_Soldier_Para_2_F", 1];
+		      	_x addItemCargoGlobal ["H_Construction_basic_black_F", 1];
+			      _x addItemCargoGlobal ["eo_racing_1", 1];
+			      _x addItemCargoGlobal ["eo_safari_1", 1];
+			      _x addItemCargoGlobal ["H_Booniehat_oli", 1];
+			      _x addItemCargoGlobal ["H_Booniehat_tan", 1];
+			      _x addItemCargoGlobal ["V_Pocketed_black_F", 1];
+			      _x addItemCargoGlobal ["V_Pocketed_coyote_F", 1];
+			      _x addItemCargoGlobal ["V_Pocketed_olive_F", 1];
         };
         [_x,getplayeruid player] call OT_fnc_setOwner;
     }foreach(_furniture);

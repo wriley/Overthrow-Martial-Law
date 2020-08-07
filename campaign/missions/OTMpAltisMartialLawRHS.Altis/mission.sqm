@@ -8,7 +8,7 @@ class EditorData
 	toggles=1538;
 	class ItemIDProvider
 	{
-		nextID=2567;
+		nextID=2573;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=554;
+		nextID=559;
 	};
 	class Camera
 	{
-		pos[]={22203.098,40.199738,15618.297};
-		dir[]={-0.51482099,-0.53794819,0.6675238};
-		up[]={-0.32853147,0.84297657,0.425978};
-		aside[]={0.79185975,-1.1290831e-007,0.61071444};
+		pos[]={5438.2935,39.231392,15036.767};
+		dir[]={-0.2486261,-0.33404663,-0.90925366};
+		up[]={-0.08811973,0.94254059,-0.3222611};
+		aside[]={-0.96466351,-6.0928869e-007,0.26377976};
 	};
 };
 binarizationWanted=0;
@@ -72,13 +72,15 @@ addons[]=
 	"A3_Structures_F_Ind_Pipes",
 	"A3_Props_F_Exp_Industrial_HeavyEquipment",
 	"A3_Structures_F_Ind_Factory",
-	"A3_Structures_F_Exp_Infrastructure_Airports"
+	"A3_Structures_F_Exp_Infrastructure_Airports",
+	"A3_Supplies_F_Exp_Ammoboxes",
+	"ace_dragging"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=31;
+		items=33;
 		class Item0
 		{
 			className="A3_Ui_F";
@@ -295,6 +297,20 @@ class AddonsMetaData
 			name="Arma 3 Apex - Infrastructure Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
+		};
+		class Item31
+		{
+			className="A3_Supplies_F_Exp";
+			name="Arma 3 Apex - Ammoboxes and Supplies";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item32
+		{
+			className="ace_dragging";
+			name="ACE3 - Dragging";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 	};
 };
@@ -30589,7 +30605,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=273;
+		items=279;
 		class Item0
 		{
 			dataType="Layer";
@@ -39260,6 +39276,101 @@ class Mission
 			id=2566;
 			type="Land_HelipadCircle_F";
 			atlOffset=-1.9073486e-005;
+		};
+		class Item273
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4888.2056,347.47485,21918.875};
+				angles[]={0.037314966,0,0.022664838};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2567;
+			type="Box_Syndicate_Ammo_F";
+		};
+		class Item274
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4889.4028,347.33249,21919.654};
+				angles[]={0,2.1000164,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2568;
+			type="Box_Syndicate_Wps_F";
+		};
+		class Item275
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4887.9106,347.33899,21922.35};
+				angles[]={0,2.9473152,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2569;
+			type="Box_IED_Exp_F";
+		};
+		class Item276
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4890.1919,347.39505,21921.488};
+				angles[]={0,2.0623403,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2570;
+			type="Box_Syndicate_WpsLaunch_F";
+		};
+		class Item277
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5435.6284,37.43206,15033.912};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2571;
+			type="Box_Syndicate_Wps_F";
+		};
+		class Item278
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={5434.5801,37.572697,15035.026};
+				angles[]={0,1.2422009,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2572;
+			type="Box_Syndicate_Ammo_F";
 		};
 	};
 	class Connections
