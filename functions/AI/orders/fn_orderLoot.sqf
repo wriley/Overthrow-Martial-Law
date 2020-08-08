@@ -9,17 +9,18 @@ _myunits params ["_tt"];
 if(vehicle _tt != _tt) then {
 	_sorted = [vehicle _tt];
 }else{
-	private _objects = _tt nearEntities [["ReammoBox_F","Land","Air","Ship"],20];
+	private _objects = _tt nearEntities [["ReammoBox_F","Car","Tank","Air","Ship"],20];
 	if(count _objects isEqualTo 0) exitWith {
 		"Cannot find any containers or vehicles within 20m of first selected unit" call OT_fnc_notifyMinor;
 	};
 	_sorted = [_objects,[],{_x distance _tt},"ASCEND"] call BIS_fnc_SortBy;
+	diag_log str _sorted;
 };
 
 if(count _sorted isEqualTo 0) exitWith {};
 private _target = _sorted select 0;
-if ((typeOf vehicle ((_myunits select 0))) == "OT_I_Truck_recovery" && (driver vehicle _x) == _x) exitWith {
-	[_x] spawn OT_fnc_recover;
+if ((typeOf vehicle ((_myunits select 0))) == "OT_I_Truck_recovery" && (driver vehicle (_myunits select 0)) == (_myunits select 0)) exitWith {
+	[(_myunits select 0)] spawn OT_fnc_recover;
 };
 if (count _myunits > 1) then {
 	(_myunits select 1) globalchat format["<%1>: Looting bodies within 100m into the %2", name (_myunits select 0), (typeof _target) call OT_fnc_vehicleGetName];
