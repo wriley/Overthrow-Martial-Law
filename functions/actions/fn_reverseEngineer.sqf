@@ -1,8 +1,5 @@
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
-if (_cls in OT_item_BlacklistedBlueprints) exitWith {
-	"This vehicle is too complicated for you to reverse engineer." call OT_fnc_notifyMinor;
-};
 _cost = cost getVariable[_cls,[]];
 private _blueprints = server getVariable ["GEURblueprints",[]];
 if((count _cost) > 0 && !(_cls in _blueprints)) then {
@@ -27,5 +24,5 @@ if((count _cost) > 0 && !(_cls in _blueprints)) then {
 		"Item is now available for production" call OT_fnc_notifyMinor;
     };
 }else{
-	"This item cannot be reverse-engineered " call OT_fnc_notifyMinor;
+	"This is too complex for you to reverge engineer." call OT_fnc_notifyMinor;
 };
