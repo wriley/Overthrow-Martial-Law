@@ -35,7 +35,7 @@ if (_attach isKindOf "StaticWeapon") then {
 
 	[[_attach,"GetOut",{(_this select 2) moveInany (attachedTo(_this select 0));
  	doGetOut (_this select 2); }],"addEventHandler",true,true] spawn BIS_fnc_MP;
-	[_attach] call OT_fnc_initStaticMGLocal;
+	_attach call OT_fnc_initStaticMGLocal;
 
 	_Dname = getText (configFile >> "cfgVehicles" >> (typeof _attach) >> "displayName");
 	[[_veh,format["Get in %1 as Gunner",_Dname],"<img size='2' image='\a3\ui_f\data\IGUI\Cfg\Actions\getingunner_ca.paa'/>"],"OT_UpdateGetInState",true,true] spawn BIS_fnc_MP;
