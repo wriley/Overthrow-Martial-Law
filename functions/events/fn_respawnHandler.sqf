@@ -53,10 +53,10 @@ player addWeaponGlobal "ItemMap";
 _housepos = _old getVariable "home";
 _town = _housepos call OT_fnc_nearestTown;
 player setPos (_housepos findEmptyPosition [1,20,typeof _new]);
-if!(uniform _old in OT_illegalUniform) then {
-	player forceAddUniform uniform _old;
-} else {
+if (uniform _old in OT_illegalUniform) then {
 	player forceAddUniform (OT_clothes_guerilla call BIS_fnc_selectRandom);
+} else {
+	player forceAddUniform uniform _old;
 };
 
 for "_i" from 1 to 10 do {player removeEventHandler["InventoryOpened",_i]}; //Saftey measure for search
