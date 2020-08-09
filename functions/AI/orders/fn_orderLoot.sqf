@@ -9,7 +9,7 @@ _myunits params ["_tt"];
 if(vehicle _tt != _tt) then {
 	_sorted = [vehicle _tt];
 }else{
-	private _objects = _tt nearEntities [["ReammoBox_F","Car","Tank","Air","Ship"],20];
+	private _objects = _tt nearEntities [["ReammoBox_F","LandVehicle","Air","Ship"],20];
 	if(count _objects isEqualTo 0) exitWith {
 		"Cannot find any containers or vehicles within 20m of first selected unit" call OT_fnc_notifyMinor;
 	};

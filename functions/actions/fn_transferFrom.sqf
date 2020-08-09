@@ -6,8 +6,8 @@ if (player call OT_fnc_unitSeenNATO) exitWith {"Cannot transfer while the enemy 
 
 private _objects = [];
 {
-	if (!(_x isEqualTo _veh) && !(side _x isEqualTo west) && !({alive _x} count crew _x > 0)}) then {_objects pushback _x};
-} foreach (player nearEntities [["ReammoBox_F","Car","Tank","Air","Ship","B_Slingload_01_Cargo_F"],20]);
+	if (!(_x isEqualTo _veh) && {(_x isKindOf "Car" or _x isKindOf "Air" or _x isKindOf "B_CargoNet_01_ammo_F" or _x isKindOf "Ship" or _x isKindOf "Tank" or _x isKindOf "B_Slingload_01_Cargo_F") && !(side _x isEqualTo west) && !({alive _x} count crew _x > 0)}) then {_objects pushback _x};
+} foreach (player nearEntities [["ReammoBox_F","LandVehicle","Air","Ship","B_Slingload_01_Cargo_F"],20]);
 
 if (_objects isEqualTo []) exitWith {
 	"Cannot find any containers or other vehicles within 20m of this vehicle" call OT_fnc_notifyMinor;

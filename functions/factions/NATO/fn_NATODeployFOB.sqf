@@ -1,3 +1,5 @@
+if!(isServer) exitWith {};
+
 _leader = _this;
 
 _group = group _leader;
