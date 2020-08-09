@@ -320,7 +320,7 @@ publicVariable "OT_nextNATOTurn";
 			//Check for reveal
 			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",150]);
 			if (!(str _pos in _revealed) && _numres > 0) then {
-				[_fob, "PLAYER"] call OT_fnc_revealNATOFOB;
+				[_pos, "PLAYER"] call OT_fnc_revealNATOFOB;
 			    
 			};	
 		}foreach(_fobs);
@@ -445,7 +445,6 @@ publicVariable "OT_nextNATOTurn";
 				if(_popControl > 2000) then {_chance = _chance - 1};
 				if((_time - _lastAttack) > 1200 && {(_name != _lastcounter)} && {(_name in _abandoned)} && {(_resources > _pri)} && {(random 100) > _chance}) exitWith {
 					//Counter an objective
-
 					private _m = _diff + 1;
 					if(_popControl > 1000) then {_m = 2};
 					if(_popControl > 2000) then {_m = 4};

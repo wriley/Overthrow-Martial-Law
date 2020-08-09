@@ -81,7 +81,7 @@ private _doSalvage = {
   };
 };
 
-private _objects = player nearEntities [["ReammoBox_F","Car","Tank","Air","Ship"],20];
+private _objects = player nearEntities [["ReammoBox_F","LandVehicle","Air","Ship"],20];
 _filtered = [];
 {
     if !(_x isEqualTo OT_salvageVehicle) then {_filtered pushback _x};

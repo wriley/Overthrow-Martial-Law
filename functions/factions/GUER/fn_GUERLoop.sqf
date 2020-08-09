@@ -200,8 +200,7 @@ if ((date select 4) != _lastmin) then {
 		private _town = _pos call OT_fnc_nearestTown;
 		_support = [_town] call OT_fnc_support;
 		if (!(_id in _revealed) && (_support > (random 2000))) then {
-			[_id] call OT_fnc_revealNATOFOB;
-			
+			[_pos] call OT_fnc_revealNATOFOB;
 		};
 	}foreach(server getVariable ["NATOfobs",[]]);
 

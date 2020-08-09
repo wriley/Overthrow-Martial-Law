@@ -4,7 +4,7 @@ private _id = str _pos;
 private _town = _pos call OT_fnc_nearestTown;	
 
 switch (_method) do {
-    case "PLAYER": { format["The resistance has discovered a NATO FOB at %1",_town] remoteExec ["OT_fnc_notifyMinor",0,false]; };
+    case "PLAYER": { format["The resistance has discovered a NATO FOB near %1",_town] remoteExec ["OT_fnc_notifyMinor",0,false]; };
     case "TOWN": { format["Citizens of %1 have revealed intelligence of a nearby NATO FOB",_town] remoteExec ["OT_fnc_notifyMinor",0,false]; };
     case "INIT": {};
     default { format["A FOB has been revealed in %1",_town] remoteExec ["OT_fnc_notifyMinor",0,false]; };

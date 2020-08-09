@@ -325,18 +325,17 @@ if(_handled) then {
 
 	if(_b == "Vehicle") then {
 		if(_cls isKindOf "Bag_Base") then {
-			"Backpack purchases in vehicle disabled while ammo bag ""feature"" is resolved" call OT_fnc_notifyAndLog;
-			_vehicleBackpacks = everyBackpack vehicle player;
+			_cls = _cls call BIS_fnc_basicBackpack;
+			(vehicle player) addBackpackCargoGlobal [_cls,1];
 			playSound "3DEN_notificationDefault";
 			player setVariable ["money",_money-_price,true];
-			diag_log str _vehicleBackpacks;
 		}else{
 			(vehicle player) addItemCargoGlobal [_cls,1];
 		};
 	}else{
 		if(_cls isKindOf "Bag_Base") then {
+			_cls = _cls call BIS_fnc_basicBackpack;
 			player addBackpack _cls;
-			clearAllItemsFromBackpack player;
 		}else{
 			player addItem _cls;
 		};
