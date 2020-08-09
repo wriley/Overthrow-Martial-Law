@@ -217,9 +217,9 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	sleep 0.3;
 	//Add comms towers
 	{
-		_x params ["_pos","_name","_dist"];
+		_x params ["_pos","_name","_dist","_pri"];
 		OT_NATOcomms pushBack [_pos,_name,_dist];
-		private _garrison = floor(4 + random(4));
+		private _garrison = floor(4 + random(_pri/100));
 		server setVariable [format ["garrison%1",_name],_garrison,true];
 	}foreach (OT_commsData);
 

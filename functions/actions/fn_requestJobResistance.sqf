@@ -38,6 +38,18 @@ private _expiry = 0;
                 _params = [_nearest];
             }
         };
+        if((toLower _target) isEqualTo "comm") exitWith {
+            //get the town we're in
+            private _nearest = (getpos player) call OT_fnc_nearestComms;
+			private _near = _nearest select 1;
+            private _loc = _nearest select 0;
+            private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
+            _id = format["%1-%2",_name,_nearest];
+            if(([_inSpawnDistance,_near] call _condition) && !(_id in _completed) && !(_id in _activeJobs) && !(_id in OT_jobsOffered)) then {
+                _gotjob = true;
+                _params = [_near];
+            }
+        };
     };
     if(_gotjob) exitWith {};
 }foreach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy);
