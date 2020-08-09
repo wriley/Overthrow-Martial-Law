@@ -11,9 +11,9 @@ OT_startCameraTarget = [9154.2,987.363,50];
 sleep 5; enableDynamicSimulationSystem false;
 
 //Used to control updates and persistent save compatability. When these numbers go up, that section will be reinitialized on load if required. (ie leave them alone)
-OT_economyVersion = 4;
-OT_NATOversion = 4;
-OT_CRIMversion = 3;
+OT_economyVersion = 3;
+OT_NATOversion = 3;
+OT_CRIMversion = 2;
 
 OT_faction_NATO = "BLU_T_F";
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town

@@ -193,33 +193,39 @@ if !(captive _unit) then {
 			};
 			private _unitpos = getPosATL _unit;
 			private _base = _unitpos call OT_fnc_nearestObjectiveOrFOB;
+			private _dist = 0;
 			if !(isNil "_base") then {
-				if !(_base in _fobs) then {
-					_base params ["_obpos","_obname"];
-					if(_obname in (server getvariable "NATOabandoned")) exitwith {};
-					private _dist = _obname call {
-						if (_this in OT_allComms) exitWith {40};
-						if(_this in OT_NATO_priority) exitWith {500};
-						200
-					};
-					if((_obpos distance _unitpos) < _dist) exitWith {
-						if(isPlayer _unit) then {
-							"You are in a restricted area" call OT_fnc_notifyMinor;
+				_base params ["_obpos","_obname"];
+				if !(_base in (server getVariable ["NATOfobs",[]])) then {
+					//obj or comms
+					if!(_obname in (server getvariable ["NATOabandoned",[]])) then {
+						_dist = _obname call {
+							if (_this in OT_allComms) exitWith {
+								{
+									_x params ["","_n","_d"];
+									if (_n isEqualTo _this) exitWith { _d };
+								} foreach OT_commsData;
+							};
+							if (_this in OT_allObjectives) exitWith {
+								{
+									_x params ["","_n","_d"];
+									if (_n isEqualTo _this) exitWith { _d };
+								} foreach OT_objectiveData;
+							};
+							if (_this in OT_NATO_priority) exitWith {500};
+							200
 						};
-						_unit setCaptive false;
-						[_unit] call OT_fnc_revealToNATO;
 					};
-				}else{
-					_base params ["_obpos","_unitcount"];
-					UnitCount = _unitcount;
-					private _dist = 30;
-					if((_obpos distance _unitpos) < _dist) exitWith {
-						if(isPlayer _unit) then {
-							"You are in a restricted area" call OT_fnc_notifyMinor;
-						};
-						_unit setCaptive false;
-						[_unit] call OT_fnc_revealToNATO;
+				} else {
+					//fob
+					_dist = 50;
+				};
+				if((_obpos distance _unitpos) < _dist) then {
+					if(isPlayer _unit) then {
+						"You are in a restricted area" call OT_fnc_notifyMinor;
 					};
+					_unit setCaptive false;
+					[_unit] call OT_fnc_revealToNATO;
 				};
 			};
 		};

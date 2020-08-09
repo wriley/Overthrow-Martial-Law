@@ -22,7 +22,7 @@ _mrkid setMarkerShape "ELLIPSE";
 _mrkid setMarkerBrush "BDIAGONAL";
 _mrkid setMarkerColor "ColorRed";
 _mrkid setMarkerAlpha 1;
-_mrkid setMarkerSize [30, 30];
+_mrkid setMarkerSize [50, 50];
 
 if(_method != "INIT") then {
 	_revealed = server getVariable ["revealedFOBs",[]];

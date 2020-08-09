@@ -321,8 +321,7 @@ publicVariable "OT_nextNATOTurn";
 			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",150]);
 			if (!(str _pos in _revealed) && _numres > 0) then {
 				[_pos, "PLAYER"] call OT_fnc_revealNATOFOB;
-			    
-			};	
+			};
 		}foreach(_fobs);
 
 		{
@@ -357,7 +356,7 @@ publicVariable "OT_nextNATOTurn";
 						_resources = _resources - 250;//changed from 500
 						_x set [4,true];
 						if(([OT_nation] call OT_fnc_support) > (random 250)) then {
-							format["Intel reports that NATO has scrambled a jet to intercept %1",(typeof _target) call OT_fnc_vehicleGetName]
+							[format["Intel reports that NATO has scrambled a jet to intercept %1",(typeof _target) call OT_fnc_vehicleGetName]] remoteExec ["OT_fnc_notifyMinor",0,false];
 						};
 						_countered = true;
 					};
@@ -368,7 +367,7 @@ publicVariable "OT_nextNATOTurn";
 						_resources = _resources - 350;
 						_x set [4,true];
 						if(([OT_nation] call OT_fnc_support) > (random 250)) then {
-							format["Intel reports that NATO has scrambled a helicopter to intercept %1",(typeof _target) call OT_fnc_vehicleGetName]
+							[format["Intel reports that NATO has scrambled a helicopter to intercept %1",(typeof _target) call OT_fnc_vehicleGetName]] remoteExec ["OT_fnc_notifyMinor",0,false];
 						};
 						_countered = true;
 					};
@@ -709,7 +708,7 @@ publicVariable "OT_nextNATOTurn";
 						_x params ["_pos"];
 						_waypoints pushback _pos;
 					}foreach(_fobs);
-					
+
 					/*
 					{
 						if((server getVariable [format ["garrison%1",_x],-1]) > 0) then {

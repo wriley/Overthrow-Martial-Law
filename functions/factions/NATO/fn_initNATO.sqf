@@ -144,7 +144,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	//Find military objectives
 	_groundvehs = OT_allBLUOffensiveVehicles select {!((_x isKindOf "Air") || (_x isKindOf "Tank") || (_x isKindOf "Ship"))};
 	{
-		_x params ["_pos","_name","_worth"];
+		_x params ["_pos","_name","","_worth"];
 		if !(_name in _abandoned) then {
 			diag_log format["Overthrow: Initializing %1",_name];
 			OT_NATOobjectives pushBack _x;
@@ -217,8 +217,8 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	sleep 0.3;
 	//Add comms towers
 	{
-		_x params ["_pos","_name"];
-		OT_NATOcomms pushBack [_pos,_name];
+		_x params ["_pos","_name","_dist"];
+		OT_NATOcomms pushBack [_pos,_name,_dist];
 		private _garrison = floor(4 + random(4));
 		server setVariable [format ["garrison%1",_name],_garrison,true];
 	}foreach (OT_commsData);
@@ -231,7 +231,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
     //Weighted airport list to distribute air vehicles
     private _prilist = [];
     {
-        _x params ["_pos","_name","_worth"];
+        _x params ["_pos","_name","","_worth"];
 		if(_name != OT_NATO_HQ) then {
 	        _prilist pushback _name;
 			if(_worth > 900) then {
@@ -315,7 +315,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 diag_log "Overthrow: NATO Init Done";
 
 {
-	_x params ["_pos","_name","_pri"];
+	_x params ["_pos","_name","_dist","_pri"];
 	private _mrk = createMarker [_name,_pos];
 	_mrk setMarkerShape "ICON";
 	if(_name in (server getVariable "NATOabandoned")) then {
@@ -331,8 +331,8 @@ diag_log "Overthrow: NATO Init Done";
 	_mrk = createMarker [_name+"_restrict",_pos];
 	_mrk setMarkerShape "ELLIPSE";
 	_mrk setMarkerBrush "BDIAGONAL";
-	private _dist = 200;
-	if(_name in OT_NATO_priority) then {_dist = 500};
+	//private _dist = 200;
+	//if(_name in OT_NATO_priority) then {_dist = 500};
 	_mrk setMarkerSize [_dist, _dist];
 	_mrk setMarkerColor "ColorRed";
 	if(_name in (server getVariable "NATOabandoned")) then {
@@ -418,10 +418,8 @@ diag_log "Overthrow: NATO Init Done";
 }foreach(OT_NATOobjectives);
 sleep 0.3;
 
-publicVariable "OT_allObjectives";
-
 {
-	_x params ["_pos","_name"];
+	_x params ["_pos","_name","_dist"];
 	private _mrk = createMarker [_name,_pos];
 	_mrk setMarkerShape "ICON";
 	_mrk setMarkerType "loc_Transmitter";
@@ -432,13 +430,13 @@ publicVariable "OT_allObjectives";
 	};
 	server setVariable [_name,_pos,true];
 	OT_allComms pushback _name;
-	OT_allObjectives pushback _name;
+	//OT_allObjectives pushback _name;
 
 	_mrk = createMarker [_name+"_restrict",_pos];
 	_mrk setMarkerShape "ELLIPSE";
 	_mrk setMarkerBrush "BDIAGONAL";
-	private _dist = 40;
-	if(_name in OT_NATO_priority) then {_dist = 500};
+	//private _dist = 50;
+	//if(_name in OT_NATO_priority) then {_dist = 500};
 	_mrk setMarkerSize [_dist, _dist];
 	_mrk setMarkerColor "ColorRed";
 	if(_name in (server getVariable "NATOabandoned")) then {
@@ -448,6 +446,7 @@ publicVariable "OT_allObjectives";
 	};
 }foreach(OT_NATOcomms);
 sleep 0.3;
+
 private _revealed = server getVariable ["revealedFOBs",[]];
 {
 	_x params ["_pos","_garrison","_upgrades"];

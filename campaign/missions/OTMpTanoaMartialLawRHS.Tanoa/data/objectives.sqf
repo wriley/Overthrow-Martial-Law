@@ -1,20 +1,20 @@
 OT_objectiveData = [
-    [[10098.7,11818.1,0],"Comms Alpha",400],
-    [[2261.28,6331.25,0],"Fuel Depot",450],
-    [[4166.48,11723.6,0],"The Harbor Remnants",250],
-    [[3432.65,12893.3,0],"The Firing Range",250],
-    [[3870.23,13412.4,0],"The Vehicle Range",300],
-    [[3939.27,13915,0],"The Camp Remnants",250],
-    [[3166.18,11038.8,0],"Belfort Naval Base",500],
-    [[5216.9,3656.3,0],"Chemical Plant",600],
-    [[11570.3,7345.21,0],"Kotomo Base",300],
-    [[4414.39,8529.59,0],"Regina Base",400],
-	  [[11022.2,11507.6,0],"Hamato Base",300],
-    [[2101.76,7938.43,0],"Matsu Base",200],
-    [[4485.99,8194.99,0],"Factory Base",350],
-    [[5003.15,4454.97,0],"Davis Camp",250],
-    [[12507.9,2466.97,0],"Hollander Base",450],
-    [[10823.8,4901.08,0],"Seeker Base",350]
+    [[10098.7,11818.1,0],"Comms Alpha",500,400],
+    [[2261.28,6331.25,0],"Fuel Depot",200,450],
+    [[4166.48,11723.6,0],"The Harbor Remnants",200,250],
+    [[3432.65,12893.3,0],"The Firing Range",200,250],
+    [[3870.23,13412.4,0],"The Vehicle Range",200,300],
+    [[3939.27,13915,0],"The Camp Remnants",200,250],
+    [[3166.18,11038.8,0],"Belfort Naval Base",200,500],
+    [[5216.9,3656.3,0],"Chemical Plant",200,600],
+    [[11570.3,7345.21,0],"Kotomo Base",200,300],
+    [[4414.39,8529.59,0],"Regina Base",200,400],
+	[[11022.2,11507.6,0],"Hamato Base",200,300],
+    [[2101.76,7938.43,0],"Matsu Base",200,200],
+    [[4356.96,8263.81,0],"Factory Base",200,350],
+    [[5003.15,4454.97,0],"Davis Camp",200,250],
+    [[12507.9,2466.97,0],"Hollander Base",200,450],
+    [[10823.8,4901.08,0],"Seeker Base",200,350]
 ];
 OT_NATO_HQ = "Tuvanaka Airbase";
 OT_NATO_priority = ["Tuvanaka Airbase","Comms Alpha","Comms Whiskey","Lijnhaven","Blue Pearl industrial port","Nani","Belfort","Tuvanaka","Georgetown","Katkoula","Harcourt","Hamato Base"];
