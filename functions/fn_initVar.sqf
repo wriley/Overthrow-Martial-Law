@@ -1126,12 +1126,17 @@ OT_allSquads = OT_Squadables apply { _x params ["_name"]; _name };
 
 OT_workshop = [
 	["Static MG","C_Offroad_01_F",51250,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.25,-2,1]],0],
+	["Cargo Boxes","C_Offroad_01_F",51250,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.05,-1.75,.25]],0],
+	["Mounted Dshkm","C_Offroad_01_F",51250,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[0.25,-2,1]],0],
 	["Static GL","C_Offroad_01_F",64750,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.25,-2,1]],0],
 	["Static AT","C_Offroad_01_F",187500,"I_AT_01_weapon_F","I_static_AT_F",[[0,-1.5,0.25],180]],
 	["Static AA","C_Offroad_01_F",187500,"I_AA_01_weapon_F","I_static_AA_F",[[0,-1.5,0.25],180]],
 	["Mounted HMG","RHS_Ural_Open_Civ_01",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted HMG","RHS_Ural_Open_Civ_02",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted HMG","RHS_Ural_Open_Civ_03",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted Dshkm","RHS_Ural_Open_Civ_01",69500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.300,-1.570,1.5]],0],
+	["Mounted Dshkm","RHS_Ural_Open_Civ_02",69500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[0.300,-1.570,1.5]],0],
+	["Mounted Dshkm","RHS_Ural_Open_Civ_03",69500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.300,-1.570,1.5]],0],
 	["Mounted GMG","RHS_Ural_Open_Civ_01",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted GMG","RHS_Ural_Open_Civ_02",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
 	["Mounted GMG","RHS_Ural_Open_Civ_03",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
@@ -1141,6 +1146,7 @@ OT_workshop = [
 	["Cargo Boxes","RHS_Ural_Open_Civ_01",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
 	["Cargo Boxes","RHS_Ural_Open_Civ_02",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
 	["Cargo Boxes","RHS_Ural_Open_Civ_03",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
+	["Mounted Dshkm","C_Van_01_transport_F",25,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.001,-2.74,1.0]],0],
 	["Cargo Boxes","C_Van_01_transport_F",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.01,-1.683,0.2]],0]
 ];
 
