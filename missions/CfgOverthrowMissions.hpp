@@ -153,4 +153,15 @@ class CfgOverthrowMissions
         expires = 6;
         requestable = 1;
     };
+	
+	class CaptureComm
+	{
+		target = "Comm";
+        repeatable = 0;
+        condition = "params['_inSpawnDistance', '_name'];!(_name in (server getVariable ['NATOabandoned',[]])) && (server getVariable [format[""garrison%1"",_name],0]) > 0";
+        script = "\overthrow_main\missions\capturecomm.sqf";
+        chance = 100;
+        expires = 6;
+        requestable = 1;
+	};
 };
