@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=389;
+		nextID=390;
 	};
 	class Camera
 	{
@@ -35814,7 +35814,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				dynamicSimulation=1;
 			};
 			id=2337;
 			type="Land_FuelStation_03_pump_F";
@@ -35856,7 +35855,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				dynamicSimulation=1;
 			};
 			id=2345;
 			type="Land_FuelStation_03_pump_F";
@@ -35874,7 +35872,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				dynamicSimulation=1;
 			};
 			id=2346;
 			type="Land_FuelStation_03_pump_F";
@@ -36029,7 +36026,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				dynamicSimulation=1;
 			};
 			id=2357;
 			type="Land_FuelStation_03_pump_F";
@@ -36047,7 +36043,6 @@ class Mission
 			flags=1;
 			class Attributes
 			{
-				dynamicSimulation=1;
 			};
 			id=2358;
 			type="Land_FuelStation_03_pump_F";
@@ -37458,7 +37453,7 @@ class Mission
 			};
 			id=2444;
 			type="Land_Cargo_Patrol_V1_F";
-			atlOffset=-0.060928345;
+			atlOffset=-0.060935974;
 		};
 		class Item215
 		{
