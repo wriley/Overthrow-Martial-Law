@@ -345,11 +345,12 @@ buildOnMouseUp = {
 			};
 			deleteVehicle modeVisual;
 			if(OT_shiftHeld) then {
-				modeSelected call build;
+				[modeSelected, modeIndex] call build;
 			};
-		};
-		if(!canBuildHere) then {
-			"You cannot build that there" call OT_fnc_notifyMinor;
+		} else {
+			if (!isNull modeTarget && !canBuildHere) then {
+				"You cannot build that there" call OT_fnc_notifyMinor;
+			};
 		};
 	};
 };
@@ -379,12 +380,17 @@ modeCode = "";
 
 build = {
 	canBuildHere = false;
-	modeSelected = _this;
+	if (count _this isEqualTo 2) then {
+		modeSelected = _this select 0;
+		modeIndex = _this select 1;
+	} else {
+		modeSelected = _this;
+		modeIndex = 0;
+	};
 	_def = [];
 	{
 		if((_x select 0) isEqualTo modeSelected) exitWith {_def = _x};
 	}foreach(OT_Buildables);
-	modeIndex = 0;
 	_name = _def select 0;
 	_description = _def select 5;
 	modeCode = _def select 3;

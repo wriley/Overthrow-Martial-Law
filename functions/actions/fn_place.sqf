@@ -43,9 +43,9 @@ private _typecls = _this;
 			private _classes = [];
 			{
 				_class = _x select 0;
-				_classes append [_class];				
+				_classes append [_class];
 			}foreach (_x select 1);
-			
+
 			if(isNil "modeValue") then {
 				modeValue = 0;
 			};
@@ -105,7 +105,7 @@ if(modeCost > 0) then {
 
 	_keyhandler = {
 		params ["_ctrl", "_key", "_shift", "_ctrlKey", "_alt"];
-    
+
 		private _dir = modeRotation;
 		if(_key isEqualTo 19) exitWith {
 			//R
@@ -238,7 +238,7 @@ if(modeCost > 0) then {
 	};
 
 	waitUntil {
-		sleep 0.5; 
+		sleep 0.5;
 		modeFinished
 		|| modeCancelled
 		|| (count attachedObjects player == 0)
@@ -288,14 +288,15 @@ if(modeCost > 0) then {
 				if(count _camp > 0) then {
 					{
 						private _t = typeof _x;
-						if((_x call OT_fnc_getOwner) == getplayeruid player) then {
-							if(_t == OT_item_Tent || _t == "Land_ClutterCutter_large_F") then {
+						if(((_x call OT_fnc_getOwner) == getplayeruid player) && !(modeTarget == _x)) then {
+							{
 								deleteVehicle _x;
-							};
+							}foreach(_x nearObjects ["Land_ClutterCutter_large_F", 5]);
+							deleteVehicle _x;
 						};
-					}foreach(_camp nearObjects 10);
+					}foreach(allMissionObjects OT_item_Tent);
 				};
-				player setVariable ["camp",getpos modeTarget];
+				player setVariable ["camp",getpos modeTarget,true];
 				_mrkid setMarkerShape "ICON";
 				_mrkid setMarkerType "ot_Camp";
 				_mrkid setMarkerColor "ColorWhite";

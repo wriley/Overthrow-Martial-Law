@@ -50,7 +50,6 @@ if(_target isEqualType "") then {
         _boxstock = _ammobox call OT_fnc_unitStock;
         {
 			_x params [["_cls",""], ["_count",0]];
-            diag_log _cls;
             if !(_cls in _ignore) then {
                 private _boxAmount = 0;
                 {

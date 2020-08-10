@@ -122,7 +122,9 @@ if(typename _b isEqualTo "ARRAY") then {
 
 			if(typeof _building isEqualTo OT_item_Tent) exitWith {
 				ctrlSetText [1608,"Sell"];
-				findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Sell this building";
+				findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "";
+				findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "";
+				findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "";
 				ctrlEnable [1608,false];
 				ctrlEnable [1609,false];
 				ctrlEnable [1610,false];
@@ -137,7 +139,12 @@ if(typename _b isEqualTo "ARRAY") then {
 			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Sell this building";
 
 			if(_id in _leased) then {
-				ctrlEnable [1609,false];
+				ctrlSetText [1608,"Terminate"];
+				findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Sell this building";
+				findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "Terminate Lease";
+				findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "Leased cannot be set as Home";
+				ctrlEnable [1608,true];
+				ctrlEnable [1609,true];
 				ctrlEnable [1610,false];
 			};
 			if(damage _building isEqualTo 1) then {
@@ -150,10 +157,13 @@ if(typename _b isEqualTo "ARRAY") then {
 				<t align='left' size='0.65'>Damage: %4%5</t>
 			",_name,_ownername,[_lease, 1, 0, true] call CBA_fnc_formatNumber,round((damage _building) * 100),"%"];
 
-		}else{
+		} else {
 			ctrlEnable [1608,false];
 			ctrlEnable [1609,false];
 			ctrlEnable [1610,false];
+			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "";
+			findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "";
+			findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "";
 			if(typeof _building isEqualTo OT_item_Tent) then {
 				_name = "Camp";
 			};
@@ -316,7 +326,7 @@ if(typename _b isEqualTo "ARRAY") then {
 
 	// Fetch the list of buildable houses
 	private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
-	if(!((typeof _building) in OT_allRealEstate + [OT_flag_IND]) and {!(typeOf _building in _buildableHouses)}) then {
+	if(!((typeof _building) in OT_allRealEstate + [OT_flag_IND] + [OT_item_Tent]) and {!(typeOf _building in _buildableHouses)}) then {
 		ctrlEnable [1609,false];
 		ctrlEnable [1610,false];
 		ctrlEnable [1608,false];

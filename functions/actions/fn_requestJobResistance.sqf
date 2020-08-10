@@ -39,7 +39,7 @@ private _expiry = 0;
             }
         };
         if((toLower _target) isEqualTo "comm") exitWith {
-            //get the town we're in
+            //get the closest comm tower
             private _nearest = (getpos player) call OT_fnc_nearestComms;
 			private _near = _nearest select 1;
             private _loc = _nearest select 0;

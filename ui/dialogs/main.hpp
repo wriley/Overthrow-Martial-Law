@@ -21,7 +21,7 @@ class OT_dialog_start
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			action = "closeDialog 0; createDialog""OT_dialog_load"";";
+			action = "closeDialog 0;[] remoteExec ['OT_fnc_loadGame',2,false];";
 			text = "Load Previous Save"; //--- ToDo: Localize;
 			x = 0.448438 * safezoneW + safezoneX;
 			y = 0.313 * safezoneH + safezoneY;
@@ -52,7 +52,7 @@ class OT_dialog_start
 		};
 	};
 };
-
+/*
 class OT_dialog_load
 {
 	idd=15150;
@@ -114,7 +114,7 @@ class OT_dialog_load
 		};
 	};
 };
-
+*/
 class OT_dialog_vehicle
 {
 	idd=-1;
@@ -1137,7 +1137,18 @@ class OT_dialog_main
 			w = 0.0515625 * safezoneW;
 			h = 0.044 * safezoneH;
 		};
+		class RscButton_1630: RscOverthrowButton
+		{
+			idc = 1630;
+			action = "closeDialog 0;[] call OT_fnc_logisticsDialog";
 
+			text = "Vehicles"; //--- ToDo: Localize;
+			x = 0.881562 * safezoneW + safezoneX;
+			y = 0.247 * safezoneH + safezoneY;
+			w = 0.113437 * safezoneW;
+			h = 0.044 * safezoneH;
+			tooltip = "List of all military vehicles and their state"; //--- ToDo: Localize;
+		};
 		class RscPicture_1201: RscOverthrowPicture
 		{
 			idc = 1201;
@@ -1159,18 +1170,6 @@ class OT_dialog_main
 			w = 0.113437 * safezoneW;
 			h = 0.044 * safezoneH;
 			tooltip = "Purchase this building"; //--- ToDo: Localize;
-		};
-		class RscButton_1630: RscOverthrowButton
-		{
-			idc = 1630;
-			action = "closeDialog 0;[] call OT_fnc_logisticsDialog";
-
-			text = "Vehicles"; //--- ToDo: Localize;
-			x = 0.881562 * safezoneW + safezoneX;
-			y = 0.247 * safezoneH + safezoneY;
-			w = 0.113437 * safezoneW;
-			h = 0.044 * safezoneH;
-			tooltip = "List of all military vehicles and their state"; //--- ToDo: Localize;
 		};
 		class RscButton_1609: RscOverthrowButton
 		{

@@ -375,6 +375,8 @@ diag_log "Overthrow: NATO Init Done";
 
 	private _done = 0;
 	private _supplyamount = (_pri - 100) + (random 200);
+	// ToDo : Increase loot quality through tiered levels (450 - 100) + 1-200 = 351-551
+	// private _lvl = round (_supplyamount / 50);
 	while {_done < _supplyamount} do {
 		private _rnd = random 100;
 		_rnd call {
