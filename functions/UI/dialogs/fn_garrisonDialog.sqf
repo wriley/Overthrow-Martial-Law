@@ -27,76 +27,28 @@ _soldier = ((OT_Recruitables select 1) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
 _btn = (findDisplay 9000) displayCtrl 1602;
-_soldier = ((OT_Recruitables select 2) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1603;
-_soldier = ((OT_Recruitables select 3) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1604;
-_soldier = ((OT_Recruitables select 4) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1605;
-_soldier = ((OT_Recruitables select 5) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1606;
-_soldier = ((OT_Recruitables select 6) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1607;
-_soldier = ((OT_Recruitables select 7) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1608;
-_soldier = ((OT_Recruitables select 8) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1609;
-_soldier = ((OT_Recruitables select 9) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1610;
-_soldier = ((OT_Recruitables select 10) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1611;
-_soldier = ((OT_Recruitables select 11) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1612;
 _soldier = ((OT_Recruitables select 12) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
-_btn = (findDisplay 9000) displayCtrl 1613;
-_soldier = ((OT_Recruitables select 13) select 0) call OT_fnc_getSoldier;
+_btn = (findDisplay 9000) displayCtrl 1603;
+_soldier = ((OT_Recruitables select 8) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
-_btn = (findDisplay 9000) displayCtrl 1614;
-_soldier = ((OT_Recruitables select 0) select 0) call OT_fnc_getSoldier;
+_btn = (findDisplay 9000) displayCtrl 1604;
+_soldier = ((OT_Recruitables select 9) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
-_btn = (findDisplay 9000) displayCtrl 1615;
-_soldier = ((OT_Recruitables select 0) select 0) call OT_fnc_getSoldier;
+_btn = (findDisplay 9000) displayCtrl 1605;
+_soldier = ((OT_Recruitables select 10) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
-_btn = (findDisplay 9000) displayCtrl 1616;
-_soldier = ((OT_Recruitables select 0) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1617;
-_soldier = ((OT_Recruitables select 0) select 0) call OT_fnc_getSoldier;
-_btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
-
-_btn = (findDisplay 9000) displayCtrl 1618;
+_btn = (findDisplay 9000) displayCtrl 1606;
 _cost = [OT_nation,"I_HMG_01_high_weapon_F",0] call OT_fnc_getPrice;
 _cost = _cost + ([OT_nation,"CIV",0] call OT_fnc_getPrice);
 _cost = _cost + 300;
 _btn ctrlSetTooltip format["$%1",[_cost, 1, 0, true] call CBA_fnc_formatNumber];
 
-_btn = (findDisplay 9000) displayCtrl 1619;
+_btn = (findDisplay 9000) displayCtrl 1607;
 _cost = [OT_nation,"I_GMG_01_high_weapon_F",0] call OT_fnc_getPrice;
 _cost = _cost + ([OT_nation,"CIV",0] call OT_fnc_getPrice);
 _cost = _cost + 300;

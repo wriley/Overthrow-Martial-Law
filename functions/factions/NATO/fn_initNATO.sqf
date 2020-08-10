@@ -128,7 +128,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	private _startingResources = 2500;//changed from 500
 	if(_diff isEqualTo 1) then {_startingResources = 3500};//changed from 1500
 	if(_diff isEqualTo 2) then {_startingResources = 4500};//changed from 2500
-    server setVariable ["NATOresources",_startingResources,true];
+	server setVariable ["NATOresources",_startingResources,true];
 	server setVariable ["garrisonHQ",1000,false];
 	OT_NATOobjectives = [];
 	OT_NATOcomms = [];

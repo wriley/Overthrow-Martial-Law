@@ -351,8 +351,12 @@ if(_obpos distance player < 250) then {
 			<t align='left' size='0.8'>%1</t><br/>
 			<t align='left' size='0.65'>Under resistance control</t>
 		",_obname];
-		ctrlEnable [1620,true];
-		ctrlEnable [1621,true];
+		if (_obname in OT_allComms) then {
+			ctrlEnable [1621,false];
+		} else {
+			ctrlEnable [1620,true];
+			ctrlEnable [1621,true];
+		};
 	}else{
 		_areaText = format["
 			<t align='left' size='0.8'>%1</t><br/>
