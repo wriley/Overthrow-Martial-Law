@@ -14,9 +14,9 @@ OT_economicData = [
     [[3623.17,3228.52,0],"Ocean Side Medical","OT_Plastic","FirstAidKit"],
     [[7842.64,3184.34,0],"Malden Power Plant"]
 ];
-OT_factoryPos = [7543.63,10548.4,0];
+OT_factoryPos = [7483.93,10552.6,0];
 OT_factoryVehicleSpawn = [7561.83,10496.6,0];
-OT_factoryVehicleDir = 67;
+OT_factoryVehicleDir = 0;
 OT_connectedRegions = [
 
 ];

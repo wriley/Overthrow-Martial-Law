@@ -6,7 +6,7 @@ OT_economicData = [
     [[1352.23,8005,0],"Topolin Berry Farm","OT_Fertilizer","OT_Grapes"],
     [[1223.91,8923.21,0],"Topolin Quarry","","OT_Steel"],
     [[5210.57,5668.39,0],"Huta Lumberyard","OT_Wood","OT_Lumber"],
-    [[11000.3,9026.56,0],"Sitnik Plastics","","OT_Plastic"],
+    [[7690.4,2723.96,0],"Livonia Plastics","","OT_Plastic"],
     [[11336.9,9461.08,0],"Sitnik Medical","OT_Plastic","FirstAidKit"],
     [[1956.49,6677.26,0],"Campfire Wines","OT_Grapes","OT_Wine"],
     [[11586.7,387.777,0],"Dolnik Lumber Supplies","OT_Wood","OT_Lumber"],
