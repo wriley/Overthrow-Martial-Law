@@ -149,7 +149,7 @@ private _vehicles = (_tocheck) apply {
 /* 6 */		_x getVariable ["OT_init",""]
 	];
 
-	if ((_type isKindOf ["AllVehicles", _cfgVeh] && !(_x getVariable ["OT_garrison",false])) or {_type isEqualTo OT_item_Storage}) then {
+	if ((_type isKindOf ["AllVehicles", _cfgVeh] && !(_x getVariable ["OT_garrison",false])) || {_type isEqualTo OT_item_Storage}) then {
 		private _veh = _x;
 		private _ammo = (_x weaponsTurret [0]) apply {
 			[_x,_veh ammo _x];
@@ -158,9 +158,13 @@ private _vehicles = (_tocheck) apply {
 		private _attached = _veh getVariable ["OT_attachedWeapon",objNull];
 		private _att = [];
 
-		//get attached ammo (if applicable)
+		//get attached ammo or stock (if applicable)
 		if(!(_attachedClass isEqualTo "") && { alive _attached }) then {
-			_att = [_attachedClass,(_attached weaponsTurret [0]) apply { [_x,_attached ammo _x] }];
+			if (_attachedClass == "StaticWeapon") then {
+				_att = [_attachedClass,(_attached weaponsTurret [0]) apply { [_x,_attached ammo _x] }];
+			} else {
+				_att = [_attachedClass, (_attached call OT_fnc_unitStock)];
+			};
 		};
 /* 7 */		_params set [7, [fuel _x,getAllHitPointsDamage _x,_x call ace_refuel_fnc_getFuel,_x getVariable ["OT_locked",false],_ammo,_att]];
 	};
@@ -294,10 +298,12 @@ if (isDedicated) then {
 
 if !(_quiet) then {
 	"Persistent Save Completed" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+	"Persistent Save Complete!" remoteExec ["OT_fnc_notifyGood",0,false];
 };
 
+/* save/load by string doesn't work, who wants to fix it? nobody.
 if (!_autoSave && !(_user isEqualTo objNull)) then {
 	[_data] remoteExec ["OT_fnc_uploadData",_user,false];
 };
-
+*/
 missionNameSpace setVariable ["OT_saving",false,true];

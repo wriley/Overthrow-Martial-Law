@@ -8,7 +8,6 @@ if (!(handgunWeapon player isEqualTo "") && (currentWeapon player isEqualTo hand
 	private _handgunItems = handgunItems player;
 	player setVariable ["handgunState", _handgunState, true];
 	player setVariable ["handgunItems", _handgunItems, true];
-	// ToDo : Save data to player on server
 	player action ["SwitchWeapon",player,player,100];
 	_handgunState spawn { sleep 1.2; player removeWeaponGlobal (_this select 0); OT_finishedHolster = true; sleep 0.6};
 } else {
@@ -31,6 +30,8 @@ if (!(handgunWeapon player isEqualTo "") && (currentWeapon player isEqualTo hand
 			player setVariable ["handgunState", [], true];
 			player setVariable ["handgunItems", [], true];
 		};
+		[] spawn { sleep 1.5; OT_finishedHolster = true; };
+	} else {
+		hint "You don't have a weapon holstered";
 	};
-	[] spawn { sleep 1.5; OT_finishedHolster = true; };
 };

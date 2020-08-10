@@ -14,7 +14,6 @@ if(vehicle _tt != _tt) then {
 		"Cannot find any containers or vehicles within 20m of first selected unit" call OT_fnc_notifyMinor;
 	};
 	_sorted = [_objects,[],{_x distance _tt},"ASCEND"] call BIS_fnc_SortBy;
-	diag_log str _sorted;
 };
 
 if(count _sorted isEqualTo 0) exitWith {};

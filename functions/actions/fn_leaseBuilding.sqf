@@ -56,23 +56,44 @@ if(typename _b isEqualTo "ARRAY") then {
 };
 if(_err) exitWith {};
 if(_handled) then {
+	private _leased = player getVariable ["leased",[]];
+	private _id = [_building] call OT_fnc_getBuildID;
+	if!(_id in _leased) then {
+		// If the house is player-built, we set its lease variable to true
+		if (_building getVariable ["OT_house_isPlayerBuilt", false]) then {
+			_building setVariable ["OT_house_isLeased", true, true];
+		};
 
-	// If the house is player-built, we set its lease variable to true
-	if (_building getVariable ["OT_house_isPlayerBuilt", false]) then {
-		_building setVariable ["OT_house_isLeased", true, true];
+		_leased pushback _id;
+		player setvariable ["leased",_leased,true];
+
+		_leasedata = player getvariable ["leasedata",[]];
+		_leasedata pushback [_id,typeof _building,getpos _building,(getpos _building) call OT_fnc_nearestTown];
+		player setvariable ["leasedata",_leasedata,true];
+
+		_mrkid = format["bdg-%1",_building];
+		_mrkid setMarkerAlphaLocal 0.3;
+		playSound "3DEN_notificationDefault";
+		"Building leased" call OT_fnc_notifyMinor;
+	} else {
+		if (_building getVariable ["OT_house_isPlayerBuilt", false]) then {
+			_building setVariable ["OT_house_isLeased", false, true];
+		};
+
+		_leased deleteAt (_leased find _id);
+		player setvariable ["leased",_leased,true];
+
+		_leasedata = player getvariable ["leasedata",[]];
+		{
+			if ((_x select 0) isEqualTo _id) exitWith {
+				_leasedata deleteAt _forEachIndex;
+			};
+		}foreach _leasedata;
+		player setvariable ["leasedata",_leasedata,true];
+
+		_mrkid = format["bdg-%1",_building];
+		_mrkid setMarkerAlphaLocal 0;
+		playSound "3DEN_notificationDefault";
+		"Lease Terminated" call OT_fnc_notifyMinor;
 	};
-
-	private _id = ([_building] call OT_fnc_getBuildID);
-	_leased = player getvariable ["leased",[]];
-	_leased pushback _id;
-	player setvariable ["leased",_leased,true];
-
-	_leasedata = player getvariable ["leasedata",[]];
-	_leasedata pushback [_id,typeof _building,getpos _building,(getpos _building) call OT_fnc_nearestTown];
-	player setvariable ["leasedata",_leasedata,true];
-
-	_mrkid = format["bdg-%1",_building];
-	_mrkid setMarkerAlphaLocal 0.3;
-	playSound "3DEN_notificationDefault";
-	"Building leased" call OT_fnc_notifyMinor;
 };

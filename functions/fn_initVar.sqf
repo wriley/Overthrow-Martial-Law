@@ -1010,13 +1010,15 @@ OT_Buildables = [
 ];
 
 {
-	private _istpl = _x select 4;
-	if(_istpl) then {
-		private _tpl = _x select 2;
-		OT_allBuyableBuildings pushback ((_tpl select 0) select 0);
-	}else{
-		[OT_allBuyableBuildings,(_x select 2)] call BIS_fnc_arrayPushStack;
-	}
+	if!(_x select 0 isEqualTo "Walls") then {
+		private _istpl = _x select 4;
+		if(_istpl) then {
+			private _tpl = _x select 2;
+			OT_allBuyableBuildings pushback ((_tpl select 0) select 0);
+		}else{
+			[OT_allBuyableBuildings,(_x select 2)] call BIS_fnc_arrayPushStack;
+		};
+	};
 }foreach(OT_Buildables);
 
 //Stuff you can place: ["Category",[classname, cost, item description],[offset, category description]]

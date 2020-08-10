@@ -362,6 +362,16 @@ class OT_dialog_workshop
 			colorBackground[] = {0,0,0,0};
 			colorActive[] = {0,0,0,0};
 		};
+		class RscButton_1699: RscOverthrowButton
+        {
+            idc = 1699;
+            text = "X"; //--- ToDo: Localize;
+			action = "closeDialog 0";
+            x = 0.732031 * safezoneW + safezoneX;
+            y = 0.181 * safezoneH + safezoneY;
+            w = 0.0257812 * safezoneW;
+            h = 0.044 * safezoneH;
+        };
 		////////////////////////////////////////////////////////
 		// GUI EDITOR OUTPUT END
 		////////////////////////////////////////////////////////
