@@ -8,7 +8,7 @@ class EditorData
 	toggles=1545;
 	class ItemIDProvider
 	{
-		nextID=2503;
+		nextID=2512;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=639;
+		nextID=649;
 	};
 	class Camera
 	{
-		pos[]={5035.8584,140.4285,5180.7183};
-		dir[]={-0.7118547,-0.16006899,0.68401897};
-		up[]={-0.11544766,0.98706859,0.11093622};
-		aside[]={0.6929608,-1.9079016e-007,0.72116303};
+		pos[]={8043.8428,54.67384,9943.0469};
+		dir[]={-0.87661713,-0.31734395,0.36205009};
+		up[]={-0.2933991,0.94823927,0.12117486};
+		aside[]={0.38177803,-4.0261511e-007,0.92438692};
 	};
 };
 binarizationWanted=0;
@@ -89,13 +89,14 @@ addons[]=
 	"A3_Structures_F_EPA_Civ_Camping",
 	"A3_Structures_F_Items_Tools",
 	"A3_Props_F_Orange_Humanitarian_Garbage",
-	"A3_Props_F_Orange_Humanitarian_Camps"
+	"A3_Props_F_Orange_Humanitarian_Camps",
+	"A3_Structures_F_Exp_Infrastructure_Airports"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=40;
+		items=41;
 		class Item0
 		{
 			className="A3_Ui_F";
@@ -373,6 +374,13 @@ class AddonsMetaData
 		{
 			className="A3_Structures_F_EPA";
 			name="Arma 3 Survive Episode - Buildings and Structures";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item40
+		{
+			className="A3_Structures_F_Exp_Infrastructure";
+			name="Arma 3 Apex - Infrastructure Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -30905,7 +30913,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=151;
+		items=159;
 		class Item0
 		{
 			dataType="Layer";
@@ -34133,7 +34141,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4931.9531,384.8331,8656.6748};
+				position[]={6379.0371,125.05177,8857.6162};
 				angles[]={0,0.23900539,0};
 			};
 			side="Empty";
@@ -34144,7 +34152,7 @@ class Mission
 			};
 			id=2176;
 			type="Land_Cargo_Tower_V3_F";
-			atlOffset=0.085968018;
+			atlOffset=-2.2888184e-005;
 		};
 		class Item42
 		{
@@ -37261,16 +37269,18 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={7711.4121,4.4291201,3086.9949};
-				angles[]={0,2.3518865,0};
+				position[]={7711.4126,4.4286976,3086.9951};
+				angles[]={0,2.3518836,0};
 			};
 			side="Empty";
 			class Attributes
 			{
+				createAsSimpleObject=1;
+				dynamicSimulation=1;
 			};
 			id=2469;
 			type="C_Boat_Civil_04_F";
-			atlOffset=9.2260265;
+			atlOffset=9.2254486;
 		};
 		class Item132
 		{
@@ -37546,6 +37556,7 @@ class Mission
 			};
 			id=2490;
 			type="Land_Stretcher_01_sand_F";
+			atlOffset=-0.0035095215;
 		};
 		class Item144
 		{
@@ -37668,6 +37679,144 @@ class Mission
 			};
 			id=2502;
 			type="Land_WoodPile_F";
+		};
+		class Item151
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={6337.3311,120.55493,8926.6221};
+				angles[]={0,3.5651143,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2503;
+			type="Land_Cargo_Patrol_V3_F";
+			atlOffset=7.6293945e-006;
+		};
+		class Item152
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={6360.8071,116.5272,8828.0303};
+				angles[]={0,2.7154005,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2504;
+			type="Land_Cargo_HQ_V3_F";
+		};
+		class Item153
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={2691.2729,191.31628,5857.397};
+				angles[]={0,4.3107014,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2505;
+			type="Land_Cargo_Tower_V3_F";
+		};
+		class Item154
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={2796.387,213.06105,5756.104};
+				angles[]={0,3.7550757,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2506;
+			type="Land_Cargo_Patrol_V3_F";
+		};
+		class Item155
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7711.854,40.126614,10715.685};
+				angles[]={0,5.7223763,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2507;
+			type="Land_Cargo_Tower_V3_F";
+			atlOffset=0.0090026855;
+		};
+		class Item156
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8235.0586,35.129555,2983.509};
+				angles[]={0,3.5518496,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2508;
+			type="Land_Cargo_Tower_V3_F";
+		};
+		class Item157
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8290.7754,25.835001,3022.8101};
+				angles[]={0,3.3618183,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2509;
+			type="Land_Cargo_Patrol_V3_F";
+		};
+		class Item158
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8019.3125,40.617783,9950.7725};
+				angles[]={0,4.715127,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=2511;
+			type="Land_Airport_01_controlTower_F";
+			atlOffset=-1.9073486e-006;
 		};
 	};
 	class Connections
