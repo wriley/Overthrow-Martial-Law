@@ -1,7 +1,10 @@
 private _civ = _this;
 
 OT_interactingWith = _civ;
-
+[] spawn {
+	waitUntil {sleep .2;!dialog};
+	OT_interactingWith = objNull;
+};
 private _town = (getpos player) call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 private _civprice = [_town,"CIV",_standing] call OT_fnc_getPrice;
