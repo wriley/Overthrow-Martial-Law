@@ -30,8 +30,8 @@ if(count _activeshops > 0) exitWith {
 		_shopkeeper disableAI "AUTOCOMBAT";
 		_shopkeeper setVariable ["NOAI",true,false];
 
-		_shopkeeper setVariable ["shopcheck",true,true];
-		_shopkeeper setVariable ["shop",format["%1",_pos],true];
+		_shopkeeper setVariable ["shop",true,true];
+		_shopkeeper setVariable ["loc",format["%1",_pos],true];
 		_shopkeeper setVariable ["OT_shopCategory",_category,true];
 		_building setVariable ["OT_shopCategory",_category,true];
 		[_shopkeeper] call OT_fnc_initShopkeeper;

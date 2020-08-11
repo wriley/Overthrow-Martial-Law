@@ -22,15 +22,16 @@ _groups = [_group];
 
 	_dir = getDir _building;
 	_shopkeeper = _group createUnit [OT_civType_carDealer, [_pos,[0,0,2]] call BIS_fnc_vectorAdd, [],0, "NONE"];
+	_shopkeeper allowDamage false;
 	_shopkeeper disableAI "MOVE";
 	_shopkeeper disableAI "AUTOCOMBAT";
 	_shopkeeper setVariable ["NOAI",true,false];
-	_shopkeeper setVariable ["shop",true,true];
 
 	_shopkeeper setDir (_dir-180);
 
 	[_shopkeeper] call OT_fnc_initHarbor;
 	_shopkeeper setVariable ["harbor",true,true];
+	_shopkeeper setVariable ["loc",format["%1",_pos],true];
 	sleep 0.5;
 }foreach(_activeshops);
 

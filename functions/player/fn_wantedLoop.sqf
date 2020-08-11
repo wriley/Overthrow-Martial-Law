@@ -119,6 +119,22 @@ if !(captive _unit) then {
 		};
 	}else{
 		if(_unit call OT_fnc_unitSeenNATO && !_gottem) then {
+			// talking to faction dealers
+			if(OT_interactingWith getVariable ["factionrep",false]) exitWith {
+				_unit setCaptive false;
+				[_unit] call OT_fnc_revealToNATO;
+				if(isPlayer _unit) then {
+					"You've been caught dealing in the Black Market!" call OT_fnc_notifyMinor;
+				};
+			};
+			// talking to gun dealers
+			if(OT_interactingWith getVariable ["gundealer",false]) exitWith {
+				_unit setCaptive false;
+				[_unit] call OT_fnc_revealToNATO;
+				if(isPlayer _unit) then {
+					"You've been caught dealing with a Gun dealer!" call OT_fnc_notifyMinor;
+				};
+			};
 			// smoking
 			if(_unit getvariable ["ot_isSmoking",false]) exitWith {
 				_unit setCaptive false;

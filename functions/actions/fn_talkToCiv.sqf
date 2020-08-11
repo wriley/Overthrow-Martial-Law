@@ -1,7 +1,10 @@
 private _civ = _this;
 
 OT_interactingWith = _civ;
-
+[] spawn {
+	waitUntil {sleep .2;!dialog};
+	OT_interactingWith = objNull;
+};
 private _town = (getpos player) call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 private _civprice = [_town,"CIV",_standing] call OT_fnc_getPrice;
@@ -28,24 +31,21 @@ private _canSell = false;
 private _canSellDrugs = true;
 private _canIntel = true;
 private _canMission = false;
-private _canTute = false;
+private _canJob = false;
 private _canGangJob = false;
-private _isShop = false;
+private _canShopJob = false;
 
-if !((_civ getvariable ["shop",[]]) isEqualTo []) then {_canSellDrugs = true;_canRecruit = false;_canBuy=true;_canSell=true;_isShop = true};
-if (_civ getvariable ["carshop",false]) then {_canSellDrugs = true;_canRecruit = false;_canBuyVehicles=true};
-if (_civ getvariable ["harbor",false]) then {_canSellDrugs = true;_canRecruit = false;_canBuyBoats=true};
-if (_civ getvariable ["gundealer",false]) then {_canSellDrugs = false;_canRecruit = false;_canBuyGuns=true;_canIntel=false;_canTute =true};
-if (_civ getvariable ["employee",false]) then {_canSellDrugs = false;_canRecruit = false;_canBuyGuns=false;_canIntel=false};
-if (_civ getvariable ["notalk",false]) then {_canSellDrugs = false;_canRecruit = false;_canBuyGuns=false;_canIntel=false};
-if (_civ getvariable ["factionrep",false]) then {_canSellDrugs = false;_canRecruit = false;_canBuyGuns=false;_canIntel=false;_canMission=true};
-if (_civ getvariable ["crimleader",false]) then {_canSellDrugs = true;_canRecruit = false;_canBuyGuns=false;_canIntel=false;_canMission=false;_canGangJob=true};
-if (_civ getvariable ["criminal",false]) then {_canSellDrugs = true;_canRecruit = false;_canBuyGuns=false;_canIntel=false;_canMission=false};
+if (_civ getvariable ["shop",false]) then {  _canRecruit=false; _canBuy=true; _canSell=true; _canShopJob=true};
+if (_civ getvariable ["carshop",false]) then {	  _canRecruit=false; _canBuyVehicles=true};
+if (_civ getvariable ["harbor",false]) then {	  _canRecruit=false; _canBuyBoats=true; _canShopJob=true};
+if (_civ getvariable ["gundealer",false]) then {  _canRecruit=false; _canSellDrugs=false; _canBuyGuns=true; _canIntel=false; _canJob=true; _canBuy=false};
+if (_civ getvariable ["employee",false]) then {	  _canRecruit=false; _canSellDrugs=false; _canBuyGuns=false; _canIntel=false};
+if (_civ getvariable ["notalk",false]) then {	  _canRecruit=false; _canSellDrugs=false; _canBuyGuns=false; _canIntel=false};
+if (_civ getvariable ["factionrep",false]) then { _canRecruit=false; _canSellDrugs=false; _canBuyGuns=false; _canIntel=false; _canMission=true};
+if (_civ getvariable ["crimleader",false]) then { _canRecruit=false; _canSellDrugs=true; _canBuyGuns=false; _canIntel=false; _canGangJob=true};
+if (_civ getvariable ["criminal",false]) then {	  _canRecruit=false; _canIntel=false; _canBuyGuns=false;};
 
-if (_civ call OT_fnc_hasOwner) then {_canRecruit = false;_canIntel = false;_canSellDrugs=false};
-
-if !((_civ getvariable ["garrison",""]) isEqualTo "") then {_canRecruit = false;_canIntel = false;_canSellDrugs=false};
-if !((_civ getvariable ["polgarrison",""]) isEqualTo "") then {_canRecruit = false;_canIntel = false;_canSellDrugs=false};
+if ((_civ call OT_fnc_hasOwner) || !((_civ getvariable ["garrison",""]) isEqualTo "") || !((_civ getvariable ["polgarrison",""]) isEqualTo "")) then {_canRecruit = false; _canIntel = false; _canSellDrugs=false};
 
 private _delivery = _civ getVariable ["OT_delivery",[]];
 if((count _delivery) > 0) then {
@@ -275,7 +275,7 @@ if (_canBuy) then {
 	];
 };
 
-if (_canTute) then {
+if (_canJob) then {
 	//gun dealer
 	_options pushBack [format["Do you have any jobs for me?"], {
 		OT_jobsOffered = [];
@@ -382,6 +382,7 @@ if (_canTute) then {
 		}
 	];
 
+	/*
 	_done = player getVariable ["OT_tutesDone",[]];
 	if !("NATO" in _done) then {
 		_options pushBack [
@@ -435,6 +436,7 @@ if (_canTute) then {
 			}
 		];
 	};
+	*/
 };
 
 if (_canBuyBoats) then {
@@ -455,6 +457,8 @@ if (_canBuyBoats) then {
 				lbSetPicture [1500,_idx,_cls call OT_fnc_vehicleGetPic];
 				lbSetData [1500,_idx,_cls];
 				lbSetValue [1500,_idx,_price];
+				ctrlEnable [1602, false];
+				ctrlEnable [1601, false];
 			}foreach(OT_boats);
 		}
 	];
@@ -594,7 +598,7 @@ if (_canSell) then {
 	];
 };
 
-if (_isShop) then {
+if (_canShopJob) then {
 	_options pushBack [format["Do you have any jobs for me?"], {
 		OT_jobsOffered = [];
 		private _town = (getpos player) call OT_fnc_nearestTown;

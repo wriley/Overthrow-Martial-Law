@@ -31,8 +31,8 @@ if (OT_HCEnabled) then {
 	[_dealer,HC2] spawn OT_fnc_MoveToHC;
 };
 
-_dealer setVariable ["shopcheck",true,true];
 _dealer setVariable ["gundealer",true,true];
+_dealer setVariable ["loc",format["%1",_pos],true];
 spawner setVariable [format ["gundealer%1",_town],_dealer,true];
 sleep 0.3;
 
