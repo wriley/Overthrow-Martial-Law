@@ -16,7 +16,8 @@ if !(_jobparams call _setup) exitWith {
     _active deleteAt (_active find _id);
     spawner setVariable ["OT_activeJobIds",_active,true];
 };
-
+"Job accepted, you can find it in the 'Jobs' screen" call OT_fnc_notifyMinor;
+[player,_markerPos,_info select 0] call OT_fnc_givePlayerWaypoint;
 [{
     params ["_id","_job","_repeat","_info","_markerPos","_setup","_fail","_success","_end","_jobparams","_expires"];
 
