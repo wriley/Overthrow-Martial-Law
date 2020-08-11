@@ -31,14 +31,14 @@ private _canSell = false;
 private _canSellDrugs = true;
 private _canIntel = true;
 private _canMission = false;
-private _canTute = false;
+private _canJob = false;
 private _canGangJob = false;
 private _canShopJob = false;
 
 if (_civ getvariable ["shop",false]) then {  _canRecruit=false; _canBuy=true; _canSell=true; _canShopJob=true};
 if (_civ getvariable ["carshop",false]) then {	  _canRecruit=false; _canBuyVehicles=true};
 if (_civ getvariable ["harbor",false]) then {	  _canRecruit=false; _canBuyBoats=true; _canShopJob=true};
-if (_civ getvariable ["gundealer",false]) then {  _canRecruit=false; _canSellDrugs=false; _canBuyGuns=true; _canIntel=false; _canTute=true; _canBuy=false};
+if (_civ getvariable ["gundealer",false]) then {  _canRecruit=false; _canSellDrugs=false; _canBuyGuns=true; _canIntel=false; _canJob=true; _canBuy=false};
 if (_civ getvariable ["employee",false]) then {	  _canRecruit=false; _canSellDrugs=false; _canBuyGuns=false; _canIntel=false};
 if (_civ getvariable ["notalk",false]) then {	  _canRecruit=false; _canSellDrugs=false; _canBuyGuns=false; _canIntel=false};
 if (_civ getvariable ["factionrep",false]) then { _canRecruit=false; _canSellDrugs=false; _canBuyGuns=false; _canIntel=false; _canMission=true};
@@ -275,7 +275,7 @@ if (_canBuy) then {
 	];
 };
 
-if (_canTute) then {
+if (_canJob) then {
 	//gun dealer
 	_options pushBack [format["Do you have any jobs for me?"], {
 		OT_jobsOffered = [];
@@ -382,6 +382,7 @@ if (_canTute) then {
 		}
 	];
 
+	/*
 	_done = player getVariable ["OT_tutesDone",[]];
 	if !("NATO" in _done) then {
 		_options pushBack [
@@ -435,6 +436,7 @@ if (_canTute) then {
 			}
 		];
 	};
+	*/
 };
 
 if (_canBuyBoats) then {
