@@ -1,7 +1,6 @@
-
-params ["_cls","_num"];
+params ["_id","_cls","_num"];
 private _ret = true;
-private _d = warehouse getVariable [format["item_%1",_cls],[_cls,0,[0]]];
+private _d = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0,[0]]];
 if(_d isEqualType []) then {
 	_d params ["","_in"];
 
@@ -12,12 +11,12 @@ if(_d isEqualType []) then {
 
 	private _newnum = _in - _num;
 	if(_newnum > 0) then {
-		warehouse setVariable [format["item_%1",_cls],[_cls,_newnum],true];
+		warehouse setVariable [format["warehouse-%1_%2",_id,_cls],[_cls,_newnum],true];
 	}else{
-		warehouse setVariable [format["item_%1",_cls],nil,true];
+		warehouse setVariable [format["warehouse-%1_%2",_id,_cls],nil,true];
 	};
 }else{
 	_ret = false;
-	warehouse setVariable [format["item_%1",_cls],nil,true];
+	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],nil,true];
 };
 _ret

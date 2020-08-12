@@ -15,9 +15,11 @@ _this spawn {
 	private _veh = _dest;
 	private _toname = (typeof _veh) call OT_fnc_vehicleGetName;
 	private _iswarehouse = false;
+	private _id = 0;
 	if((typeof _veh) == OT_warehouse) then {
 		_toname = "Warehouse";
 		_iswarehouse = true;
+		_id = [_veh] call OT_fnc_getBuildID;
 	};
 
 	private _target = _source;
@@ -51,11 +53,11 @@ _this spawn {
 	if(_iswarehouse) then {
 		{
 			_x params ["_cls", "_num"];
-			_d = warehouse getVariable [format["item_%1",_cls],[_cls,0]];
+			_d = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
 			if(_d isEqualType []) then {
 				_d params ["_wCls",["_in",0]];
 				_in =  _d select 1;
-				warehouse setVariable[format["item_%1",_cls],[_cls,_in + _num],true];
+				warehouse setVariable[format["warehouse-%1_%2",_id,_cls],[_cls,_in + _num],true];
 			};
 		}foreach(_target call OT_fnc_unitStock);
 		clearMagazineCargoGlobal _target;

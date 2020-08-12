@@ -451,6 +451,7 @@ class CfgFunctions
 			class applyLoadoutFromWarehouse {};
 			class qtyInWarehouse {};
 			class isInWarehouse {};
+			class getWarehouseID {};
 		};
 
 		/*

@@ -4,16 +4,11 @@ OT_taking = true;
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 private _num = _this select 0;
-private _d = warehouse getVariable [format["item_%1",_cls],[_cls,0]];
-_d params ["_wCls", ["_in",0,[0]]];
-
-if(_num > _in || _num isEqualTo -1) then {
-	_num = _in;
-};
 
 _count = 0;
 private _veh = (vehicle player);
 private	_iswarehouse = false;
+private _id = 0;
 if(_veh isEqualTo player) then {
 	_b = OT_warehouseTarget call OT_fnc_nearestRealEstate;
 	if(typename _b isEqualTo "ARRAY") then {
@@ -21,11 +16,19 @@ if(_veh isEqualTo player) then {
 		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 			_iswarehouse = true;
 			_veh = OT_warehouseTarget;
+			_id = [_building] call OT_fnc_getBuildID;
 		};
 	};
 };
 if(_veh isEqualTo player) exitWith {
 	"No warehouse within range" call OT_fnc_notifyMinor;
+};
+
+private _d = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
+_d params ["_wCls", ["_in",0,[0]]];
+
+if(_num > _in || _num isEqualTo -1) then {
+	_num = _in;
 };
 
 while {_count < _num} do {
@@ -55,9 +58,9 @@ while {_count < _num} do {
 
 private _newnum = _in - _num;
 if(_newnum > 0) then {
-	warehouse setVariable [format["item_%1",_cls],[_cls,_newnum],true];
+	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],[_cls,_newnum],true];
 }else{
-	warehouse setVariable [format["item_%1",_cls],nil,true];
+	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],nil,true];
 };
 
 [] call OT_fnc_warehouseDialog;

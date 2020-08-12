@@ -1,12 +1,12 @@
-params ["_unit",["_linkedItems",false]];
+params ["_id","_unit",["_linkedItems",false]];
 
 if(binocular _unit != "") then {
-	[binocular _unit,1] call OT_fnc_addToWarehouse;
+	[_id, binocular _unit,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon binocular _unit;
 };
 
 if(hmd _unit != "") then {
-	[hmd _unit,1] call OT_fnc_addToWarehouse;
+	[_id, hmd _unit,1] call OT_fnc_addToWarehouse;
 	_unit unlinkItem hmd _unit;
 };
 
@@ -33,52 +33,52 @@ if(hmd _unit != "") then {
 			};
 			_unit removeItem _cls;
 		};
-		[_cls,1] call OT_fnc_addToWarehouse;
+		[_id,_cls,1] call OT_fnc_addToWarehouse;
 		_count = _count + 1;
 	};
 }foreach(_unit call OT_fnc_unitStock);
 
 if(headgear _unit != "") then {
-	[headgear _unit,1] call OT_fnc_addToWarehouse;
+	[_id,headgear _unit,1] call OT_fnc_addToWarehouse;
 	removeHeadgear _unit;
 };
 
 if(backpack _unit != "") then {
-	[backpack _unit,1] call OT_fnc_addToWarehouse;
+	[_id,backpack _unit,1] call OT_fnc_addToWarehouse;
 	removeBackpack _unit;
 };
 
 if(vest _unit != "") then {
-	[vest _unit,1] call OT_fnc_addToWarehouse;
+	[_id,vest _unit,1] call OT_fnc_addToWarehouse;
 	removeVest _unit;
 };
 
 if(goggles _unit != "") then {
-	[goggles _unit,1] call OT_fnc_addToWarehouse;
+	[_id,goggles _unit,1] call OT_fnc_addToWarehouse;
 	removeGoggles _unit;
 };
 
 if(primaryWeapon _unit != "") then {
 	{
-		[_x,1] call OT_fnc_addToWarehouse;
+		[_id,_x,1] call OT_fnc_addToWarehouse;
 	}foreach(primaryWeaponItems _unit);
 	removeAllPrimaryWeaponItems _unit;
-	[(primaryWeapon _unit) call BIS_fnc_baseWeapon,1] call OT_fnc_addToWarehouse;
+	[_id,(primaryWeapon _unit) call BIS_fnc_baseWeapon,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon primaryWeapon _unit;
 };
 
 if(secondaryWeapon _unit != "") then {
-	[secondaryWeapon _unit,1] call OT_fnc_addToWarehouse;
+	[_id,secondaryWeapon _unit,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon secondaryWeapon _unit;
 };
 
 
 if(handgunWeapon _unit != "") then {
 	{
-		[_x,1] call OT_fnc_addToWarehouse;
+		[_id,_x,1] call OT_fnc_addToWarehouse;
 	}foreach(handgunItems _unit);
 	removeAllHandgunItems _unit;
-	[handgunWeapon _unit,1] call OT_fnc_addToWarehouse;
+	[_id,handgunWeapon _unit,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon handgunWeapon _unit;
 };
 
@@ -91,7 +91,7 @@ if(_linkedItems) then {
 			}else{
 				_unit unlinkItem _x;
 			};
-			[_x,1] call OT_fnc_addToWarehouse;
+			[_id,_x,1] call OT_fnc_addToWarehouse;
 		};
 	}foreach(assignedItems _unit);
 };
