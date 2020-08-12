@@ -265,6 +265,8 @@ if(modeCost > 0) then {
 			if(_typecls isEqualTo "Base") then {
 				if(({side _x isEqualTo west || side _x isEqualTo east} count ((getpos modeTarget) nearEntities 200)) > 0) exitWith {
 					"You cannot build a FOB so close to enemies." call OT_fnc_notifyMinor;
+					detach modeTarget;
+					deleteVehicle modeTarget;
 					_proceed = false;
 				};
 				createDialog "OT_dialog_name";

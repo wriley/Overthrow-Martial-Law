@@ -2,10 +2,12 @@ params ["_soldier","_pos","_group",["_takeFromWarehouse",true],["_rank",3]];
 _soldier params ["_cost","_cls","_loadout","_clothes","_allitems"];
 if(_cls == "Police") then {_cls = OT_Unit_Police};
 //Take from warehouse
+_takeFromWarehouse = false; // temporary
 if(_takeFromWarehouse) then {
 	{
 		_x params ["_cls","_num"];
-		[_cls,_num] call OT_fnc_removeFromWarehouse;
+		// Blanks ToDo - get id of closest warehouse
+		[_id,_cls,_num] call OT_fnc_removeFromWarehouse;
 	}foreach(_allitems call BIS_fnc_consolidateArray);
 };
 

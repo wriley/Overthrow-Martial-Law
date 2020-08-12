@@ -2,7 +2,10 @@ buttonSetAction [1604, '[] spawn OT_fnc_warehouseDialog'];
 private _cursel = lbCurSel 1500;
 lbClear 1500;
 _SearchTerm = ctrlText 1700;
-private _itemVars = (allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")};
+
+_count = 0;
+private _id = [player] call OT_fnc_getWarehouseID;
+private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count _id)]) isEqualTo (format["warehouse-%1_",_id]))};
 _itemVars sort true;
 private _numitems = 0;
 {

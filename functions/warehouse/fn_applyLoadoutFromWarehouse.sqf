@@ -9,7 +9,7 @@ removeVest _unit;
 
 _unit setUnitLoadout _loadout;
 
-private _missing = _unit call OT_fnc_verifyLoadoutFromWarehouse;
+private _missing = [_id, _unit] call OT_fnc_verifyLoadoutFromWarehouse;
 
 if(_charge) then {
     private _cost = 0;

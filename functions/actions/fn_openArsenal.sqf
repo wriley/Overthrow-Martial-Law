@@ -14,11 +14,12 @@ private _closed = -1;
 private _missing = [];
 
 if(_target isEqualType "") then {
-    [_unit,true] call OT_fnc_dumpIntoWarehouse;
+	private _id = [_unit] call OT_fnc_getWarehouseID;
+    [_id,_unit,true] call OT_fnc_dumpIntoWarehouse;
     _unit linkItem "ItemMap";
     {
-        if(_x select [0,5] isEqualTo "item_") then {
-            private _d = warehouse getVariable [_x,[_x select [5],0,[0]]];
+        if(_x select [0,11+(count _id)] isEqualTo (format["warehouse-%1_",_id]) then {
+            private _d = warehouse getVariable [_x,[_x select [11+(count _id)],0,[0]]];
             if(_d isEqualType []) then {
                 _items pushback _d#0;
             };
@@ -27,7 +28,7 @@ if(_target isEqualType "") then {
 
     _closed = ["ace_arsenal_displayClosed", {
         _thisArgs params ["_unit"];
-        _unit call OT_fnc_verifyLoadoutFromWarehouse;
+        [_id, _unit] call OT_fnc_verifyLoadoutFromWarehouse;
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;
     },[_unit]] call CBA_fnc_addEventHandlerArgs;

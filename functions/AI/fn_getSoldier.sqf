@@ -73,7 +73,7 @@ private _bought = [];
 {
 	_x params ["_cls","_num"];
 	if !(_cls isEqualTo "ItemMap") then {
-	 	_whqty = _cls call OT_fnc_qtyInWarehouse;
+	 	_whqty = [_id, _cls] call OT_fnc_qtyInWarehouse;
 	 	if(_whqty < _num) then {_num = _num - _whqty} else {_num = 0};
 	 	if(_num > 0) then {
 			_cost = _cost + (([OT_nation,_cls,30] call OT_fnc_getPrice) * _num);

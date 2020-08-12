@@ -1,4 +1,4 @@
-params ["_range"];
+params ["_id","_range"];
 private _found = "";
 private _possible = [];
 {
@@ -15,7 +15,7 @@ private _possible = [];
 			if(_max >= _range) then {_possible pushback _cls};
 		};
 	};
-}foreach((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")});
+}foreach((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo (format["warehouse-%1_",_id]))});
 
 if(count _possible > 0) then {
 	private _sorted = [_possible,[],{(cost getvariable [_x,[200]]) select 0},"DESCEND"] call BIS_fnc_SortBy;

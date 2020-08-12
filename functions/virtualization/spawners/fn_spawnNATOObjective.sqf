@@ -269,7 +269,7 @@ private _airgarrison = server getVariable [format["airgarrison%1",_name],[]];
 }foreach(_airgarrison);
 
 private _vehgarrison = server getVariable [format["vehgarrison%1",_name],[]];
-_pos = [];
+private _pos = [];
 private _road = objNull;
 {
 	private _vgroup = creategroup blufor;
@@ -279,18 +279,15 @@ private _road = objNull;
 
 	private _pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
 	if (_vehtype == "RHS_MELB_AH6M") then {
-		private _pos = [_posTown, 25, 250, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
+		_pos = [_posTown, 25, 250, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
 	}else{
 		if(_x isKindOf "StaticWeapon") then {
-			private _pos = [_posTown, 25, 250, 1, 0, 1, 0] call BIS_fnc_findSafePos;
+			_pos = [_posTown, 25, 250, 1, 0, 1, 0] call BIS_fnc_findSafePos;
 		}else{
-			private _pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
+			_pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
 		};
 	};
 
-	if ((count _pos)==0) then {//added to correct error
-	    _pos = [0,0,0];
-	};
 	private _dir = random 360;
 
 	private _loops = 0;
