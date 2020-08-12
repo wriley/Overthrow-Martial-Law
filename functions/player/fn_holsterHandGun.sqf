@@ -30,8 +30,8 @@ if (!(handgunWeapon player isEqualTo "") && (currentWeapon player isEqualTo hand
 			player setVariable ["handgunState", [], true];
 			player setVariable ["handgunItems", [], true];
 		};
-		[] spawn { sleep 1.5; OT_finishedHolster = true; };
 	} else {
 		hint "You don't have a weapon holstered";
 	};
+	[] spawn { sleep 1.5; OT_finishedHolster = true; };
 };
