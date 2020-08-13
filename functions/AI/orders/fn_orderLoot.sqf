@@ -49,7 +49,7 @@ if (count _myunits > 1) then {
 		private _supply = objNull;
 		private _veh = vehicle _unit;
 
-		if ((count assignedVehicleRole _unit > 0) || ((driver _veh == _unit) && (typeof _veh != "OT_I_Truck_recovery"))) then {
+		if ((count assignedVehicleRole _unit > 0) || ((driver _veh == _unit) && (vehicle _unit != _unit) && (typeof _veh != "OT_I_Truck_recovery"))) then {
 			_role = assignedVehicleRole _unit select 0;
 			_hasSupply = ((_veh getVariable ["OT_attachedClass",""]) in ["B_CargoNet_01_ammo_F"]);
 			if (_hasSupply) then {
@@ -95,7 +95,7 @@ if (count _myunits > 1) then {
 					_timeOut = time + 30;
 					waitUntil {unitReady _unit || !alive _unit || isNull _t || _timeOut < time};
 					_unit doMove position _x;
-					waitUntil { (unitReady _unit) && ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _x < 5)) };
+					waitUntil { ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _x < 6)) };
 
 					if((!alive _unit) || (isNull _t) || (isNull _x)) exitWith {};
 
@@ -106,7 +106,7 @@ if (count _myunits > 1) then {
 			_timeOut = time + 30;
 			waitUntil {(unitReady _unit) || (!alive _unit) || (isNull _t) || (_timeOut < time)};
 			_unit doMove position _deadguy;
-			waitUntil { (unitReady _unit) && ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _deadguy < 5)) };
+			waitUntil { ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _deadguy < 6)) };
 
 			if((!alive _unit) || (_timeOut < time) || (isNull _t) || (isNull _deadguy)) exitWith {
 				_unit globalchat format ["<%1>: Cant get to a corpse, cancelling loot order", name _unit];
@@ -122,7 +122,7 @@ if (count _myunits > 1) then {
 			_timeOut = time + 30;
 			waitUntil {(unitReady _unit) || (!alive _unit) || (isNull _t) || (_timeOut < time)};
 			_unit doMove getpos _t;
-			waitUntil { (unitReady _unit) && ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _t < 8)) };
+			waitUntil { ((!alive _unit) || (isNull _t) || (_timeOut < time) || (isNull _deadguy) || (_unit distance2D position _t < 10)) };
 
 			// Dump stuff
 			if((!alive _unit) || (isNull _t)) exitWith {};
