@@ -44,7 +44,7 @@ if !(_pos isEqualType []) then {
 };
 _pos set [2,1];
 _veh = createVehicle [_vehtype, [0,0,1000+random 1000], [], 0, "CAN_COLLIDE"];
-[_veh,"","",""] call OT_fnc_initMilitaryVeh;
+[_veh] call OT_fnc_initMilitaryVeh;
 _veh setDir (_dir);
 _veh setPosATL _pos;
 _veh setVariable ["garrison","HQ",false];

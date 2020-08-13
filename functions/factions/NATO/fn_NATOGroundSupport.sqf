@@ -17,7 +17,7 @@ while {_count < _num} do {
 
 	_veh = createVehicle [_vehtype, _pos, [], 0,""];
 	_veh setVariable ["garrison","HQ",false];
-	[_veh,"","",""] call OT_fnc_initMilitaryVeh;
+	[_veh] call OT_fnc_initMilitaryVeh;
 
 	clearWeaponCargoGlobal _veh;
 	clearMagazineCargoGlobal _veh;

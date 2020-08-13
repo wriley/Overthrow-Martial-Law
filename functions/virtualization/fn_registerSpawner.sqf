@@ -21,7 +21,7 @@ OT_spawnUniqueCounter = OT_spawnUniqueCounter + 1;
 _id = format["spawn%1",OT_spawnUniqueCounter];
 
 
-if(OT_deepDebug) then {
+if(OT_DEBUG) then {
     diag_log format ["Overthrow: Registered %1 @ %2 %3",_id,_start,_params];
 };
 
