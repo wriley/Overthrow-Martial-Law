@@ -1,6 +1,6 @@
 closeDialog 0;
 
-private _soldier = "Police" call OT_fnc_getSoldier;
+private _soldier = ["Police", (getpos player)] call OT_fnc_getSoldier;
 
 _soldier params ["","","_loadout","_clothes"];
 

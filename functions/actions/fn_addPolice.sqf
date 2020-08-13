@@ -4,7 +4,7 @@ private _amt = _this;
 private _town = (getpos player) call OT_fnc_nearestTown;
 private _money = player getVariable ["money",0];
 
-private _soldier = "Police" call OT_fnc_getSoldier;
+private _soldier = ["Police", (getpos player)] call OT_fnc_getSoldier;
 private _price = _soldier select 0;
 
 if(_money < (_amt * _price)) exitWith {"You cannot afford that" call OT_fnc_notifyMinor};

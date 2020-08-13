@@ -8,7 +8,7 @@ if(({side _x isEqualTo west || side _x isEqualTo east} count (_pos nearEntities 
 	"You cannot recruit with enemies nearby" call OT_fnc_notifyMinor;
 };
 
-private _soldier = _cls call OT_fnc_getSoldier;
+private _soldier = [_cls, _pos] call OT_fnc_getSoldier;
 
 private _money = player getVariable ["money",0];
 private _cost = _soldier select 0;

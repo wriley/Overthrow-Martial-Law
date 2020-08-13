@@ -6,7 +6,7 @@ if !(_town in (server getvariable ["NATOabandoned",[]])) exitWith {"This police 
 _garrison = server getVariable [format['police%1',_town],0];
 createDialog "OT_dialog_police";
 
-private _soldier = "Police" call OT_fnc_getSoldier;
+private _soldier = ["Police", (getpos player)] call OT_fnc_getSoldier;
 _price =_soldier param [0,500];
 
 _effect = floor(_garrison / 2);

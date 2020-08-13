@@ -2,11 +2,12 @@ params ["_soldier","_pos","_group",["_takeFromWarehouse",true],["_rank",3]];
 _soldier params ["_cost","_cls","_loadout","_clothes","_allitems"];
 if(_cls == "Police") then {_cls = OT_Unit_Police};
 //Take from warehouse
-_takeFromWarehouse = false; // temporary
 if(_takeFromWarehouse) then {
 	{
 		_x params ["_cls","_num"];
-		// Blanks ToDo - get id of closest warehouse
+		private _warehouse = _pos call OT_fnc_nearestWarehouse;
+		_warehouse params ["_wpos", "_id"];
+		if (_wpos distance _pos > 300) exitWith { diag_log "No warehouse within 300m"; _takeFromWarehouse = false; };
 		[_id,_cls,_num] call OT_fnc_removeFromWarehouse;
 	}foreach(_allitems call BIS_fnc_consolidateArray);
 };

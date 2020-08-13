@@ -1,15 +1,15 @@
-private ["_town","_id","_pos","_building","_tracked","_civs","_vehs","_group","_all","_shopkeeper","_groups"];
 if (!isServer) exitwith {};
+params ["_town","_spawnid"];
 sleep random 2;
 
 _count = 0;
-params ["_town","_spawnid"];
-_posTown = server getVariable _town;
-_pop = server getVariable format["population%1",_town];
+private _building = objNull;
+private _posTown = server getVariable _town;
+private _pop = server getVariable format["population%1",_town];
 
-_groups = [];
+private _groups = [];
 
-_gundealerpos = server getVariable format["gundealer%1",_town];
+private _gundealerpos = server getVariable format["gundealer%1",_town];
 if(isNil "_gundealerpos") then {
 	_building = [_posTown,OT_gunDealerHouses] call OT_fnc_getRandomBuilding;
 	if(typename _building != "BOOL") then {
@@ -20,11 +20,11 @@ if(isNil "_gundealerpos") then {
 	};
 	server setVariable [format["gundealer%1",_town],_gundealerpos,true];
 };
-_group = createGroup civilian;
+private _group = createGroup civilian;
 _groups	pushback _group;
 
 _group setBehaviour "CARELESS";
-_dealer = _group createUnit [OT_civType_gunDealer, _gundealerpos, [],0, "NONE"];
+private _dealer = _group createUnit [OT_civType_gunDealer, _gundealerpos, [],0, "NONE"];
 
 [_dealer] call OT_fnc_initGunDealer;
 if (OT_HCEnabled) then {
@@ -32,7 +32,7 @@ if (OT_HCEnabled) then {
 };
 
 _dealer setVariable ["gundealer",true,true];
-_dealer setVariable ["loc",format["%1",_pos],true];
+_dealer setVariable ["loc",format["%1",_gundealerpos],true];
 spawner setVariable [format ["gundealer%1",_town],_dealer,true];
 sleep 0.3;
 

@@ -33,7 +33,7 @@ if(_price > -1) then {
 			]
     	};
         if(_cls isKindOf "Man") exitWith {
-            private _soldier = _cls call OT_fnc_getSoldier;
+            private _soldier = [_cls, (getpos player)] call OT_fnc_getSoldier;
             private _bought = _soldier select 5;
     		private _price = _soldier select 0;
 

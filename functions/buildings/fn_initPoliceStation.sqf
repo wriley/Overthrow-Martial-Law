@@ -7,7 +7,7 @@ if(_garrison == -1) then {
 	//First time
 	server setVariable [format['policepos%1',_town],_pos,true];
 
-	private _soldier = "Police" call OT_fnc_getSoldier;
+	private _soldier = ["Police", _pos] call OT_fnc_getSoldier;
 
 	private _spawnid = spawner getvariable [format["townspawnid%1",_town],-1];
 	private _groups = spawner getvariable [_spawnid,[]];

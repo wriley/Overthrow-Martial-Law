@@ -12,7 +12,7 @@ _posTown = server getVariable [format["policepos%1",_town],server getVariable _t
 
 _groups = [];
 
-private _soldier = "Police" call OT_fnc_getSoldier;
+private _soldier = ["Police"] call OT_fnc_getSoldier;
 
 _numNATO = server getVariable [format["police%1",_town],0];
 _count = 0;

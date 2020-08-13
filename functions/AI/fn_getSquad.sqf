@@ -12,7 +12,7 @@ private _soldiers = [];
 private _cost = 0;
 private _totalitems = [];
 {
-	_soldier = _x call OT_fnc_getSoldier;
+	_soldier = [_x, (getpos player)] call OT_fnc_getSoldier;
 	_totalitems = _totalitems + _soldier#4;
 	_soldiers pushback _soldier;
 }foreach(_comp);
