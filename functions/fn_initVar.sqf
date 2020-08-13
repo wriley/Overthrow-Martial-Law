@@ -125,7 +125,7 @@ OT_currentMissionFaction = "";
 OT_rankXP = [100,250,500,1000,4000,10000,100000];
 
 OT_adminMode = false;
-OT_deepDebug = false;
+OT_DEBUG = false;
 private _GetParam = [0, 1] select (paramsArray select 9);
 switch (_GetParam) do {
 	case 0: {OT_HCEnabled = false;};

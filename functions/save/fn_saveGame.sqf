@@ -26,12 +26,10 @@ missionNameSpace setVariable ["OT_saving",true,true];
 
 OT_autoSave_last_time = time + (OT_autoSave_time*60);
 
-if !(_quiet) then {
-	"Persistent Saving..." remoteExecCall ["OT_fnc_notifyAndLog",0,false];
-};
+"Persistent Saving..." remoteExecCall ["OT_fnc_notifyAndLog",0,false];
 
-if !(_quiet) then {
-	"Step 1/11 - Saving game state" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 1/11 - Saving game state";
 };
 
 // Save game array
@@ -66,8 +64,8 @@ private _server = (allVariables server select {
 	[_x,_val]
 };
 
-if !(_quiet) then {
-	"Step 2/11 - Saving buildings" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log  "Step 2/11 - Saving buildings";
 };
 
 private _prefixFilter = { !((toLower _x select [0,4]) in ["ace_","cba_","bis_","____"]) };
@@ -77,8 +75,8 @@ private _poses = (allVariables buildingpositions select _prefixFilter) apply {
 };
 _data pushback ["buildingpositions",_poses];
 
-if !(_quiet) then {
-	"Step 3/11 - Saving civilians" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 3/11 - Saving civilians";
 };
 
 private _civs = (allVariables OT_civilians select _prefixFilter) apply {
@@ -86,8 +84,8 @@ private _civs = (allVariables OT_civilians select _prefixFilter) apply {
 };
 _data pushback ["civilians",_civs];
 
-if !(_quiet) then {
-	"Step 4/11 - Saving player data" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 4/11 - Saving player data";
 };
 
 //get all online player data
@@ -110,8 +108,8 @@ private _tocheck = ((allMissionObjects "Static") + vehicles) select {
 };
 
 private _tosave = count _tocheck;
-if !(_quiet) then {
-	format["Step 5/11 - Saving vehicles (%1 to save)",_tosave] remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log format["Step 5/11 - Saving vehicles (%1 to save)",_tosave];
 };
 
 private _count = 0;
@@ -119,8 +117,8 @@ private _saved = 0;
 private _vehicles = (_tocheck) apply {
 	_saved = _saved + 1;
 	_count = _count + 1;
-	if(!_quiet && {_count % 200 == 0}) then {
-		format["Step 5/11 - Saving vehicles (%1 to save)",_tosave - _saved] remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+	if!(_quiet && {_count % 200 == 0}) then {
+		diag_log format["Step 5/11 - Saving vehicles (%1 to save)",_tosave - _saved];
 	};
 
 	private _s = _x call OT_fnc_unitStock;
@@ -158,7 +156,7 @@ private _vehicles = (_tocheck) apply {
 		private _attached = _veh getVariable ["OT_attachedWeapon",objNull];
 		private _att = [];
 
-		//get attached ammo or stock (if applicable)
+		//get attached ammo or supply crate stock
 		if(!(_attachedClass isEqualTo "") && { alive _attached }) then {
 			if (_attachedClass == "StaticWeapon") then {
 				_att = [_attachedClass,(_attached weaponsTurret [0]) apply { [_x,_attached ammo _x] }];
@@ -177,8 +175,8 @@ private _vehicles = (_tocheck) apply {
 };
 _data pushback ["vehicles",_vehicles];
 
-if !(_quiet) then {
-	"Step 6/11 - Saving warehouse" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 6/11 - Saving warehouse";
 };
 
 private _warehouse = [2]; //First element is save version
@@ -187,8 +185,8 @@ _warehouse append ((allVariables warehouse) select {((toLower _x select [0,5]) i
 });
 _data pushback ["warehouse",_warehouse];
 
-if !(_quiet) then {
-	"Step 7/11 - Saving recruits" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 7/11 - Saving recruits";
 };
 
 private _recruits = ((server getVariable ["recruits",[]]) select {
@@ -209,8 +207,8 @@ private _recruits = ((server getVariable ["recruits",[]]) select {
 };
 _data pushback ["recruits",_recruits];
 
-if !(_quiet) then {
-	"Step 8/11 - Saving squads" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 8/11 - Saving squads";
 };
 
 private _squads = ((server getVariable ["squads",[]]) select {
@@ -230,8 +228,8 @@ private _squads = ((server getVariable ["squads",[]]) select {
 };
 _data pushback ["squads",_squads];
 
-if !(_quiet) then {
-	"Step 9/11 - Saving bases" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 9/11 - Saving bases";
 };
 
 private _getGroupSoldiers = {
@@ -262,8 +260,8 @@ _revealed = server getVariable ["revealedFOBs",[]];
 _server pushback ["revealedFOBs",_revealed];
 
 
-if !(_quiet) then {
-	"Step 10/11 - Saving garrisons" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 10/11 - Saving garrisons";
 };
 
 {
@@ -284,21 +282,17 @@ _data pushback ["autosave",[OT_autoSave_time,OT_autoSave_last_time]];
 _data pushBack ["recruitables",OT_Recruitables];
 _data pushBack ["policeLoadout",OT_Loadout_Police];
 
-if !(_quiet) then {
-	"Step 11/11 - Exporting" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
+if!(_quiet) then {
+	diag_log "Step 11/11 - Exporting";
 };
 
 profileNameSpace setVariable [OT_saveName,_data];
 if (isDedicated) then {
-	if !(_quiet) then {
-		"Saving to dedicated server.. not long now" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
-	};
 	saveProfileNamespace;
 };
 
-if !(_quiet) then {
-	"Persistent Save Completed" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
-	"Persistent Save Complete!" remoteExec ["OT_fnc_notifyGood",0,false];
+if!(_quiet) then {
+	diag_log "Persistent Save Completed";
 };
 
 /* save/load by string doesn't work, who wants to fix it? nobody.
@@ -307,3 +301,4 @@ if (!_autoSave && !(_user isEqualTo objNull)) then {
 };
 */
 missionNameSpace setVariable ["OT_saving",false,true];
+"Persistent Save Complete!" remoteExec ["OT_fnc_notifyGood",0,false];
