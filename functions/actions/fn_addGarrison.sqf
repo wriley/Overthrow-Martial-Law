@@ -1,19 +1,8 @@
 params ["_p","_create",["_charge",true],["_rank",3]];
 
-private _b = _p call OT_fnc_nearestBase;
-private _bp = _b select 0;
-private _pos = _bp;
-
-private _o = _p call OT_fnc_nearestObjective;
-private _op = _o select 0;
-private _oradius = _o select 2;
-
-private _code = format["fob%1",_pos];
-
-if((_bp distance _op) < (_oradius/2)) then {
-	_pos = _op;
-    _code = _o select 1;
-};
+private _obj = _p call OT_fnc_nearestObjectiveOrCommsOrBaseOrFob;
+private _pos = _obj select 0;
+private _code = _obj select 1;
 
 if(
     (({side _x isEqualTo west || side _x isEqualTo east} count (_pos nearEntities 50)) > 0)

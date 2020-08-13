@@ -340,6 +340,8 @@ class CfgFunctions
 			class nearestObjective {};
 			class nearestObjectiveNoComms {};
 			class nearestObjectiveOrFOB {};
+			class nearestObjectiveOrBase {};
+			class nearestObjectiveOrCommsOrBaseOrFob {};
 			class nearestPositionRegion {};
 			class nearestTown {};
 			class getRegion {};
