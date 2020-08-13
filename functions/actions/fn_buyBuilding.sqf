@@ -37,7 +37,10 @@ if(_handled) then {
 		private _id = [_building] call OT_fnc_getBuildID;
 		[_building,getPlayerUID player] call OT_fnc_setOwner;
 		[-_price] call OT_fnc_money;
-
+		if (typeOf _building in [OT_warehouse]) then {
+			OT_allWarehouses pushback _building;
+			publicVariable "OT_allWarehouses";
+		};
 		buildingpositions setVariable [_id,position _building,true];
 		_owned pushback _id;
 		[player,"Building Purchased",format["Bought: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),(getpos _building) call OT_fnc_nearestTown,_price]] call BIS_fnc_createLogRecord;
@@ -45,7 +48,7 @@ if(_handled) then {
 	}else{
 		// Fetch the list of buildable houses
 		private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
-		if((typeof _building) in OT_allRealEstate or {((typeOf _building) in _buildableHouses)}) then {
+		if ((typeof _building) in OT_allRealEstate || ((typeOf _building) in _buildableHouses)) then {
 			private _id = [_building] call OT_fnc_getBuildID;
 			[_building,nil] call OT_fnc_setOwner;
 			private _leased = player getVariable ["leased",[]];
@@ -61,7 +64,6 @@ if(_handled) then {
 			_owned deleteAt (_owned find _id);
 			[player,"Building Sold",format["Sold: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),(getpos _building) call OT_fnc_nearestTown,_sell]] call BIS_fnc_createLogRecord;
 			[_sell] call OT_fnc_money;
-
 		// Fallback for unknown buildings
 		}else{
 			_owned deleteAt (_owned find ([_building] call OT_fnc_getBuildID));

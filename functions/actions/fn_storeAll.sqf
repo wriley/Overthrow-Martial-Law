@@ -20,5 +20,4 @@ if(_b isEqualType []) then {
 if(_notvehicle && _objects isEqualTo []) exitWith {
 	"No warehouse within range" call OT_fnc_notifyMinor;
 };
-
 [_target, (_objects select 0)] call OT_fnc_transferHelper;

@@ -10,15 +10,16 @@ private _items = ["ItemMap"];
 private _backpacks = [];
 
 private _closed = -1;
-
+private _id = 0;
 private _missing = [];
 
 if(_target isEqualType "") then {
-	private _id = [_unit] call OT_fnc_getWarehouseID;
+	private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
+	_warehouse params ["","_id"];
     [_id,_unit,true] call OT_fnc_dumpIntoWarehouse;
     _unit linkItem "ItemMap";
     {
-        if(_x select [0,11+(count _id)] isEqualTo (format["warehouse-%1_",_id]) then {
+        if(_x select [0,11+(count _id)] isEqualTo (format["warehouse-%1_",_id])) then {
             private _d = warehouse getVariable [_x,[_x select [11+(count _id)],0,[0]]];
             if(_d isEqualType []) then {
                 _items pushback _d#0;
@@ -28,6 +29,9 @@ if(_target isEqualType "") then {
 
     _closed = ["ace_arsenal_displayClosed", {
         _thisArgs params ["_unit"];
+		private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
+		_warehouse params ["","_id"];
+		
         [_id, _unit] call OT_fnc_verifyLoadoutFromWarehouse;
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;

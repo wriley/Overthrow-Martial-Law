@@ -2,7 +2,7 @@ closeDialog 0;
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 
-private _soldier = _cls call OT_fnc_getSoldier;
+private _soldier = [_cls, (getpos player)] call OT_fnc_getSoldier;
 
 _soldier params ["","","_loadout","_clothes"];
 

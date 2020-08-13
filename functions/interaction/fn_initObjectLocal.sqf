@@ -61,7 +61,9 @@ if(typeof _this isEqualTo OT_item_Storage) then {
 
 	_this addAction ["Dump Everything into Warehouse", {
 		OT_warehouseTarget = _this select 0;
-		[([OT_warehouseTarget] call OT_fnc_getWarehouseID),player] call OT_fnc_dumpIntoWarehouse
+		_warehouse = (getpos OT_warehouseTarget) call OT_fnc_nearestWarehouse;
+		_warehouse params ["","_id"];
+		[_id, player] call OT_fnc_dumpIntoWarehouse;
 	},nil,0,false,true,"","call OT_fnc_playerIsAtWarehouse"];
 
 	if(_this call OT_fnc_playerIsOwner) then {

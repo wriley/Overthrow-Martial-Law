@@ -41,7 +41,7 @@ OT_Loadout_Police = [
 
 //Default recruit types and squads
 OT_Recruitables = [
-    //0 Lt. Rifleman
+    //0 Rifleman
 	["I_soldier_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         [],
@@ -54,7 +54,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //1 Lt. Autorifleman
+    //1 Autorifleman
 	["I_Soldier_AR_F",[
         ["arifle_MX_SW_khk_F","","","optic_Aco",["100Rnd_65x39_caseless_khaki_mag",100],[],"bipod_01_F_khk"],
         [],
@@ -67,7 +67,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //2 Lt. Rifleman (AT)
+    //2 Rifleman (AT)
 	["I_Soldier_LAT_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         ["launch_RPG7_F","","","",["RPG7_F",1],[],""],
@@ -79,7 +79,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //3 Lt. Marksman
+    //3 Marksman
 	["I_Soldier_M_F",[
         ["arifle_MXM_khk_F","","","optic_sos_khk_f",["30Rnd_65x39_caseless_khaki_mag",30],[],"bipod_01_F_khk"],
         [],
@@ -91,7 +91,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //4 Lt. Sniper
+    //4 Sniper
 	["I_Sniper_F",[
         ["srifle_LRR_tna_F","","","optic_LRPS_tna_f",["7Rnd_408_Mag",7],[],""],
         [],
@@ -103,7 +103,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //5 Lt. Spotter
+    //5 Spotter
 	["I_Spotter_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         [],
@@ -116,7 +116,7 @@ OT_Recruitables = [
         ["Binocular","","","",[],[],""],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //6 Lt. Squad Leader
+    //6 Squad Leader
 	["I_Soldier_SL_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         [],
@@ -129,7 +129,7 @@ OT_Recruitables = [
         ["Binocular","","","",[],[],""],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //7 Lt. Medic
+    //7 Medic
 	["I_Medic_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         [],
@@ -142,7 +142,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //8 Lt. AT
+    //8 AT
 	["I_Soldier_AT_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         ["launch_B_Titan_short_tna_F","","","",["Titan_AT",1],[],""],
@@ -154,7 +154,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tnaF"]]
     ],
-    //9 Lt. AA
+    //9 AA
 	["I_Soldier_AA_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         ["launch_B_Titan_tna_F","","","",["Titan_AA",1],[],""],
@@ -166,7 +166,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tnaF"]]
     ],
-    //10 Lt. Assistant AT
+    //10 Assistant AT
 	["I_Soldier_AAT_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         [],
@@ -179,7 +179,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //11 Lt. Assistant AA
+    //11 Assistant AA
 	["I_Soldier_AAA_F",[
         ["arifle_MX_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],[],""],
         [],
@@ -192,7 +192,7 @@ OT_Recruitables = [
         [],
         ["ItemMap","","","","","NVGoggles_tna_F"]]
     ],
-    //12 Lt. Grenadier
+    //12 Grenadier
 	["I_Soldier_GL_F",[
         ["arifle_MX_GL_khk_F","","","optic_Aco",["30Rnd_65x39_caseless_khaki_mag",30],["1Rnd_HE_Grenade_shell",1],""],
         [],

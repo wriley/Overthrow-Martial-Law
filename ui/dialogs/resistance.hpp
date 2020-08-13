@@ -227,7 +227,7 @@ class OT_dialog_garrison
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			text = "+1 Lt. Rifleman"; //--- ToDo: Localize;
+			text = "Rifleman (Lt.)"; //--- ToDo: Localize;
 			x = 0.37625 * safezoneW + safezoneX;
 			y = 0.291 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -237,7 +237,7 @@ class OT_dialog_garrison
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
-			text = "+1 Lt. Autorifleman"; //--- ToDo: Localize;
+			text = "Autorifleman (Lt.)"; //--- ToDo: Localize;
 			x = 0.438125 * safezoneW + safezoneX;
 			y = 0.291 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -247,7 +247,7 @@ class OT_dialog_garrison
 		class RscButton_1602: RscOverthrowButton
 		{
 			idc = 1602;
-			text = "+1 Lt. Rifleman (AT)"; //--- ToDo: Localize;
+			text = "AT Rifleman (Lt.)"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.291 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -257,7 +257,7 @@ class OT_dialog_garrison
 		class RscButton_1603: RscOverthrowButton
 		{
 			idc = 1603;
-			text = "+1 Lt. Marksman"; //--- ToDo: Localize;
+			text = "Marksman (Lt.)"; //--- ToDo: Localize;
 			x = 0.561875 * safezoneW + safezoneX;
 			y = 0.291 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -268,7 +268,7 @@ class OT_dialog_garrison
 		class RscButton_1604: RscOverthrowButton
 		{
 			idc = 1604;
-			text = "+1 Lt. Sniper"; //--- ToDo: Localize;
+			text = "Sniper (Lt.)"; //--- ToDo: Localize;
 			x = 0.37625 * safezoneW + safezoneX;
 			y = 0.379 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -278,7 +278,7 @@ class OT_dialog_garrison
 		class RscButton_1605: RscOverthrowButton
 		{
 			idc = 1605;
-			text = "+1 Lt. Spotter"; //--- ToDo: Localize;
+			text = "Spotter (Lt.)"; //--- ToDo: Localize;
 			x = 0.438125 * safezoneW + safezoneX;
 			y = 0.379 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -288,7 +288,7 @@ class OT_dialog_garrison
 		class RscButton_1606: RscOverthrowButton
 		{
 			idc = 1606;
-			text = "+1 Lt. Squad Leader"; //--- ToDo: Localize;
+			text = "Squad Leader (Lt.)"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.379 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -298,7 +298,7 @@ class OT_dialog_garrison
 		class RscButton_1607: RscOverthrowButton
 		{
 			idc = 1607;
-			text = "+1 Lt. Medic"; //--- ToDo: Localize;
+			text = "Medic (Lt.)"; //--- ToDo: Localize;
 			x = 0.561875 * safezoneW + safezoneX;
 			y = 0.379 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -309,7 +309,7 @@ class OT_dialog_garrison
 		class RscButton_1608: RscOverthrowButton
 		{
 			idc = 1608;
-			text = "+1 Lt. AT"; //--- ToDo: Localize;
+			text = "AT (Lt.)"; //--- ToDo: Localize;
 			x = 0.37625 * safezoneW + safezoneX;
 			y = 0.467 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -319,7 +319,7 @@ class OT_dialog_garrison
 		class RscButton_1609: RscOverthrowButton
 		{
 			idc = 1609;
-			text = "+1 Lt. AA"; //--- ToDo: Localize;
+			text = "AA (Lt.)"; //--- ToDo: Localize;
 			x = 0.438125 * safezoneW + safezoneX;
 			y = 0.467 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -329,7 +329,7 @@ class OT_dialog_garrison
 		class RscButton_1610: RscOverthrowButton
 		{
 			idc = 1610;
-			text = "+1 Lt. Assist AT"; //--- ToDo: Localize;
+			text = "Assist AT (Lt.)"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.467 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -339,7 +339,7 @@ class OT_dialog_garrison
 		class RscButton_1611: RscOverthrowButton
 		{
 			idc = 1611;
-			text = "+1 Lt. Assist AA"; //--- ToDo: Localize;
+			text = "Assist AA (Lt.)"; //--- ToDo: Localize;
 			x = 0.561875 * safezoneW + safezoneX;
 			y = 0.467 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -350,7 +350,7 @@ class OT_dialog_garrison
 		class RscButton_1612: RscOverthrowButton
 		{
 			idc = 1612;
-			text = "+1 Lt. Grenadier"; //--- ToDo: Localize;
+			text = "Grenadier (Lt.)"; //--- ToDo: Localize;
 			x = 0.37625 * safezoneW + safezoneX;
 			y = 0.555 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
@@ -360,53 +360,53 @@ class OT_dialog_garrison
 		class RscButton_1613: RscOverthrowButton
 		{
 			idc = 1613;
-			text = "+1 Cpt. Grenadier"; //--- ToDo: Localize;
+			text = "Rifleman (Cpt)"; //--- ToDo: Localize;
 			x = 0.438125 * safezoneW + safezoneX;
 			y = 0.555 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
 			h = 0.077 * safezoneH;
-			action = "[getpos player,12,true,4] spawn OT_fnc_addGarrison";
+			action = "[getpos player,0,true,4] spawn OT_fnc_addGarrison";
 		};
 		class RscButton_1614: RscOverthrowButton
 		{
 			idc = 1614;
-			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			text = "Marksman (Cpt)"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.555 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
 			h = 0.077 * safezoneH;
-			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+			action = "[getpos player,3,true,4] spawn OT_fnc_addGarrison";
 		};
 		class RscButton_1615: RscOverthrowButton
 		{
 			idc = 1615;
-			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			text = "Sniper (Cpt)"; //--- ToDo: Localize;
 			x = 0.561875 * safezoneW + safezoneX;
 			y = 0.555 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
 			h = 0.077 * safezoneH;
-			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+			action = "[getpos player,4,true,4] spawn OT_fnc_addGarrison";
 		};
 
 		class RscButton_1616: RscOverthrowButton
 		{
 			idc = 1616;
-			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			text = "Spotter (Cpt)"; //--- ToDo: Localize;
 			x = 0.37625 * safezoneW + safezoneX;
 			y = 0.643 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
 			h = 0.077 * safezoneH;
-			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+			action = "[getpos player,5,true,4] spawn OT_fnc_addGarrison";
 		};
 		class RscButton_1617: RscOverthrowButton
 		{
 			idc = 1617;
-			text = "ToDo(Rifleman)"; //--- ToDo: Localize;
+			text = "Grenadier (Cpt)"; //--- ToDo: Localize;
 			x = 0.438125 * safezoneW + safezoneX;
 			y = 0.643 * safezoneH + safezoneY;
 			w = 0.0567187 * safezoneW;
 			h = 0.077 * safezoneH;
-			action = "[getpos player,0,true,3] spawn OT_fnc_addGarrison";
+			action = "[getpos player,12,true,4] spawn OT_fnc_addGarrison";
 		};
 		class RscButton_1618: RscOverthrowButton
 		{

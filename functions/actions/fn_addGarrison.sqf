@@ -24,10 +24,9 @@ if(isNull _group) then {
 if(_create isEqualType 1) then {
     private _sol = OT_recruitables select _create;
     _sol params ["_cls"];
-    private _soldier = _cls call OT_fnc_getSoldier;
-
+    _soldier = [_cls,_pos] call OT_fnc_getSoldier;
     private _money = player getVariable ["money",0];
-    private _cost = _soldier select 0;
+    private _cost = (_soldier select 0) * (_rank-2);
     if(_money < _cost && _charge) exitWith {
         format ["You need $%1",_cost] call OT_fnc_notifyMinor;
     };
