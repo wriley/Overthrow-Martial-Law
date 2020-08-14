@@ -4,8 +4,7 @@ lbClear 1500;
 _SearchTerm = ctrlText 1700;
 
 _count = 0;
-private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
-_warehouse params ["","_id"];
+private _id = ((getpos player) call OT_fnc_nearestWarehouse) select 1;
 private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count _id)]) isEqualTo (format["warehouse-%1_",_id]))};
 _itemVars sort true;
 private _numitems = 0;

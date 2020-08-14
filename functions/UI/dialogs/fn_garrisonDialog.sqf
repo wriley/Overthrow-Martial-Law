@@ -1,9 +1,13 @@
-createDialog "OT_dialog_garrison";
-disableSerialization;
-
 private _ob = (position player) call OT_fnc_nearestObjectiveOrCommsOrBaseOrFob;
 private _pos = _ob select 0;
 private _name = _ob select 1;
+
+private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
+_warehouse params ["_whPos"];
+if (_pos distance _whPos > 300) exitWith { hint format ["Cannot garrison %1, no warehouses found within 300m", _name]; };
+
+createDialog "OT_dialog_garrison";
+disableSerialization;
 
 _textctrl = (findDisplay 9000) displayCtrl 1100;
 _textctrl ctrlSetStructuredText parseText format["<t size='1.5' align='center'>%1</t>",_name];

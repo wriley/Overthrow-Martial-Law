@@ -38,7 +38,7 @@ if(_handled) then {
 		[_building,getPlayerUID player] call OT_fnc_setOwner;
 		[-_price] call OT_fnc_money;
 		if (typeOf _building in [OT_warehouse]) then {
-			OT_allWarehouses pushback _building;
+			OT_allWarehouses pushback (getpos _building);
 			publicVariable "OT_allWarehouses";
 		};
 		buildingpositions setVariable [_id,position _building,true];
