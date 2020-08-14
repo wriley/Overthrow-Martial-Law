@@ -15,12 +15,14 @@ _this spawn {
 	private _veh = _dest;
 	private _toname = (typeof _veh) call OT_fnc_vehicleGetName;
 	private _iswarehouse = false;
-	private _id = 0;
+	private _warehouse = objNull;
+
 	if((typeof _veh) == OT_warehouse) then {
 		_toname = "Warehouse";
 		_iswarehouse = true;
-		_id = [_veh] call OT_fnc_getBuildID;
+		_warehouse = (getpos _veh) call OT_fnc_nearestWarehouse;
 	};
+	_warehouse params ["","_id"];
 
 	private _target = _source;
 	if(_target isEqualTo player) then {

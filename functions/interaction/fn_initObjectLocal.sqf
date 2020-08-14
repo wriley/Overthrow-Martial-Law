@@ -40,10 +40,6 @@ if(typeof _this isEqualTo OT_item_Storage) then {
 	},nil,0,false,true,"","(_target call OT_fnc_positionIsAtWarehouse && _target distance player < 5)"];
 
 	_this addAction ["Take From Warehouse", {
-		private _iswarehouse = call OT_fnc_playerIsAtWarehouse;
-		if !(_iswarehouse) exitWith {
-			"No warehouse within range or needs repair" call OT_fnc_notifyMinor;
-		};
 		OT_warehouseTarget = _this select 0;
 		closeDialog 0;
 		createDialog "OT_dialog_warehouse";
@@ -51,10 +47,6 @@ if(typeof _this isEqualTo OT_item_Storage) then {
 	},nil,0,false,true,"","(_target call OT_fnc_positionIsAtWarehouse && _target distance player < 5)"];
 
 	_this addAction ["Store In Warehouse", {
-		private _iswarehouse = call OT_fnc_playerIsAtWarehouse;
-		if !(_iswarehouse) exitWith {
-			"No warehouse within range or needs repair" call OT_fnc_notifyMinor;
-		};
 		OT_warehouseTarget = _this select 0;
 		call OT_fnc_storeAll;
 	},nil,0,false,true,"","(_target call OT_fnc_positionIsAtWarehouse && _target distance player < 5)"];

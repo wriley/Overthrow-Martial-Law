@@ -16,7 +16,7 @@ if(_veh isEqualTo player) then {
 		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 			_iswarehouse = true;
 			_veh = OT_warehouseTarget;
-			_id = [_building] call OT_fnc_getBuildID;
+			_id = ((getpos player) call OT_fnc_nearestWarehouse) select 1;
 		};
 	};
 };

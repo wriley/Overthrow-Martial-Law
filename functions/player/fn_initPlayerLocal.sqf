@@ -526,3 +526,13 @@ player call OT_fnc_mapSystem;
 [] call OT_fnc_setupPlayer;
 _introcam cameraEffect ["Terminate", "BACK" ];
 camDestroy _introcam;
+
+if (OT_DEBUG) then {
+	[] spawn {
+		while {true} do {
+			sleep 5;
+			private _natoResources = server getVariable ["NATOresources",2000];
+			hint format ["NATOresources:%1", _natoResources];
+		};
+	};
+};
