@@ -17,4 +17,6 @@ publicVariable "tempWarehouse";
 }foreach _itemVars;
 warehouse = tempWarehouse;
 tempWarehouse = nil;
+publicVariable "warehouse";
+publicVariable "tempWarehouse";
 "Your old magical warehouse gear has been recovered to this warehouse." call OT_fnc_notifyMinor;
