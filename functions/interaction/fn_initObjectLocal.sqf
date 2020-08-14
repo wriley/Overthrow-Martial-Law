@@ -76,6 +76,26 @@ if(typeof _this isEqualTo OT_item_Storage) then {
 			"Ammobox unlocked" call OT_fnc_notifyMinor;
 		},nil,0,false,true,"","(_target getVariable ['OT_locked',false])"];
 	};
+	
+	_itemVars = (allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")};
+	private _b = (getpos _this) call OT_fnc_nearestRealEstate;
+	if(_b isEqualType []) then {
+		private _building = _b select 0;
+		private _bpos = getpos _building;
+		if ((((getpos _this) distance _bpos) < 15 && (typeof _building) == OT_warehouse && (_building call OT_fnc_hasOwner) && (damage _building) < 1) && (count _itemVars > 0) || !(_bpos in OT_allWarehouses)) then {
+			_this addAction ["Fix warehouse/Recover your gear here.", {
+				private _b = player call OT_fnc_nearestRealEstate;
+				if(_b isEqualType []) then {
+					private _building = _b select 0;
+					_bpos = getpos _building;
+					[_bpos] call OT_fnc_initWarehouse;
+					[_bpos] call OT_fnc_recoverWarehouseGear;
+					removeAllActions (_this select 0);
+					(_this select 0) call OT_fnc_initObjectLocal;
+				};
+			},nil,0,false,true,"","call OT_fnc_playerIsAtWarehouse"];
+		};
+	};
 };
 if(typeof _this isEqualTo OT_item_Safe) then {
 	_this addAction ["Put Money", OT_fnc_safePutMoney,nil,0,false,true,"",""];
