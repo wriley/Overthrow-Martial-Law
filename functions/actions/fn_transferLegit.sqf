@@ -37,6 +37,8 @@ _doTransfer = {
 
 	_full = false;
 	if(_iswarehouse) then {
+		private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
+		_warehouse params ["","_id"];
 		{
 			private _count = 0;
 			_d = warehouse getVariable [_x,false];
@@ -60,7 +62,7 @@ _doTransfer = {
 				};
 			};
 			if(_full) exitWith {};
-		}foreach((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")});
+		}foreach(allVariables warehouse select {((toLower _x select [0,(11+count _id)]) isEqualTo (format["warehouse-%1_",_id]))});
 	}else{
 		{
 			private _count = 0;

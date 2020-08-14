@@ -3,18 +3,20 @@ private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 
 private _soldier = [_cls, (getpos player)] call OT_fnc_getSoldier;
-
+private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
+_warehouse params ["_wpos","_id"];
+if (_wpos distance (getpos player) > 300) exitWith { hint "Cannot edit loadout, no warehouses found within 300m" };
 _soldier params ["","","_loadout","_clothes"];
 
 private _items = [];
 //Add warehouse items to arsenal
 {
-    if(_x select [0,5] isEqualTo "item_") then {
-        private _d = warehouse getVariable [_x,[_x select [5],0,[0]]];
-        if(_d isEqualType []) then {
-            _items pushback _d#0;
-        };
-    };
+	if(_x select [0,11+(count _id)] isEqualTo (format["warehouse-%1_",_id])) then {
+		private _d = warehouse getVariable [_x,[_x select [11+(count _id)],0,[0]]];
+		if(_d isEqualType []) then {
+			_items pushback _d#0;
+		};
+	};
 }foreach(allVariables warehouse);
 
 if((count _items) isEqualTo 0) exitWith {hint "Cannot edit loadout, no items in warehouse"};

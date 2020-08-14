@@ -104,6 +104,7 @@ private _hasList_buildableHouses = false;
 	if(_key == "warehouse") then {
 		private _version = _val param [0,1,[0]];
 		switch (_version) do {
+			// magical all in one warehouse
 			case 2: {
 				_val deleteAt 0;
 				{
@@ -112,6 +113,21 @@ private _hasList_buildableHouses = false;
 							_x params [["_itemClass","",[""]],["_itemCount",0,[0]]];
 							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
 								warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+							};
+						};
+					};
+				}foreach(_val);
+			};
+			// seperate warehouses linked by buildid - redesign by Blanks.
+			case 3: {
+				_val deleteAt 0;
+				{
+					if(!isNil "_x") then {
+						if(_x isEqualType []) then {
+							_x params [["_id",0],"_item"];
+							_item params [["_itemClass","",[""]],["_itemCount",0,[0]]];
+							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
+								warehouse setVariable [format["warehouse-%1_%2",_id,_itemClass],[_itemClass,_itemCount],true];
 							};
 						};
 					};
