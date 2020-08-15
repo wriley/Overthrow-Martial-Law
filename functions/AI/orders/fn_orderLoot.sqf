@@ -167,23 +167,21 @@ if (count _myunits > 1) then {
 			[_unit,5] call OT_fnc_experience;
 		};
 
-		if (!(_role isEqualTo "") &&  (!isNull _veh && alive _unit)) then {
+		if (!(_role isEqualTo "") && (!isNull _veh && alive _unit) && canMove _veh) then {
 			_err = [_unit, _veh, 8] call _doMove;
 			if (_err isEqualTo "Dead") exitWith { };
-			if (canMove _veh) then {
-				if (_role == "driver") then {
-					_unit moveInDriver _veh;
-				};
-				if (_role == "cargo") then {
-					_unit moveInCargo [_veh, _roleindex];
-				};
-				if (_role == "gunner") then {
-					_unit moveInGunner _veh;
-				};
-				if (_role == "turret") then {
-					_unit assignAsTurret [_veh, _roleindex];
-					_unit moveInTurret [_veh, _roleindex];
-				};
+			if (_role == "driver") then {
+				_unit moveInDriver _veh;
+			};
+			if (_role == "cargo") then {
+				_unit moveInCargo [_veh, _roleindex];
+			};
+			if (_role == "gunner") then {
+				_unit moveInGunner _veh;
+			};
+			if (_role == "turret") then {
+				_unit assignAsTurret [_veh, _roleindex];
+				_unit moveInTurret [_veh, _roleindex];
 			};
 		} else {
 			_err = [_unit, _t, 5] call _doMove;
