@@ -1,7 +1,7 @@
-
 OT_nation = "Tanoa";
 OT_saveName = "Overthrow.tanoamartiallawRHS.001";
 
+OT_connectedRegions = [["island_1","island_2"],["island_2","island_1"],["island_3","island_4"],["island_4","island_3"]];
 OT_tutorial_backstoryText = "This is Tanoa, a small island nation in the South Pacific with a history of British and French colonialism. Tanoa is currently under occupation by NATO forces and has been at the center of international attention since the Vunakece regime was ousted in 2020. The Tanoan population is currently in dissaray and there are many conspiracy theories as to the economic and political future of this small but strategically valuable archipelago.<br/><br/>A massive protest against the NATO occupation recently took place in the nation's capital of Georgetown, where the spokesperson for the 'Free Tanoa' movement was assassinated by an unknown assailant. In response, NATO forces have issued a strict curfew and increased security to extreme levels; fuelling tension and conspiracy theories even further.";
 OT_startDate = [2025,7,27,8,00];
 

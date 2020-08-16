@@ -1,7 +1,7 @@
-
 OT_nation = "Malden";
 OT_saveName = "Overthrow.maldenmartiallawRHS.001";
 
+OT_connectedRegions = [];
 OT_tutorial_backstoryText = "Welcome to Malden, called the “Gibraltar of the North Sea” by many. This group of islands has been occupied by the French since the 19th century and has become one of NATO's primary strongholds in the North Sea. Never considered a sovereign part of France by the government, Malden has never had any representation in French politics. Since the global financial crisis of 2008 this remote island has experienced great hardship and rising unemployment levels which lately has erupted into civil unrest and protests, especially in the less populated western towns.";
 OT_startDate = [2035,7,14,8,00];
 

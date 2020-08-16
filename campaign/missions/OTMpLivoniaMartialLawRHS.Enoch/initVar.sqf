@@ -1,7 +1,7 @@
-
 OT_nation = "Livonia";
-OT_saveName = "Overthrow.MartialLawLivoniaRHS.save.001";
+OT_saveName = "Overthrow.livoniamartiallawRHS.001";
 
+OT_connectedRegions = [];
 OT_tutorial_backstoryText = "Shit Hitting the Fan";
 OT_startDate = [2025,7,27,8,00];
 

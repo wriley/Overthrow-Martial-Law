@@ -62,7 +62,7 @@ diag_log format["Overthrow: Economy version is %1",_version];
 
 }foreach(OT_allTowns);
 
-if(_version < OT_economyVersion) then {
+if(_version < OTML_economyVersion) then {
     diag_log "Overthrow: Economy version is old, regenerating towns";
     OT_allShops = [];
 
@@ -149,7 +149,7 @@ if(_version < OT_economyVersion) then {
         _mrk setMarkerAlpha 0;
     };
 
-    if((server getVariable ["EconomyVersion",0]) < OT_economyVersion) then {
+    if((server getVariable ["EconomyVersion",0]) < OTML_economyVersion) then {
         [_x] call OT_fnc_setupTownEconomy;
     };
 
@@ -200,7 +200,7 @@ _mrk setMarkerColor "ColorWhite";
 if("Factory" in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColor "ColorGUER"};
 _mrk setMarkerAlpha 0.8;
 
-server setVariable ["EconomyVersion",OT_economyVersion,false];
+server setVariable ["EconomyVersion",OTML_economyVersion,false];
 
 OT_allActiveShops = _allActiveShops;
 publicVariable "OT_allActiveShops";

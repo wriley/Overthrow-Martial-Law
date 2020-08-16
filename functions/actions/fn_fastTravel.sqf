@@ -1,5 +1,5 @@
-private _ft = server getVariable ["OT_fastTravelType",1];
 private _diff = server getVariable ["OT_difficulty",1];
+private _ft = server getVariable ["OT_fastTravelType",1];
 private _ftrules = server getVariable ["OT_fastTravelRules",_diff];
 if(!OT_adminMode && _ft > 1) exitWith {hint "Fast Travel is disabled"};
 
@@ -9,6 +9,8 @@ if !("ItemMap" in assignedItems player) exitWith {hint "You need a map to fast t
 if !((vehicle player getVariable "SA_Tow_Ropes") isEqualTo objNull) exitWith {hint "You cannot Fast Travel with your Tow Rope out or a Vehicle attached"}; //Code from Antistasi Community
 
 if(_ftrules > 0 && !((primaryWeapon player) isEqualTo "" && (secondaryWeapon player) isEqualTo "" && (handgunWeapon player) isEqualTo "")) exitWith {hint "You cannot fast travel holding a weapon"};
+
+if(vehicle player != player) exitWith {hint "You cannot Fast Travel in a Vehicle"};
 
 _foundweapon = false;
 if((vehicle player) != player && _ftrules > 0) then {

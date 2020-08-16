@@ -111,9 +111,9 @@ OT_NATOHelipads = [];
 
 private _diff = server getVariable ["OT_difficulty",1];
 
-if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOversion",0]) < OT_NATOversion) then {
+if((server getVariable "StartupType") == "NEW" || (server getVariable ["MLNATOversion",0]) < OTML_natoVersion) then {
 	diag_log "Overthrow: Generating NATO";
-	server setVariable ["NATOversion",OT_NATOversion,false];
+	server setVariable ["MLNATOversion",OTML_natoVersion,false];
 	private _abandoned = server getVariable ["NATOabandoned",[]];
 
 	(OT_loadingMessages call BIS_fnc_selectRandom) remoteExec['OT_fnc_notifyStart',0,false];
@@ -346,7 +346,7 @@ diag_log "Overthrow: NATO Init Done";
 	OT_allObjectives pushback _name;
 
 	//Check for helipads
-	if !((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOversion",0]) < OT_NATOversion) then {
+	if !((server getVariable "StartupType") == "NEW" || (server getVariable ["MLNATOversion",0]) < OTML_natoVersion) then {
 		if !(_name in OT_allAirports) then {
 			private _helipads = (_pos nearObjects ["Land_HelipadCircle_F", 400]) + (_pos nearObjects ["Land_HelipadSquare_F", 400]);
 			if((count _helipads) > 0) then {
