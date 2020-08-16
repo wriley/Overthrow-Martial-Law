@@ -129,7 +129,7 @@ if(((getposatl player) select 2) > 30) then {
 
 {
 	private _pos = getPosASL _x;
-	if (visibleMap || { _pos distance2D player < 1200 }) then {
+	if (_pos distance2D player < 1200 ) then {
 		private _passengers = "";
 		private _color = [0,0.5,0,1];
 		{
@@ -233,16 +233,13 @@ if(_scale <= 0.1) then {
 			};
 		};
 	}foreach(player getvariable ["owned",[]]);
-	
-	//private _append = [];
+
 	{
 		_x params ["_cls","_name","_side","_flag"];
 		if!(_side isEqualTo 1) then {
 			private _factionPos = server getVariable format["factionrep%1",_cls];
 			if!(isNil "_factionPos") then {
-				//_append = [_factionPos,_cls];
-				//OT_AllMapFac pushBackUnique _append;
-					if((_factionPos distance2D _mousepos) < 3000) then {
+				if((_factionPos distance2D _mousepos) < 3000) then {
 					_mapCtrl drawIcon [
 						_flag,
 						[1,1,1,1],
@@ -270,31 +267,10 @@ if(_scale <= 0.1) then {
 					0
 				];
 			};
-			{
-				_mapCtrl drawIcon [
-					format["\overthrow_main\ui\markers\shop-%1.paa",_x select 1],
-					[1,1,1,1],
-					_x select 0,
-					0.2/_scale,
-					0.2/_scale,
-					0
-				];
-			}foreach(server getVariable [format["activeshopsin%1",_tname],[]]);
-			{
-				_mapCtrl drawIcon [
-					"\overthrow_main\ui\markers\shop-Hardware.paa",
-					[1,1,1,1],
-					_x select 0,
-					0.3/_scale,
-					0.3/_scale,
-					0
-				];
-			}foreach(server getVariable [format["activehardwarein%1",_tname],[]]);
 		};
 	}foreach(_towns);
 
-	if(visibleMap) then {
-		/*
+	if (OT_showEnemyCorpses) then {
 		{
 			if (typeof _x != "B_UAV_AI") then {
 				_p = getPosASL _x;
@@ -310,19 +286,19 @@ if(_scale <= 0.1) then {
 				};
 			};
 		}foreach(alldeadmen);
-		*/
-
-		{
-			if(((_x select 2) distance2D _mousepos) < 3000) then {
-				private _icon = +_x;
-				if((_icon select 3) < 1) then {
-					_icon set [3,(_icon select 3) / _scale];
-					_icon set [4,(_icon select 4) / _scale];
-				};
-				_mapCtrl drawIcon _icon;
-			};
-		}foreach(OT_mapcache_vehicles);
 	};
+
+	{
+		if(((_x select 2) distance2D _mousepos) < 3000) then {
+			private _icon = +_x;
+			if((_icon select 3) < 1) then {
+				_icon set [3,(_icon select 3) / _scale];
+				_icon set [4,(_icon select 4) / _scale];
+			};
+			_mapCtrl drawIcon _icon;
+		};
+	}foreach(OT_mapcache_vehicles);
+
 };
 private _qrf = server getVariable "QRFpos";
 if(!isNil "_qrf") then {
@@ -385,8 +361,19 @@ if(_scale > 0.16) then {
 			2500,
 			2500,
 			0,
-			[0,0.7,0,0.4],
+			[0,0.8,0,0.8],
 			"\A3\ui_f\data\map\markerbrushes\fdiagonal_ca.paa"
 		];
 	}foreach(spawner getVariable ["GUERradarPositions",[]]);
 };
+
+//Scale shop markers
+{
+	if (markerShape _x == "ICON") then {
+	  if ("ot_Shop" in getMarkerType _x) then {
+		_x setMarkerSizeLocal [
+			.5-(_scale/1.25),
+			.5-(_scale/1.25)
+		];};
+	};               
+} forEach allMapMarkers;

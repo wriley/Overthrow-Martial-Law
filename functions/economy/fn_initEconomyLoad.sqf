@@ -104,9 +104,10 @@ if(_version < OT_economyVersion) then {
 
 //Stability markers
 {
-    _stability = server getVariable format["stability%1",_x];
-    _posTown = server getVariable _x;
-    _pos = [_posTown,40,-90] call BIS_fnc_relPos;
+    private _stability = server getVariable format["stability%1",_x];
+	private _posTown = server getVariable _x;
+	private _tname = _x;
+    private _pos = [_posTown,40,-90] call BIS_fnc_relPos;
     _mSize = 250;
 
     if(_x in OT_Capitals) then {
@@ -160,6 +161,20 @@ if(_version < OT_economyVersion) then {
 
 	_piers = server getVariable [format["activepiersin%1",_x],[]];
 	[_allActivePiers,_piers] call BIS_fnc_arrayPushStack;
+
+	{
+		_mrk = createMarker [format["shop%1%2", _tname, _x select 1], _x select 0];
+		_mrk setMarkerShape "ICON";
+		_mrk setMarkerType format["ot_Shop_%1", _x select 1];
+		_mrk setMarkerColor "ColorWhite";
+	}foreach _shops;
+
+	{
+		_mrk = createMarker [format["carshop%1", _x], _x];
+		_mrk setMarkerShape "ICON";
+		_mrk setMarkerType "ot_Shop_CarStore";
+		_mrk setMarkerColor "ColorWhite";
+	}foreach _carshops;
     sleep 0.3;
 }foreach(OT_allTowns);
 

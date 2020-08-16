@@ -73,8 +73,8 @@ OT_MapSingleClickEHId = addMissionEventHandler["MapSingleClick", {
 					if ("ACE_" in (_target select 2)) then { _input = ((_target select 2) splitString "ACE_") select 0; };
 				};
 				if!(_target select 3 isEqualTo "") then { 
-					if ("OT_" in (_target select 3)) then { _input = ((_target select 3) splitString "OT_") select 0; };
-					if ("ACE_" in (_target select 3)) then { _input = ((_target select 3) splitString "ACE_") select 0; };
+					if ("OT_" in (_target select 3)) then { _output = ((_target select 3) splitString "OT_") select 0; };
+					if ("ACE_" in (_target select 3)) then { _output = ((_target select 3) splitString "ACE_") select 0; };
 				};
 			};
 			
