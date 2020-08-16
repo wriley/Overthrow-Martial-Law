@@ -93,7 +93,7 @@ if(count _ground > 0 && _strength >= 100) then {//changed from 150
 	}foreach(_ground);
 };
 sleep 2;
-/*
+
 if(_strength > 500 && (count _air) > 0) then {
 	//Send CAS
 	_obpos = (_air select 0) select 0;
@@ -103,7 +103,7 @@ if(_strength > 500 && (count _air) > 0) then {
 	diag_log format["Overthrow: NATO Sent CAS from %1 %2",_name,str _obpos];
 };
 sleep 2;
-*/
+
 if(_popControl > 1000 && _strength > 1000 && (count _air) > 0) then {
 	//Send more CAS
 	private _from = _air call BIS_fnc_selectRandom;
@@ -313,7 +313,7 @@ if(_progress > 0) then {
 }else{
 	_params call _fail;
 	//Nato gets pushed back
-	server setVariable ["NATOresources",-_strength,true];
+	server setVariable ["NATOresources",(server getVariable "NATOresources")-_strength,true];
 	server setVariable ["NATOresourceGain",0,true];
 };
 server setVariable ["NATOlastattack",time,true]; //Ensures NATO takes some time after a QRF to recover (even if they win)
