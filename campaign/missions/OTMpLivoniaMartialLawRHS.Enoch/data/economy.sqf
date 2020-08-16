@@ -16,4 +16,3 @@ OT_economicData = [
 OT_factoryPos = [7343.56,2838.22,0];
 OT_factoryVehicleSpawn = [7350.82,2841.75,0];
 OT_factoryVehicleDir = 67;
-OT_connectedRegions = [];

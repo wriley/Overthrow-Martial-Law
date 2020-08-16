@@ -709,7 +709,6 @@ publicVariable "OT_nextNATOTurn";
 						_waypoints pushback _pos;
 					}foreach(_fobs);
 
-					/*
 					{
 						if((server getVariable [format ["garrison%1",_x],-1]) > 0) then {
 							private _pos = markerPos _x;
@@ -717,8 +716,6 @@ publicVariable "OT_nextNATOTurn";
 						};
 						if((count _waypoints) > 6) exitWith {};
 					}foreach ([OT_NATO_control,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
-					[""control_10"",""control_30"",""control_11"",""control_14""] ???
-					*/
 
 					if((count _waypoints) > 6) then {
 						_spend = _spend - 250;

@@ -1,6 +1,7 @@
 OT_nation = "Altis";
 OT_saveName = "Overthrow.altismartiallawRHS.001";
 
+OT_connectedRegions = [];
 OT_tutorial_backstoryText = "Altis, the main island of the Republic of Altis and Stratis, is located in the Mediterranean Sea to the east of Malta. As of 2040, Altis is currently under occupation by NATO forces following a brutal civil war a half decade prior, and the nation is still recovering. NATO originally occupied the country under the promise of a complete withdrawal of forces and return to local democratic rule; despite this, NATO soldiers still occupy the island's military installations. The economy continues to stagnate and citizens are becoming increasingly angry at the lack of local autonomy.";
 OT_startDate = [2040,7,14,8,00];
 

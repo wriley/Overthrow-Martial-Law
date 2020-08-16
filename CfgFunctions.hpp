@@ -491,7 +491,6 @@ class CfgFunctions
 			class squadGetOut {};
 			class squadGetInMyVehicle {};
 			class orderStopAndFace {};
-			class landAndCleanupHelicopter {};
 		};
 
 		/*
@@ -576,6 +575,7 @@ class CfgFunctions
 			class NATOsendGendarmerie {};
 			class NATOreportThreat {};
 			class NATOGetAttackVectors {};
+			class landAndCleanupHelicopter {};
 		};
 
 		class NATOAI
