@@ -1,18 +1,63 @@
 class CfgMarkers
 {
-	class ot_Camp
+	class ot_Shop_Clothing
 	{
-		name = "Camp";
-		icon = "\overthrow_main\ui\markers\camp.paa";
+		name = "Clothing";
+		icon = "\overthrow_main\ui\markers\shop-Clothing.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
 	};
-	class ot_Shop
+	class ot_Shop_Electronics
 	{
-		name = "Shop";
-		icon = "\overthrow_main\ui\markers\shop.paa";
+		name = "Electronics";
+		icon = "\overthrow_main\ui\markers\shop-Electronics.paa";
+		color[] = {1, 0, 0, 1};
+		size = 32;
+		shadow = true;
+		scope = 1;
+	};
+	class ot_Shop_General
+	{
+		name = "General";
+		icon = "\overthrow_main\ui\markers\shop-General.paa";
+		color[] = {1, 0, 0, 1};
+		size = 32;
+		shadow = true;
+		scope = 1;
+	};
+	class ot_Shop_Hardware
+	{
+		name = "Hardware";
+		icon = "\overthrow_main\ui\markers\shop-Hardware.paa";
+		color[] = {1, 0, 0, 1};
+		size = 32;
+		shadow = true;
+		scope = 1;
+	};
+	class ot_Shop_Pharmacy
+	{
+		name = "Pharmacy";
+		icon = "\overthrow_main\ui\markers\shop-Pharmacy.paa";
+		color[] = {1, 0, 0, 1};
+		size = 32;
+		shadow = true;
+		scope = 1;
+	};
+	class ot_Shop_Surplus
+	{
+		name = "Surplus";
+		icon = "\overthrow_main\ui\markers\shop-Surplus.paa";
+		color[] = {1, 0, 0, 1};
+		size = 32;
+		shadow = true;
+		scope = 1;
+	};
+	class ot_Camp
+	{
+		name = "Camp";
+		icon = "\overthrow_main\ui\markers\camp.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
 		shadow = true;
@@ -81,7 +126,7 @@ class CfgMarkers
 		shadow = true;
 		scope = 1;
 	};
-	class ot_CarStore
+	class ot_Shop_CarStore
 	{
 		name = "Car Store";
 		icon = "\overthrow_main\ui\markers\CarStore.paa";

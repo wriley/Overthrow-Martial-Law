@@ -265,15 +265,20 @@ if!(_quiet) then {
 };
 
 {
-	_pos = _x select 0;
-	_code = _x select 1;
+	_x params ["","_code"];
 	private _group = spawner getvariable [format["resgarrison%1",_code],grpNull];
+	private _g = server getvariable [format["garrison%1",_code],nil];
+	private _vg = server getvariable [format["vehgarrison%1",_code],[]];
+	private _ag = server getvariable [format["airgarrison%1",_code],[]];
 	if !(isNull _group) then {
 		private _soldiers = _group call _getGroupSoldiers;
 		if(count _soldiers > 0) then {
 			_server pushback [format["resgarrison%1",_code],_soldiers];
 		};
 	};
+	if (_g > 0) then {_server pushback [format["garrison%1",_code],_g];};
+	if (count _vg > 0) then {_server pushback [format["vehgarrison%1",_code],_vg];};
+	if (count _ag > 0) then {_server pushback [format["airgarrison%1",_code],_ag];};
 }foreach(OT_objectiveData + OT_airportData);
 
 _data pushBack ["server",_server];

@@ -78,6 +78,12 @@ class Params {
 		texts[] = {"No", "Yes"};
 		default = 0;
 	};
+	class ot_showenemycorpses {
+		title = "Show enemy corpses on map";
+		values[] = {0,1};
+		texts[] = {"No", "Yes"};
+		default = 1;
+	};
 	class ace_medical_level {
         title = "ACE Medical Level";
         ACE_setting = 1;

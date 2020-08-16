@@ -92,6 +92,7 @@ _civ = _me getvariable "civ";
 _garrison = _me getvariable "garrison";
 _employee = _me getvariable "employee";
 _polgarrison = _me getvariable "polgarrison";
+_vehgarrison = _me getvariable "vehgarrison";
 _airgarrison = _me getvariable "airgarrison";
 _criminal = _me getvariable "criminal";
 _crimleader = _me getvariable "crimleader";
@@ -213,7 +214,7 @@ call {
 		_mrkid = format["%1-police",_polgarrison];
 		_mrkid setMarkerText format["%1",_pop];
 	};
-	if(!isNil "_garrison" || !isNil "_airgarrison") then {
+	if(!isNil "_garrison" || !isNil "_airgarrison" || !isNil "_vehgarrison") then {
 		_killer setVariable ["BLUkills",(_killer getVariable ["BLUkills",0])+1,true];
 		if(!isNil "_garrison") then {
 			server setVariable ["NATOresourceGain",(server getVariable ["NATOresourceGain",0])+1,true];
@@ -242,11 +243,11 @@ call {
 			};
 		};
 
-		/*if(!isNil "_vehgarrison") then {
-			_vg = missionNamespace getVariable format["vehgarrison%1",_vehgarrison];
+		if(!isNil "_vehgarrison") then {
+			_vg = server getVariable format["vehgarrison%1",_vehgarrison];
 			_vg deleteAt (_vg find (typeof _me));
-			missionNamespace setVariable [format["vehgarrison%1",_vehgarrison],_vg,false];
-		};*/
+			server setVariable [format["vehgarrison%1",_vehgarrison],_vg,false];
+		};
 
 		if(!isNil "_airgarrison") then {
 			_vg = server getVariable format["airgarrison%1",_airgarrison];

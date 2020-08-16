@@ -4,7 +4,7 @@ private _numNATO = server getVariable format["garrison%1",_name];
 if(_name in (server getVariable ["NATOabandoned",[]])) exitWith {[]};
 if(isNil "_numNATO") then {
 	//New objective was added
-	_numNATO = 2 + round(random 6);
+	_numNATO = 4 + round(random 6);
 	server setVariable [format["garrison%1",_name],_numNATO,true];
 };
 
