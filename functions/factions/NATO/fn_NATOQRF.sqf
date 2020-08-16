@@ -278,7 +278,7 @@ if(_progress > 0) then {
 	_params call _success;
 
 	//Recover resources
-	server setVariable ["NATOresources",round(_strength * 0.5),true];
+	server setVariable ["NATOresources",(server getVariable "NATOresources")+round(_strength * 0.5),true];
 	{
 		if(side _x isEqualTo west) then {
 			if(count (units _x) > 0) then {
