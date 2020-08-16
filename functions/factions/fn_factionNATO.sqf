@@ -567,7 +567,7 @@ publicVariable "OT_nextNATOTurn";
 				_chance = _chance - 5;
 			};
 
-			if(!(spawner getVariable ["NATOdeploying",false]) && {(_spend > 500)} && {(count _fobs) < OT_MaximumNanoFobs} && {(random 100) > _chance}) then {
+			if(!(spawner getVariable ["NATOdeploying",false]) && {(_spend > 500)} && {(count _fobs) < OT_maximumNATOFobs} && {(random 100) > _chance}) then {
 				//Deploy an FOB
 				_lowest = "";
 				{
