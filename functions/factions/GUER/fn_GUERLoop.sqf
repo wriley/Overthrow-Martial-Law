@@ -192,14 +192,14 @@ if ((date select 4) != _lastmin) then {
 		call OT_fnc_cleanDead;
 	};
 
-	//chance to reveal an FOB
+	//chance to reveal a FOB
 	_revealed = server getVariable ["revealedFOBs",[]];
 	{
 		_x params ["_pos"];
 		private _id = str _pos;
 		private _town = _pos call OT_fnc_nearestTown;
 		_support = [_town] call OT_fnc_support;
-		if (!(_id in _revealed) && (_support > (random 2000))) then {
+		if (!(_id in _revealed) && (_support > 200+(random 1800))) then {// was random 0-2000 now 200-2000 (0 support shouldn't reveal a fob)
 			[_pos] call OT_fnc_revealNATOFOB;
 		};
 	}foreach(server getVariable ["NATOfobs",[]]);
@@ -207,6 +207,7 @@ if ((date select 4) != _lastmin) then {
 	_stabcounter = _stabcounter + 1;
 	private _abandoned = server getVariable ["NATOabandoned",[]];
 
+	// Resistance police stability effects
 	if(_stabcounter >= 10) then {
 		_stabcounter = 0;
 		{

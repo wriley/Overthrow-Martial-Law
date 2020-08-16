@@ -29,6 +29,7 @@ private _fobs = server getVariable ["NATOfobs",[]];
 if(_near) exitWith {};
 
 _flag = OT_flag_NATO createVehicle _targetPos;
+spawner setVariable ["NATOdeploying",false];
 
 _fobs pushback [_targetPos,count units _group,[]];
 server setVariable ["NATOfobs",_fobs,true];
