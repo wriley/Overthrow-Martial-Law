@@ -6,7 +6,9 @@ private _paras = assignedcargo _vehicle;
 private _dir = direction _vehicle;
 
 {
-	spawner setvariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
+	//OT_fnc_getBuildID does not work on units?
+	//spawner setvariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
+	_x setvariable ["paraloadout", getUnitLoadout _x];
 	removeBackpackGlobal _x;
 	_x disableCollisionWith _vehicle;// Sometimes units take damage when being ejected.
 	_x addBackpackGlobal "B_parachute";
@@ -14,10 +16,7 @@ private _dir = direction _vehicle;
 	moveout _x;
 	_x setDir (_dir + 90);// Exit the chopper at right angles.
 	sleep 1;
-} forEach _paras;
 
-
-{
 	[_x,_chuteheight] spawn {
 		params ["_unit", "_chuteheight"];
 
@@ -38,11 +37,12 @@ private _dir = direction _vehicle;
 		_unit action ["Eject",vehicle _unit];
 		sleep 2;
 		private _inv = name _unit;
-		private _id = [_unit] call OT_fnc_getBuildID;
-		_unit setUnitLoadout (spawner getvariable [format["eject_%1",_id],[]]);
-		spawner setvariable [format["eject_%1",_id],nil,false];
+		//private _id = [_unit] call OT_fnc_getBuildID;
+		//spawner setvariable [format["eject_%1",_id],nil,false];
+		_unit setUnitLoadout (_unit getvariable ["paraloadout",[]]);
 		_unit allowDamage true;
 	};
+
 } forEach _paras;
 
 _vehicle setVariable ["OT_deployedTroops",true,false];

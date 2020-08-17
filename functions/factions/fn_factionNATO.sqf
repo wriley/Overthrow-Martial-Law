@@ -27,12 +27,12 @@ publicVariable "OT_nextNATOTurn";
 
 	private _numplayers = count([] call CBA_fnc_players);
 	if(_numplayers > 0) then {
-		_fobs = server getVariable ["NATOfobs",[]];
-		_abandoned = server getVariable ["NATOabandoned",[]];
-		_resources = server getVariable ["NATOresources",2000];
+		private _fobs = server getVariable ["NATOfobs",[]];
+		private _abandoned = server getVariable ["NATOabandoned",[]];
+		private _resources = server getVariable ["NATOresources",2000];
 		private _countered = (server getVariable ["NATOattacking",""]) != "";
-		_knownTargets = spawner getVariable ["NATOknownTargets",[]];
-		_schedule = server getVariable ["NATOschedule",[]];
+		private _knownTargets = spawner getVariable ["NATOknownTargets",[]];
+		private _schedule = server getVariable ["NATOschedule",[]];
 		private _popControl = call OT_fnc_getControlledPopulation;
 
 		//scheduler
@@ -144,40 +144,42 @@ publicVariable "OT_nextNATOTurn";
 						_resources = _resources - _strength;
 					}else{
 						//Send patrol to towns low in stability (new in v0.7.8.5)
-						if(_resources > 250 && _stability < 30 && {!(_town in _abandoned)} && !(server getVariable [format["NATOpatrolsent%1",_town],false])) then {
+						if(_resources > 250 && _stability < 60 && {!(_town in _abandoned)} && !(server getVariable [format["NATOpatrolsent%1",_town],false])) then {
 							([_pos] call OT_fnc_NATOGetAttackVectors) params ["_ground","_air"];
-							if(count _ground > 0) then {
+							if(_resources > 100 && count _ground > 0) then {
 								server setVariable [format["NATOpatrolsent%1",_town],true];
 								(_ground select 0) params ["_obpos","_obname"];
 								private _dir = _pos getDir _obpos;
 								private _ao = [_pos,_dir] call OT_fnc_getAO;
-								_resources = _resources - 35;//changed from 75
+								_resources = _resources - 75;
 								call {
 									if(_population < 100) exitWith {
 										//Just send the troops
 									};
-									if(_population < 500) exitWith {
+									if(_resources > 100 && _population < 500) exitWith {
 										if((random 100) < (_diff * 2)) then {
 											//small chance of a support vehicle
-											_resources = _resources - 50;//changed from 100
+											_resources = _resources - 100;
 											[_obpos,_pos,100,0] spawn OT_fnc_NATOGroundSupport;
 											diag_log format["Overthrow: NATO Sent ground support to %1 from %2",_town,_obname];
 										};
 									};
 									//population > 500, definitely send support
-									_resources = _resources - 100;
-									[_obpos,_pos,100,0] spawn OT_fnc_NATOGroundSupport;
+									if (_resources > 100) then {
+										_resources = _resources - 100;
+										[_obpos,_pos,100,0] spawn OT_fnc_NATOGroundSupport;
+									};
 								};
 								diag_log format["Overthrow: NATO Sent ground forces to %1 from %2",_town,_obname];
 								[_obpos,_ao,_pos,false,5] spawn OT_fnc_NATOGroundReinforcements;
 							}else{
-								if(count _air > 0 && _population > 500) then {
+								if(_resources > 100 && count _air > 0 && _population > 500) then {
 									server setVariable [format["NATOpatrolsent%1",_town],true];
 									(_air select 0) params ["_obpos","_obname"];
 
-									if((random 100) < (_diff * 2)) then {
+									if(_resources > 150 && ((random 100) < (_diff * 2))) then {
 										//small chance of CAS
-										_resources = _resources - 75;//changed from 150
+										_resources = _resources - 150;
 										[_obpos,_pos,0] spawn OT_fnc_NATOAirSupport;
 										diag_log format["Overthrow: NATO Sent CAS to %1 from %2",_town,_obname];
 									};
@@ -353,7 +355,7 @@ publicVariable "OT_nextNATOTurn";
 				if(_ty isEqualTo "P" || _ty isEqualTo "H") then {
 					if(_resources > 500 && ((random 100) > _chance)) then {
 						[_target,_pos] spawn OT_fnc_NATOScrambleJet;
-						_resources = _resources - 250;//changed from 500
+						_resources = _resources - 500;
 						_x set [4,true];
 						if(([OT_nation] call OT_fnc_support) > (random 250)) then {
 							[format["Intel reports that NATO has scrambled a jet to intercept %1",(typeof _target) call OT_fnc_vehicleGetName]] remoteExec ["OT_fnc_notifyMinor",0,false];
@@ -377,7 +379,7 @@ publicVariable "OT_nextNATOTurn";
 		}foreach(_knownTargets);
 
 		//NATO gets to play if it hasn't reacted to anything
-		if(time >= OT_nextNATOTurn && {!_countered}) then {
+		if(time >= OT_nextNATOTurn && !_countered) then {
 			OT_lastNATOTurn = time;
 			publicVariable "OT_lastNATOTurn";
 			_lastAttack = time - (server getVariable ["NATOlastattack",0]);
@@ -393,8 +395,10 @@ publicVariable "OT_nextNATOTurn";
 			_mul = 25;
 			if(_diff > 1) then {_gain = 150;_mul = 50;_chance = 97};
 			if(_diff < 1) then {_gain = 0;_mul = 15;_chance = 99};
-			if(_popControl > 1000) then {_chance = _chance - 1};
-			if(_popControl > 2000) then {_chance = _chance - 1};
+			if(_popControl > 250) then {_chance = _chance - 1};
+			if(_popControl > 500) then {_chance = _chance - 1.5};
+			if(_popControl > 1000) then {_chance = _chance - 2};
+			if(_popControl > 2000) then {_chance = _chance - 2};
 
 			//Recover resources
 			_resources = _resources + _gain + _resourceGain + ((round (_popControl * 0.01)) * _mul);
@@ -412,11 +416,12 @@ publicVariable "OT_nextNATOTurn";
 					if(_pos call OT_fnc_inSpawnDistance) then {
 						_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
 						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",200]);
-						if(_nummil < 3 && {_numres > 0}) then {
-							if((time - _lastAttack) > 1200 && {(_town in _abandoned)} && {(_resources > _population)} && {(random 100) > _chance}) then {
+						if(_nummil < 3 && _numres > 0) then {
+							if(_lastAttack > 1200 && _town in _abandoned && _resources > _population && (random 100) > _chance) then {
 								//Counter a town
-								diag_log format ["Overthrow: Counter-attacking %1",_town];
-								private _m = 3;
+								diag_log format ["Overthrow: NATO Counter-attacking %1 Started",_town];
+								private _m = 2;
+								if(_popControl > 500) then {_m = 3};
 								if(_popControl > 1000) then {_m = 4};
 								if(_popControl > 2000) then {_m = 5};
 								private _cost = _population * _m;
@@ -440,12 +445,15 @@ publicVariable "OT_nextNATOTurn";
 				_x params ["_pos","_name","_pri"];
 				private _chance = 99;
 				if(_pri > 800) then {_chance = _chance - 1};
-				if(_popControl > 1000) then {_chance = _chance - 1};
-				if(_popControl > 2000) then {_chance = _chance - 1};
-				if((_time - _lastAttack) > 1200 && {(_name != _lastcounter)} && {(_name in _abandoned)} && {(_resources > _pri)} && {(random 100) > _chance}) exitWith {
+				if(_popControl > 250) then {_chance = _chance - 1};
+				if(_popControl > 500) then {_chance = _chance - 1.5};
+				if(_popControl > 1000) then {_chance = _chance - 2};
+				if(_popControl > 2000) then {_chance = _chance - 2};
+				if(_lastAttack > 1200 && _name != _lastcounter && _name in _abandoned && _resources > _pri && (random 100) > _chance) exitWith {
 					//Counter an objective
 					private _m = _diff + 1;
-					if(_popControl > 1000) then {_m = 2};
+					if(_popControl > 500) then {_m = 2};
+					if(_popControl > 1000) then {_m = 3};
 					if(_popControl > 2000) then {_m = 4};
 					if(_pri > 800) then {_m = _m + 2};
 					if(_pri > _resources) then {_pri = _resources};
@@ -717,7 +725,7 @@ publicVariable "OT_nextNATOTurn";
 						if((count _waypoints) > 6) exitWith {};
 					}foreach ([OT_NATO_control,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 
-					if((count _waypoints) > 6) then {
+					if((count _waypoints) > 0) then {
 						_spend = _spend - 250;
 						_resources = _resources - 250;
 						spawner setVariable ["NATOlastairpatrol",time,false];
