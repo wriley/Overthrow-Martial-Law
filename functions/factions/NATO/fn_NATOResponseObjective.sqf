@@ -16,7 +16,7 @@ _fail = {
 	if(_objective isEqualTo "Fuel Depot") then {
 		_effect = "(Vehicles are now cheaper)";
 	};
-	format["Resistance has captured %1 (+100 Influence) %2",_objective,_effect] remoteExec ["OT_fnc_notifyGood",0,false];
+	format["Captured %1 (+100 Influence) %2",_objective,_effect] remoteExec ["OT_fnc_notifyGood",0,false];
 	100 remoteExec ["OT_fnc_influenceSilent",0,false];
 	private _posTown = getMarkerPos _objective;
 	_flag = _posTown nearobjects [OT_flag_NATO,500];

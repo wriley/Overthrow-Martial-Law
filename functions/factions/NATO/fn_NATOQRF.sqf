@@ -34,44 +34,32 @@ _abandoned = server getvariable ["NATOabandoned",[]];
 
 ([_pos] call OT_fnc_NATOGetAttackVectors) params ["_ground","_air"];
 
-if(_strength > 425 && (count _air) > 0) then {// changed strength from 500
-	//Send CAS
-	_obpos = (_air select 0) select 0;
-	_name = (_air select 0) select 1;
-	[_obpos,_pos,10] spawn OT_fnc_NATOAirSupport;
-	_strength = _strength - 300;
-	diag_log format["Overthrow: NATO Sent CAS from %1 %2",_name,str _obpos];
-};
-sleep 2;
-
-//Send ground forces by air
+diag_log format ["Overthrow: NATO QRF on %1 Started with Strength of %2 with possible vectors %3 ground and %4 air",_town, _strength, count _ground, count _air];
 private _count = 0;
-{
-	_x params ["_obpos","_name","_pri"];
+while {_count < 2} do {
+	//Send ground forces by air
+	if (count _air > (_count+1)) then {
+		(_air select _count) params ["_obpos","_name","_pri"];
 
-	_dir = [_pos,_obpos] call BIS_fnc_dirTo;
-	_ao = [_pos,_dir] call OT_fnc_getAO;
-	[_obpos,_ao,_pos,true,300] spawn OT_fnc_NATOGroundForces;
-	diag_log format["Overthrow: NATO Sent ground forces by air from %1 %2",_name,str _obpos];
-	_strength = _strength - 150;
-
-	if(_pri > 600 && _strength >= 500) then {
+		_dir = [_pos,_obpos] call BIS_fnc_dirTo;
 		_ao = [_pos,_dir] call OT_fnc_getAO;
-		[_obpos,_ao,_pos,true,420] spawn OT_fnc_NATOGroundForces;
+		[_obpos,_ao,_pos,true,(280+random(40))] spawn OT_fnc_NATOGroundForces;
+		diag_log format["Overthrow: NATO Sent ground forces by air from %1 %2",_name,str _obpos];
 		_strength = _strength - 150;
-		diag_log format["Overthrow: NATO Sent extra ground forces by air from %1 %2",_name,str _obpos];
+
+		if(_pri > 600 && _strength >= 500) then {
+			_ao = [_pos,_dir] call OT_fnc_getAO;
+			[_obpos,_ao,_pos,true,(400+random(40))] spawn OT_fnc_NATOGroundForces;
+			_strength = _strength - 150;
+			diag_log format["Overthrow: NATO Sent extra ground forces by air from %1 %2",_name,str _obpos];
+		};
 	};
-	_count = _count + 1;
+	sleep 2;
 
-	if(_strength <=0 || _count isEqualTo 4) exitWith {};
-}foreach(_air);
-sleep 2;
+	//Send ground forces by land
+	if (count _ground > (_count+1)) then {
 
-//Send ground forces by land
-if(count _ground > 0 && _strength >= 100) then {//changed from 150
-	{
-		_x params ["_obpos","_name","_pri"];
-
+		(_ground select _count) params ["_obpos","_name","_pri"];
 		_dir = [_pos,_obpos] call BIS_fnc_dirTo;
 		_ao = [_pos,_dir] call OT_fnc_getAO;
 
@@ -85,14 +73,14 @@ if(count _ground > 0 && _strength >= 100) then {//changed from 150
 		_strength = _strength - 200;
 		if(_strength >= 150) then {
 			_ao = [_pos,_dir] call OT_fnc_getAO;
-			[_obpos,_ao,_pos,false,120] spawn OT_fnc_NATOGroundForces;
+			[_obpos,_ao,_pos,false,(50+random(25))] spawn OT_fnc_NATOGroundForces;
 			_strength = _strength - 200;
 			diag_log format["Overthrow: NATO Sent extra ground forces from %1 %2",_name,str _obpos];
 		};
-		if(_strength <=0) exitWith {};
-	}foreach(_ground);
+	};
+	sleep 2;
+	_count = _count + 1;
 };
-sleep 2;
 
 if(_strength > 500 && (count _air) > 0) then {
 	//Send CAS
@@ -109,7 +97,7 @@ if(_popControl > 1000 && _strength > 1000 && (count _air) > 0) then {
 	private _from = _air call BIS_fnc_selectRandom;
 	_obpos = _from select 0;
 	_name = _from select 1;
-	[_obpos,_pos,120] spawn OT_fnc_NATOAirSupport;
+	[_obpos,_pos,(100+random(40))] spawn OT_fnc_NATOAirSupport;
 	_strength = _strength - 300;
 	diag_log format["Overthrow: NATO Sent extra CAS from %1 %2",_name,str _obpos];
 };
@@ -163,7 +151,7 @@ if((count _ground > 0) && _popControl > 1000) then {
 		if(_strength >= 200) then {
 			_dir = [_pos,_obpos] call BIS_fnc_dirTo;
 			_ao = [_pos,_dir] call OT_fnc_getAO;
-			[_obpos,_ao,_pos,300] spawn OT_fnc_NATOAPCInsertion;
+			[_obpos,_ao,_pos,(250+random(100))] spawn OT_fnc_NATOAPCInsertion;
 			diag_log format["Overthrow: NATO Sent APC reinforcements from %1",_name];
 			_strength = _strength - 200;
 		};

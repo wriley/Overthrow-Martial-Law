@@ -96,3 +96,4 @@ while {(count (waypoints _group)) > 0} do {
 };
 
 [_veh,_pos,_group] spawn OT_fnc_landAndCleanupHelicopter;
+diag_log format ["NATO: Spawned a %1 from %2 to attack %3 with %4 waypoints", _vehtype, _frompos, _attackpos, count _waypoints];
