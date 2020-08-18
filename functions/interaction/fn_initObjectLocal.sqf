@@ -11,7 +11,7 @@ if (isNil "OT_item_Radio") then {
 	OT_item_Radio = "Land_PortableLongRangeRadio_F";
 };
 if (isNil "OT_item_Tent") then {
-	OT_item_Tent = "Land_TentDome_F";
+	OT_item_Tent = "eo_dome_tent_grn";
 };
 if (isNil "OT_item_Safe") then {
 	OT_item_Safe = "Land_MetalCase_01_small_F";
