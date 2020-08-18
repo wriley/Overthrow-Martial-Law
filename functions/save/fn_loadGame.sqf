@@ -124,6 +124,7 @@ private _hasList_buildableHouses = false;
 				{
 					if(!isNil "_x") then {
 						if(_x isEqualType []) then {
+							diag_log format ["loadGame: warehouse: _x: %1", _x];
 							_x params [["_id",0],"_item"];
 							_item params [["_itemClass","",[""]],["_itemCount",0,[0]]];
 							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
