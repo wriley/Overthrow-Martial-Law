@@ -78,10 +78,9 @@ if(count _queue > 0) then {
 			_text = _text + format["Time: %1 of %2 mins<br/>",_timespent,_timetoproduce];
 			_text = _text + format["Output: %1 x %2<br/></t>",_numtoproduce,_currentName];
 		};
-		_text = _text + "<br/>";
-		_text = _text + format["Time: %1 of %2 mins<br/>",_timespent,_timetoproduce];
-		_text = _text + format["Output: %1 x %2<br/></t>",_numtoproduce,_currentName];
 	};
+}else{
+	_text = "<t size='0.8' align='center'>Factory is not currently produce anything. Add to the queue above or Reverse-Engineer nearby items to gain blueprints.</t><br/>";
 };
 
 private _textctrl = (findDisplay 8000) displayCtrl 1103;
@@ -151,6 +150,7 @@ if(count _cost > 0) then {
     };
     private _timetoproduce = _b + (round (_wood+1)) + (round(_steel * 0.2)) + (round (_plastic * 5));
     if(_timetoproduce > 360) then {_timetoproduce = 360};
+	_timetoproduce = _timetoproduce * (1.125-(OT_factoryLevel * 0.125));
     if(_timetoproduce < 5) then {_timetoproduce = 5};
 
     private _numtoproduce = 1;

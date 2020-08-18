@@ -69,6 +69,8 @@ _buildingTxt = "";
 ctrlEnable [1608,false];
 ctrlEnable [1609,false];
 ctrlEnable [1610,false];
+ctrlEnable [1620,false];
+ctrlEnable [1621,false];
 
 private _ctrl1608 = findDisplay 8001 displayCtrl 1608;
 private _ctrl1609 = findDisplay 8001 displayCtrl 1609;
@@ -140,10 +142,13 @@ if(typename _b isEqualTo "ARRAY") then {
 				_ctrl1610 ctrlSetTooltip "Leased cannot be set as Home";
 			} else {
 				if(getpos _building isEqualTo (player getVariable ["home",[]])) then {
+					ctrlSetText [1608,format["Sell ($%1)",[_sell, 1, 0, true] call CBA_fnc_formatNumber]];
 					_ctrl1608 ctrlSetTooltip "Cannot sell your home";
 
+					ctrlSetText [1609,"Lease"];
 					_ctrl1609 ctrlSetTooltip "Cannot lease your home";
 
+					ctrlSetText [1610,"Set as home"];
 					_ctrl1610 ctrlSetTooltip "Already your home";
 				} else {
 					if!(typeof _building in [OT_barracks,OT_trainingCamp,OT_refugeeCamp,OT_flag_IND,OT_item_Tent]) then {
@@ -314,17 +319,14 @@ _areatxtctrl = (findDisplay 8001) displayCtrl 1101;
 private _ob = (getpos player) call OT_fnc_nearestObjective;
 _ob params ["_obpos","_obname"];
 if(_obpos distance player < 250) then {
+	ctrlSetText [1621,"Garrison"];
 	if(_obname in (server getVariable ["NATOabandoned",[]])) then {
 		_areaText = format["
 			<t align='left' size='0.8'>%1</t><br/>
 			<t align='left' size='0.65'>Under resistance control</t>
 		",_obname];
 		if!(_obname in OT_allComms) then {
-			ctrlEnable [1620,true];
-			ctrlSetText [1620,"1620"];
-
 			ctrlEnable [1621,true];
-			ctrlSetText [1621,"1621"];
 		};
 	}else{
 		_areaText = format["

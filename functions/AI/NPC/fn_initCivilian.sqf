@@ -14,8 +14,8 @@ _unit setVariable ["NOAI",true,false];
 _unit setVariable ["civ",true,true];
 
 _unit addEventHandler ["FiredNear", {
-	_u = _this select 0;
-	_group = group _u;
+	params ["_unit"];
+	_group = group _unit;
 	if !(_group getVariable ["fleeing",false]) then {
 		_group setVariable ["fleeing",true,false];
 		_group setVariable ["fleeingstart",time,false];
