@@ -1,5 +1,3 @@
-
-
 closedialog 0;
 createDialog "OT_dialog_main";
 
@@ -68,13 +66,23 @@ sleep 0.3;
 _b = player call OT_fnc_nearestRealEstate;
 _buildingTxt = "";
 
+ctrlEnable [1608,false];
+ctrlEnable [1609,false];
+ctrlEnable [1610,false];
+
+private _ctrl1608 = findDisplay 8001 displayCtrl 1608;
+private _ctrl1609 = findDisplay 8001 displayCtrl 1609;
+private _ctrl1610 = findDisplay 8001 displayCtrl 1610;
+private _ctrl1620 = findDisplay 8001 displayCtrl 1620;
+private _ctrl1621 = findDisplay 8001 displayCtrl 1621;
+private _ctrl1630 = findDisplay 8001 displayCtrl 1630;
+
 if(typename _b isEqualTo "ARRAY") then {
 	_building = _b select 0;
 	_price = _b select 1;
 	_sell = _b select 2;
 	_lease = _b select 3;
 	_totaloccupants = _b select 4;
-
 	_cls = typeof _building;
 	_name = _cls call OT_fnc_vehicleGetName;
 	_pic = getText(configFile >>  "CfgVehicles" >>  _cls >> "editorPreview");
@@ -92,19 +100,15 @@ if(typename _b isEqualTo "ARRAY") then {
 		if(typeof _building isEqualTo OT_warehouse) exitWith {
 			ctrlEnable [1609,true];
 			ctrlSetText [1609,"Procurement"];
-			findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "Purchase Vehicles from Warehouse";
+			_ctrl1609 ctrlSetTooltip "Purchase Vehicles from Warehouse";
 
-			ctrlSetText [1608,"Sell"];
-			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "";
-			ctrlEnable [1608,false];
-
-			ctrlSetText [1610,"Repair"];
-			findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "Repair damaged building";
 			if((damage _building) isEqualTo 1) then {
 				ctrlEnable [1610,true];
 			}else{
 				ctrlEnable [1610,false];
 			};
+			ctrlSetText [1610,"Repair"];
+			_ctrl1610 ctrlSetTooltip "Repair damaged building";
 
 			_buildingTxt = format["
 				<t align='left' size='0.8'>Warehouse</t><br/>
@@ -121,31 +125,41 @@ if(typename _b isEqualTo "ARRAY") then {
 			};
 
 			if(typeof _building isEqualTo OT_item_Tent) exitWith {
-				ctrlSetText [1608,"Sell"];
-				findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "";
-				findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "";
-				findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "";
-				ctrlEnable [1608,false];
-				ctrlEnable [1609,false];
-				ctrlEnable [1610,false];
-
 				_buildingTxt = format["
 					<t align='left' size='0.8'>Camp</t><br/>
 					<t align='left' size='0.65'>Owned by %1</t>
 				",_ownername];
 			};
 
-			ctrlSetText [1608,format["Sell ($%1)",[_sell, 1, 0, true] call CBA_fnc_formatNumber]];
-			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Sell this building";
-
 			if(_id in _leased) then {
-				ctrlSetText [1608,"Terminate"];
-				findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Sell this building";
-				findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "Terminate Lease";
-				findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "Leased cannot be set as Home";
-				ctrlEnable [1608,true];
 				ctrlEnable [1609,true];
-				ctrlEnable [1610,false];
+				ctrlEnable [1608,true];
+				ctrlSetText [1609,"Terminate"];
+				_ctrl1609 ctrlSetTooltip "Terminate Lease";
+
+				_ctrl1610 ctrlSetTooltip "Leased cannot be set as Home";
+			} else {
+				if(getpos _building isEqualTo (player getVariable ["home",[]])) then {
+					_ctrl1608 ctrlSetTooltip "Cannot sell your home";
+
+					_ctrl1609 ctrlSetTooltip "Cannot lease your home";
+
+					_ctrl1610 ctrlSetTooltip "Already your home";
+				} else {
+					if!(typeof _building in [OT_barracks,OT_trainingCamp,OT_refugeeCamp,OT_flag_IND,OT_item_Tent]) then {
+						ctrlEnable [1608,true];
+						ctrlSetText [1608,format["Sell ($%1)",[_sell, 1, 0, true] call CBA_fnc_formatNumber]];
+						_ctrl1608 ctrlSetTooltip "Sell this building";
+
+						ctrlEnable [1609,true];
+						ctrlSetText [1609,"Lease"];
+						_ctrl1609 ctrlSetTooltip "Lease this building";
+
+						ctrlEnable [1610,true];
+						ctrlSetText [1610,"Set as home"];
+						_ctrl1610 ctrlSetTooltip "Make this your home (respawn point)";
+					};
+				};
 			};
 			if(damage _building isEqualTo 1) then {
 				_lease = 0;
@@ -158,12 +172,6 @@ if(typename _b isEqualTo "ARRAY") then {
 			",_name,_ownername,[_lease, 1, 0, true] call CBA_fnc_formatNumber,round((damage _building) * 100),"%"];
 
 		} else {
-			ctrlEnable [1608,false];
-			ctrlEnable [1609,false];
-			ctrlEnable [1610,false];
-			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "";
-			findDisplay 8001 displayCtrl 1609 ctrlSetTooltip "";
-			findDisplay 8001 displayCtrl 1610 ctrlSetTooltip "";
 			if(typeof _building isEqualTo OT_item_Tent) then {
 				_name = "Camp";
 			};
@@ -176,15 +184,13 @@ if(typename _b isEqualTo "ARRAY") then {
 				<t align='left' size='0.65'>Damage: %3%4</t>
 			",_name,_ownername,round((damage _building) * 100),"%"];
 		};
+
 		if(typeof _building isEqualTo OT_barracks) then {
 			_owner = _building call OT_fnc_getOwner;
 			_ownername = players_NS getVariable format["name%1",_owner];
-			ctrlSetText [1608,"Sell"];
-			ctrlEnable [1608,false];
 			ctrlEnable [1609,true];
 			ctrlSetText [1609,"Recruit"];
-			//ctrlEnable [1609,false];
-			//ctrlEnable [1610,false];
+			_ctrl1609 ctrlSetTooltip "Recruit highly trained soldiers for the resistance";
 
 			_buildingTxt = format["
 				<t align='left' size='0.8'>Barracks</t><br/>
@@ -195,12 +201,9 @@ if(typename _b isEqualTo "ARRAY") then {
 		if(typeof _building isEqualTo OT_trainingCamp) then {
 			_owner = _building call OT_fnc_getOwner;
 			_ownername = players_NS getVariable format["name%1",_owner];
-			ctrlSetText [1608,"Sell"];
-			ctrlEnable [1608,false];
 			ctrlEnable [1609,true];
 			ctrlSetText [1609,"Recruit"];
-			//ctrlEnable [1609,false];
-			ctrlEnable [1610,false];
+			_ctrl1609 ctrlSetTooltip "Recruit pretrained army for the resistance";
 
 			_buildingTxt = format["
 				<t align='left' size='0.8'>Training Camp</t><br/>
@@ -212,11 +215,8 @@ if(typename _b isEqualTo "ARRAY") then {
 		if(typeof _building isEqualTo OT_refugeeCamp) then {
 			_owner = _building call OT_fnc_getOwner;
 			_ownername = players_NS getVariable format["name%1",_owner];
-			ctrlSetText [1608,"Sell"];
-			ctrlEnable [1608,false];
 			ctrlEnable [1609,true];
 			ctrlSetText [1609,"Recruit"];
-			ctrlEnable [1610,false];
 
 			_buildingTxt = format["
 				<t align='left' size='0.8'>Refugee Camp</t><br/>
@@ -232,13 +232,9 @@ if(typename _b isEqualTo "ARRAY") then {
 			}foreach(server getvariable ["bases",[]]);
 
 			_ownername = players_NS getVariable format["name%1",_base select 2];
-			ctrlSetText [1608,"Sell"];
 			ctrlEnable [1608,true];
 			ctrlSetText [1608,"Garrison"];
-			findDisplay 8001 displayCtrl 1608 ctrlSetTooltip "Garrison this FOB with pre-equipped soldiers";
-			ctrlEnable [1609,false];
-			//ctrlEnable [1609,false];
-			ctrlEnable [1610,false];
+			_ctrl1608 ctrlSetTooltip "Garrison this FOB with pre-equipped soldiers";
 
 			_buildingTxt = format["
 				<t align='left' size='0.8'>%1</t><br/>
@@ -248,29 +244,21 @@ if(typename _b isEqualTo "ARRAY") then {
 
 		if(damage _building isEqualTo 1) then {
 			if((_owner isEqualTo getplayerUID player) || (call OT_fnc_playerIsGeneral)) then {
-				ctrlEnable [1608,false]; //Not allowed to sell
-				ctrlSetText [1609,"Repair"]; //Replace lease/manage with repair
 				ctrlEnable [1609,true];
-				ctrlEnable [1610,false];
+				ctrlSetText [1609,"Repair"];
+				_ctrl1608 ctrlSetTooltip "Repair damaged building";
 			};
 		};
 	}else{
 		if((typeof _building) in OT_allRepairableRuins) then {
-			ctrlEnable [1608,false];
-			ctrlEnable [1609,false];
-			ctrlSetText [1610,"Repair"];
 			ctrlEnable [1610,true];
-
+			ctrlSetText [1610,"Repair"];
 			_buildingTxt = "<t align='left' size='0.8'>Ruins</t><br/>";
 		}else{
-			if(isNil "_price") then {
-				ctrlEnable [1608,false];
-				ctrlEnable [1609,false];
-				ctrlEnable [1610,false];
-			}else{
+			if(!isNil "_price") then {
+				ctrlEnable [1608,true];
 				ctrlSetText [1608,format["Buy ($%1)",[_price, 1, 0, true] call CBA_fnc_formatNumber]];
-				ctrlEnable [1609,false];
-				ctrlEnable [1610,false];
+				_ctrl1608 ctrlSetTooltip "Buy this building";
 
 				_buildingTxt = format["
 					<t align='left' size='0.8'>%1</t><br/>
@@ -278,11 +266,6 @@ if(typename _b isEqualTo "ARRAY") then {
 				",_name,[_lease, 1, 0, true] call CBA_fnc_formatNumber];
 
 				if(typeof _building isEqualTo OT_barracks) then {
-					ctrlSetText [1608,"Sell"];
-					ctrlEnable [1608,false];
-					ctrlEnable [1609,false];
-					ctrlEnable [1610,false];
-
 					_buildingTxt = format["
 						<t align='left' size='0.8'>Barracks</t><br/>
 					",_ownername];
@@ -295,11 +278,9 @@ if(typename _b isEqualTo "ARRAY") then {
 		_owner = _building call OT_fnc_getOwner;
 		if(!isNil "_owner") then {
 			_ownername = players_NS getVariable format["name%1",_owner];
-			ctrlSetText [1608,"Sell"];
-			ctrlEnable [1608,false];
-			ctrlSetText [1609,"Manage"];
 			ctrlEnable [1609,true];
-			//ctrlEnable [1610,false];
+			ctrlSetText [1609,"Manage"];
+			_ctrl1608 ctrlSetTooltip "Manage police station";
 
 			_buildingTxt = format["
 				<t align='left' size='0.8'>Police Station</t><br/>
@@ -312,11 +293,6 @@ if(typename _b isEqualTo "ARRAY") then {
 		_owner = _building call OT_fnc_getOwner;
 		if(!isNil "_owner") then {
 			_ownername = players_NS getVariable format["name%1",_owner];
-			ctrlSetText [1608,"Sell"];
-			ctrlEnable [1608,false];
-			ctrlEnable [1609,false];
-			//ctrlEnable [1610,false];
-
 			_buildingTxt = format["
 				<t align='left' size='0.8'>Workshop</t><br/>
 				<t align='left' size='0.65'>Built by %1</t>
@@ -327,19 +303,11 @@ if(typename _b isEqualTo "ARRAY") then {
 	// Fetch the list of buildable houses
 	private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
 	if(!((typeof _building) in OT_allRealEstate + [OT_flag_IND] + [OT_item_Tent]) and {!(typeOf _building in _buildableHouses)}) then {
-		ctrlEnable [1609,false];
-		ctrlEnable [1610,false];
-		ctrlEnable [1608,false];
 		_lease = 0;
-		ctrlSetText [1608,"Buy"];
 		_buildingTxt = format["
 			<t align='left' size='0.8'>%1</t>
 		",_name];
 	};
-}else{
-	ctrlEnable [1608,false];
-	ctrlEnable [1609,false];
-	ctrlEnable [1610,false];
 };
 private _areaText = "";
 _areatxtctrl = (findDisplay 8001) displayCtrl 1101;
@@ -351,19 +319,18 @@ if(_obpos distance player < 250) then {
 			<t align='left' size='0.8'>%1</t><br/>
 			<t align='left' size='0.65'>Under resistance control</t>
 		",_obname];
-		if (_obname in OT_allComms) then {
-			ctrlEnable [1621,false];
-		} else {
+		if!(_obname in OT_allComms) then {
 			ctrlEnable [1620,true];
+			ctrlSetText [1620,"1620"];
+
 			ctrlEnable [1621,true];
+			ctrlSetText [1621,"1621"];
 		};
 	}else{
 		_areaText = format["
 			<t align='left' size='0.8'>%1</t><br/>
 			<t align='left' size='0.65'>Under NATO control</t>
 		",_obname];
-		ctrlEnable [1620,false];
-		ctrlEnable [1621,false];
 	};
 }else{
 	private _ob = (getpos player) call OT_fnc_nearestLocation;
