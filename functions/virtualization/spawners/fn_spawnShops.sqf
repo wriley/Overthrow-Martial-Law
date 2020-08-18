@@ -12,6 +12,7 @@ if(count _activeshops > 0) exitWith {
 		_x params ["_pos","_category"];
 		private _pos = _x select 0;
 		_building = nearestBuilding _pos;
+		_setowner = _building getVariable ["setowner",false];
 
 		private _group = createGroup civilian;
 		_group setBehaviour "CARELESS";
@@ -35,6 +36,11 @@ if(count _activeshops > 0) exitWith {
 		_shopkeeper setVariable ["OT_shopCategory",_category,true];
 		_building setVariable ["OT_shopCategory",_category,true];
 		[_shopkeeper] call OT_fnc_initShopkeeper;
+		
+		if!(_setowner) then {
+			[_building,"system"] call OT_fnc_setOwner;
+			_building setvariable ["setowner",true];
+		};
 		if (OT_HCEnabled) then {
 			[_shopkeeper,HC2] spawn OT_fnc_MoveToHC;
 		};

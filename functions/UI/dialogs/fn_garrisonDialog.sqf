@@ -4,7 +4,7 @@ private _name = _ob select 1;
 
 private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
 _warehouse params ["_whPos"];
-if (_pos distance _whPos > 300) exitWith { hint format ["Cannot garrison %1, no warehouses found within 300m", _name]; };
+if (_pos distance _whPos > OT_spawnDistance) exitWith { hint format ["Cannot garrison %1, no warehouses found within %2m", _name, OT_spawnDistance]; };
 
 createDialog "OT_dialog_garrison";
 disableSerialization;
