@@ -108,8 +108,8 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 				//this code is in tents
 				_d = random 360;
 				_p = [_home,[2,9],_d] call SHK_pos_fnc_pos;
-				_p = _p findEmptyPosition [1,40,"Land_TentDome_F"];
-				_veh = createVehicle ["Land_TentDome_F",_p,[],0,"CAN_COLLIDE"];
+				_p = _p findEmptyPosition [1,40,"eo_dome_tent_grn"];
+				_veh = createVehicle ["eo_dome_tent_grn",_p,[],0,"CAN_COLLIDE"];
 				_veh setDir _d;
 				_groups pushback _veh;
 				_count = _count + 1;

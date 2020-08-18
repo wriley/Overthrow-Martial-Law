@@ -122,7 +122,7 @@ OT_spawnHouseBuildings = [
 //Interactable items that spawn in your house
 OT_item_Storage = "B_CargoNet_01_ammo_F"; //Your spawn ammobox
 OT_item_Map = "Mapboard_Malden_F";
-OT_item_Tent = "Land_TentDome_F";
+OT_item_Tent = "eo_dome_tent_grn";
 OT_item_Safe = "Land_MetalCase_01_small_F";
 OT_item_Workbench = "Land_Workbench_01_F"; //Crafting Table
 OT_item_Desk = "OfficeTable_01_new_F";
