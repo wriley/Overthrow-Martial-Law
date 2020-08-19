@@ -217,6 +217,9 @@ while {_count < _numNATO} do {
 		[_civ] joinSilent _group;
 		_civ setVariable ["VCOM_NOPATHING_Unit",true,false];
 		[_civ,_name] call OT_fnc_initMilitary;
+		if (OT_HCEnabled) then {
+			[_civ,HC1] spawn OT_fnc_MoveToHC;
+		};
 		_civ setBehaviour "SAFE";
 
 		_count = _count + 1;

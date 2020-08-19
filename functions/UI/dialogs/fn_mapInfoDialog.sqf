@@ -14,12 +14,12 @@ OT_MapSingleClickEHId = addMissionEventHandler["MapSingleClick", {
 			private _town = _name;
 			private _pop = server getVariable format["population%1",_town];
 			private _stability = server getVariable format["stability%1",_town];
-			private _abandon = "Under NATO Control";
+			private _status = "Under NATO Control";
 			if(_town in (server getVariable ["NATOabandoned",[]])) then {
 				if(_stability < 50) then {
-					_abandon = "Anarchy";
+					_status = "Anarchy";
 				}else{
-					_abandon = "Under Resistance Control";
+					_status = "Under Resistance Control";
 				};
 			};
 			private _rep = [_town] call OT_fnc_support;
@@ -35,18 +35,18 @@ OT_MapSingleClickEHId = addMissionEventHandler["MapSingleClick", {
 				"%",
 				_plusmin,
 				_rep,
-				_abandon
+				_status
 			];
 		};
 		if (_type in ["Objective","Radio Tower","Airport"]) exitWith {
-			private _abandon = "Under NATO Control";
+			private _status = "Under NATO Control";
 			if(_name in (server getVariable ["NATOabandoned",[]])) then {
-				_abandon = "Under Resistance Control";
+				_status = "Under Resistance Control";
 			};
 			_txt = format [
 				"<t size='1.2' color='#222222'>%1</t><br/><t size='0.5' color='#222222'>Status: %2</t>",
 				_name,
-				_abandon
+				_status
 			];
 		};
 		if (_type == "Faction") exitWith {

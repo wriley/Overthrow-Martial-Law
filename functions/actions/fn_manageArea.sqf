@@ -1,3 +1,4 @@
+closeDialog 0;
 private _ob = (position player) call OT_fnc_nearestObjective;
 private _dist = (_ob select 0) distance player;
 private _name = _ob select 1;

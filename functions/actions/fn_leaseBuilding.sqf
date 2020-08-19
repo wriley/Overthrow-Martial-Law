@@ -19,11 +19,11 @@ if(damage _building isEqualTo 1) exitWith {
 		format["You need $%1",[_price, 1, 0, true] call CBA_fnc_formatNumber];
 	};
 };
-if(typeof _building == OT_policeStation) exitWith {[] call OT_fnc_policeDialog};
-if((typeof _building == OT_barracks) || (typeof _building == OT_trainingCamp)) exitWith {[] call OT_fnc_recruitDialog};
 if(typeof _building == OT_refugeeCamp) exitWith {[] call OT_fnc_recruitSpawnCiv};
+closeDialog 0;
+if((typeof _building == OT_barracks) || (typeof _building == OT_trainingCamp)) exitWith {[] call OT_fnc_recruitDialog};
+if(typeof _building == OT_policeStation) exitWith {[] call OT_fnc_policeDialog};
 if(typeof _building == OT_warehouse) exitWith {[] call OT_fnc_buyVehicleDialog};
-
 if(typename _b != "ARRAY") exitWith {
 	private _ob = (getpos player) call OT_fnc_nearestObjective;
 	_ob params ["_obpos","_obname"];

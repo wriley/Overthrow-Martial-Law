@@ -1,6 +1,5 @@
 createDialog 'OT_dialog_resistance';
 
-
 ctrlEnable [1600,false];
 ctrlEnable [1601,false];
 
