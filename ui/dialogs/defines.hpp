@@ -117,28 +117,28 @@ class RscEditOverthrow
 	y = 0;
 	h = 0.04;
 	w = 0.2;
-	colorBackground[] = 
+	colorBackground[] =
 	{
 		0,
 		0,
 		0,
 		1
 	};
-	colorText[] = 
+	colorText[] =
 	{
 		0.95,
 		0.95,
 		0.95,
 		1
 	};
-	colorDisabled[] = 
+	colorDisabled[] =
 	{
 		1,
 		1,
 		1,
 		0.25
 	};
-	colorSelection[] = 
+	colorSelection[] =
 	{
 		"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])",
 		"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])",
@@ -153,21 +153,21 @@ class RscEditOverthrow
 	shadow = 2;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	canModify = 1;
-	tooltipColorText[] = 
+	tooltipColorText[] =
 	{
 		1,
 		1,
 		1,
 		1
 	};
-	tooltipColorBox[] = 
+	tooltipColorBox[] =
 	{
 		1,
 		1,
 		1,
 		1
 	};
-	tooltipColorShade[] = 
+	tooltipColorShade[] =
 	{
 		0,
 		0,
@@ -571,7 +571,7 @@ class RscOverthrowListBox
 	fade = 0;
 	access = 0;
 	type = 5;
-	rowHeight = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1.6)";
+	rowHeight = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1.5)";
 	onLBSelChanged  = "";
 	colorText[] =
 	{
@@ -726,7 +726,7 @@ class RscOverthrowListBox
 	h = 0.3;
 	style = 16;
 	font = "PuristaMedium";
-	sizeEx = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1)";
+	sizeEx = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * .8)";
 	shadow = 0;
 	colorShadow[] =
 	{

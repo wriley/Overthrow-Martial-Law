@@ -358,8 +358,8 @@ if(_obpos distance player < 250) then {
 					<t align='left' size='0.65'>Out Of Operation</t><br/>
 					<t align='left' size='0.65'>$%2</t>
 				",_obname,[_price, 1, 0, true] call CBA_fnc_formatNumber];
-				ctrlSetText [1620,"Buy"];
 				ctrlEnable [1621,false];
+				ctrlSetText [1620,"Buy"];
 				if (call OT_fnc_playerIsGeneral) then {
 					ctrlEnable [1620,true];
 				}else{

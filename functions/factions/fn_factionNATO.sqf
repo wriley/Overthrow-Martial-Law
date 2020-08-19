@@ -779,6 +779,7 @@ publicVariable "OT_nextNATOTurn";
 
 						_count = _count + 1;
 					};
+					{_x addCuratorEditableObjects [(units _group), true];}foreach(allCurators);
 					_group call OT_fnc_initMilitaryPatrol;
 				};
 				if(!("Mortar" in _upgrades) && {(_spend > 300)} && {(random 100 > _chance)}) exitWith {

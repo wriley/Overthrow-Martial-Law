@@ -1,10 +1,16 @@
+/*private _b = (position player) call OT_fnc_nearestLocation;
+if((_b select 1) isEqualTo "Business") exitWith {
+	(_b select 0) call OT_fnc_manageBusinessDialog;
+};*/
+
 private _ob = (position player) call OT_fnc_nearestObjectiveOrCommsOrBaseOrFob;
 private _pos = _ob select 0;
 private _name = _ob select 1;
 
-private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
-_warehouse params ["_whPos"];
-if (_pos distance _whPos > OT_spawnDistance) exitWith { hint format ["Cannot garrison %1, no warehouses found within %2m", _name, OT_spawnDistance]; };
+// ToDo rework garrison code so no magical gear is bought out of thin air
+//private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
+//_warehouse params ["_whPos"];
+//if (_pos distance _whPos > OT_spawnDistance) exitWith { hint format ["Cannot garrison %1, no warehouses found within %2m", _name, OT_spawnDistance]; };
 
 createDialog "OT_dialog_garrison";
 disableSerialization;

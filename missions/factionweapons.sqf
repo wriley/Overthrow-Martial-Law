@@ -84,7 +84,7 @@ private _title = format["%1 requests %2 x %3",_factionName,_numitems,_itemName];
             [
                 _topay,
                 format[
-                    "Delivered %1 x %2 (+20 %3)",//changed from +5
+                    "Delivered %1 x %2 (+10 %3)",//changed from +5
                     _numitems,
                     _itemcls call OT_fnc_weaponGetName,
                     server getvariable format["factionname%1",_faction]

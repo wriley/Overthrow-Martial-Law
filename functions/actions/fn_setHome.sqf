@@ -1,3 +1,4 @@
+closeDialog 0;
 private _b = player call OT_fnc_nearestRealEstate;
 private _building = objNull;
 if(typename _b isEqualTo "ARRAY") then {

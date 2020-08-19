@@ -38,6 +38,7 @@ if(_create isEqualType 1) then {
 
     if(_doinit) then {
         _group call OT_fnc_initMilitaryPatrol;
+		{_x addCuratorEditableObjects [(units _group), true];}foreach(allCurators);
     };
     if(_charge) then {
         _loadout = getUnitLoadout _civ;
@@ -169,6 +170,8 @@ if(_create isEqualType 1) then {
             {
                 [_x] joinSilent _group;
             }foreach(crew _gun);
+			{_x addCuratorEditableObjects [[_gun]];}foreach(allCurators);
+
         };
     };
 };

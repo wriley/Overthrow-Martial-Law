@@ -1,3 +1,4 @@
+closeDialog 0;
 private _b = player call OT_fnc_nearestRealEstate;
 private _handled = false;
 private _type = "buy";
