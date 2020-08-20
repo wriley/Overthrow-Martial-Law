@@ -16,9 +16,7 @@ if !(_frombase in _abandoned) then {
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["garrison","HQ",false];
 
-    {
-        _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
+    {_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;

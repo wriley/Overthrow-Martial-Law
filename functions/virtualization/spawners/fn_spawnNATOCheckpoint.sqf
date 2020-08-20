@@ -78,9 +78,7 @@ while {_count < _numNATO} do {
 		_start = [_start,20,_dir+90] call BIS_fnc_relPos;
 	};
 };
-[_group, _dir] spawn OT_fnc_initNATOCheckpoint; 
-{
-	_x addCuratorEditableObjects [units _group];
-}foreach(allcurators);
+[_group, _dir] spawn OT_fnc_initNATOCheckpoint;
+{_x addCuratorEditableObjects [units _group, true];}foreach(allcurators);
 
 spawner setvariable [_spawnid,_groups,false];

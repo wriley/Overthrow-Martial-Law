@@ -37,7 +37,7 @@ params ["_pos","_upgrades"];
         private _veh = _gun createVehicle _p;
 		_veh attachTo [_lock];
         createVehicleCrew _veh;
-		{_x addCuratorEditableObjects [[_veh]];}foreach(allCurators);
+    	{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
         _p = [_pos,10,45] call BIS_fnc_relPos;
         _veh = OT_NATO_Sandbag_Curved createVehicle _p;
@@ -55,7 +55,7 @@ params ["_pos","_upgrades"];
         private _veh = _gun createVehicle _p;
 		_veh attachTo [_lock];
         createVehicleCrew _veh;
-		{_x addCuratorEditableObjects [[_veh]];}foreach(allCurators);
+		{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
         _p = [_pos,10,135] call BIS_fnc_relPos;
         _veh = OT_NATO_Sandbag_Curved createVehicle _p;
@@ -72,7 +72,7 @@ params ["_pos","_upgrades"];
         _lock setVectorUp surfaceNormal position _lock;
         private _veh = _gun createVehicle _p;
         createVehicleCrew _veh;
-		{_x addCuratorEditableObjects [[_veh]];}foreach(allCurators);
+        {_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
         _p = [_pos,10,225] call BIS_fnc_relPos;
         _veh = OT_NATO_Sandbag_Curved createVehicle _p;
@@ -90,7 +90,7 @@ params ["_pos","_upgrades"];
         private _veh = _gun createVehicle _p;
 		_veh attachTo [_lock];
         createVehicleCrew _veh;
-		{_x addCuratorEditableObjects [[_veh]];}foreach(allCurators);
+		{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
         _p_p = [_pos,10,315] call BIS_fnc_relPos;
         _veh = OT_NATO_Sandbag_Curved createVehicle _p;
@@ -108,7 +108,7 @@ params ["_pos","_upgrades"];
         private _veh = OT_NATO_Mortar createVehicle _p;
 		_veh attachTo [_lock];
         createVehicleCrew _veh;
-		{_x addCuratorEditableObjects [[_veh]];}foreach(allCurators);
+		{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
         _g = grpNull;
         {

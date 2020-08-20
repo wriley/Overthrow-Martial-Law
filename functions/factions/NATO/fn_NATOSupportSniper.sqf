@@ -95,9 +95,7 @@ if(_isHQ) then {
 	_wp setWaypointType "SCRIPTED";
 	_wp setWaypointStatements ["true","[vehicle this] call OT_fnc_cleanup"];
 
-	{
-		_x addCuratorEditableObjects [units _tgroup,true];
-	} forEach allCurators;
+	{_x addCuratorEditableObjects [units _tgroup, true];}forEach allCurators;
 
 }else{
 	_moveto = [_start,50,_dir] call SHK_pos_fnc_pos;
@@ -105,9 +103,7 @@ if(_isHQ) then {
 	_wp setWaypointType "MOVE";
 	_wp setWaypointBehaviour "SAFE";
 };
-{
-	_x addCuratorEditableObjects [units _group,true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [units _group, true];}forEach allCurators;
 sleep 2;
 
 //This squad operates in stealth mode, therefore does not respond to calls for help from other units

@@ -354,6 +354,7 @@ class CfgFunctions
 			class isRadarInRange {};
 			class positionIsAtWarehouse {};
 			class nearestWarehouse {};
+			class getposNoWater {};
 		};
 
 		/*
