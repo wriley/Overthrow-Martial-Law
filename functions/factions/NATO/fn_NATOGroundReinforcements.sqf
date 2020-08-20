@@ -62,9 +62,7 @@ createVehicleCrew _veh;
 _allunits = (units _tgroup);
 
 _veh allowCrewInImmobile true;
-{
-	_x addCuratorEditableObjects [(units _tgroup) + [_veh],true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [(units _tgroup) + [_veh], true];}forEach allCurators;
 sleep 1;
 
 _tgroup deleteGroupWhenEmpty true;

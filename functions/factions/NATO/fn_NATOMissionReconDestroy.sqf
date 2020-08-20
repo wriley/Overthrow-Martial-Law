@@ -113,13 +113,9 @@ if(_isAir) then {
 	_wp setWaypointType "SCRIPTED";
 	_wp setWaypointStatements ["true","[vehicle this] call OT_fnc_cleanup"];
 
-	{
-		_x addCuratorEditableObjects [units _tgroup,true];
-	} forEach allCurators;
+	{_x addCuratorEditableObjects [units _tgroup, true];}forEach allCurators;
 };
-{
-	_x addCuratorEditableObjects [units _group,true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [units _group, true];} forEach allCurators;
 sleep 2;
 
 //This squad operates in stealth mode, therefore does not respond to calls for help from other units

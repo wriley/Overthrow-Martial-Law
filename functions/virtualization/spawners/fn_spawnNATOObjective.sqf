@@ -226,9 +226,7 @@ while {_count < _numNATO} do {
 		_groupcount = _groupcount + 1;
 		sleep 0.5;
 	};
-	{
-		_x addCuratorEditableObjects[units _group,false];
-	}foreach(allcurators);
+	{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
 
 	[_group,_posTown,_range,6] call CBA_fnc_taskPatrol;
 	_range = _range + 50;
@@ -330,9 +328,7 @@ private _road = objNull;
 			_x setVariable ["garrison","HQ",false];
 		}foreach(crew _veh);
 		_vgroup setVariable ["Vcm_Disable",true,false];
-		{
-			_x addCuratorEditableObjects [[_veh]];
-		}foreach(allcurators);
+		{_x addCuratorEditableObjects [[_veh], true];}foreach(allcurators);
 	};
 }foreach(_vehgarrison);
 
@@ -372,10 +368,7 @@ private _road = objNull;
 		_wp setWaypointType "GUARD";
 		_wp = _group addWaypoint [_pos, 0];
 		_wp setWaypointType "CYCLE";
-		{
-			_x addCuratorEditableObjects[units _group,false];
-		}foreach(allcurators);
+		{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
 	};
 }foreach(OT_NATOhvts);
-
 spawner setvariable [_spawnid,_groups,false];

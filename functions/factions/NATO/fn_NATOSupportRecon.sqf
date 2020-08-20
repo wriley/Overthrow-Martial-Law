@@ -117,9 +117,7 @@ if(_isAir) then {
 	_wp setWaypointType "SCRIPTED";
 	_wp setWaypointStatements ["true","[vehicle this] call OT_fnc_cleanup"];
 
-	{
-		_x addCuratorEditableObjects [units _tgroup,true];
-	} forEach allCurators;
+	{_x addCuratorEditableObjects [units _tgroup, true];}forEach allCurators;
 }else{
     _convoypos = [_close,random 360,120] call SHK_pos_fnc_pos;
     private _road = [_convoypos] call BIS_fnc_nearestRoad;
@@ -139,9 +137,7 @@ if(_isAir) then {
         _x moveInAny _veh;
     }foreach(units _group);
 };
-{
-	_x addCuratorEditableObjects [units _group,true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [units _group, true];}forEach allCurators;
 sleep 2;
 
 //This squad operates in stealth mode, therefore does not respond to calls for help from other units

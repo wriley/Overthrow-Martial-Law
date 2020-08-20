@@ -38,9 +38,7 @@ _group addVehicle _veh;
 _allunits = (units _group);
 sleep 1;
 
-{
-	_x addCuratorEditableObjects [[_veh]];
-}foreach(allCurators);
+{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
 _topos = [_attackpos,[0,200]] call SHK_pos_fnc_pos;
 

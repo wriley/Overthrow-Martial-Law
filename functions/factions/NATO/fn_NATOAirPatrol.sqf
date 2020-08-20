@@ -19,10 +19,6 @@ if !(_frombase in _abandoned) then {
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["garrison","HQ",false];
 
-    {
-        _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
-
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;
     clearItemCargoGlobal _veh;
@@ -36,6 +32,9 @@ if !(_frombase in _abandoned) then {
     	_x setVariable ["NOAI",true,false];
     }foreach(crew _veh);
     sleep 1;
+
+    {_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
+
     //private _attackpos = [_topos,[0,200]] call SHK_pos_fnc_pos;
     {
         _wp = _group addWaypoint [_x,50];

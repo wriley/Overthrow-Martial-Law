@@ -18,6 +18,8 @@ createVehicleCrew _veh;
 _allunits = (units _group);
 sleep 1;
 
+{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
+
 _wp = _group addWaypoint [asltoatl _attackpos,20];
 _wp setWaypointType "SAD";
 _wp setWaypointBehaviour "COMBAT";
@@ -27,5 +29,3 @@ _wp setWaypointTimeout [600,600,600];
 _wp = _group addWaypoint [_frompos,2000];
 _wp setWaypointType "SCRIPTED";
 _wp setWaypointStatements ["true","[vehicle this] call OT_fnc_cleanup"];
-
-

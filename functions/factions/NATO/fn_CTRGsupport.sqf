@@ -117,6 +117,4 @@ _comp = OT_NATO_Vehicle_CTRGTransport call OT_fnc_vehicleGetName;
 _an = "A";
 if((_ao select [0,1]) in ["A","E","I","O","a","e","i","o"]) then {_an = "An"};
 
-{
-	_x addCuratorEditableObjects [_vehs+_soldiers,true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [_vehs+_soldiers, true];}forEach allCurators;

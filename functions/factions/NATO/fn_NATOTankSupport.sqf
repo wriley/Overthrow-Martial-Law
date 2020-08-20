@@ -36,9 +36,7 @@ while {_count < _num} do {
 	_count = _count + 1;
 	sleep 0.3;
 
-	{
-        _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
+	{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 };
 
 _wp = _group addWaypoint [_attackpos,100];

@@ -25,10 +25,6 @@ if !(isNil "_from") then {
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["garrison","HQ",false];
 
-    {
-        _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
-
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;
     clearItemCargoGlobal _veh;
@@ -42,6 +38,8 @@ if !(isNil "_from") then {
     	_x setVariable ["NOAI",true,false];
     }foreach(crew _veh);
     sleep 1;
+
+	{_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
 
     private _dir = [_targetpos,_frompos] call BIS_fnc_dirTo;
     private _attackpos = [_targetpos,[100,400],_dir] call SHK_pos_fnc_pos;

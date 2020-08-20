@@ -44,9 +44,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     	}foreach(crew _veh);
         _driver assignAsCommander _veh;
         _convoypos = [_convoypos,20,_dir+180] call BIS_fnc_relPos;
-        {
-            _x addCuratorEditableObjects [[_veh]];
-        }foreach(allCurators);
+        {_x addCuratorEditableObjects [[_veh], true];}foreach(allCurators);
     	sleep 0.3;
     }foreach(_vehtypes);
 

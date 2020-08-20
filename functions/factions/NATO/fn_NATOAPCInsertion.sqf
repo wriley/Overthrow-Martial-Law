@@ -52,9 +52,7 @@ sleep 1;
 	_x setVariable ["VCOM_NOPATHING_Unit",true,false];
 }foreach(units _group1);
 
-{
-	_x addCuratorEditableObjects [[_veh]+(units _group1),true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [[_veh]+(units _group1), true];}forEach allCurators;
 
 _tgroup deleteGroupWhenEmpty true;
 

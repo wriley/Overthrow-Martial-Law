@@ -62,9 +62,7 @@ createVehicleCrew _veh;
 	_x setVariable ["NOAI",true,false];
 }foreach(crew _veh);
 _allunits = (units _tgroup);
-{
-	_x addCuratorEditableObjects [(units _tgroup) + [_veh],true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [(units _tgroup) + [_veh], true];}forEach allCurators;
 sleep 1;
 
 _tgroup deleteGroupWhenEmpty true;
@@ -82,9 +80,7 @@ _tgroup deleteGroupWhenEmpty true;
 
 }foreach(units _group1);
 
-{
-	_x addCuratorEditableObjects [units _group1,true];
-} forEach allCurators;
+{_x addCuratorEditableObjects [units _group1, true];}forEach allCurators;
 
 spawner setVariable ["NATOattackforce",(spawner getVariable ["NATOattackforce",[]])+[_group1],false];
 
@@ -100,9 +96,7 @@ if !(_byair) then {
 		[_x] call OT_fnc_initMilitary;
 
 	}foreach(units _group2);
-	{
-		_x addCuratorEditableObjects [units _group2,true];
-	} forEach allCurators;
+	{_x addCuratorEditableObjects [units _group2, true];}forEach allCurators;
 	spawner setVariable ["NATOattackforce",(spawner getVariable ["NATOattackforce",[]])+[_group2],false];
 };
 
