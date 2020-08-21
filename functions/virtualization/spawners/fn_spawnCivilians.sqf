@@ -106,11 +106,17 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 
 			while {_count < _numtents} do {
 				//this code is in tents
-				_d = random 360;
-				_p = [_home,[2,9],_d] call SHK_pos_fnc_pos;
-				_p = _p findEmptyPosition [1,40,"eo_dome_tent_grn"];
+				_dir = random 360;
+				private _p = [];
+				private _attempt = 0;
+				while {_p isEqualTo [] && _attempt < 10} do {
+					_attempt = _attempt + 1;
+					_p = [_home,[3,9],_dir] call SHK_pos_fnc_pos;
+					_p = _p findEmptyPosition [1,75,"eo_dome_tent_grn"];
+				};
+				if (_p isEqualTo []) exitWith {};
 				_veh = createVehicle ["eo_dome_tent_grn",_p,[],0,"CAN_COLLIDE"];
-				_veh setDir _d;
+				_veh setDir _dir;
 				_groups pushback _veh;
 				_count = _count + 1;
 			};

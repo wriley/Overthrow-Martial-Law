@@ -124,8 +124,8 @@ private _hasList_buildableHouses = false;
 				{
 					if(!isNil "_x") then {
 						if(_x isEqualType []) then {
-							diag_log format ["loadGame: warehouse: _x: %1", _x];
 							_x params [["_id",0],"_item"];
+							diag_log format ["[fn_loadGame]: loading warehouse id %1 _X:%2",_id,_x];
 							_item params [["_itemClass","",[""]],["_itemCount",0,[0]]];
 							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
 								warehouse setVariable [format["warehouse-%1_%2",_id,_itemClass],[_itemClass,_itemCount],true];

@@ -1,4 +1,4 @@
-params ["_i","_s","_e","_c","_p","_sp"];
+params ["_id","_start","_end","_code","_params","_time"];
 
-(_p + [_i]) spawn _c;
+(_params + [_id]) spawn _code;
 _this set [5,time];

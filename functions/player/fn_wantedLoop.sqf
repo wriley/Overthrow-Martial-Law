@@ -216,19 +216,20 @@ if !(captive _unit) then {
 					//obj or comms
 					if!(_obname in (server getvariable ["NATOabandoned",[]])) then {
 						_dist = _obname call {
+							_obname = _this;
 							if (_this in OT_allComms) exitWith {
 								{
-									_x params ["","_n","_d"];
-									if (_n isEqualTo _this) exitWith { _d };
+									_x params ["","_name","_dist"];
+									if (_name isEqualTo _obname) exitWith { _dist };
 								} foreach OT_commsData;
 							};
-							if (_this in OT_allObjectives) exitWith {
+							if (_obname in OT_allObjectives) exitWith {
 								{
-									_x params ["","_n","_d"];
-									if (_n isEqualTo _this) exitWith { _d };
+									_x params ["","_name","_dist"];
+									if (_name isEqualTo _obname) exitWith { _dist };
 								} foreach OT_objectiveData;
 							};
-							if (_this in OT_NATO_priority) exitWith {500};
+							if (_obname in OT_NATO_priority) exitWith {500};
 							200
 						};
 					};

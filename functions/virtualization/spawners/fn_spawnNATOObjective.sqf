@@ -108,6 +108,8 @@ if(_name in OT_allComms) then {
 	};
 	[_group,_posTown,75,6] call CBA_fnc_taskPatrol;
 
+	{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
+
 }else{
 	//put up a flag
 	private _flag =  OT_flag_NATO createVehicle _posTown;
@@ -180,6 +182,8 @@ if(_numNATO > 0) then {
 				[_x] joinSilent _garrisongroup;
 				_x setVariable ["garrison",_name,false];
 			}foreach(crew _x);
+			_veh = _x;
+			{_x addCuratorEditableObjects[[_veh], true];}foreach(allcurators);
 		}foreach(_addedVehicles);
 
 		if(_numNATO <= 0) exitWith {};
@@ -226,11 +230,11 @@ while {_count < _numNATO} do {
 		_groupcount = _groupcount + 1;
 		sleep 0.5;
 	};
-	{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
 
 	[_group,_posTown,_range,6] call CBA_fnc_taskPatrol;
 	_range = _range + 50;
 	sleep 0.5;
+	{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
 };
 
 
@@ -266,6 +270,7 @@ private _airgarrison = server getVariable [format["airgarrison%1",_name],[]];
 	_veh setVariable ["airgarrison",_name,false];
 	_veh setDir _dir;
 	sleep 0.5;
+	{_x addCuratorEditableObjects[[_veh], true];}foreach(allcurators);
 	_groups pushback _veh;
 }foreach(_airgarrison);
 

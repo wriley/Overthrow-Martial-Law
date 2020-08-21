@@ -1,8 +1,8 @@
 #include "\overthrow_main\mission_component.hpp"
 
 overviewPicture = "\overthrow_main\campaign\missions\overthrow_tanoa.jpg";
-briefingName = "OT_Martial_Law_Malden_RHS";
-OnLoadName = "OT_Martial_Law_Malden_RHS";
+briefingName = "OT Martial Law Malden RHS";
+OnLoadName = "OT: Martial Law Malden";
 loadScreen = "\overthrow_main\campaign\missions\otml.jpg";
 
 overviewText = "@todo";

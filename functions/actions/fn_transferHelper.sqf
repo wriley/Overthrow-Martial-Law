@@ -22,7 +22,6 @@ _this spawn {
 		_iswarehouse = true;
 		_warehouse = (getpos _veh) call OT_fnc_nearestWarehouse;
 	};
-	_warehouse params ["","_id"];
 
 	private _target = _source;
 	if(_target isEqualTo player) then {
@@ -52,14 +51,15 @@ _this spawn {
 		_target addMagazineCargoGlobal[_x, 1];
 	}foreach(_mags);
 
+	_warehouse params ["","_id"];
 	if(_iswarehouse) then {
 		{
-			_x params ["_cls", "_num"];
-			_d = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
-			if(_d isEqualType []) then {
-				_d params ["_wCls",["_in",0]];
-				_in =  _d select 1;
-				warehouse setVariable[format["warehouse-%1_%2",_id,_cls],[_cls,_in + _num],true];
+			_itemArr = _x;
+			_itemArr params ["_cls", "_qtyIn"];
+			_warehouse = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
+			if(_warehouse isEqualType []) then {
+				_warehouse params ["",["_qty",0]];
+				warehouse setVariable[format["warehouse-%1_%2",_id,_cls],[_cls,_qty + _qtyIn],true];
 			};
 		}foreach(_target call OT_fnc_unitStock);
 		clearMagazineCargoGlobal _target;

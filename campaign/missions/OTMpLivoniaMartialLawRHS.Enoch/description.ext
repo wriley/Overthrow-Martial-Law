@@ -1,8 +1,8 @@
 #include "\overthrow_main\mission_component.hpp"
 
 overviewPicture = "\overthrow_main\campaign\missions\overthrow_tanoa.jpg";
-briefingName = "OT_Martial_Law_Livonia_RHS";
-OnLoadName = "OT_Martial_Law_Livonia_RHS";
+briefingName = "OT Martial Law Livonia RHS";
+OnLoadName = "OT: Martial Law Livonia";
 loadScreen = "\overthrow_main\campaign\missions\otml.jpg";
 
 overviewText = "Dangerous Freedom over Peaceful Slavery. You are the Resistance";

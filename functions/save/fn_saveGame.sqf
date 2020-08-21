@@ -176,7 +176,7 @@ private _vehicles = (_tocheck) apply {
 _data pushback ["vehicles",_vehicles];
 
 if!(_quiet) then {
-	diag_log "Step 6/11 - Saving warehouse";
+	diag_log "Step 6/11 - Saving warehouses";
 };
 
 private _warehouse = [3]; //First element is save version

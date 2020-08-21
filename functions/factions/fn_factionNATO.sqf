@@ -69,7 +69,7 @@ publicVariable "OT_nextNATOTurn";
 		if !(_countered) then {
 			{
 				_x params ["_pos","_name","_cost"];
-				if !(_name in _abandoned) then {
+				if (!(_name in _abandoned) && (spawner getvariable [format["spawnid%1",_name],""] in OT_allspawned)) then {
 					if(_pos call OT_fnc_inSpawnDistance) then {
 						_numgarrison = server getVariable [format["garrison%1"],0];
 						_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",500]);
@@ -212,7 +212,7 @@ publicVariable "OT_nextNATOTurn";
 		{
 			_pos = _x select 0;
 			_name = _x select 1;
-			if !(_name in _abandoned && OT_serverInitDone) then {
+			if (!(_name in _abandoned) && (spawner getvariable [format["spawnid%1",_name],""] in OT_allspawned)) then {
 				if(_pos call OT_fnc_inSpawnDistance) then {
 					_progress = 0;
 					_influence = 0;

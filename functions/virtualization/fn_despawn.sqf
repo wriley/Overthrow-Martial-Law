@@ -1,6 +1,6 @@
-params ["_i","_s","_e","_c","_p"];
-private _groups = spawner getVariable [_i,[]];
-spawner setVariable [_i,[],false];
+params ["_id","_start","_end","_code","_params","_time"];
+private _groups = spawner getVariable [_id,[]];
+spawner setVariable [_id,[],false];
 {
     if(typename _x isEqualTo "GROUP") then {
         {
