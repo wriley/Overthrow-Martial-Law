@@ -392,11 +392,11 @@ build = {
 		if((_x select 0) isEqualTo modeSelected) exitWith {_def = _x};
 	}foreach(OT_Buildables);
 	_name = _def select 0;
-	_description = _def select 5;
-	modeCode = _def select 3;
-	modeValues = _def select 2;
 	modePrice = _def select 1;
+	modeValues = _def select 2;
+	modeCode = _def select 3;
 	_isTemplate = _def select 4;
+	_description = _def select 5;
 	_buildcls = "";
 	if(_isTemplate) then {
 		modeMode = 0;

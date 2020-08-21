@@ -134,11 +134,15 @@ if(typename _b isEqualTo "ARRAY") then {
 			};
 
 			if(_id in _leased) then {
-				ctrlEnable [1609,true];
 				ctrlEnable [1608,true];
+				ctrlSetText [1608,format["Sell ($%1)",[_sell, 1, 0, true] call CBA_fnc_formatNumber]];
+				_ctrl1608 ctrlSetTooltip "Sell this building";
+
+				ctrlEnable [1609,true];
 				ctrlSetText [1609,"Terminate"];
 				_ctrl1609 ctrlSetTooltip "Terminate Lease";
 
+				ctrlSetText [1610,"Set as Home"];
 				_ctrl1610 ctrlSetTooltip "Leased cannot be set as Home";
 			} else {
 				if(getpos _building isEqualTo (player getVariable ["home",[]])) then {
@@ -260,7 +264,7 @@ if(typename _b isEqualTo "ARRAY") then {
 			ctrlSetText [1610,"Repair"];
 			_buildingTxt = "<t align='left' size='0.8'>Ruins</t><br/>";
 		}else{
-			if(!isNil "_price") then {
+			if(!isNil "_price" && _price > 0) then {
 				ctrlEnable [1608,true];
 				ctrlSetText [1608,format["Buy ($%1)",[_price, 1, 0, true] call CBA_fnc_formatNumber]];
 				_ctrl1608 ctrlSetTooltip "Buy this building";

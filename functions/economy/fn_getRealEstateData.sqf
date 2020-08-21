@@ -17,7 +17,7 @@ _population = (_population / 1000);
 
 ([_type] call {
 	params ["_type"];
-	if (_type in OT_spawnHouses) exitWith {[]};
+	if (_type in OT_spawnHouses) exitWith {[2000]};
 	if(_type in OT_lowPopHouses) exitWith {[5000,8]};
 	if(_type in OT_medPopHouses) exitWith {[15000,12,0.2]};
 	if(_type in OT_highPopHouses) exitWith {[35000,15,0.15]};
@@ -25,9 +25,9 @@ _population = (_population / 1000);
 	if(_type in OT_mansions) exitWith {[150000,10]};
 	if(_type == OT_warehouse) exitWith {[15000,0]};
 	[]
-}) params [["_baseprice", 2000],["_totaloccupants",4],["_multiplier",0.35]];
+}) params [["_baseprice", 0],["_totaloccupants",0],["_multiplier",0]];
 
-private _price = round(_baseprice + ((_baseprice * _stability * _population) * (1+OT_standardMarkup)));
+private _price = round(_baseprice + ((_baseprice * _stability * _population) * (1 + OT_standardMarkup)));
 private _sell = round(_baseprice + (_baseprice * _stability * _population));
 private _lease = round((_stability * _population) * ((_baseprice * _multiplier) * _totaloccupants * 0.3));
 if !(_town in (server getvariable ["NATOabandoned",[]])) then {_lease = round(_lease * 0.2)};

@@ -170,7 +170,7 @@ if(_create isEqualType 1) then {
             {
                 [_x] joinSilent _group;
             }foreach(crew _gun);
-			{_x addCuratorEditableObjects [[_gun]];}foreach(allCurators);
+			{_x addCuratorEditableObjects [[_gun], true];}foreach(allCurators);
 
         };
     };
