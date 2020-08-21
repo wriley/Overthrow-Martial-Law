@@ -68,6 +68,9 @@ OT_priceData = [
 ['m24_bino',[100,0,2,2]],
 ['rhsusf_bino_m24',[100,0,2,2]],
 ['rhsusf_bino_m24_ARD',[105,0,2,2]],
+['rhs_pdu4',[200,0,2,2]],
+['rhsusf_bino_lrf_Vector21',[200,0,2,2]],
+['rhsusf_bino_lerca_1200_black',[200,0,2,2]],
 
 //Weapons
 ['SMG_01_F',[3000,0,1,0.5]],

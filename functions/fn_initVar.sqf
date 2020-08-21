@@ -988,11 +988,12 @@ OT_staticWeapons = ["I_Mortar_01_F","I_static_AA_F","I_static_AT_F","I_GMG_01_F"
 //Stuff you can build: [name,price,array of possible classnames,init function,??,description]
 OT_Buildables = [
 	["Training Camp",3000,[
-	  ["Land_CanvasCover_02_F",[-7.69089,-0.473363,0],0,1,0,[0,0],"","",true,false],
-	  ["Land_WoodenTable_02_large_F",[-4.72402,-0.182449,0.0129075],261.38,1,0,[0.000213137,-0.19328],"","",true,false],
-    ["Land_Garbage_square5_F",[-4.89414,-0.188629,0],286.632,1,0,[0,0],"","",true,false],
-    ["Box_NATO_Grenades_F",[-8.66742,0.682662,-1.43051e-006],22.6307,1,0,[0.000369633,-0.000828827],"","",true,false],
-    ["Land_Pallet_MilBoxes_F",[-9.68021,-0.782342,0],324.09,1,0,[0,0],"","",true,false]
+	  ["Land_CanvasCover_02_F",[-0.039865,0.0991802,0],0,1,0,[0,0],"","",true,false],
+      ["Land_Garbage_square5_F",[0.915764,-0.195568,0],72.3728,1,0,[0,0],"","",true,false],
+      ["Box_NATO_Grenades_F",[-0.37844,-1.06315,-1.90735e-006],114.94,1,0,[-0.00090977,0.00149151],"","",true,false],
+      ["Land_ClutterCutter_large_F",[1.23494,0.864781,0],0,1,0,[0,0],"","",true,false],
+      ["Land_Pallet_MilBoxes_F",[-1.60001,0.791025,0],0,1,0,[0,0],"","",true,false],
+      ["Land_WoodenTable_02_large_F",[3.44396,0.227554,0.012908],313.565,1,0,[0.000236515,-0.193301],"","",true,false]
 	],"OT_fnc_initTrainingCamp",true,"Allows training of recruits && hiring of people with military experience"],
 	["Bunkers",5000,["Land_Hangar_F","Land_BagBunker_Tower_F","Land_BagBunker_Small_F","Land_HBarrierTower_F","Land_Bunker_01_blocks_3_F","Land_Bunker_01_blocks_1_f","Land_Bunker_01_big_F","Land_Bunker_01_small_F","Land_Bunker_01_tall_F","Land_Bunker_01_HQ_F","Land_BagBunker_01_small_green_F","Land_HBarrier_01_big_tower_green_F","Land_HBarrier_01_tower_green_F"],"",false,"Small Defensive Structures. CONTAINS TEST OBJECTS. Press space to change type."],
 	["Walls",100,["Land_HBarrier_1_F","Land_HBarrier_3_F","Land_HBarrier_5_F","Land_HBarrier_Big_F","Land_HBarrierWall_corner_F","Land_HBarrierWall_corridor_F","Land_HBarrierWall4_F","Land_HBarrierWall6_F","Land_HBarrier_01_line_1_green_F","Land_HBarrier_01_line_3_green_F","Land_HBarrier_01_line_5_green_F","Land_HBarrier_01_big_4_green_F","Land_HBarrier_01_wall_corner_green_F","Land_HBarrier_01_wall_corridor_green_F","Land_HBarrier_01_wall_4_green_F","Land_HBarrier_01_wall_6_green_F"],"",false,"Stop people (or tanks) from getting in. Press space to change type."],
@@ -1002,10 +1003,13 @@ OT_Buildables = [
 	["Guard Tower",50000,["Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V1_F"],"",false,"It's a huge tower, what else do you need?."],
 	["Hangar",12000,["Land_Airport_01_hangar_F"],"",false,"A big empty building, could probably fit a plane inside it."],
 	["Workshop",5000,[
-	  ["Land_cargo_house_slum_F",[-5.28708,1.71423,0],0,1,0,[0,0],"","",true,false],
-		["Land_ToolTrolley_02_F",[-0.943165,0.888457,-1.90735e-006],184.978,1,0,[-0.000586218,0.000940886],"","",true,false],
-		["Land_WeldingTrolley_01_F",[-2.5792,-1.39631,-4.76837e-007],292.933,1,0,[-0.000260068,1.87621e-005],"","",true,false],
-		["Box_NATO_AmmoVeh_F",[-6.28864,-2.78878,0.0305414],9.03579e-005,1,0,[1.25353e-005,-6.98109e-006],"","",true,false]
+	  ["Land_cargo_house_slum_F",[-1.77455,-0.311288,0],0,1,0,[0,0],"","",true,false],
+	    ["Land_ClutterCutter_large_F",[-0.01,-0.06,0],0,1,0,[0,0],"","",true,false],
+	    ["Land_Garbage_square3_F",[2.33242,0.567575,0],339.282,1,0,[0,0],"","",true,false],
+	    ["Land_Garbage_square5_F",[-0.0127128,-3.01219,0],281.871,1,0,[0,0],"","",true,false],
+	    ["Land_WeldingTrolley_01_F",[1.31593,-3.09011,-4.76837e-007],360,1,0,[-0.000255435,1.18795e-005],"","",true,false],
+	    ["Land_ToolTrolley_02_F",[3.5115,-1.70831,-2.38419e-006],180.146,1,0,[-0.000596021,0.000931203],"","",true,false],
+	    ["Box_NATO_AmmoVeh_F",[-2.38986,-4.6511,0.0305414],3.30369e-005,1,0,[1.09284e-007,6.80265e-007],"","",true,false]
 	],"OT_fnc_initWorkshop",true,"Attach weapons to vehicles"],
 	["House",10000,["Land_House_Small_06_F","Land_House_Small_02_F","Land_House_Small_03_F","Land_GarageShelter_01_F","Land_Slum_04_F"],"",false,"4 walls, a roof, && if you're lucky a door that opens."],
 	["Police Station",12500,[OT_policeStation],"OT_fnc_initPoliceStation",false,"Allows hiring of policeman to raise stability in a town \& keep the peace. Comes with 2 units."],
