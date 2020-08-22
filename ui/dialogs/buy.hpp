@@ -58,7 +58,7 @@ class OT_dialog_buy
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
-			action = "[true] call OT_fnc_buy;";
+			action = "[true,1] call OT_fnc_buy;";
 
 			text = "Buy to Crate"; //--- ToDo: Localize;
 			x = 0.65082 * safezoneW + safezoneX;
