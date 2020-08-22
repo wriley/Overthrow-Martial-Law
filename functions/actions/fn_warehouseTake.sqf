@@ -1,11 +1,10 @@
 if (OT_taking) exitWith {};
-
 OT_taking = true;
+
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
-private _num = _this select 0;
+params ["_qtyout","_pos"];
 
-_count = 0;
 private _veh = (vehicle player);
 private	_iswarehouse = false;
 private _id = 0;
@@ -16,7 +15,7 @@ if(_veh isEqualTo player) then {
 		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 			_iswarehouse = true;
 			_veh = OT_warehouseTarget;
-			_id = ((getpos player) call OT_fnc_nearestWarehouse) select 1;
+			_id = (_pos call OT_fnc_nearestWarehouse) select 1;
 		};
 	};
 };
@@ -24,15 +23,15 @@ if(_veh isEqualTo player) exitWith {
 	"No warehouse within range" call OT_fnc_notifyMinor;
 };
 
-private _d = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
-_d params ["_wCls", ["_in",0,[0]]];
+private _warehouse = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
+_warehouse params ["_wCls", ["_in",0,[0]]];
 
-if(_num > _in || _num isEqualTo -1) then {
-	_num = _in;
+if(_qtyout > _in || _qtyout isEqualTo -1) then {
+	_qtyout = _in;
 };
 
-while {_count < _num} do {
-	if!(_veh canAdd _cls) exitWith {hint "This vehicle is full, use a truck for more storage"; closeDialog 0; _num = _count};
+for [{private _i=0;},{_i<_qtyout;},{_i=_i+1;}] do {
+	if!(_veh canAdd _cls) exitWith {hint "This vehicle is full, use a truck for more storage"; closeDialog 0; _qtyout = _count};
 	[_cls, _veh] call {
 		params ["_cls", "_veh"];
 		if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
@@ -53,16 +52,15 @@ while {_count < _num} do {
 		};
 		_veh addItemCargoGlobal [_cls,1];
 	};
-	_count = _count + 1;
 };
 
-private _newnum = _in - _num;
+private _newnum = _in - _qtyout;
 if(_newnum > 0) then {
 	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],[_cls,_newnum],true];
 }else{
 	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],nil,true];
 };
 
-[] call OT_fnc_warehouseDialog;
+[_id] call OT_fnc_refreshWarehouse;
 
 OT_taking = false;

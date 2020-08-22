@@ -85,7 +85,7 @@ class OT_dialog_buy
 
 			text = "Buy 10 to Crate"; //--- ToDo: Localize;
 			x = 0.65082 * safezoneW + safezoneX;
-			y = 0.412 * safezoneH + safezoneY;
+			y = 0.357 * safezoneH + safezoneY;
 			w = 0.0502734 * safezoneW;
 			h = 0.044 * safezoneH;
 			colorBackground[] = {0,0,0,0.8};

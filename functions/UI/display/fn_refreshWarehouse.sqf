@@ -102,5 +102,5 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 	};
 }foreach(_sorted);
 
-if(_cursel >= _numitems) then {_cursel = 0};
-lbSetCurSel [1500, _cursel];
+//if(_cursel >= _numitems) then {_cursel = 0};
+//lbSetCurSel [1500, _cursel];
