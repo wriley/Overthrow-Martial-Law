@@ -3,6 +3,7 @@ params ["_town","_standing","_s",["_multiplier", 1]];
 private _sorted = [_s,[],{_x select 0},"ASCEND"] call BIS_fnc_SortBy;
 private _canCrateBuy = false;
 private _civ = OT_interactingWith;
+private _cat = "";
 lbClear 1500;
 {
 	_x params ["_cls", "_num", ["_enabled", true], ["_disabledText", "Not Available"]];
@@ -45,9 +46,13 @@ lbClear 1500;
 }foreach(_sorted);
 ctrlEnable [1602, false];
 ctrlEnable [1601, false];
-if (_civ getvariable ["shop",false]) then { _canCrateBuy=true; };
-if (_civ getvariable ["gundealer",false]) then { _canCrateBuy=true; };
-if (_civ getvariable ["factionrep",false]) then { _canCrateBuy=true; };
+
+if (_civ getvariable ["shop",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>%1 Shop</t>",(_civ getvariable ["OT_shopCategory", ""])];};
+if (_civ getvariable ["gundealer",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>Gun Dealer</t>"]; };
+if (_civ getvariable ["factionrep",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>Faction Supplies</t>"]; };
+
+_textctrl = (findDisplay 8000) displayCtrl 1101;
+_textctrl ctrlSetStructuredText parseText _cat;
 
 if (_canCrateBuy) then {
 	{

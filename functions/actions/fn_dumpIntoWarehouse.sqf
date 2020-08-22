@@ -95,5 +95,6 @@ if(_linkedItems) then {
 		};
 	}foreach(assignedItems _unit);
 };
-
+publicVariable "warehouse";
+[] remoteExec ["OT_fnc_warehouseRefresh", 0, false];
 true

@@ -254,7 +254,7 @@ class RscOverthrowStructuredText
 	};
 	class Attributes
 	{
-		font = "RobotoCondensed";
+		font = "PuristaMedium";
 		color = "#ffffff";
 		align = "left";
 		shadow = 0;
@@ -264,7 +264,7 @@ class RscOverthrowStructuredText
 	h = 0.035;
 	w = 0.1;
 	text = "";
-	size = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1.1)";
+	size = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1)";
 	shadow = 0;
 	lineSpacing = 0;
 };
@@ -882,7 +882,7 @@ class RscOverthrowButton
 	w = 0.095589;
 	h = 0.039216;
 	shadow = 2;
-	font = "RobotoCondensed";
+	font = "PuristaMedium";
 	sizeEx = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 0.8)";
 	offsetX = 0;
 	offsetY = 0;
@@ -1645,7 +1645,7 @@ class RscOverthrowButtonMenu
 		0.25
 	};
 	sizeExSecondary = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1)";
-	fontSecondary = "PuristaLight";
+	fontSecondary = "PuristaMedium";
 	period = 1.2;
 	periodFocus = 1.2;
 	periodOver = 1.2;
@@ -1681,7 +1681,7 @@ class RscOverthrowButtonMenu
 	};
 	class Attributes
 	{
-		font = "PuristaLight";
+		font = "PuristaMedium";
 		color = "#E5E5E5";
 		align = "left";
 		shadow = "false";

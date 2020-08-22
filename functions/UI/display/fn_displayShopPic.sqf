@@ -126,5 +126,5 @@ if(_price isEqualType 0) then {
 _textctrl ctrlSetStructuredText parseText format["
 	<t align='center' size='1.5'>%1</t><br/>
 	<t align='center' size='1.2'>%3</t><br/><br/>
-	<t align='center' size='0.8'>%2</t>
+	<t align='center' size='0.7'>%2</t>
 ",_txt,_desc,_price];

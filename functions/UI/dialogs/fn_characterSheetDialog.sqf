@@ -1,5 +1,5 @@
 closedialog 0;
-createDialog "OT_dialog_char";
+createDialog "OT_dialog_charsheetsheet";
 openMap false;
 
 disableSerialization;

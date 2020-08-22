@@ -17,7 +17,7 @@ private _box = objNull;
 if(_cls in OT_allExplosives && _chems < (_cost select 3)) exitWith {format["You need %1 chemicals",_cost select 3] call OT_fnc_notifyMinor};
 
 private _money = player getVariable "money";
-if(_money < _price) exitWith {"You cannot afford that!" call OT_fnc_notifyMinor};
+if(_money < (_price * _numToCrate)) exitWith {"You cannot afford that!" call OT_fnc_notifyMinor};
 
 //If faction dealer, increase standing
 private _civ = OT_interactingWith;
@@ -51,6 +51,7 @@ if(_cls == "Set_HMG") exitWith {
 	format["You bought a Quad Bike w/ HMG for $%1",_price] call OT_fnc_notifyMinor;
 	playSound "3DEN_notificationDefault";
 };
+
 if(OT_interactingWith getVariable ["factionrep",false] && ((_cls isKindOf "Land") || (_cls isKindOf "Air") || (_cls isKindOf "Ship"))) exitWith {
 	private _blueprints = server getVariable ["GEURblueprints",[]];
 	if !(_cls in _blueprints) then {
@@ -62,12 +63,15 @@ if(OT_interactingWith getVariable ["factionrep",false] && ((_cls isKindOf "Land"
 		closeDialog 0;
 	};
 };
+
 if(_cls isKindOf "Man") exitWith {
 	[_cls,getpos player,group player] call OT_fnc_recruitSoldier;
 };
+
 if(_cls in OT_allSquads) exitWith {
 	[_cls,getpos player] call OT_fnc_recruitSquad;
 };
+
 if(_cls == OT_item_UAV) exitWith {
 	private _pos = (getpos player) findEmptyPosition [5,100,_cls];
 	if (count _pos == 0) exitWith {"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor};
@@ -98,6 +102,7 @@ if(_cls == OT_item_UAV) exitWith {
 	playSound "3DEN_notificationDefault";
 	hint "To use a UAV, scroll your mouse wheel to 'Open UAV Terminal' then right click your green quadcopter on the ground and 'Connect terminal to UAV'";
 };
+
 if(_cls in OT_allVehicles) exitWith {
 	private _pos = (getpos player) findEmptyPosition [5,100,_cls];
 	if (count _pos == 0) exitWith {"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor};
@@ -119,6 +124,7 @@ if(_cls in OT_allVehicles) exitWith {
 	format["You bought a %1 for $%2",_cls call OT_fnc_vehicleGetName,_price] call OT_fnc_notifyMinor;
 	playSound "3DEN_notificationDefault";
 };
+
 if(_cls isKindOf "Ship") exitWith {
 	private _pos = (getpos player) findEmptyPosition [5,100,_cls];
 	if (count _pos == 0) exitWith {"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor};
@@ -214,7 +220,16 @@ if (_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) then { _weapon = true; _
 if (_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) then { _weapon = true; _type = "Launcher"; };
 if (_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) then { _weapon = true; _type = "Pistol"; };
 if (_weapon) exitWith {
-	if!(_buyToCrate) then {
+	if (_buyToCrate) then {
+		if (_box canAdd [_cls,_numToCrate]) then {
+			_box addWeaponCargoGlobal [_cls, _numToCrate];
+			[-_price*_numToCrate] call OT_fnc_money;
+			playSound "3DEN_notificationDefault";
+			hint "Weapon(s) sent to supply crate.";
+		} else {
+			"This supply crate is full." call OT_fnc_notifyMinor;
+		};
+	} else {
 		switch (_type) do {
 			case "Rifle": {
 				if ((primaryWeapon player) isEqualTo "") then {
@@ -244,30 +259,15 @@ if (_weapon) exitWith {
 				};
 			};
 		};
-	} else {
-		if (_box canAdd [_cls,_numToCrate]) then {
-			_box addWeaponCargoGlobal [_cls, _numToCrate];
-			[-_price*_numToCrate] call OT_fnc_money;
-			playSound "3DEN_notificationDefault";
-			hint "Weapon(s) sent to supply crate.";
-		} else {
-			"This supply crate is full." call OT_fnc_notifyMinor;
-		};
+
 	};
 };
+
 if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 	if(_cls in OT_allExplosives) then {
 		server setVariable ["reschems",_chems - (_cost select 3),true];
 	};
-	if!(_buyToCrate) then {
-		if (player canAdd _cls) then {
-			[-_price] call OT_fnc_money;
-			player addMagazine _cls;
-			playSound "3DEN_notificationDefault";
-		} else {
-			"You cannot carry any more." call OT_fnc_notifyMinor;
-		};
-	} else {
+	if (_buyToCrate) then {
 		if (_box canAdd [_cls,_numToCrate]) then {
 			[-_price*_numToCrate] call OT_fnc_money;
 			_box addMagazineCargoGlobal [_cls, _numToCrate];
@@ -275,6 +275,14 @@ if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 			hint "Item sent to Supply Crate";
 		} else {
 			"This supply crate is full." call OT_fnc_notifyMinor;
+		};
+	} else {
+		if (player canAdd _cls) then {
+			[-_price] call OT_fnc_money;
+			player addMagazine _cls;
+			playSound "3DEN_notificationDefault";
+		} else {
+			"You cannot carry any more." call OT_fnc_notifyMinor;
 		};
 	};
 };
@@ -307,20 +315,52 @@ if(_b != "Vehicle") then {
 private _charge = true;
 if(_handled) then {
 	if (_cls in OT_illegalItems) exitWith {
-		[-_price] call OT_fnc_money;
-		player addItem _cls;
-
+		if (_buyToCrate) then {
+			if (_box canAdd [_cls,_numToCrate]) then {
+				[-_price*_numToCrate] call OT_fnc_money;
+				_box addItemCargoGlobal [_cls, _numToCrate];
+				playSound "3DEN_notificationDefault";
+				hint "Item(s) sent to Supply Crate";
+			} else {
+				"This supply crate is full." call OT_fnc_notifyMinor;
+			};
+		} else {
+			[-_price] call OT_fnc_money;
+			player addItem _cls;
+		};
 		if(player call OT_fnc_unitSeenNATO) then {
 			[player] remoteExec ["OT_fnc_NATOsearch",2,false];
 		};
 	};
 	if (_cls in OT_allStaticBackpacks) exitWith {
-		[-_price] call OT_fnc_money;
-		player addBackpack _cls;
+		if (_buyToCrate) then {
+			if (_box canAdd [_cls,_numToCrate]) then {
+				[-_price*_numToCrate] call OT_fnc_money;
+				_box addBackpackCargoGlobal [_cls, _numToCrate];
+				playSound "3DEN_notificationDefault";
+				hint "Item(s) sent to Supply Crate";
+			} else {
+				"This supply crate is full." call OT_fnc_notifyMinor;
+			};
+		} else {
+			[-_price] call OT_fnc_money;
+			player addBackpack _cls;
+		};
 	};
 	if (_cls in OT_allOptics) exitWith {
-		[-_price] call OT_fnc_money;
-		player addItem _cls;
+		if (_buyToCrate) then {
+			if (_box canAdd [_cls,_numToCrate]) then {
+				[-_price*_numToCrate] call OT_fnc_money;
+				_box addItemCargoGlobal [_cls, _numToCrate];
+				playSound "3DEN_notificationDefault";
+				hint "Item(s) sent to Supply Crate";
+			} else {
+				"This supply crate is full." call OT_fnc_notifyMinor;
+			};
+		} else {
+			[-_price] call OT_fnc_money;
+			player addItem _cls;
+		};
 	};
 
 	if(_b == "Vehicle") then {

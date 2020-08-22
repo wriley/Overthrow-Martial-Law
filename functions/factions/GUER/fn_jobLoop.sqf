@@ -22,6 +22,7 @@ if !(job_system_counter < 12) then {
                 _activeJobs pushback _id;
                 spawner setVariable ["OT_activeJobIds",_activeJobs,false];
                 [_id,_jobdef,[]] call OT_fnc_assignJob;
+				diag_log format ["Overthrow: Job Loop: Started Job with case global id:%1", _id];
               };
             };
           };
@@ -37,6 +38,7 @@ if !(job_system_counter < 12) then {
                         _activeJobs pushback _id;
                         spawner setVariable ["OT_activeJobIds",_activeJobs,false];
                         [_id,_jobdef,[_x]] call OT_fnc_assignJob;
+						diag_log format ["Overthrow: Job Loop: Started Job with case natomission id:%1", _id];
                       };
                   };
               }forEach(_schedule);
@@ -53,6 +55,7 @@ if !(job_system_counter < 12) then {
 					_activeJobs pushback _id;
 					spawner setVariable ["OT_activeJobIds",_activeJobs,false];
 					[_id,_jobdef,[_x]] call OT_fnc_assignJob;
+					diag_log format ["Overthrow: Job Loop: Started Job with case town id:%1", _id];
                 };
               }foreach(OT_allTowns);
             };
@@ -69,6 +72,7 @@ if !(job_system_counter < 12) then {
 					_activeJobs pushback _id;
 					spawner setVariable ["OT_activeJobIds",_activeJobs,false];
 					[_id,_jobdef,[_base,_loc]] call OT_fnc_assignJob;
+					diag_log format ["Overthrow: Job Loop: Started Job with case base id:%1", _id];
                 };
               }foreach(OT_objectiveData + OT_airportData);
             };
@@ -88,6 +92,7 @@ if !(job_system_counter < 12) then {
 							_activeJobs pushback _id;
 							spawner setVariable ["OT_activeJobIds",_activeJobs,false];
 							[_id,_jobdef,[_base,_hvtid]] call OT_fnc_assignJob;
+							diag_log format ["Overthrow: Job Loop: Started Job with case hvt id:%1", _id];
                         };
                 	};
                 }foreach(OT_NATOhvts);
@@ -113,6 +118,7 @@ if !(job_system_counter < 12) then {
 				  	_activeJobs pushback _id;
 					spawner setVariable ["OT_activeJobIds",_activeJobs,false];
                     [_id,_jobdef,[_cls]] call OT_fnc_assignJob;
+					diag_log format ["Overthrow: Job Loop: Started Job with case faction id:%1", _id];
                     _done = true;
                   };
                 };
