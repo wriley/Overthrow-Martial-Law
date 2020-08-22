@@ -432,7 +432,7 @@ sleep 0.3;
 	};
 	server setVariable [_name,_pos,true];
 	OT_allComms pushback _name;
-	//OT_allObjectives pushback _name;
+	OT_allObjectives pushback _name;
 
 	_mrk = createMarker [_name+"_restrict",_pos];
 	_mrk setMarkerShape "ELLIPSE";

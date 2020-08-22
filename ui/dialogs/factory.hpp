@@ -197,7 +197,7 @@ class OT_dialog_factory
 			w = 0.144375 * safezoneW;
 			h = 0.616 * safezoneH;
 			colorBackground[] = {0,0,0,0.9};
-			onLBSelChanged = "call OT_fnc_factoryRefresh";
+			onLBSelChanged = "call OT_fnc_refreshFactory";
 		};
 		class RscStructuredText_1100: RscOverthrowStructuredText
 		{

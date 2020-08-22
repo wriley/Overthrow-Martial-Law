@@ -206,7 +206,9 @@ class CfgFunctions
 			class refreshEmployees {};
 			class displayJobDetails {};
 			class displayCraftItem {};
-			class factoryRefresh {};
+			class refreshFactory {};
+			class refreshBusiness {};
+			class refreshWarehouse {};
 			class displayLogisticDetails {};
 		};
 

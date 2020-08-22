@@ -217,6 +217,7 @@ if !(captive _unit) then {
 					if!(_obname in (server getvariable ["NATOabandoned",[]])) then {
 						_dist = _obname call {
 							_obname = _this;
+							if (_obname in OT_NATO_priority) exitWith {500};
 							if (_this in OT_allComms) exitWith {
 								{
 									_x params ["","_name","_dist"];
@@ -229,7 +230,6 @@ if !(captive _unit) then {
 									if (_name isEqualTo _obname) exitWith { _dist };
 								} foreach OT_objectiveData;
 							};
-							if (_obname in OT_NATO_priority) exitWith {500};
 							200
 						};
 					};

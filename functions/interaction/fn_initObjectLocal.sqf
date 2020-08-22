@@ -41,9 +41,8 @@ if(typeof _this isEqualTo OT_item_Storage) then {
 
 	_this addAction ["Take From Warehouse", {
 		OT_warehouseTarget = _this select 0;
-		closeDialog 0;
-		createDialog "OT_dialog_warehouse";
-		[] call OT_fnc_warehouseDialog;
+		private _id = ((getpos player) call OT_fnc_nearestWarehouse) select 1;
+		[_id] call OT_fnc_warehouseDialog;
 	},nil,0,false,true,"","(_target call OT_fnc_positionIsAtWarehouse && _target distance player < 5)"];
 
 	_this addAction ["Store In Warehouse", {

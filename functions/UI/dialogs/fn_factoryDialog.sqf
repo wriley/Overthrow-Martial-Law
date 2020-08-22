@@ -45,4 +45,4 @@ private _numitems = 0;
 if(_cursel >= _numitems) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];
 
-[] call OT_fnc_factoryRefresh;
+[] call OT_fnc_refreshFactory;

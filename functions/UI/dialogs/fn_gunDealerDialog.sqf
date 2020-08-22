@@ -1,6 +1,8 @@
 private _town = (getpos player) call OT_fnc_nearestTown;
 
 private _stock = server getVariable format["gunstock%1",_town];
+private _civ = OT_interactingWith;
+private _cat = "";
 if(isNil "_stock") then {
 	private _numguns = round(random 7)+3;
 	private _count = 0;
@@ -97,3 +99,9 @@ ctrlEnable [1601, false];
 		if(_owner == getplayerUID player) exitWith {ctrlEnable [1601, true];ctrlEnable [1602, true];};
 	};
 }foreach(nearestObjects [getpos player, [OT_item_Storage],20]);
+if (_civ getvariable ["shop",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>%1 Shop</t>",(_civ getvariable ["OT_shopCategory", ""])];};
+if (_civ getvariable ["gundealer",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>Gun Dealer</t>"]; };
+if (_civ getvariable ["factionrep",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>Faction Supplies</t>"]; };
+
+_textctrl = (findDisplay 8000) displayCtrl 1101;
+_textctrl ctrlSetStructuredText parseText _cat;
