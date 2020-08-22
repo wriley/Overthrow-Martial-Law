@@ -50,7 +50,8 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 			private _numitems = 0;
 			if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) exitWith {
 				_name = _cls call OT_fnc_weaponGetName;
-				if(tolower(_name) find tolower(_SearchTerm) > -1) then {
+				_searchtext = _name + format["%1<br/>%2",getText(configFile >> "CfgWeapons" >> _cls >> "descriptionShort"),_cls call OT_fnc_magazineGetDescription];
+				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = _cls call OT_fnc_weaponGetPic;
 					[_name,_pic,_numitems]
@@ -58,7 +59,8 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 			};
 			if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 				_name = _cls call OT_fnc_magazineGetName;
-				if(tolower(_name) find tolower(_SearchTerm) > -1) then {
+				_searchtext = _name + (_cls call OT_fnc_magazineGetDescription);
+				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = _cls call OT_fnc_magazineGetPic;
 					[_name,_pic,_numitems]
@@ -66,7 +68,8 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 			};
 			if(_cls isKindOf "Bag_Base") exitWith {
 				_name = _cls call OT_fnc_vehicleGetName;
-				if(tolower(_name) find tolower(_SearchTerm) > -1) then {
+				_searchtext = _name + (_cls call OT_fnc_vehicleGetDescription);
+				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = _cls call OT_fnc_vehicleGetPic;
 					[_name,_pic,_numitems]
@@ -74,14 +77,16 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 			};
 			if(isClass (configFile >> "CfgGlasses" >> _cls)) exitWith {
 				_name = gettext(configFile >> "CfgGlasses" >> _cls >> "displayName");
-				if(tolower(_name) find tolower(_SearchTerm) > -1) then {
+				_searchtext = _name;
+				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = gettext(configFile >> "CfgGlasses" >> _cls >> "picture");
 					[_name,_pic,_numitems]
 				};
 			};
 			_name = _cls call OT_fnc_vehicleGetName;
-			if(tolower(_name) find tolower(_SearchTerm) > -1) then {
+			_searchtext = _name;
+			if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 				_numitems = 1;
 				_pic = _cls call OT_fnc_vehicleGetPic;
 				[_name,_pic,_numitems]
