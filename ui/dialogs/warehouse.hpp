@@ -48,6 +48,7 @@ class OT_dialog_warehouse
 		{
 			idc = 1500;
 			onLBSelChanged = "_this call OT_fnc_displayWarehousePic";
+			onMouseButtonDblClick = "[1,(getpos player)] call OT_fnc_warehouseTake;";
 
 			x = 0.414922 * safezoneW + safezoneX;
 			y = 0.247 * safezoneH + safezoneY;

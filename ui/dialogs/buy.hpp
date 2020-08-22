@@ -31,6 +31,7 @@ class OT_dialog_buy
 			h = 0.572 * safezoneH;
 			colorBackground[] = {0,0,0,0.9};
 			onLBSelChanged = "_this call OT_fnc_displayShopPic";
+			onMouseButtonDblClick = "[false] call OT_fnc_buy;";
 		};
 		class RscPicture_1200: RscOverthrowPicture
 		{
