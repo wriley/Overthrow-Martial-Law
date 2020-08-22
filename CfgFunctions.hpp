@@ -194,6 +194,7 @@ class CfgFunctions
 			class craftDialog {};
 			class uploadData {};
 			class logisticsDialog {};
+			class manageBusinessDialog {};
 		};
 
 		class Display

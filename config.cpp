@@ -227,4 +227,6 @@ class ACE_Tags {
 #include "ui\dialogs\recruits.hpp"
 #include "ui\dialogs\resistance.hpp"
 #include "ui\dialogs\factory.hpp"
+#include "ui\dialogs\business.hpp"
+
 #include "ui\overrides.hpp"

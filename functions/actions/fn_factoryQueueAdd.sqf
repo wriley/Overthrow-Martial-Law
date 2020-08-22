@@ -29,4 +29,4 @@ if(_doadd) then {
 
 server setVariable ["factoryQueue",_queue,true];
 
-[] call OT_fnc_factoryRefresh;
+[] call OT_fnc_refreshFactory;
