@@ -89,6 +89,7 @@ createDialog "OT_dialog_buy";
 		lbSetData [1500,_idx,_cls];
 		lbSetValue [1500,_idx,_price];
 		lbSetPicture [1500,_idx,_pic];
+		lbSetCurSel [1500, 0];
 	};
 }foreach(_stock);
 ctrlEnable [1602, false];
