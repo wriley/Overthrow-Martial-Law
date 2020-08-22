@@ -1003,7 +1003,7 @@ OT_Buildables = [
 	["Guard Tower",50000,["Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V1_F"],"",false,"It's a huge tower, what else do you need?."],
 	["Hangar",12000,["Land_Airport_01_hangar_F"],"",false,"A big empty building, could probably fit a plane inside it."],
 	["Workshop",5000,[
-	  ["Land_cargo_house_slum_F",[-1.77455,-0.311288,0],0,1,0,[0,0],"","",true,false],
+	  ["Land_cargo_house_slum_F",[-0.03455,-0.011288,0],0,1,0,[0,0],"","",true,false],
 	    ["Land_ClutterCutter_large_F",[-0.01,-0.06,0],0,1,0,[0,0],"","",true,false],
 	    ["Land_Garbage_square3_F",[2.33242,0.567575,0],339.282,1,0,[0,0],"","",true,false],
 	    ["Land_Garbage_square5_F",[-0.0127128,-3.01219,0],281.871,1,0,[0,0],"","",true,false],
