@@ -1,6 +1,6 @@
 class OT_dialog_start
 {
-	idd=-1;
+	idd=2164;
 	movingenable=false;
 
 	class controlsBackground {
@@ -21,25 +21,24 @@ class OT_dialog_start
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			action = "closeDialog 0;[] remoteExec ['OT_fnc_loadGame',2,false];";
-			text = "Load Previous Save"; //--- ToDo: Localize;
+			action = "closeDialog 0;createDialog ""OT_dialog_newgame"";call OT_fnc_newGameDialog;";
+			text = "New Game"; //--- ToDo: Localize;
 			x = 0.448438 * safezoneW + safezoneX;
 			y = 0.313 * safezoneH + safezoneY;
 			w = 0.118594 * safezoneW;
 			h = 0.077 * safezoneH;
-			tooltip = "Continue previous save"; //--- ToDo: Localize;
+			tooltip = "Starts a new game (Please note, saving will overwrite any previous games)"; //--- ToDo: Localize;
 		};
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
-			action = "closeDialog 0;createDialog ""OT_dialog_newgame"";call OT_fnc_newGameDialog;";
-
-			text = "New Game"; //--- ToDo: Localize;
+			action = "closeDialog 0;[] remoteExec ['OT_fnc_loadGame',2,false];";
+			text = "Load Previous Save"; //--- ToDo: Localize;
 			x = 0.448438 * safezoneW + safezoneX;
 			y = 0.412 * safezoneH + safezoneY;
 			w = 0.118594 * safezoneW;
 			h = 0.077 * safezoneH;
-			tooltip = "Starts a new game (Please note, saving will overwrite any previous games)"; //--- ToDo: Localize;
+			tooltip = "Continue previous save"; //--- ToDo: Localize;
 		};
 		class background_picture: RscOverthrowPicture
 		{
