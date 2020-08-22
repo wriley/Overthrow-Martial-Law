@@ -1,4 +1,4 @@
-if (isNull findDisplay 46) exitWith {};
+if (isNull findDisplay 8000) exitWith {};
 params ["_id"];
 private _cursel = lbCurSel 1500;
 lbClear 1500;
@@ -45,6 +45,7 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 {
 	_x params ["_cls","_num"];
 	if ((_cls isEqualType "") && _num > 0) then {
+		private _searchnum = 0;
 		([_cls] call {
 			params ["_cls"];
 			private _numitems = 0;
