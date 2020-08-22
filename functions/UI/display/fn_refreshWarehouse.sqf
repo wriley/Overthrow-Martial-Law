@@ -4,15 +4,8 @@ private _cursel = lbCurSel 1500;
 lbClear 1500;
 _SearchTerm = ctrlText 1700;
 
-_count = 0;
-diag_log format ["[fn_refreshWarehouse]: warehouse ID:%1", _id];
-player globalchat format ["[fn_refreshWarehouse]: warehouse ID:%1", _id];
 private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count _id)]) isEqualTo (format["warehouse-%1_",_id]))};
-diag_log format ["[fn_refreshWarehouse]: _itemVars:%1", _itemVars];
-_itemVars sort true;
-diag_log format ["[fn_refreshWarehouse]: _itemVars:%1", _itemVars];
 private _numitems = 0;
-
 private _rifles = [];
 private _launchers = [];
 private _pistols = [];
@@ -20,9 +13,8 @@ private _default = [];
 private _bags = [];
 private _unsorted = [];
 {
-	private _d = warehouse getVariable [_x,["",0]];
-	diag_log format ["[fn_refreshWarehouse]: _x: %1 _d:%2", _x, _d];
-	_d params [["_cls","",[""]], ["_num",0,[0]]];
+	private _warehouse = warehouse getVariable [_x,["",0]];
+	_warehouse params [["_cls","",[""]], ["_num",0,[0]]];
 	_handled = false;
 	if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) then {
 		_rifles pushback [_cls,_num];
@@ -49,21 +41,10 @@ private _unsorted = [];
 	};
 }foreach _itemVars;
 private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted;
-diag_log format ["[fn_refreshWarehouse]: _rifles:%1", _rifles];
-diag_log format ["[fn_refreshWarehouse]: _launchers:%1", _launchers];
-diag_log format ["[fn_refreshWarehouse]: _pistols:%1", _pistols];
-diag_log format ["[fn_refreshWarehouse]: _default:%1", _default];
-diag_log format ["[fn_refreshWarehouse]: _bags:%1", _bags];
-diag_log format ["[fn_refreshWarehouse]: _unsorted:%1", _unsorted];
-diag_log format ["[fn_refreshWarehouse]: _sorted:%1", _sorted];
+
 {
-//	private _d = warehouse getVariable [_x,1];
-	diag_log format ["[fn_refreshWarehouse]: _x%1 [%2]", _forEachIndex, _x];
-//	if(_d isEqualType []) then {
 	_x params ["_cls","_num"];
-//	if(tolower(_cls) find _SearchTerm > -1) then {
 	if ((_cls isEqualType "") && _num > 0) then {
-//		_numitems = _numitems + 1;
 		([_cls] call {
 			params ["_cls"];
 			private _numitems = 0;
@@ -114,8 +95,6 @@ diag_log format ["[fn_refreshWarehouse]: _sorted:%1", _sorted];
 			lbSetData [1500,_idx,_cls];
 		};
 	};
-	//};
-	//};
 }foreach(_sorted);
 
 if(_cursel >= _numitems) then {_cursel = 0};
