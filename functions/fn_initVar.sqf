@@ -135,7 +135,7 @@ OT_businessStorage = "B_Slingload_01_Cargo_F";
 
 OT_adminMode = false;
 OT_DEBUG = false;
-private _GetParam = [0, 1] select (paramsArray select 9);
+private _GetParam = [0, 1] select (paramsArray select 10);
 switch (_GetParam) do {
 	case 0: {OT_HCEnabled = false;};
 	case 1: {OT_HCEnabled = true;};
