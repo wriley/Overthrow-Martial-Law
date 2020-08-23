@@ -16,6 +16,7 @@ private _cc = 0;
 {
 	_x params ["_key","_val"];
 	if(_key == "server") then {
+		diag_log format ["SERVER: LOADING VARIABLES: %1", _x];
 		{
 			_x params ["_subkey","_subval"];
 			if(!(toLower (_subkey select [0,4]) in ["cba_","bis_"])) then {

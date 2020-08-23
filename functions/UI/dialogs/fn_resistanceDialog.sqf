@@ -37,7 +37,7 @@ lbClear 1500;
 }foreach(players_NS getVariable ["OT_allplayers",[]]);
 
 lbClear 1501;
-{
+/*{
 
     _name = _x select 1;
     if(_name in (server getVariable ["GEURowned",[]])) then {
@@ -45,6 +45,7 @@ lbClear 1501;
         lbSetData [1501,_idx,_name];
     };
 }foreach(OT_economicData);
+*/        _idx = lbAdd [1501,"Moved to business dialog"];
 
 _tax = server getVariable ["taxrate",0];
 _damaged = owners getVariable ["damagedBuildings",[]];

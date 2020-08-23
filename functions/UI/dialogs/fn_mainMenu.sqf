@@ -343,17 +343,31 @@ if(_obpos distance player < 250) then {
 	if((_ob select 1) isEqualTo "Business") then {
 		_obpos = (_ob select 2) select 0;
 		_obname = (_ob select 0);
-
+		ctrlSetText [1621,"Manage"];
+		_search = player call OT_fnc_getSearchStock;
+		_stock = [];
+		{_stock pushback (_x select 0);}foreach _search;
+		if ("ACE_Cellphone" in _stock) then {
+			ctrlEnable [1621,true];
+		} else {
+			_ctrl1621 ctrlSetTooltip "Must own a cellphone to manage businesses";
+		};
 		if(_obpos distance player < 250) then {
 			if(_obname in (server getVariable ["GEURowned",[]])) then {
+				_price = _obname call OT_fnc_getBusinessPrice;
+				_level = (_obname call OT_fnc_getBusinessData) select 4;
 				ctrlSetText [1201,OT_flagImage];
 				_areaText = format["
 					<t align='left' size='0.8'>%1</t><br/>
-					<t align='left' size='0.65'>Operational</t><br/>
-					<t align='left' size='0.65'>(see resistance screen)</t><br/>
-				",_obname];
-				ctrlEnable [1620,false];
-				ctrlEnable [1621,false];
+					<t align='left' size='0.65'>Operational (Level %2)</t><br/>
+					<t align='left' size='0.65'>$%3</t>
+				",_obname,_level,[_price, 1, 0, true] call CBA_fnc_formatNumber];
+				/*ctrlSetText [1620,"Sell"];
+				if (call OT_fnc_playerIsGeneral) then {
+					ctrlEnable [1620,true];
+				}else{
+					ctrlEnable [1620,false];
+				};*/
 			}else{
 				_price = _obname call OT_fnc_getBusinessPrice;
 				ctrlSetText [1201,"\overthrow_main\ui\closed.paa"];

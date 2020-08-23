@@ -43,6 +43,7 @@ lbClear 1500;
 	};
 	lbSetValue [1500,_idx,_price];
 	lbSetData [1500,_idx,_cls];
+	lbSetCurSel [1500, 0];
 }foreach(_sorted);
 ctrlEnable [1602, false];
 ctrlEnable [1601, false];

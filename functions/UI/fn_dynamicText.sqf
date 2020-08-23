@@ -40,6 +40,7 @@ OT_dynamicTextIdCounter = (OT_dynamicTextIdCounter + 1) % 11000;
 
 _control = _display ctrlCreate [/*ctrlClassName _control*/ "OTRscDynamicText",OT_dynamicTextIdCounter];
 _control ctrlsetposition _pos;
+_control ctrlsetfont "PuristaMedium";
 if (_text isEqualType "") then {
 	_control ctrlsetstructuredtext parseText _text;
 } else {

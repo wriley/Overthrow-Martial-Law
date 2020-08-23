@@ -203,7 +203,6 @@ class CfgFunctions
 			class displayShopPic {};
 			class displayWarehousePic {};
 			class showMemberInfo {};
-			class showBusinessInfo {};
 			class refreshEmployees {};
 			class displayJobDetails {};
 			class displayCraftItem {};
@@ -269,6 +268,9 @@ class CfgFunctions
 			class factoryQueueAdd {};
 			class factoryQueueRemove {};
 			class factoryQueueRemoveAll {};
+			class businessQueueAdd {};
+			class businessQueueRemove {};
+			class businessQueueRemoveAll {};
 
 			/* Resistance Screen */
 			class makeGeneral {};

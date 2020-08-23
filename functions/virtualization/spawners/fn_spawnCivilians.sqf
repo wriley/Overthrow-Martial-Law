@@ -67,6 +67,7 @@ while {_count < _numCiv} do {
 		[_civ] call OT_fnc_initCivilian;
 
 		private _identity = call OT_fnc_randomLocalIdentity;
+		diag_log format ["[fn_spawnCivilians] - identity1:%1", _identity];
 		[_civ,_identity] call OT_fnc_applyIdentity;
 		if (OT_HCEnabled) then {
 			[_civ,HC2] spawn OT_fnc_MoveToHC;
@@ -163,6 +164,7 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 
 				[_civ,_town,_vest,_gangid] call OT_fnc_initCriminal;
 				[_civ,_identity] call OT_fnc_applyIdentity;
+				diag_log format ["[fn_spawnCivilians] - identity2:%1", _identity];
 				[_civ, (OT_voices_local call BIS_fnc_selectRandom)] remoteExecCall ["setSpeaker", 0, _civ];
 
 				_civ setVariable ["OT_gangid",_gangid,true];
