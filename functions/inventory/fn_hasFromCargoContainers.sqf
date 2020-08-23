@@ -10,5 +10,5 @@ _gotit = false;
            _gotit = true;
        };
    }foreach(_c call OT_fnc_unitStock);
-}foreach(_pos nearObjects [OT_item_CargoContainer, 50]);
+}foreach(_pos nearObjects [OT_businessStorage, 50]);
 _gotit

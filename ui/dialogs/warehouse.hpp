@@ -22,14 +22,15 @@ class OT_dialog_warehouse
 		////////////////////////////////////////////////////////
 		// GUI EDITOR OUTPUT START (by ARMAzac, v1.063, #Wivoti)
 		////////////////////////////////////////////////////////
+
+		
 		class RscStructuredText_1100: RscOverthrowStructuredText
 		{
 			idc = 1100;
-
 			x = 0.302773 * safezoneW + safezoneX;
-			y = 0.478 * safezoneH + safezoneY;
+			y = 0.456 * safezoneH + safezoneY;
 			w = 0.108281 * safezoneW;
-			h = 0.341 * safezoneH;
+			h = 0.363 * safezoneH;
 			colorBackground[] = {0,0,0,0.3};
 		};
 		class RscStructuredText_1101: RscOverthrowStructuredText
@@ -37,10 +38,10 @@ class OT_dialog_warehouse
 			idc = 1101;
 			text = "<t align='right' size='1.2'>Filter:</t>";
 
-			x = 0.422656 * safezoneW + safezoneX;
-			y = 0.214 * safezoneH + safezoneY;
-			w = 0.0464063 * safezoneW;
-			h = 0.033 * safezoneH;
+			x = 0.407187 * safezoneW + safezoneX;
+			y = 0.192 * safezoneH + safezoneY;
+			w = 0.0386719 * safezoneW;
+			h = 0.044 * safezoneH;
 			colorBackground[] = {0.1,0.1,0.1,1};
 			colorActive[] = {0.1,0.1,0.1,1};
 		};
@@ -64,7 +65,7 @@ class OT_dialog_warehouse
 			x = 0.302773 * safezoneW + safezoneX;
 			y = 0.192 * safezoneH + safezoneY;
 			w = 0.108281 * safezoneW;
-			h = 0.308 * safezoneH;
+			h = 0.253 * safezoneH;
 		};
 		class RscButton_1600: RscOverthrowButton
 		{
@@ -121,21 +122,33 @@ class OT_dialog_warehouse
 			action = "closeDialog 0";
             text = "X"; //--- ToDo: Localize;
 
-			x = 0.677891 * safezoneW + safezoneX;
+			x = 0.674024 * safezoneW + safezoneX;
             y = 0.192 * safezoneH + safezoneY;
-            w = 0.0232031 * safezoneW;
-            h = 0.033 * safezoneH;
+            w = 0.0270703 * safezoneW;
+            h = 0.044 * safezoneH;
+			colorBackground[] = {0,0,0,0.8};
         };
 		class RscEdit_1700: RscEditOverthrow
 		{
 			idc = 1700;
 
-			x = 0.47293 * safezoneW + safezoneX;
-			y = 0.203 * safezoneH + safezoneY;
-			w = 0.174023 * safezoneW;
+			x = 0.445859 * safezoneW + safezoneX;
+			y = 0.192 * safezoneH + safezoneY;
+			w = 0.116016 * safezoneW;
 			h = 0.044 * safezoneH;
-			
+
 			onKeyUp = "_id = ((getpos player) call OT_fnc_nearestWarehouse) select 1;[_id] call OT_fnc_refreshWarehouse;";
+		};
+		class RscCombo_2100: RscOverthrowCombo
+		{
+			idc = 2100;
+
+			x = 0.561875 * safezoneW + safezoneX;
+			y = 0.192 * safezoneH + safezoneY;
+			w = 0.108281 * safezoneW;
+			h = 0.044 * safezoneH;
+			colorBackground[] = {0.2,0.2,0.2,1};
+			colorActive[] = {0.1,0.1,0.1,1};
 		};
 	};
 };

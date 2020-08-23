@@ -44,7 +44,7 @@ OT_mapcache_radar = [];
 	private _radar = [];
 	private _cfgVeh = configFile >> "CfgVehicles";
 	{
-		if(((typeof _x == OT_item_CargoContainer) || (_x isKindOf "Ship") || (_x isKindOf "Air") || (_x isKindOf "Car")) && {(count crew _x == 0)} && {(_x call OT_fnc_hasOwner)}) then {
+		if(((typeof _x == OT_businessStorage) || (_x isKindOf "Ship") || (_x isKindOf "Air") || (_x isKindOf "Car")) && {(count crew _x == 0)} && {(_x call OT_fnc_hasOwner)}) then {
 				_vehs pushback [
 					getText(_cfgVeh >> (typeof _x) >> "icon"),
 					[1,1,1,1],

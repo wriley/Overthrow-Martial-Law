@@ -1,5 +1,13 @@
-private _data = _this call OT_fnc_getBusinessData;
+private _name = _this;
+private _data = _name call OT_fnc_getBusinessData;
+_data params ["","","_production","_xp","_level"];
 private _baseprice = 100000;
+
+{
+	diag_log str _x;
+}foreach _production;
+
+/*
 if(count _data isEqualTo 2) then {
     //turns nothing into money
     _baseprice = round(_baseprice * 1.5);
@@ -22,6 +30,7 @@ if(count _data isEqualTo 4) then {
         };
     };
 };
-private _stability = 1.0 - ((server getVariable [format["stability%1",OT_nation],100]) / 100);
+*/
 
-_baseprice + (_baseprice * _stability)
+private _stability = 1.0 - ((server getVariable [format["stability%1",OT_nation],100]) / 100);
+_baseprice + (_baseprice * _stability) + (_baseprice * (_level*_level/20))

@@ -60,38 +60,39 @@ OT_MapSingleClickEHId = addMissionEventHandler["MapSingleClick", {
 			];
 		};
 		if (_type == "Business") exitWith {
-			private _target = "";
-			private _input = "None";
-			private _output = "Money";
-			
+			_business = _name call OT_fnc_getBusinessData;
+			_business params ["_pos","","_production","_xp","_level","_nextlevel"];
+			_canmake = "";
+			_cancount = 1;
 			{
-				if ((_x select 1) == _name) exitWith {_target = _x};
-			}forEach OT_economicData;
-			if (count _target > 2) then {
-				if!(_target select 2 isEqualTo "") then { 
-					if ("OT_" in (_target select 2)) then { _input = ((_target select 2) splitString "OT_") select 0; };
-					if ("ACE_" in (_target select 2)) then { _input = ((_target select 2) splitString "ACE_") select 0; };
-				};
-				if!(_target select 3 isEqualTo "") then { 
-					if ("OT_" in (_target select 3)) then { _output = ((_target select 3) splitString "OT_") select 0; };
-					if ("ACE_" in (_target select 3)) then { _output = ((_target select 3) splitString "ACE_") select 0; };
-				};
-			};
-			
-			private _abandon = "Inactive";
+				_x params ["_output"];
+				_canmake = _canmake + format ["%1", _x select 0];
+				if (_cancount < (count _production)) then { _canmake = format["%1, ", _canmake]; };
+				_cancount = _cancount + 1;
+			}foreach _production;
+			//lbClear 1501;
+
+			private _status = "Inactive";
 			if(_name in (server getVariable ["GEURowned",[]])) then {
-				_abandon = "Owned";
+				_employees = server getVariable [format["%1employ",_name],0];
+				_status = format["
+					Owned</t><br/>
+					<t size='0.5' color='#222222'>Employees: %1</t></br>
+					<t size='0.5' color='#222222'>Level: %2</t></br>
+					<t size='0.5' color='#222222'>Exp: %3
+					",_employees,_level,_xp
+				];
 			};
-			_txt = format [
-				"<t size='1.2' color='#222222'>%1</t><br/><t size='0.5' color='#222222'>Status: %2</t><br/><t size='0.5' color='#222222'>Input: %3</t><br/><t size='0.5' color='#222222'>Output: %4</t>",
-				_name,
-				_abandon,
-				_input,
-				_output
+			_txt = format ["
+				<t size='1.2' color='#222222'>%1</t><br/>
+				<t size='0.5' color='#222222'>Status: %2</t><br/>
+				<t size='0.65' color='#222222'>Available Production</t><br/>
+				<t size='0.5' color='#222222'>%3</t></br>
+				",_name,_status,_canmake
 			];
 		};
 	};
-	[_txt, [safeZoneX + (0.8 * safeZoneW), (0.2 * safeZoneW)], 0.5, 10, 0, 0, 2] call OT_fnc_dynamicText;
+	[_txt, [safeZoneX + (0.7 * safeZoneW), (0.35 * safeZoneW)], 0.5, 10, 0, 0, 2] call OT_fnc_dynamicText;
 }];
 
 OT_MapEHId = addMissionEventHandler["Map", {

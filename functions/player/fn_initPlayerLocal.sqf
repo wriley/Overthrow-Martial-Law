@@ -89,7 +89,6 @@ if((isServer || count ([] call CBA_fnc_players) == 1) && (server getVariable ["S
 			[] remoteExec ['OT_fnc_loadGame',2,false];
 		} else {
 			createDialog "OT_dialog_start";
-			(findDisplay 2164) displayAddEventHandler ["keyDown", "true"];
 		};
 	};
 }else{

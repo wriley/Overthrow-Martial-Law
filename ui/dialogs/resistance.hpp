@@ -90,7 +90,7 @@ class OT_dialog_resistance
             y = 0.445 * safezoneH + safezoneY;
             w = 0.242344 * safezoneW;
             h = 0.165 * safezoneH;
-			onLBSelChanged = "_this call OT_fnc_showBusinessInfo";
+			onLBSelChanged = "";
         };
         class RscStructuredText_1104: RscOverthrowStructuredText
         {

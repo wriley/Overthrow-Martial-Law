@@ -8,22 +8,22 @@ class EditorData
 	toggles=1545;
 	class ItemIDProvider
 	{
-		nextID=2512;
+		nextID=2516;
 	};
 	class MarkerIDProvider
 	{
-		nextID=98;
+		nextID=102;
 	};
 	class LayerIndexProvider
 	{
-		nextID=649;
+		nextID=654;
 	};
 	class Camera
 	{
-		pos[]={8043.8428,54.67384,9943.0469};
-		dir[]={-0.87661713,-0.31734395,0.36205009};
-		up[]={-0.2933991,0.94823927,0.12117486};
-		aside[]={0.38177803,-4.0261511e-007,0.92438692};
+		pos[]={1203.1,33.582375,11427.557};
+		dir[]={-0.12895977,-0.34283599,0.93054503};
+		up[]={-0.047066607,0.93937862,0.33962423};
+		aside[]={0.99057746,5.5856435e-007,0.13727911};
 	};
 };
 binarizationWanted=0;
@@ -30913,7 +30913,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=159;
+		items=163;
 		class Item0
 		{
 			dataType="Layer";
@@ -37816,7 +37816,58 @@ class Mission
 			};
 			id=2511;
 			type="Land_Airport_01_controlTower_F";
-			atlOffset=-1.9073486e-006;
+		};
+		class Item159
+		{
+			dataType="Marker";
+			position[]={9403.5957,-0.13,6902.4551};
+			name="smallisland_1";
+			markerType="ELLIPSE";
+			type="ellipse";
+			alpha=0;
+			a=273.39001;
+			b=276.78601;
+			id=2512;
+			atlOffset=-8.3216486;
+		};
+		class Item160
+		{
+			dataType="Marker";
+			position[]={9851.8867,0.052000001,5932.856};
+			name="smallisland_2";
+			markerType="ELLIPSE";
+			type="ellipse";
+			alpha=0;
+			a=382.06601;
+			b=227.54201;
+			id=2513;
+			atlOffset=-6.3254938;
+		};
+		class Item161
+		{
+			dataType="Marker";
+			position[]={8922.5996,-0.039000001,4374.46};
+			name="smallisland_3";
+			markerType="ELLIPSE";
+			type="ellipse";
+			alpha=0;
+			a=138.155;
+			b=138.155;
+			id=2514;
+			atlOffset=-20.256554;
+		};
+		class Item162
+		{
+			dataType="Marker";
+			position[]={10027.619,0.074000001,2225.1379};
+			name="smallisland_4";
+			markerType="ELLIPSE";
+			type="ellipse";
+			alpha=0;
+			a=372.38599;
+			b=238.522;
+			id=2515;
+			atlOffset=-18.268702;
 		};
 	};
 	class Connections

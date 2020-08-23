@@ -5,6 +5,7 @@ lbClear 1500;
 _SearchTerm = ctrlText 1700;
 
 private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count _id)]) isEqualTo (format["warehouse-%1_",_id]))};
+player globalchat str _itemVars;
 private _numitems = 0;
 private _rifles = [];
 private _launchers = [];

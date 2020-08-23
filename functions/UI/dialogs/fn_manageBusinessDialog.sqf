@@ -1,11 +1,16 @@
 closedialog 0;
 createDialog "OT_dialog_business";
-private _isGeneral = (getPlayerUID player) in (server getVariable ["generals",[]]);
-if(!isMultiplayer) then {_isGeneral = true};
+((findDisplay 8000) displayCtrl 1200) ctrlSetAngle [270, 0.5, 0.5]; 
 lbClear 1500;
 {
 	_idx = lbAdd [1500,_x];
-	_idx = lbAdd [1502,_x];
+//	_idx = lbAdd [1502,_x]; // only display if need items from primary business selected
 }foreach (server getVariable ["GEURowned",[]]);
 lbSort [1500,"ASC"];
-lbSort [1502,"ASC"];
+lbSetCurSel [1500, 0];
+[] spawn {
+	while {!isNull (findDisplay 8000)} do {
+		[] call OT_fnc_refreshBusiness;
+		sleep 1;
+	};
+};

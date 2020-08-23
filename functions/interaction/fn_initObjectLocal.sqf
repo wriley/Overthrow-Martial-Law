@@ -100,6 +100,11 @@ if(typeof _this isEqualTo OT_item_Safe) then {
 	_this addAction ["Set Password", OT_fnc_safeSetPassword,nil,0,false,true,"","(_target getVariable ['owner','']) isEqualTo getplayeruid _this"];
 };
 
+if (typeof _this isEqualTo OT_businessStorage) then {
+	_this addAction ["Put Money", OT_fnc_safePutMoney,nil,0,false,true,"",""];
+	_this addAction ["Take Money", OT_fnc_safeTakeMoney,nil,0,false,true,"",""];
+};
+
 if(typeof _this isEqualTo "Land_Cargo_House_V4_F") then {
 	[_this] call ace_repair_fnc_moduleAssignRepairFacility;
 };

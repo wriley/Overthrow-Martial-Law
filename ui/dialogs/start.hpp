@@ -2,6 +2,7 @@ class OT_dialog_start
 {
 	idd=2164;
 	movingenable=false;
+	onKeyDown = "true";
 
 	class controlsBackground {
 		class Background: RscOverthrowStructuredText

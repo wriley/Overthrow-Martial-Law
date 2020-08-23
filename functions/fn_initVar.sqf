@@ -128,6 +128,10 @@ OT_allAirports = OT_airportData apply { _x select 1 };
 
 OT_currentMissionFaction = "";
 OT_rankXP = [100,250,500,1000,4000,10000,100000];
+OT_factoryXP = 0;
+OT_factoryLevel = 0;
+OT_Resources = ["OT_Wood","OT_Steel","OT_Plastic","OT_Sugarcane","OT_Sugar","OT_Fertilizer","OT_Lumber","OT_Wine","OT_Grapes","OT_Olives"];
+OT_businessStorage = "B_Slingload_01_Cargo_F";
 
 OT_adminMode = false;
 OT_DEBUG = false;
@@ -160,6 +164,7 @@ OT_selling = false;
 OT_taking = false;
 OT_interactingWith = objNull;
 OT_maximumNATOFobs = 5;
+OT_startingMoney = [5000,4000,2000];
 
 OT_garrisonBuildings = ["Land_Bunker_01_tall_F","Land_Cargo_Patrol_V1_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V3_F","Land_Cargo_Patrol_V4_F","Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F","Land_Cargo_HQ_V4_F","Land_Cargo_Tower_V1_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V1_No1_F","Land_Cargo_Tower_V1_No2_F","Land_Cargo_Tower_V1_No3_F","Land_Cargo_Tower_V1_No4_F","Land_Cargo_Tower_V1_No5_F","Land_Cargo_Tower_V1_No6_F","Land_Cargo_Tower_V1_No7_F","Land_Cargo_Tower_V2_F", "Land_Cargo_Tower_V3_F"]; //Put HMGs in these buildings
 
@@ -170,10 +175,6 @@ OT_item_wrecks = ["Land_Wreck_HMMWV_F","Land_Wreck_Skodovka_F","Land_Wreck_Truck
 OT_NATOwait = 300; //Half the Average time between NATO orders
 OT_CRIMwait = 500; //Half the Average time between crim changes
 OT_jobWait = 60;
-
-OT_Resources = ["OT_Wood","OT_Steel","OT_Plastic","OT_Sugarcane","OT_Sugar","OT_Fertilizer","OT_Lumber","OT_Wine","OT_Grapes","OT_Olives"];
-
-OT_item_CargoContainer = "B_Slingload_01_Cargo_F";
 
 //Shop items
 OT_item_ShopRegister = "Land_CashDesk_F";//Cash registers
