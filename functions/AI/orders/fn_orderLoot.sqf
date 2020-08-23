@@ -52,6 +52,7 @@ if (count _myunits > 1) then {
 			//_unit globalchat format ["<%1>: moving to %2 of distance %3/%4", name _unit, _to, getpos _unit distance2D getpos _to, _dis];
 			private _moving = true;
 			private _time = 3;
+			private _fail = 0;
 			private _err = "";
 			private _oldpos = getpos _unit;
 			private _newpos = getpos _unit;
@@ -64,9 +65,10 @@ if (count _myunits > 1) then {
 					_moving = false;
 				};
 				if (_moveDistance isEqualTo 0) then { _time = _time +1; };
-				if (_moveDistance isEqualTo 0 && alive _unit && _distance > _dis && unitReady _unit && _time > 3) then {
-					//_unit globalchat format ["<%1>: Idle? sending move order", name _unit];
+				if (_moveDistance isEqualTo 0 && alive _unit && _distance > _dis && _time > 3) then {
+					//_unit globalchat format ["<%1>: Stuck? sending move order", name _unit];
 					_unit doMove getpos _to;
+					_fail = _fail + 1;
 					_time = 0;
 				};
 				if (!alive _unit) then {
@@ -75,6 +77,10 @@ if (count _myunits > 1) then {
 				};
 				if (isNull _to) then {
 					_err = "NullObj";
+					_moving = false;
+				};
+				if (_fail > 5) then {
+					_err = "Stuck";
 					_moving = false;
 				};
 				sleep 1;
@@ -129,21 +135,29 @@ if (count _myunits > 1) then {
 
 			// Take deadguys weapons
 			OT_LootersLastOrder = time + 1;
-			{
-				diag_log format ["weaponItems: %1", weaponsItems _x];
-				_wpn = ((weaponsItems _x select 0) select 0);
-				_err = [_unit,_x,6] call _doMove;
-				if (_err isEqualTo "Dead") exitWith { _active = false; };
-				_unit action ["TakeWeapon", _x, _wpn];
-			} forEach (_deadguy getVariable ["WeaponHolderSimulated",[]]);
+			private _wpns = _deadguy getVariable ["WeaponHolderSimulated",[]];
+			if (count _wpns > 0) then {
+				{
+					diag_log format ["weaponItems: %1", weaponsItems _x];
+					_wpn = ((weaponsItems _x select 0) select 0);
+					_err = [_unit,_x,6] call _doMove;
+					if (_err isEqualTo "Dead") exitWith { _active = false; };
+					_unit action ["TakeWeapon", _x, _wpn];
+				} forEach (_wpns);
+			};
 			if!(_active) exitWith {};
 
 			// Take deadguy
 			_err = [_unit,_deadguy,6] call _doMove;
 			if (_err isEqualTo "Dead") exitWith { };
-			if!(isNull _deadguy) then {
-				[_deadguy,_unit] call OT_fnc_takeStuff;
-				_deadguy remoteExecCall ["deleteVehicle",_deadguy];
+			if (_err isEqualTo "Stuck") then {
+				_unit globalchat format ["<%1>: Can't get to a corpse, skipping it.", name _unit];
+				_deadguy setVariable ["OT_looted",false,true];
+			} else {
+				if!(isNull _deadguy) then {
+					[_deadguy,_unit] call OT_fnc_takeStuff;
+					_deadguy remoteExecCall ["deleteVehicle",_deadguy];
+				};
 			};
 
 			// Dump stuff
@@ -167,6 +181,7 @@ if (count _myunits > 1) then {
 			[_unit,5] call OT_fnc_experience;
 		};
 
+		// Get back in vehicle
 		if (!(_role isEqualTo "") && (!isNull _veh && alive _unit) && canMove _veh) then {
 			_err = [_unit, _veh, 8] call _doMove;
 			if (_err isEqualTo "Dead") exitWith { };
@@ -186,6 +201,8 @@ if (count _myunits > 1) then {
 		} else {
 			_err = [_unit, _t, 5] call _doMove;
 		};
+
+		// Finish
 		_unit setVariable ["NOAI",true,true];
 		_unit setVariable ["OT_looter", nil];
 		OT_Looters = OT_Looters - 1;
