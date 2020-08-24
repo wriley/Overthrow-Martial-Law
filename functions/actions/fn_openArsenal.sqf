@@ -1,4 +1,4 @@
-params ["_target","_unit",["_ammobox",false]];
+params ["_unit","_target",["_ammobox",false]];
 
 if(_ammobox isEqualTo false) then {
     _ammobox = _target;
@@ -31,7 +31,7 @@ if(_target isEqualType "") then {
         _thisArgs params ["_unit"];
 		private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
 		_warehouse params ["","_id"];
-		
+
         [_id, _unit] call OT_fnc_verifyLoadoutFromWarehouse;
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;

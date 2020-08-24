@@ -4,34 +4,28 @@ OT_taking = true;
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 params ["_qtyout"];
-
+player globalchat format ["taking %1 out", _qtyout];
 private _veh = (vehicle player);
-private	_iswarehouse = false;
-private _id = 0;
+private _id = "";
+
 if(_veh isEqualTo player) then {
-	_b = OT_warehouseTarget call OT_fnc_nearestRealEstate;
-	if(typename _b isEqualTo "ARRAY") then {
-		_building = _b select 0;
-		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
-			_iswarehouse = true;
-			_veh = OT_warehouseTarget;
-			_id = OT_currentWarehouse;
-		};
+	if (_veh call OT_fnc_positionIsAtWarehouse) then {
+		_veh = OT_warehouseTarget;
 	};
 };
 if(_veh isEqualTo player) exitWith {
 	"No warehouse within range" call OT_fnc_notifyMinor;
 };
 
-private _warehouse = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
-_warehouse params ["_wCls", ["_in",0,[0]]];
+private _warehouse = warehouse getVariable [format["warehouse-%1_%2",OT_currentWarehouse,_cls],[_cls,0]];
+_warehouse params ["", ["_currentqty",0,[0]]];
+player globalchat format ["_warehouse: %1  id:%2  cls:%3", _warehouse, OT_currentWarehouse, _cls];
 
-if(_qtyout > _in || _qtyout isEqualTo -1) then {
-	_qtyout = _in;
+if(_qtyout > _currentqty || _qtyout isEqualTo -1) then {
+	_qtyout = _currentqty;
 };
-
 for [{private _i=0;},{_i<_qtyout;},{_i=_i+1;}] do {
-	if!(_veh canAdd _cls) exitWith {hint "This vehicle is full, use a truck for more storage"; closeDialog 0; _qtyout = _count};
+	if!(_veh canAdd _cls) exitWith {hint "This vehicle is full, use a truck for more storage"; closeDialog 0; _qtyout = _i};
 	[_cls, _veh] call {
 		params ["_cls", "_veh"];
 		if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
@@ -53,13 +47,13 @@ for [{private _i=0;},{_i<_qtyout;},{_i=_i+1;}] do {
 		_veh addItemCargoGlobal [_cls,1];
 	};
 };
-
-private _newnum = _in - _qtyout;
-if(_newnum > 0) then {
-	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],[_cls,_newnum],true];
+player globalchat format ["setting vars to warehouse %1", OT_currentWarehouse];
+private _newqty = _currentqty - _qtyout;
+if(_newqty > 0) then {
+	warehouse setVariable [format["warehouse-%1_%2",OT_currentWarehouse,_cls],[_cls,_newqty],true];
 }else{
-	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],nil,true];
+	warehouse setVariable [format["warehouse-%1_%2",OT_currentWarehouse,_cls],nil,true];
 };
 publicVariable "warehouse";
-[_id] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
+[] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 OT_taking = false;

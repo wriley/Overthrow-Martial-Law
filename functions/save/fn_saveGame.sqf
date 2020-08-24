@@ -179,7 +179,6 @@ if!(_quiet) then {
 	diag_log "Step 6/11 - Saving warehouses";
 };
 
-private _warehouse = [3]; //First element is save version
 {
 	_warehouse append [[((_x splitString "warehouse-" select 0) splitString "_" select 0), warehouse getVariable _x]];
 }foreach ((allVariables warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});

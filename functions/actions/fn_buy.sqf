@@ -121,7 +121,8 @@ if(_cls in OT_allVehicles) exitWith {
 	};
 
 	player reveal _veh;
-	format["You bought a %1 for $%2",_cls call OT_fnc_vehicleGetName,_price] call OT_fnc_notifyMinor;
+
+	format["You bought a %1 for $%2",_cls call OT_fnc_vehicleGetName,([_price, 1, 0, true] call CBA_fnc_formatNumber)] call OT_fnc_notifyMinor;
 	playSound "3DEN_notificationDefault";
 };
 

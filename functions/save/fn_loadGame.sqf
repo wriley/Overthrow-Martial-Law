@@ -103,52 +103,18 @@ private _hasList_buildableHouses = false;
 		// todo _set = false?
 	};
 	if(_key == "warehouse") then {
-		private _version = _val param [0,1,[0]];
-		switch (_version) do {
-			// magical all in one warehouse
-			case 2: {
-				_val deleteAt 0;
-				{
-					if(!isNil "_x") then {
-						if(_x isEqualType []) then {
-							_x params [["_itemClass","",[""]],["_itemCount",0,[0]]];
-							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
-								warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
-							};
-						};
+		{
+			if(!isNil "_x") then {
+				if(_x isEqualType []) then {
+					_x params [["_id",0],"_item"];
+					diag_log format ["[fn_loadGame]: loading warehouse id %1 _X:%2",_id,_x];
+					_item params [["_itemClass","",[""]],["_itemCount",0,[0]]];
+					if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
+						warehouse setVariable [format["warehouse-%1_%2",_id,_itemClass],[_itemClass,_itemCount],true];
 					};
-				}foreach(_val);
+				};
 			};
-			// seperate warehouses linked by buildid - redesign by Blanks.
-			case 3: {
-				_val deleteAt 0;
-				{
-					if(!isNil "_x") then {
-						if(_x isEqualType []) then {
-							_x params [["_id",0],"_item"];
-							diag_log format ["[fn_loadGame]: loading warehouse id %1 _X:%2",_id,_x];
-							_item params [["_itemClass","",[""]],["_itemCount",0,[0]]];
-							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
-								warehouse setVariable [format["warehouse-%1_%2",_id,_itemClass],[_itemClass,_itemCount],true];
-							};
-						};
-					};
-				}foreach(_val);
-			};
-			default {
-				{
-					_x params ["_itemClassL","_itemData"];
-					if !(isNil "_itemData") then {
-						if (_itemData isEqualType []) then {
-							_itemData params ["_cls",["_num",0,[0]]];
-							if (_num > 0) then {
-								warehouse setVariable [format["item_%1",_itemClassL],_itemData,true];
-							};
-						};
-					};
-				}foreach(_val select {!(((toLower (_x#0)) select [0,4]) in ["cba_","bis_"])});
-			};
-		};
+		}foreach(_val);
 		_set = false;
 	};
 	if(_key == "vehicles") then {
