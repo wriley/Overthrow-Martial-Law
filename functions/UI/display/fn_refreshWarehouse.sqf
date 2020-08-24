@@ -1,12 +1,13 @@
 if (isNull(findDisplay 8000)) exitWith {
 	[format["no warehouse display"]] remoteExec ["systemChat", 0, true];
 };
-params ["_wid"];
 private _cursel = lbCurSel 1500;
 lbClear 1500;
 _SearchTerm = ctrlText 1700;
 
-private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count _wid)]) isEqualTo (format["warehouse-%1_",_wid]))};
+private _wid = lbData [2100,0];
+private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count OT_currentWarehouse)]) isEqualTo (format["warehouse-%1_",OT_currentWarehouse]))};
+player globalchat format ["refresh warehouse %1 at %2", OT_currentWarehouse, time];
 private _numitems = 0;
 private _rifles = [];
 private _launchers = [];

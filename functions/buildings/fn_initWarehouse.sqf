@@ -6,5 +6,6 @@ _mrkid setMarkerShape "ICON";
 _mrkid setMarkerType "ot_Warehouse";
 _mrkid setMarkerColor "ColorWhite";
 _mrkid setMarkerAlpha 1;
-OT_allWarehouses pushbackUnique _pos;
+private _wid = format ["%1%2", floor(_pos select 0), floor(_pos select 1)];
+OT_allWarehouses pushbackUnique [_pos,_wid];
 publicVariable "OT_allWarehouses";

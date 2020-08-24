@@ -1,4 +1,4 @@
-if (dialog or !OT_finishedHolster) exitWith {};
+if (dialog || !OT_finishedHolster || vehicle player != player) exitWith {};
 
 if (!(handgunWeapon player isEqualTo "") && (currentWeapon player isEqualTo handgunWeapon player)) then {
 	//holster weapon

@@ -2,7 +2,7 @@ _this spawn {
 	params ["_source", "_dest"];
 
 	private _supplycache = _source getVariable ["NATOsupply",false];
-	if(_supplycache isEqualType "") then {
+	if(!(_dest isEqualType "") && ( _supplycache isEqualType "")) then {
 		private _me = driver _dest;
 		if (_me call OT_fnc_unitSeenNATO) then {
 			_me setCaptive false;
@@ -12,14 +12,14 @@ _this spawn {
 		spawner setVariable [format["NATOsupply%1",_supplycache],false,true];
 	};
 
-	private _toname = (typeof _dest) call OT_fnc_vehicleGetName;
+	private _toname = "";
 	private _iswarehouse = false;
-	private _id = "-1";
 
-	if((typeof _dest) == OT_warehouse) then {
+	if(_dest isEqualType "") then {
 		_toname = "Warehouse";
 		_iswarehouse = true;
-		_id = (getpos _dest) call OT_fnc_nearestWarehouse select 1;
+	} else {
+		_toname = (typeof _dest) call OT_fnc_vehicleGetName;
 	};
 
 	private _target = _source;
@@ -54,10 +54,10 @@ _this spawn {
 		{
 			_itemArr = _x;
 			_itemArr params ["_cls", "_qtyIn"];
-			_warehouse = warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]];
+			_warehouse = warehouse getVariable [format["warehouse-%1_%2",OT_currentWarehouse,_cls],[_cls,0]];
 			if(_warehouse isEqualType []) then {
 				_warehouse params ["",["_qty",0]];
-				warehouse setVariable[format["warehouse-%1_%2",_id,_cls],[_cls,_qty + _qtyIn],true];
+				warehouse setVariable[format["warehouse-%1_%2",OT_currentWarehouse,_cls],[_cls,_qty + _qtyIn],true];
 			};
 		}foreach(_target call OT_fnc_unitStock);
 		clearMagazineCargoGlobal _target;
@@ -65,7 +65,7 @@ _this spawn {
 		clearBackpackCargoGlobal _target;
 		clearItemCargoGlobal _target;
 		publicVariable "warehouse";
-		[_id] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
+		[] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 	}else{
 		{
 			_x params [["_cls",""], ["_max",0]];

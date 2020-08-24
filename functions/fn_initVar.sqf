@@ -158,7 +158,7 @@ OT_activeShops = [];
 OT_selling = false;
 OT_taking = false;
 OT_interactingWith = objNull;
-OT_currentWarehouse = "-1";
+OT_currentWarehouse = "";
 OT_maximumNATOFobs = 5;
 OT_startingMoney = [5000,4000,2000];
 
