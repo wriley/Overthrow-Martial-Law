@@ -53,4 +53,4 @@ while {_count < _amt} do {
 	_count = _count + 1;
 };
 _group call OT_fnc_initPolicePatrol;
-spawner setvariable [_spawnid,_groups,false];
+spawner setVariable [_spawnid,_groups,false];

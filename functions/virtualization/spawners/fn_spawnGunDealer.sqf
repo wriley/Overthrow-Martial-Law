@@ -33,4 +33,4 @@ _dealer setVariable ["loc",format["%1",_gundealerpos],true];
 spawner setVariable [format ["gundealer%1",_town],_dealer,true];
 sleep 0.3;
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];

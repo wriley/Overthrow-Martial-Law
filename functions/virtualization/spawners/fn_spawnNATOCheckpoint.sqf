@@ -19,7 +19,7 @@ _start = getPos _road;
 if((count _start) isEqualTo 0 || _start#1 isEqualTo 0) exitWith {diag_log format["Overthrow: WARNING: Couldnt find road for %1 %2",_name,_start];[]};
 
 //This is not used
-//private _vehtype = OT_vehTypes_civ call BIS_Fnc_selectRandom; 
+//private _vehtype = OT_vehTypes_civ call BIS_Fnc_selectRandom;
 
 private _roadscon = roadsConnectedto _road;
 private _dir = [_road, _roadscon select 0] call BIS_fnc_DirTo;
@@ -81,4 +81,4 @@ while {_count < _numNATO} do {
 [_group, _dir] spawn OT_fnc_initNATOCheckpoint;
 {_x addCuratorEditableObjects [units _group, true];}foreach(allcurators);
 
-spawner setvariable [_spawnid,_groups,false];
+spawner setVariable [_spawnid,_groups,false];

@@ -104,12 +104,4 @@ class Params {
         texts[] = {"No", "Yes"};
         default = 0;
     };
-	class ot_headless_client
-	{
-		title = "Headless Client";
-		texts[] = {"Disabled","Enabled"};
-		values[] = {0, 1};
-		default = 0;
-		isGlobal = 1;
-	};
 };

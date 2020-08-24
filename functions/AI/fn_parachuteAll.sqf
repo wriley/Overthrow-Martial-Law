@@ -7,7 +7,7 @@ private _dir = direction _vehicle;
 
 {
 	//OT_fnc_getBuildID does not work on units?
-	spawner setvariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
+	spawner setVariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
 	//_x setvariable ["paraloadout", getUnitLoadout _x];
 	removeBackpackGlobal _x;
 	_x disableCollisionWith _vehicle;// Sometimes units take damage when being ejected.
@@ -38,7 +38,7 @@ private _dir = direction _vehicle;
 		sleep 2;
 		private _inv = name _unit;
 		private _id = [_unit] call OT_fnc_getBuildID;
-		spawner setvariable [format["eject_%1",_id],nil,false];
+		spawner setVariable [format["eject_%1",_id],nil,false];
 		_unit setUnitLoadout (_unit getvariable ["paraloadout",[]]);
 		_unit allowDamage true;
 	};

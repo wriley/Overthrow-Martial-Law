@@ -50,5 +50,5 @@ if(count _activeshops > 0) exitWith {
 		_groups pushback _light;
 		sleep 0.5;
 	}foreach(_activeshops);
-	spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+	spawner setVariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
 };
