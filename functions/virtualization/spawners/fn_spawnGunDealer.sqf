@@ -27,9 +27,6 @@ _group setBehaviour "CARELESS";
 private _dealer = _group createUnit [OT_civType_gunDealer, _gundealerpos, [],0, "NONE"];
 
 [_dealer] call OT_fnc_initGunDealer;
-if (OT_HCEnabled) then {
-	[_dealer,HC2] spawn OT_fnc_MoveToHC;
-};
 
 _dealer setVariable ["gundealer",true,true];
 _dealer setVariable ["loc",format["%1",_gundealerpos],true];
