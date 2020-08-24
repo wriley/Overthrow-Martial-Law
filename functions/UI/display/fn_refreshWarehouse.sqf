@@ -1,4 +1,4 @@
-if (isNull findDisplay 8000) exitWith {};
+if (isNull findDisplay 8000) exitWith {player globalchat "no warehouse open";};
 params ["_id"];
 private _cursel = lbCurSel 1500;
 lbClear 1500;

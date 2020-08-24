@@ -361,4 +361,4 @@ private _road = objNull;
 		{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
 	};
 }foreach(OT_NATOhvts);
-spawner setvariable [_spawnid,_groups,false];
+spawner setVariable [_spawnid,_groups,false];

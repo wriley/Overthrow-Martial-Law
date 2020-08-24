@@ -56,4 +56,4 @@ while {_count < _numNATO} do {
 	};
 };
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];

@@ -97,4 +97,4 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 	};
 	_loops = _loops + 1;
 };
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];

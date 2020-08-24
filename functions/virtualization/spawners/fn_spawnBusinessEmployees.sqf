@@ -45,4 +45,4 @@ _wp setWaypointTimeout [20, 40, 80];
 _wp = _group addWaypoint [_start,0];
 _wp setWaypointType "CYCLE";
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];

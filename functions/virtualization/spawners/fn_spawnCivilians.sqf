@@ -1,7 +1,7 @@
 params ["_town","_spawnid"];
 sleep random 0.2;
 
-spawner setvariable [format["townspawnid%1",_town],_spawnid,true];
+spawner setVariable [format["townspawnid%1",_town],_spawnid,true];
 
 private _hometown = _town;
 private _groups = [];
@@ -179,4 +179,4 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 	};
 }foreach(_gangs);
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];

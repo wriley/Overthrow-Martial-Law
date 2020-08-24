@@ -35,4 +35,4 @@ _groups = [_group];
 	sleep 0.5;
 }foreach(_activeshops);
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];

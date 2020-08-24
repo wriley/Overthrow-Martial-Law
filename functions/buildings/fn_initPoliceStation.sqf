@@ -39,7 +39,7 @@ if(_garrison == -1) then {
 		_count = _count + 1;
 	};
 	_group call OT_fnc_initPolicePatrol;
-	spawner setvariable [_spawnid,_groups,false];
+	spawner setVariable [_spawnid,_groups,false];
 };
 
 _mrkid = format["%1-police",_town];
