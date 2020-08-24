@@ -60,7 +60,6 @@ if(_newnum > 0) then {
 }else{
 	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],nil,true];
 };
-
-[_id] call OT_fnc_refreshWarehouse;
+[] remoteExec ["OT_fnc_warehouseRefresh", 0, false];
 
 OT_taking = false;

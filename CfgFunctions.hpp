@@ -640,7 +640,6 @@ class CfgFunctions
 			class exportPrices {};
 			class datestamp {};
 			class logVerbose {};
-			class MoveToHC {};
 		};
 
 		/*

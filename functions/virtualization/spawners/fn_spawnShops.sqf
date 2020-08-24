@@ -36,13 +36,10 @@ if(count _activeshops > 0) exitWith {
 		_shopkeeper setVariable ["OT_shopCategory",_category,true];
 		_building setVariable ["OT_shopCategory",_category,true];
 		[_shopkeeper] call OT_fnc_initShopkeeper;
-		
+
 		if!(_setowner) then {
 			[_building,"system"] call OT_fnc_setOwner;
 			_building setvariable ["setowner",true];
-		};
-		if (OT_HCEnabled) then {
-			[_shopkeeper,HC2] spawn OT_fnc_MoveToHC;
 		};
 
 		//Put a light on

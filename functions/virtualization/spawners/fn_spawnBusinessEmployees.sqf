@@ -16,9 +16,6 @@ while {_count < _numCiv} do {
 	_civ = _group createUnit [OT_civType_worker, _pos, [],0, "NONE"];
 	_civ setBehaviour "SAFE";
 	_civ setVariable ["employee",_name];
-	if (OT_HCEnabled) then {
-		[_civ,HC2] spawn OT_fnc_MoveToHC;
-	};
 	_count = _count + 1;
 	sleep 0.3;
 };

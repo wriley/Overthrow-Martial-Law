@@ -15,9 +15,6 @@ _group setBehaviour "CARELESS";
 _groups pushback _group;
 
 _shopkeeper = _group createUnit [OT_civType_shopkeeper, _pos, [],0, "NONE"];
-if (OT_HCEnabled) then {
-	[_shopkeeper,HC2] spawn OT_fnc_MoveToHC;
-};
 
 //Set face/voice && uniform
 [_shopkeeper, (OT_faces_local call BIS_fnc_selectRandom)] remoteExecCall ["setFace", 0, _shopkeeper];
