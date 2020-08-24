@@ -135,11 +135,6 @@ OT_businessStorage = "B_Slingload_01_Cargo_F";
 
 OT_adminMode = false;
 OT_DEBUG = false;
-private _GetParam = [0, 1] select (paramsArray select 10);
-switch (_GetParam) do {
-	case 0: {OT_HCEnabled = false;};
-	case 1: {OT_HCEnabled = true;};
-};
 
 OT_allIntel = [];
 OT_notifies = [];
@@ -163,6 +158,7 @@ OT_activeShops = [];
 OT_selling = false;
 OT_taking = false;
 OT_interactingWith = objNull;
+OT_currentWarehouse = "-1";
 OT_maximumNATOFobs = 5;
 OT_startingMoney = [5000,4000,2000];
 
@@ -174,6 +170,7 @@ OT_item_wrecks = ["Land_Wreck_HMMWV_F","Land_Wreck_Skodovka_F","Land_Wreck_Truck
 
 OT_NATOwait = 300; //Half the Average time between NATO orders
 OT_CRIMwait = 500; //Half the Average time between crim changes
+OT_NATOlevels = [2500,3000,4500,8000];
 OT_jobWait = 60;
 
 //Shop items

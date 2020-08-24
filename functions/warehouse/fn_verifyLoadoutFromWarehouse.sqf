@@ -74,7 +74,6 @@ if !(_backpack isEqualTo "") then {
             {
                 [_id,_x, 1] call OT_fnc_addToWarehouse;
             }foreach(backpackItems _unit);
-            publicVariable "warehouse";
             removeBackpack _unit;
         };
     };
@@ -89,7 +88,6 @@ if !(_vest isEqualTo "") then {
             {
                 [_id,_x, 1] call OT_fnc_addToWarehouse;
             }foreach(vestItems _unit);
-            publicVariable "warehouse";
             removeVest _unit;
         };
     };
@@ -110,5 +108,6 @@ if !(_goggles isEqualTo "") then {
         if(_correct) then {removeGoggles _unit};
     };
 };
-
+publicVariable "warehouse";
+[_id] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 _missing

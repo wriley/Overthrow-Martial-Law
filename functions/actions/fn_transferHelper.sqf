@@ -12,15 +12,14 @@ _this spawn {
 		spawner setVariable [format["NATOsupply%1",_supplycache],false,true];
 	};
 
-	private _veh = _dest;
-	private _toname = (typeof _veh) call OT_fnc_vehicleGetName;
+	private _toname = (typeof _dest) call OT_fnc_vehicleGetName;
 	private _iswarehouse = false;
-	private _warehouse = objNull;
+	private _id = "-1";
 
-	if((typeof _veh) == OT_warehouse) then {
+	if((typeof _dest) == OT_warehouse) then {
 		_toname = "Warehouse";
 		_iswarehouse = true;
-		_warehouse = (getpos _veh) call OT_fnc_nearestWarehouse;
+		_id = (getpos _dest) call OT_fnc_nearestWarehouse select 1;
 	};
 
 	private _target = _source;
@@ -51,7 +50,6 @@ _this spawn {
 		_target addMagazineCargoGlobal[_x, 1];
 	}foreach(_mags);
 
-	_warehouse params ["","_id"];
 	if(_iswarehouse) then {
 		{
 			_itemArr = _x;
@@ -66,33 +64,35 @@ _this spawn {
 		clearWeaponCargoGlobal _target;
 		clearBackpackCargoGlobal _target;
 		clearItemCargoGlobal _target;
+		publicVariable "warehouse";
+		[_id] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 	}else{
 		{
 			_x params [["_cls",""], ["_max",0]];
 			private _count = 0;
 			private _full = false;
-			private _OverFill = (_veh isKindOf "B_Slingload_01_Cargo_F");
+			private _OverFill = (_dest isKindOf "B_Slingload_01_Cargo_F");
 			while {_count < _max} do {
-				if( !(_veh canAdd [_cls,1]) && {(!_OverFill)}) exitWith {_full = true};
+				if( !(_dest canAdd [_cls,1]) && {(!_OverFill)}) exitWith {_full = true};
 				_count = _count + 1;
 				call {
 					if(_cls isKindOf "Bag_Base") exitWith {
 						_cls = _cls call BIS_fnc_basicBackpack;
-						_veh addBackpackCargoGlobal [_cls,1];
+						_dest addBackpackCargoGlobal [_cls,1];
 					};
 					if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
-						_veh addWeaponCargoGlobal [_cls,1];
+						_dest addWeaponCargoGlobal [_cls,1];
 					};
 					if(_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
-						_veh addWeaponCargoGlobal [_cls,1];
+						_dest addWeaponCargoGlobal [_cls,1];
 					};
 					if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
-						_veh addWeaponCargoGlobal [_cls,1];
+						_dest addWeaponCargoGlobal [_cls,1];
 					};
 					if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
-						_veh addMagazineCargoGlobal [_cls,1];
+						_dest addMagazineCargoGlobal [_cls,1];
 					};
-					_veh addItemCargoGlobal [_cls,1];
+					_dest addItemCargoGlobal [_cls,1];
 				};
 			};
 			call {
