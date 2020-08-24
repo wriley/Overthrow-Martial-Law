@@ -49,7 +49,7 @@ class OT_dialog_warehouse
 		{
 			idc = 1500;
 			onLBSelChanged = "_this call OT_fnc_displayWarehousePic";
-			onMouseButtonDblClick = "[1,(getpos player)] call OT_fnc_warehouseTake;";
+			onMouseButtonDblClick = "[1] call OT_fnc_warehouseTake;";
 
 			x = 0.414922 * safezoneW + safezoneX;
 			y = 0.247 * safezoneH + safezoneY;
@@ -70,7 +70,7 @@ class OT_dialog_warehouse
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			action = "[-1,(getpos player)] call OT_fnc_warehouseTake;";
+			action = "[-1] call OT_fnc_warehouseTake;";
 			text = "Take All"; //--- ToDo: Localize;
 
 			x = 0.65082 * safezoneW + safezoneX;
@@ -82,7 +82,7 @@ class OT_dialog_warehouse
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
-			action = "[100,(getpos player)] call OT_fnc_warehouseTake;";
+			action = "[100] call OT_fnc_warehouseTake;";
 			text = "Take 100"; //--- ToDo: Localize;
 
 
@@ -95,7 +95,7 @@ class OT_dialog_warehouse
 		class RscButton_1602: RscOverthrowButton
 		{
 			idc = 1602;
-			action = "[10,(getpos player)] call OT_fnc_warehouseTake;";
+			action = "[10] call OT_fnc_warehouseTake;";
 			text = "Take 10"; //--- ToDo: Localize;
 
 			x = 0.65082 * safezoneW + safezoneX;
@@ -107,7 +107,7 @@ class OT_dialog_warehouse
 		class RscButton_1603: RscOverthrowButton
 		{
 			idc = 1603;
-			action = "[1,(getpos player)] call OT_fnc_warehouseTake;";
+			action = "[1] call OT_fnc_warehouseTake;";
 			text = "Take 1"; //--- ToDo: Localize;
 
 			x = 0.65082 * safezoneW + safezoneX;
@@ -137,7 +137,7 @@ class OT_dialog_warehouse
 			w = 0.116016 * safezoneW;
 			h = 0.044 * safezoneH;
 
-			onKeyUp = "_id = ((getpos player) call OT_fnc_nearestWarehouse) select 1;[_id] call OT_fnc_refreshWarehouse;";
+			onKeyUp = "[OT_currentWarehouse] call OT_fnc_refreshWarehouse;";
 		};
 		class RscCombo_2100: RscOverthrowCombo
 		{

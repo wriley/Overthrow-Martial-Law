@@ -1,11 +1,12 @@
-if (isNull findDisplay 8000) exitWith {player globalchat "no warehouse open";};
-params ["_id"];
+if (isNull(findDisplay 8000)) exitWith {
+	[format["no warehouse display"]] remoteExec ["systemChat", 0, true];
+};
+params ["_wid"];
 private _cursel = lbCurSel 1500;
 lbClear 1500;
 _SearchTerm = ctrlText 1700;
 
-private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count _id)]) isEqualTo (format["warehouse-%1_",_id]))};
-player globalchat str _itemVars;
+private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count _wid)]) isEqualTo (format["warehouse-%1_",_wid]))};
 private _numitems = 0;
 private _rifles = [];
 private _launchers = [];

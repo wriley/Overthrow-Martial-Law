@@ -803,17 +803,19 @@ publicVariable "OT_nextNATOTurn";
 			}foreach(_fobs);
 		};
 		//Finish
-		_limit = 2500;
+		private _players = (count (allPlayers - entities "HeadlessClient_F"));
+		private _limit = OT_NATOlevels select ((_players - 1) min (count OT_NATOlevels-1));
 		if(_diff > 0 && _popControl > 1000) then {_limit = _limit + 500};
 		if(_diff > 1 && _popControl > 1000) then {_limit = _limit + 500};
-		if(_popControl > 2000) then {_limit = _limit + 500};
+		if(_popControl > 2000) then {_limit = _limit + (500*(_players/5))};
 		if(_diff > 1 && _popControl > 2000) then {_limit = _limit + 500};
 		if(_resources > _limit) then {_resources = _limit};
-		server setVariable ["NATOresources",_resources,true];
-		server setVariable ["NATOabandoned",_abandoned,true];
-		spawner setVariable ["NATOknownTargets",_knownTargets,true];
-		server setVariable ["NATOschedule",_schedule,true];
-		server setVariable ["NATOfobs",_fobs,true];
+		server setVariable ["NATOresourceslimit", _limit, true];
+		server setVariable ["NATOresources", _resources, true];
+		server setVariable ["NATOabandoned", _abandoned, true];
+		spawner setVariable ["NATOknownTargets", _knownTargets, true];
+		server setVariable ["NATOschedule", _schedule, true];
+		server setVariable ["NATOfobs", _fobs, true];
 	};
 	_count = _count + 1;
 

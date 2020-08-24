@@ -3,7 +3,7 @@ OT_taking = true;
 
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
-params ["_qtyout","_pos"];
+params ["_qtyout"];
 
 private _veh = (vehicle player);
 private	_iswarehouse = false;
@@ -15,7 +15,7 @@ if(_veh isEqualTo player) then {
 		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 			_iswarehouse = true;
 			_veh = OT_warehouseTarget;
-			_id = (_pos call OT_fnc_nearestWarehouse) select 1;
+			_id = OT_currentWarehouse;
 		};
 	};
 };
@@ -60,6 +60,6 @@ if(_newnum > 0) then {
 }else{
 	warehouse setVariable [format["warehouse-%1_%2",_id,_cls],nil,true];
 };
-[] remoteExec ["OT_fnc_warehouseRefresh", 0, true];
-
+publicVariable "warehouse";
+[_id] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 OT_taking = false;

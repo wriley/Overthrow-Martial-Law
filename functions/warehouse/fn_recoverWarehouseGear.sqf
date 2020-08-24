@@ -1,8 +1,7 @@
 _itemVars = (allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")};
 if (count _itemVars isEqualTo 0) exitWith {};
 params ["_pos"];
-private _warehouse = _pos call OT_fnc_nearestWarehouse;
-_warehouse params ["","_id"];
+private _id = _pos call OT_fnc_nearestWarehouse select 1;
 
 tempWarehouse = true call CBA_fnc_createNamespace;
 publicVariable "tempWarehouse";

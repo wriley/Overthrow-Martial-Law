@@ -175,7 +175,7 @@ class OT_dialog_vehiclewarehouse
 			w = 0.149531 * safezoneW;
 			h = 0.077 * safezoneH;
 			tooltip = "Take from the warehouse"; //--- ToDo: Localize;
-			action = "closeDialog 0;createDialog ""OT_dialog_warehouse"";[] call OT_fnc_warehouseDialog;";
+			action = "[true] call OT_fnc_warehouseDialog;";
 		};
 		class RscButton_1602: RscOverthrowButton
 		{
@@ -186,7 +186,7 @@ class OT_dialog_vehiclewarehouse
 			w = 0.149531 * safezoneW;
 			h = 0.077 * safezoneH;
 			tooltip = "Stores the contents of this vehicle in the warehouse"; //--- ToDo: Localize;
-			action = "closeDialog 0;[] spawn OT_fnc_storeAll;";
+			action = "[] spawn OT_fnc_storeAll;";
 		};
 		class RscButton_1603: RscOverthrowButton
 		{
