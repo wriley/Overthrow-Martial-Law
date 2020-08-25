@@ -1,4 +1,6 @@
-if !(captive player) exitWith {"You cannot build while wanted" call OT_fnc_notifyMinor};
+private _town = (getpos player) call OT_fnc_nearestTown;
+private _abandoned = server getVariable "NATOabandoned";
+if !((captive player) & (_town in _abandoned)) exitWith {"You cannot build while wanted" call OT_fnc_notifyMinor};
 _base = (getpos player) call OT_fnc_nearestBase;
 _closest = "";
 _isbase = false;
