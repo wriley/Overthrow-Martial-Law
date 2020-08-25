@@ -1,5 +1,6 @@
 if (OT_taking) exitWith {};
 OT_taking = true;
+publicVariable "OT_taking";
 
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
@@ -57,3 +58,4 @@ if(_newqty > 0) then {
 publicVariable "warehouse";
 [] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 OT_taking = false;
+publicVariable "OT_taking";
