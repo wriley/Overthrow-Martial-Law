@@ -46,49 +46,6 @@ if (count _myunits > 1) then {
 		_unit setVariable ["NOAI",true,true];
 		_unit setBehaviour "CARELESS";
 
-		_doMove = {
-			params ["_unit", "_to", ["_dis",6]];
-			//waitUntil {unitReady _unit};
-			//_unit globalchat format ["<%1>: moving to %2 of distance %3/%4", name _unit, _to, getpos _unit distance2D getpos _to, _dis];
-			private _moving = true;
-			private _time = 3;
-			private _fail = 0;
-			private _err = "";
-			private _oldpos = getpos _unit;
-			private _newpos = getpos _unit;
-
-			while {_moving} do {
-				_oldpos = getpos _unit;
-				private _distance = _unit distance2D getpos _to;
-				private _moveDistance = _newpos distance2D _oldpos;
-				if (_distance < _dis) then {
-					_moving = false;
-				};
-				if (_moveDistance isEqualTo 0) then { _time = _time +1; };
-				if (_moveDistance isEqualTo 0 && alive _unit && _distance > _dis && _time > 3) then {
-					//_unit globalchat format ["<%1>: Stuck? sending move order", name _unit];
-					_unit doMove getpos _to;
-					_fail = _fail + 1;
-					_time = 0;
-				};
-				if (!alive _unit) then {
-					_err = "Dead";
-					_moving = false;
-				};
-				if (isNull _to) then {
-					_err = "NullObj";
-					_moving = false;
-				};
-				if (_fail > 5) then {
-					_err = "Stuck";
-					_moving = false;
-				};
-				sleep 1;
-				_newpos = getpos _unit;
-			};
-			_err
-		};
-
 		// Get vehicle positions
 		if ((count assignedVehicleRole _unit > 0) || ((driver _veh == _unit) && (vehicle _unit != _unit) && (typeof _veh != "OT_I_Truck_recovery"))) then {
 			_role = assignedVehicleRole _unit select 0;
@@ -107,7 +64,7 @@ if (count _myunits > 1) then {
 		};
 
 		// Initial move to vehicle or crate
-		_err = [_unit,_t,10] call _doMove;
+		_err = [_unit,_t,10] call OT_fnc_orderMove;
 		if (_err isEqualTo "Dead") exitWith {};
 		if !([_unit,_t] call OT_fnc_dumpStuff) exitWith {
 			_unit globalchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
@@ -140,7 +97,7 @@ if (count _myunits > 1) then {
 				{
 					diag_log format ["weaponItems: %1", weaponsItems _x];
 					_wpn = ((weaponsItems _x select 0) select 0);
-					_err = [_unit,_x,6] call _doMove;
+					_err = [_unit,_x,6] call OT_fnc_orderMove;
 					if (_err isEqualTo "Dead") exitWith { _active = false; };
 					_unit action ["TakeWeapon", _x, _wpn];
 				} forEach (_wpns);
@@ -148,7 +105,7 @@ if (count _myunits > 1) then {
 			if!(_active) exitWith {};
 
 			// Take deadguy
-			_err = [_unit,_deadguy,6] call _doMove;
+			_err = [_unit,_deadguy,6] call OT_fnc_orderMove;
 			if (_err isEqualTo "Dead") exitWith { };
 			if (_err isEqualTo "Stuck") then {
 				_unit globalchat format ["<%1>: Can't get to a corpse, skipping it.", name _unit];
@@ -161,7 +118,7 @@ if (count _myunits > 1) then {
 			};
 
 			// Dump stuff
-			_err = [_unit,_t,8] call _doMove;
+			_err = [_unit,_t,8] call OT_fnc_orderMove;
 			if (_err isEqualTo "Dead") exitWith { };
 			if (alive _t) then {
 				if !([_unit,_t] call OT_fnc_dumpStuff) then {
@@ -183,7 +140,7 @@ if (count _myunits > 1) then {
 
 		// Get back in vehicle
 		if (!(_role isEqualTo "") && (!isNull _veh && alive _unit) && canMove _veh) then {
-			_err = [_unit, _veh, 8] call _doMove;
+			_err = [_unit, _veh, 8] call OT_fncOT_fnc_orderMove;
 			if (_err isEqualTo "Dead") exitWith { };
 			if (_role == "driver") then {
 				_unit moveInDriver _veh;
@@ -199,7 +156,7 @@ if (count _myunits > 1) then {
 				_unit moveInTurret [_veh, _roleindex];
 			};
 		} else {
-			_err = [_unit, _t, 5] call _doMove;
+			_err = [_unit, _t, 5] call OT_fnc_orderMove;
 		};
 
 		// Finish

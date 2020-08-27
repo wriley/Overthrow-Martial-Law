@@ -1,4 +1,4 @@
-params [["_buyToCrate", false],"_numToCrate"];
+params [["_buyToCrate", false],["_numToCrate",1]];
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 
