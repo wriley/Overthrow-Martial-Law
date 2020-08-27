@@ -133,8 +133,8 @@ OT_factoryLevel = 0;
 OT_Resources = ["OT_Wood","OT_Steel","OT_Plastic","OT_Sugarcane","OT_Sugar","OT_Fertilizer","OT_Lumber","OT_Wine","OT_Grapes","OT_Olives"];
 OT_businessStorage = "B_Slingload_01_Cargo_F";
 
-OT_adminMode = true;
-OT_DEBUG = true;
+OT_adminMode = false;
+OT_DEBUG = false;
 
 OT_allIntel = [];
 OT_notifies = [];
@@ -145,7 +145,7 @@ OT_finishedHolster = true;
 OT_NATO_HQPos = [0,0,0];
 
 OT_fastTime = true; //When true, 1 day will last 6 hrs real time
-OT_spawnDistance = 1200;
+OT_spawnDistance = 2500;
 if (isNil "OT_spawnCivPercentage") then {
 	OT_spawnCivPercentage = 0.01;
 };
@@ -159,7 +159,6 @@ OT_selling = false;
 OT_taking = false;
 OT_interactingWith = objNull;
 OT_currentWarehouse = "";
-OT_whTransferring = false;
 OT_maximumNATOFobs = 5;
 OT_startingMoney = [5000,4000,2000];
 

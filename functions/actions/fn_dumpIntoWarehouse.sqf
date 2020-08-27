@@ -1,12 +1,12 @@
-params ["_unit","_warehouse",["_linkedItems",false]];
+params ["_unit","_wid",["_linkedItems",false]];
 
 if(binocular _unit != "") then {
-	[_warehouse, binocular _unit, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, binocular _unit,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon binocular _unit;
 };
 
 if(hmd _unit != "") then {
-	[_warehouse, hmd _unit,1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, hmd _unit,1] call OT_fnc_addToWarehouse;
 	_unit unlinkItem hmd _unit;
 };
 
@@ -33,52 +33,52 @@ if(hmd _unit != "") then {
 			};
 			_unit removeItem _cls;
 		};
-		[_warehouse, _cls, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+		[_wid,_cls,1] call OT_fnc_addToWarehouse;
 		_count = _count + 1;
 	};
 }foreach(_unit call OT_fnc_unitStock);
 
 if(headgear _unit != "") then {
-	[_warehouse, headgear _unit, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, headgear _unit,1] call OT_fnc_addToWarehouse;
 	removeHeadgear _unit;
 };
 
 if(backpack _unit != "") then {
-	[_warehouse, backpack _unit, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, backpack _unit,1] call OT_fnc_addToWarehouse;
 	removeBackpack _unit;
 };
 
 if(vest _unit != "") then {
-	[_warehouse,vest _unit, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid,vest _unit,1] call OT_fnc_addToWarehouse;
 	removeVest _unit;
 };
 
 if(goggles _unit != "") then {
-	[_warehouse, goggles _unit, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, goggles _unit, 1] call OT_fnc_addToWarehouse;
 	removeGoggles _unit;
 };
 
 if(primaryWeapon _unit != "") then {
 	{
-		[_warehouse, _x, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+		[_wid, _x, 1] call OT_fnc_addToWarehouse;
 	}foreach(primaryWeaponItems _unit);
 	removeAllPrimaryWeaponItems _unit;
-	[_warehouse, (primaryWeapon _unit) call BIS_fnc_baseWeapon,1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, (primaryWeapon _unit) call BIS_fnc_baseWeapon,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon primaryWeapon _unit;
 };
 
 if(secondaryWeapon _unit != "") then {
-	[_warehouse, secondaryWeapon _unit,1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, secondaryWeapon _unit,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon secondaryWeapon _unit;
 };
 
 
 if(handgunWeapon _unit != "") then {
 	{
-		[_warehouse, _x, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+		[_wid, _x, 1] call OT_fnc_addToWarehouse;
 	}foreach(handgunItems _unit);
 	removeAllHandgunItems _unit;
-	[_warehouse, handgunWeapon _unit, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+	[_wid, handgunWeapon _unit, 1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon handgunWeapon _unit;
 };
 
@@ -91,8 +91,10 @@ if(_linkedItems) then {
 			}else{
 				_unit unlinkItem _x;
 			};
-			[_warehouse, _x, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
+			[_wid,_x,1] call OT_fnc_addToWarehouse;
 		};
 	}foreach(assignedItems _unit);
 };
+publicVariable "warehouse";
+[_wid] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 true

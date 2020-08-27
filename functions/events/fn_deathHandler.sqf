@@ -106,7 +106,7 @@ _standingChange = 0;
 _bounty = _me getVariable ["OT_bounty",0];
 if(_bounty > 0) then {
 	[_killer,_bounty] call OT_fnc_rewardMoney;
-	if (!isNull _aikiller) then {
+	if (!isNull _aikiller) then { 
 		[_aikiller,_bounty] call OT_fnc_experience;
 	} else {
 		[_killer,_bounty] call OT_fnc_experience;

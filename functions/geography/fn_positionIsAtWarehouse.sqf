@@ -1,3 +1,4 @@
-private _wh = _this call OT_fnc_nearestWarehouse;
-if (count _wh > 0) exitWith {(((_wh select 0) distance _this) < 15)};
-false
+_res = _this call OT_fnc_nearestLocation;
+_locpos = _res select 2 select 0;
+_atwarehouse = (_this distance _locpos < 15);
+_atwarehouse

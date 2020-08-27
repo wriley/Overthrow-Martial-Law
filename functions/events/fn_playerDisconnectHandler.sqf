@@ -4,4 +4,3 @@ private _highCommandModule = missionNameSpace getVariable [format["%1_hc_module"
 
 deleteVehicle _highCommandModule;
 missionNameSpace setVariable [format["%1_hc_module",_uid],objNull,true];
-// ToDo : Add some code to reduce nato possible strength

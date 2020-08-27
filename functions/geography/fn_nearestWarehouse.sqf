@@ -1,13 +1,6 @@
-private _pos = _this;
-private _nearest = [];
-private _result = ([OT_allWarehouses,[],{(_x select 0) distance _pos},"ASCEND"] call BIS_fnc_SortBy);
-if (count _result > 0) then {
-	_nearest = _result select 0;
-	private _wpos = _nearest select 0;
-	private _building = _nearest select 1;
-	private _dist = _pos distance _wpos;
-
-	[_wpos,_building,_dist]
-} else {
-	[]
+private _nearest = [OT_allWarehouses, _this] call BIS_fnc_nearestPosition;
+private _id = "-1";
+if (count _nearest > 0) then {
+	_id = format ["%1%2", floor(_nearest select 0), floor(_nearest select 1)];
 };
+[_nearest,_id]

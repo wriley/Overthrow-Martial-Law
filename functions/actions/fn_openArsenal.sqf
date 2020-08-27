@@ -14,23 +14,25 @@ private _id = 0;
 private _missing = [];
 
 if(_target isEqualType "") then {
-	  private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse select 1;
-    [_warehouse,_unit,true] call OT_fnc_dumpIntoWarehouse;
+	private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
+	_warehouse params ["","_id"];
+    [_id,_unit,true] call OT_fnc_dumpIntoWarehouse;
     _unit linkItem "ItemMap";
     {
-        if(_x select [0,10] isEqualTo "warehouse-") then {
-            private _d = _warehouse getVariable [_x,[_x select [10],0,[0]]];
+        if(_x select [0,11+(count _id)] isEqualTo (format["warehouse-%1_",_id])) then {
+            private _d = warehouse getVariable [_x,[_x select [11+(count _id)],0,[0]]];
             if(_d isEqualType []) then {
                 _items pushback _d#0;
             };
         };
-    }foreach ((allVariables _warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
+    }foreach(allVariables warehouse);
 
     _closed = ["ace_arsenal_displayClosed", {
         _thisArgs params ["_unit"];
-		    private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse select 1;
-        [_warehouse, _unit] remoteExec ["OT_fnc_verifyLoadoutFromWarehouse", 2, false];
-        waitUntil {sleep .1;(!isNil (_warehouse getVariable ["verifiedLoadout", nil]))};
+		private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
+		_warehouse params ["","_id"];
+
+        [_id, _unit] call OT_fnc_verifyLoadoutFromWarehouse;
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;
     },[_unit]] call CBA_fnc_addEventHandlerArgs;
@@ -192,7 +194,20 @@ if(_target isEqualType "") then {
                 }foreach(vestItems _unit);
                 removeVest _unit;
             }else{
+                //To account for CBA bug #1153: https://github.com/CBATeam/CBA_A3/issues/1153
+                //Remove when CBA fixes issue
+                private _numvests = 0;
+                {
+                    if(_x isEqualTo _vest) then {
+                        _numvests = _numvests + 1;
+                    };
+                }foreach(itemCargo _ammobox);
                 [_ammobox, _vest, 1] call CBA_fnc_removeItemCargo;
+                _numvests = _numvests - 1;
+                //Put vests back to account for bug
+                if(_numvests > 0) then {
+                    [_ammobox, _vest, _numvests] call CBA_fnc_addItemCargo;
+                };
             };
         };
 

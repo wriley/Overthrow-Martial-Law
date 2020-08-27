@@ -69,7 +69,7 @@ if!(_quiet) then {
 };
 
 private _prefixFilter = { !((toLower _x select [0,4]) in ["ace_","cba_","bis_","____"]) };
-diag_log format ["[saveGame]: _prefixFilter: %1", _prefixFilter];
+
 private _poses = (allVariables buildingpositions select _prefixFilter) apply {
 	[_x,buildingpositions getVariable _x]
 };
@@ -171,33 +171,19 @@ private _vehicles = (_tocheck) apply {
 	if (_x getVariable ["OT_house_isPlayerBuilt", false]) then {
 /* 8 */		_params set [8, [_x getVariable ["OT_house_isLeased", false]]];
 	};
-	// Save warehouse contents
-	if (_type isKindOf OT_warehouse) then {
-		private _veh = _x;
-		private _warehouse = [];
-		{
-			_item = _veh getVariable [_x,[]];
-			diag_log format ["[saveGame]: variable:%1", _item];
-			
-			_warehouse pushback _item;
-		} foreach ((allVariables _veh) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
-		diag_log format ["[saveGame]: warehouse:%1", _warehouse];
-/* 9 */	_params set [9, _warehouse];
-	};
 	_params
 };
 _data pushback ["vehicles",_vehicles];
-/*
+
 if!(_quiet) then {
 	diag_log "Step 6/11 - Saving warehouses";
 };
 
-/*
 {
 	_warehouse append [[((_x splitString "warehouse-" select 0) splitString "_" select 0), warehouse getVariable _x]];
 }foreach ((allVariables warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
 _data pushback ["warehouse",_warehouse];
-*/
+
 if!(_quiet) then {
 	diag_log "Step 7/11 - Saving recruits";
 };

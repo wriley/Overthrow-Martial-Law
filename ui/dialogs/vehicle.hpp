@@ -186,7 +186,7 @@ class OT_dialog_vehiclewarehouse
 			w = 0.149531 * safezoneW;
 			h = 0.077 * safezoneH;
 			tooltip = "Stores the contents of this vehicle in the warehouse"; //--- ToDo: Localize;
-			action = "closeDialog 0;[vehicle player, ((getpos player) call OT_fnc_nearestWarehouse select 1)] spawn OT_fnc_storeAll;";
+			action = "closeDialog 0;[vehicle player] spawn OT_fnc_storeAll;";
 		};
 		class RscButton_1603: RscOverthrowButton
 		{
