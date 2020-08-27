@@ -7,6 +7,9 @@ loadScreen = "\overthrow_main\campaign\missions\otml.jpg";
 
 overviewText = "Dangerous Freedom over Peaceful Slavery. You are the Resistance";
 
+allowFunctionsRecompile = 1;
+
+
 class CfgRemoteExec
 {
 	// List of script functions allowed to be sent from client via remoteExec
@@ -17,11 +20,24 @@ class CfgRemoteExec
 
 		class vcm_serverask { allowedTargets = 0;jip = 1; };
 		class VCM_PublicScript { allowedTargets = 0;jip = 1; };
-		class BIS_fnc_debugConsoleExec { allowedTargets = 0;jip = 1; };
 		class SpawnScript { allowedTargets = 0;jip = 1; };
 		class enableSimulationGlobal { allowedTargets = 0;jip = 1; };
 		class VCM_fnc_KnowAbout { allowedTargets = 0;jip = 1; };
 	};
+
+
 };
+
+
+class Extended_PreInit_EventHandlers {
+	VCM_CBASettings = call compile preprocessFileLineNumbers "overthrow_main\functions\AI\Vcom\Functions\VCM_Functions\fn_CBASettings.sqf";
+};
+
+
+
+/*class CfgFunctions
+{
+	#include "overthrow_main\CfgFunctions.hpp"
+};*/
 
 cba_settings_hasSettingsFile = 1;

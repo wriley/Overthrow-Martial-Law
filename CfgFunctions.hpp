@@ -678,28 +678,13 @@ class CfgFunctions
 		};
 	};
 
-	class VCM {
+	class VCOM
+	{
+		tag = "VCM";
 
-		class VCOM_init
+		class FSM
 		{
-			file = "\overthrow_main\functions\AI\Vcom";
-
-			class VcomInit
-			{
-				postInit = 1;
-			};
-			class VcomInitClient
-			{
-				postInit = 1;
-			};
-			class CBA_Settings {};
-			class AISettingsV4 {};
-			class DefaultSettings {};
-		};
-
-		class VCOM_FSM
-		{
-			file = "\overthrow_main\functions\AI\Vcom\FSMS";
+			file = "overthrow_main\functions\AI\Vcom\FSMS";
 
 			// group spawn VCM_fnc_SQUADBEH
 			class SQUADBEH
@@ -713,19 +698,20 @@ class CfgFunctions
 				ext = ".fsm";
 			};
 
-			// [] spawn VCM_fnc_HANDLECURATORS
-			class HANDLECURATORS
+			// [] spawn VCM_fnc_PLAYERSQUAD
+			class PLAYERSQUAD
 			{
 				ext = ".fsm";
 			};
+
 		};
 
-		class VCOM_Functions
+		class Functions
 		{
-			file = "\overthrow_main\functions\AI\Vcom\Functions\VCM_Functions";
+			file = "overthrow_main\functions\AI\Vcom\Functions\VCM_Functions";
 
-			class AIDIFSET {};
-			class AISIDESPEC {};
+			//[] spawn VCM_fnc_VcomInit;
+			class VcomInit {};
 
 			// [unitToRearm, rearmLocation] spawn VCM_fnc_ActRearm
 			class ActRearm {};
@@ -769,13 +755,13 @@ class CfgFunctions
 			// unit call VCM_fnc_EnemyArray;
 			class EnemyArray {};
 
-			// [groupLeader, moveDistance] call VCM_fnc_FindCover;
+			// [groupLeader] call VCM_fnc_FindCover;
 			class FindCover {};
 
 			// [groupLeader] spawn VCM_fnc_FlankMove;
 			class FlankMove {};
 
-			// [groupLeader, moveDistance] call VCM_fnc_ForceMove;
+			// [groupLeader] call VCM_fnc_ForceMove;
 			class ForceMove {};
 
 			// unit call VCM_fnc_FriendlyArray;
@@ -808,7 +794,7 @@ class CfgFunctions
 			// group call VCM_fnc_KitChk;
 			class KitChk {};
 
-			// [array, unitToReveal, revealAmount, _revealLimit] call VCM_fnc_KnowAbout;
+			// [array, unitToReveal, revealAmount] call VCM_fnc_KnowAbout;
 			class KnowAbout {};
 
 			// group call VCM_fnc_MedicalHandler
@@ -838,8 +824,41 @@ class CfgFunctions
 			// [unit, satchelArray] spawn VCM_fnc_SatchelPlant;
 			class SatchelPlant {};
 
+			// group call VCM_fnc_SquadExc;
+			class SquadExc {};
+
 			// group call VCM_fnc_WyptChk;
 			class WyptChk {};
+
+			//group call VCM_fnc_VehicleCommandeer;
+			class vehiclecommandeer {};
+
+			//group call VCM_fnc_VehicleCheck;
+			class VehicleCheck {};
+
+			//group call VCM_fnc_VehicleMove;
+			class VehicleMove {};
+
+			//group call VCM_fnc_IsTransport;
+			class IsTransport {};
+
+			//[_pos,_dist,_params] call VCM_fnc_isFlatEmpty;
+			class isFlatEmpty {};
+
+			//[] call VCM_fnc_CBASettings;
+			class CBASettings {};
+
+			//[] call VCM_fnc_SniperList
+			class SniperList {};
+
+			//[] spawn VCM_fnc_SniperEngage;
+			class SniperEngage;
+
+			//[] spawn VCM_fnc_RangeEngage;
+			class RangeEngage;
+
+			//[] call VCM_fnc_ClstKnwnEnmy;
+			class ClstKnwnEnmy;
 
 			// unit call VCM_fnc_IsDriver;
 			class IsDriver {};
@@ -852,33 +871,47 @@ class CfgFunctions
 
 			//[] call VCM_fnc_UpdateDrivers;
 			class UpdateDrivers {};
-		};
-	};
 
+			//[] call VCM_fnc_IdleAnimations;
+			class IdleAnimations {};
 
-	class RYD {
-		// Fire For Effect: The God of War
-		class FFE_Functions
-		{
-			file = "\overthrow_main\functions\AI\Vcom\Functions\FFE_Functions";
-			class AngTowards {};
-			class ArtyMission {};
-			class ArtyPrep {};
-			class AutoConfig {};
-			class FFE {};
-			class CFF {};
-			class CFF_FFE {};
-			class CFF_Fire {};
-			class CFF_TGT {};
-			class PosTowards2D {};
-			class ShellsInRadius {};
+			//[] call VCM_fnc_CoverDetect;
+			class CoverDetect {};
+
+			//[] call VCM_fnc_CoverControl;
+			class CoverControl {};
+
+			//[] call VCM_fnc_Scheduler;
+			class Scheduler {};
+
+			//[AIArray] call VCM_fnc_ResetAnimation;
+			class ResetAnimation {};
+
+			//[AI,TRUE] call VCM_fnc_ForceGrenadeFire; //0 = Unit to throw the grenade 1=true, throw grenade, false, throw smoke
+			class ForceGrenadeFire {};
+
+			//[Unit,"Text"] call VCM_fnc_DebugText;
+			class DebugText {};
+
+			//[squadleader] call VCM_fnc_AISpeed;
+			class AISpeed {};
+
+			//[_StaticList] call VCM_fnc_StaticCheck;
+			class StaticCheck {};
+
+			//[_Unit,_Pos OR Obj] spawn VCM_fnc_DebugLine;
+			class DebugLine {};
+
+			//[_unit, true] spawn VCM_fnc_BabeOver;
+			class BabeOver {};
+
+			//_Group spawn VCM_fnc_UseEM;
+			class UseEM {};
+
+			//["_Unit","_Array"] spawn VCM_fnc_3DPathDebug;
+			class 3DPathDebug {};
 		};
 
-		class FFE_Shellview
-		{
-			file = "\overthrow_main\functions\AI\Vcom\Functions\FFE_Shellview";
-			class Shellview {};
-		};
 	};
 
     class lambs_danger{

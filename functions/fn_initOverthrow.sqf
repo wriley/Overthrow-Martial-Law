@@ -53,6 +53,8 @@ OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templat
 //Advanced towing script, credits to Duda http://www.armaholic.com/page.php?id=30575
 [] spawn OT_fnc_advancedTowingInit;
 
+[] spawn VCM_fnc_VcomInit;
+
 [] spawn {
 	if (false/*isDedicated && profileNamespace getVariable ["OT_autoload",false]*/) then {
 		diag_log "== OVERTHROW == Mission autoloaded as per settings. Toggle in the options menu in-game to disable.";

@@ -7,6 +7,9 @@ loadScreen = "\overthrow_main\campaign\missions\otml.jpg";
 
 overviewText = "Altis, the main island of the Republic of Altis and Stratis, is located in the Mediterranean Sea to the east of Malta. As of 2040, Altis is currently under occupation by NATO forces following a brutal civil war a half decade prior, and the nation is still recovering. NATO originally occupied the country under the promise of a complete withdrawal of forces and return to local democratic rule; despite this, NATO soldiers still occupy the island's military installations. The economy continues to stagnate and citizens are becoming increasingly angry at the lack of local autonomy.";
 
+allowFunctionsRecompile = 1;
+
+
 class CfgRemoteExec
 {
 	// List of script functions allowed to be sent from client via remoteExec
@@ -17,12 +20,24 @@ class CfgRemoteExec
 
 		class vcm_serverask { allowedTargets = 0;jip = 1; };
 		class VCM_PublicScript { allowedTargets = 0;jip = 1; };
-		class BIS_fnc_debugConsoleExec { allowedTargets = 0;jip = 1; };
 		class SpawnScript { allowedTargets = 0;jip = 1; };
 		class enableSimulationGlobal { allowedTargets = 0;jip = 1; };
 		class VCM_fnc_KnowAbout { allowedTargets = 0;jip = 1; };
-
 	};
+
+
 };
+
+
+class Extended_PreInit_EventHandlers {
+	VCM_CBASettings = call compile preprocessFileLineNumbers "overthrow_main\functions\AI\Vcom\Functions\VCM_Functions\fn_CBASettings.sqf";
+};
+
+
+
+/*class CfgFunctions
+{
+	#include "overthrow_main\CfgFunctions.hpp"
+};*/
 
 cba_settings_hasSettingsFile = 1;
