@@ -1,3 +1,4 @@
+
 private _veh = vehicle player;
 
 if(_veh isEqualTo player) exitWith {};
@@ -37,13 +38,12 @@ _doTransfer = {
 
 	_full = false;
 	if(_iswarehouse) then {
-		private _warehouse = (getpos player) call OT_fnc_nearestWarehouse;
-		_warehouse params ["","_id"];
+		private _warehouse = (getpos player) call OT_fnc_nearestWarehouse select 1;
 		{
 			private _count = 0;
-			_d = warehouse getVariable [_x,false];
+			_d = _warehouse getVariable [_x,false];
 			if(_d isEqualType []) then {
-				params ["_cls",["_num",0,[0]]];
+				_d params ["_cls",["_num",0,[0]]];
 				if(_num > 0) then {
 					if(_cls in OT_allItems) then {
 						while {_count < _num} do {
@@ -53,16 +53,16 @@ _doTransfer = {
 						if (_count > 0) then {
 							_veh addItemCargoGlobal [_cls,_count];
 							if (_count isEqualTo _num) then {
-								warehouse setVariable [_x,nil,true];
+								_warehouse setVariable [_x,nil,true];
 							} else {
-								warehouse setVariable [_x,[_cls,_num - _count],true];
+								_warehouse setVariable [_x,[_cls,_num - _count],true];
 							};
 						};
 					};
 				};
 			};
 			if(_full) exitWith {};
-		}foreach(allVariables warehouse select {((toLower _x select [0,(11+count _id)]) isEqualTo (format["warehouse-%1_",_id]))});
+		} foreach ((allVariables _warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
 	}else{
 		{
 			private _count = 0;

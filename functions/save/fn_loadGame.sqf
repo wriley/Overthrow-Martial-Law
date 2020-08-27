@@ -102,21 +102,7 @@ private _hasList_buildableHouses = false;
 
 		// todo _set = false?
 	};
-	if(_key == "warehouse") then {
-		{
-			if(!isNil "_x") then {
-				if(_x isEqualType []) then {
-					_x params [["_id",0],"_item"];
-					diag_log format ["[fn_loadGame]: loading warehouse id %1 _X:%2",_id,_x];
-					_item params [["_itemClass","",[""]],["_itemCount",0,[0]]];
-					if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
-						warehouse setVariable [format["warehouse-%1_%2",_id,_itemClass],[_itemClass,_itemCount],true];
-					};
-				};
-			};
-		}foreach(_val);
-		_set = false;
-	};
+
 	if(_key == "vehicles") then {
 		_set = false;
 		_ccc = 0;
@@ -181,7 +167,7 @@ private _hasList_buildableHouses = false;
 							if(count _a > 0) then {
 								_a params ["_attached","_am"];
 								_veh setVariable ["OT_attachedClass",_attached,true];
-								[_veh,_am] call OT_fnc_initAttached;
+								[_veh,_am] remoteExec OT_fnc_initAttached;
 							};
 						};
 					};
@@ -210,6 +196,17 @@ private _hasList_buildableHouses = false;
 					};
 				};
 
+				// Load the warehouses contents
+				private _warehouse = _x param [9, []];
+				if (!(_warehouse isEqualTo []) && {_type in [OT_warehouse]}) then {
+					{
+						if (count _x > 0) then {
+							diag_log format ["[loadGame]: each _warehouse: %1", _x];
+							_veh setVariable [format["warehouse-%1",_x select 0], [_x select 0, _x select 1], true];
+						};
+					} foreach _warehouse;
+				};
+				
 				if (_posFormat == 1) then {
 					_veh setPosWorld _pos;		// format 1 is the new posWorld format
 				} else {
@@ -467,31 +464,24 @@ private _built = (allMissionObjects "Static");
 		_x params ["_name","_val"];
 		if(_name isEqualTo "owned") then {
 			{
-				if(false/*typename _x isEqualTo "ARRAY"*/) then {
-					//old save with positions
-					_buildings = (_x nearObjects ["Building",8]);
-					if(count _buildings > 0) then {
-						_bdg = _buildings select 0;
-						[_bdg,_uid] call OT_fnc_setOwner;
-					};
-				}else{
-					[_x,_uid] call OT_fnc_setOwner;
+				diag_log format ["[loadgame]: owned vars: %1", _x];
+				
+				[_x,_uid] call OT_fnc_setOwner;
 
-					_pos = buildingpositions getVariable [_x,[]];
-					_bdg = objNull;
-					if(count _pos isEqualTo 0) then {
-						_bdg = OT_centerPos nearestObject parseNumber _x;
-						buildingpositions setVariable [_x,position _bdg,true];
-					}else{
-						_bdg = _pos nearestObject parseNumber _x;
-					};
-					if !(_bdg in _built) then {
-						_bdg addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler];
-					};
-					if(_x in _leased) then {
-						_leasedata pushback [_x,typeof _bdg,_pos,_pos call OT_fnc_nearestTown];
-						_leasedNew pushBack _x;
-					};
+				_pos = buildingpositions getVariable [_x,[]];
+				_bdg = objNull;
+				if(count _pos isEqualTo 0) then {
+					_bdg = OT_centerPos nearestObject parseNumber _x;
+					buildingpositions setVariable [_x,position _bdg,true];
+				}else{
+					_bdg = _pos nearestObject parseNumber _x;
+				};
+				if !(_bdg in _built) then {
+					_bdg addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler];
+				};
+				if(_x in _leased) then {
+					_leasedata pushback [_x,typeof _bdg,_pos,_pos call OT_fnc_nearestTown];
+					_leasedNew pushBack _x;
 				};
 			}foreach(_val);
 		};

@@ -132,8 +132,8 @@ class CfgFunctions
 			class respawnHandler {};
 			class keyHandler {};
 			class taggedHandler {};
-			class WheelRemovedHandler {};
-			class EnemyDamagedHandler {};
+			class wheelRemovedHandler {};
+			class enemyDamagedHandler {};
 			class QRFStartHandler {};
 			class QRFEndHandler {};
 		};
@@ -247,10 +247,13 @@ class CfgFunctions
 			class transferHelper {};
 			class transferLegit {};
 			class takeLegit {};
-			class warehouseTake {};
 			class recover {};
-			class storeAll {};
 			class UnownVehicle {};
+
+			/* Warehouse */
+			class storeAll {};
+			class warehouseTake {};
+			class warehouseTransfer {};
 
 			/* Port */
 			class exportAll {};
@@ -452,15 +455,14 @@ class CfgFunctions
 			file = "\overthrow_main\functions\warehouse";
 			class addToWarehouse {};
 			class removeFromWarehouse {};
-			class findHelmetInWarehouse {};
-			class findScopeInWarehouse {};
-			class findWeaponInWarehouse {};
-			class findVestInWarehouse {};
+			//class findHelmetInWarehouse {};
+			//class findScopeInWarehouse {};
+			//class findWeaponInWarehouse {};
+			//class findVestInWarehouse {};
 			class verifyLoadoutFromWarehouse {};
-			class applyLoadoutFromWarehouse {};
+			//class applyLoadoutFromWarehouse {};
 			class qtyInWarehouse {};
 			class isInWarehouse {};
-			class recoverWarehouseGear {};
 		};
 
 		/*
@@ -488,6 +490,7 @@ class CfgFunctions
 		class Orders
 		{
 			file = "\overthrow_main\functions\AI\orders";
+			class orderMove {};
 			class orderLoot {};
 			class orderOpenInventory {};
 			class orderOpenArsenal {};
@@ -684,7 +687,7 @@ class CfgFunctions
 
 		class FSM
 		{
-			file = "overthrow_main\functions\AI\Vcom\FSMS";
+			file = "\overthrow_main\functions\AI\Vcom\FSMS";
 
 			// group spawn VCM_fnc_SQUADBEH
 			class SQUADBEH
@@ -708,7 +711,7 @@ class CfgFunctions
 
 		class Functions
 		{
-			file = "overthrow_main\functions\AI\Vcom\Functions\VCM_Functions";
+			file = "\overthrow_main\functions\AI\Vcom\Functions\VCM_Functions";
 
 			//[] spawn VCM_fnc_VcomInit;
 			class VcomInit {};

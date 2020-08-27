@@ -1,8 +1,8 @@
-params ["_id","_type"];
+params ["_warehouse","_type"];
 private _found = "";
 private _possible = [];
 {
-	private _d = warehouse getvariable [_x,false];
+	private _d = _warehouse getvariable [_x,false];
 	if(_d isEqualType []) then {
 		_d params ["_cls",["_num",0,[0]]];
 		if(_num > 0) then {

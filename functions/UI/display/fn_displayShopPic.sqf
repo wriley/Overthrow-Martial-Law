@@ -83,7 +83,7 @@ if(_price > -1) then {
 			]
     	};
     	if(_cls in OT_allSquads) exitWith {
-            private _squad = _cls call OT_fnc_getSquad;
+            private _squad = [_cls,getpos player] call OT_fnc_getSquad;
             _price = _squad param [0,0];
             ctrlEnable [1601,false];
 

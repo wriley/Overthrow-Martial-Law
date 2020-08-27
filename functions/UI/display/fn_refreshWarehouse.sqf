@@ -1,13 +1,9 @@
-if (isNull(findDisplay 8000)) exitWith {
-	[format["no warehouse display"]] remoteExec ["systemChat", 0, true];
-};
+if (isNull(findDisplay 8000)) exitWith {};
 private _cursel = lbCurSel 1500;
 lbClear 1500;
 _SearchTerm = ctrlText 1700;
-
-private _wid = lbData [2100,0];
-private _itemVars = allVariables warehouse select {((toLower _x select [0,(11+count OT_currentWarehouse)]) isEqualTo (format["warehouse-%1_",OT_currentWarehouse]))};
-player globalchat format ["refresh warehouse %1 at %2", OT_currentWarehouse, time];
+private _warehouse = OT_currentWarehouse;
+private _itemVars = (allVariables _warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")};
 private _numitems = 0;
 private _rifles = [];
 private _launchers = [];
@@ -16,8 +12,8 @@ private _default = [];
 private _bags = [];
 private _unsorted = [];
 {
-	private _warehouse = warehouse getVariable [_x,["",0]];
-	_warehouse params [["_cls","",[""]], ["_num",0,[0]]];
+	private _d = _warehouse getVariable [_x,["",0]];
+	_d params [["_cls","",[""]], ["_num",0,[0]]];
 	_handled = false;
 	if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) then {
 		_rifles pushback [_cls,_num];
@@ -105,6 +101,5 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 		};
 	};
 }foreach(_sorted);
-
-//if(_cursel >= _numitems) then {_cursel = 0};
-//lbSetCurSel [1500, _cursel];
+if(_cursel >= _numitems) then {_cursel = 0};
+lbSetCurSel [1500, _cursel];

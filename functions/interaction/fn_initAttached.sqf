@@ -2,8 +2,6 @@ private _veh = _this select 0;
 _am = [];
 private _cls = _veh getVariable ["OT_attachedClass",""];
 private _load = _veh getVariable ["OT_loadAttach",false];
-if (!isServer && _load) exitWith {};
-if (!isDedicated && _load) exitWith {};
 if(_cls isEqualTo "") exitWith {};
 
 private _item = [];
@@ -20,7 +18,6 @@ _wpn = _cls createVehicle [0,0,0];
 if(count _this > 1) then {_am = _this select 1;};
 _wpn attachto [_veh,_attachat select 0];
 [[_wpn,_attachat select 1],"setDir",true,true] spawn BIS_fnc_MP;
-
 
 if (_cls in OT_item_Storage) then {
 	clearWeaponCargoGlobal _wpn;

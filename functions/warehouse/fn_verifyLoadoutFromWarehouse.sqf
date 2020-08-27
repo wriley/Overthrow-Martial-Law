@@ -1,10 +1,11 @@
-params ["_id","_unit",["_correct",true]];
-
+if (!isServer || !OT_whTransferring) exitWith {};
+OT_whTransferring = true;
+params ["_warehouse","_unit",["_correct",true]];
 private _ignore = [];
 {
     _x params [["_cls",""], ["_count",0]];
     if !(_cls in _ignore) then {
-        private _boxAmount = (warehouse getVariable [format["warehouse-%1_%2",_id,_cls],[_cls,0]]) select 1;
+        private _boxAmount = (_warehouse getVariable [format["%1",_cls],[_cls,0]]) select 1;
         if(_boxAmount < _count) then {
             //take off the difference
             call {
@@ -51,14 +52,14 @@ private _ignore = [];
         };
 
         if(_count > 0) then {
-            [_id, _cls, _count] call OT_fnc_removeFromWarehouse;
+            [_warehouse, _cls, _count] remoteExec ["OT_fnc_removeFromWarehouse", 2, false];
         };
     };
 }foreach(_unit call OT_fnc_unitStock);
 
 {
     if !(_x isEqualTo "ItemMap") then {
-        if !([_id, _x, 1] call OT_fnc_removeFromWarehouse) then {
+        if !([_warehouse, _x, 1] call OT_fnc_removeFromWarehouse) then {
             if(_correct) then {_unit unlinkItem _x};
             _missing pushback _x;
         };
@@ -67,12 +68,12 @@ private _ignore = [];
 
 private _backpack = backpack _unit;
 if !(_backpack isEqualTo "") then {
-    if !([_id, _backpack, 1] call OT_fnc_removeFromWarehouse) then {
+    if !([_warehouse, _backpack, 1] call OT_fnc_removeFromWarehouse) then {
         _missing pushback _backpack;
         if(_correct) then {
             //Put the items from the backpack back in the warehouse
             {
-                [_id,_x, 1] call OT_fnc_addToWarehouse;
+                [_warehouse, _x, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
             }foreach(backpackItems _unit);
             removeBackpack _unit;
         };
@@ -81,12 +82,12 @@ if !(_backpack isEqualTo "") then {
 
 private _vest = vest _unit;
 if !(_vest isEqualTo "") then {
-    if !([_id, _vest, 1] call OT_fnc_removeFromWarehouse) then {
+    if !([_warehouse, _vest, 1] call OT_fnc_removeFromWarehouse) then {
         _missing pushback _vest;
         if(_correct) then {
             //Put the items from the vest back in the warehouse
             {
-                [_id,_x, 1] call OT_fnc_addToWarehouse;
+                [_warehouse, _x, 1] remoteExec ["OT_fnc_addToWarehouse", 2, false];
             }foreach(vestItems _unit);
             removeVest _unit;
         };
@@ -95,7 +96,7 @@ if !(_vest isEqualTo "") then {
 
 private _helmet = headgear _unit;
 if !(_helmet isEqualTo "") then {
-    if !([_id, _helmet, 1] call OT_fnc_removeFromWarehouse) then {
+    if !([_warehouse, _helmet, 1] call OT_fnc_removeFromWarehouse) then {
         _missing pushback _helmet;
         if(_correct) then {removeHeadgear _unit};
     };
@@ -103,11 +104,10 @@ if !(_helmet isEqualTo "") then {
 
 private _goggles = goggles _unit;
 if !(_goggles isEqualTo "") then {
-    if !([_id, _goggles, 1] call OT_fnc_removeFromWarehouse) then {
+    if !([_warehouse, _goggles, 1] call OT_fnc_removeFromWarehouse) then {
         _missing pushback _goggles;
         if(_correct) then {removeGoggles _unit};
     };
 };
-publicVariable "warehouse";
-[_id] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
-_missing
+_warehouse setVariable ["verifiedLoadout", _missing, true];
+OT_whTransferring = true;
