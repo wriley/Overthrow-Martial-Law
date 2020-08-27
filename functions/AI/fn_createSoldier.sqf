@@ -5,10 +5,9 @@ if(_cls == "Police") then {_cls = OT_Unit_Police};
 if(_takeFromWarehouse) then {
 	{
 		_x params ["_cls","_num"];
-		private _warehouse = _pos call OT_fnc_nearestWarehouse;
-		_warehouse params ["_wpos", "_id"];
-		if (_wpos distance _pos > 300) exitWith { diag_log "No warehouse within 300m"; _takeFromWarehouse = false; };
-		[_id,_cls,_num] call OT_fnc_removeFromWarehouse;
+		private _warehouse = _pos call OT_fnc_nearestWarehouse select 1;
+		if (_warehouse distance _pos > 300) exitWith { diag_log "No warehouse within 300m"; _takeFromWarehouse = false; };
+		[_warehouse, _cls, _num] remoteExec ["OT_fnc_removeFromWarehouse", 2, false];
 	}foreach(_allitems call BIS_fnc_consolidateArray);
 };
 

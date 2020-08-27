@@ -89,7 +89,7 @@ if(_foundWeapons || _foundStolen || _foundStatic) then {
 	if(_target isKindOf "LandVehicle") then {
 		{
 		  _x setCaptive false;
-		  _x call OT_fnc_revealToNATO;
+		  [_x] call OT_fnc_revealToNATO;
 		} forEach crew _target;
 	} else {
 		_target setCaptive false;

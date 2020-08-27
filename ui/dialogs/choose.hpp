@@ -22,7 +22,7 @@ class OT_dialog_choose
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			text = "Lorem Ipsum dolor sit amet blah blah blah"; //--- ToDo: Localize;
+			text = ""; //--- ToDo: Localize;
 			action = "closeDialog 0;0 call OT_fnc_choiceMade;";
 			x = 0.298906 * safezoneW + safezoneX;
 			y = 0.478 * safezoneH + safezoneY;
@@ -33,7 +33,7 @@ class OT_dialog_choose
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
-			text = "Lorem Ipsum dolor sit amet blah blah blah"; //--- ToDo: Localize;
+			text = ""; //--- ToDo: Localize;
 			action = "closeDialog 0;1 call OT_fnc_choiceMade;";
 			x = 0.298906 * safezoneW + safezoneX;
 			y = 0.544 * safezoneH + safezoneY;
@@ -44,7 +44,7 @@ class OT_dialog_choose
 		class RscButton_1602: RscOverthrowButton
 		{
 			idc = 1602;
-			text = "Lorem Ipsum dolor sit amet blah blah blah"; //--- ToDo: Localize;
+			text = ""; //--- ToDo: Localize;
 			action = "closeDialog 0;2 call OT_fnc_choiceMade;";
 			x = 0.298906 * safezoneW + safezoneX;
 			y = 0.61 * safezoneH + safezoneY;
@@ -55,7 +55,7 @@ class OT_dialog_choose
 		class RscButton_1603: RscOverthrowButton
 		{
 			idc = 1603;
-			text = "Lorem Ipsum dolor sit amet blah blah blah"; //--- ToDo: Localize;
+			text = ""; //--- ToDo: Localize;
 			action = "closeDialog 0;3 call OT_fnc_choiceMade;";
 			x = 0.298906 * safezoneW + safezoneX;
 			y = 0.676 * safezoneH + safezoneY;
@@ -66,7 +66,7 @@ class OT_dialog_choose
 		class RscButton_1604: RscOverthrowButton
 		{
 			idc = 1604;
-			text = "Lorem Ipsum dolor sit amet blah blah blah"; //--- ToDo: Localize;
+			text = ""; //--- ToDo: Localize;
 			action = "closeDialog 0;4 call OT_fnc_choiceMade;";
 			x = 0.298906 * safezoneW + safezoneX;
 			y = 0.742 * safezoneH + safezoneY;
@@ -77,7 +77,7 @@ class OT_dialog_choose
 		class RscButton_1605: RscOverthrowButton
 		{
 			idc = 1605;
-			text = "Lorem Ipsum dolor sit amet blah blah blah"; //--- ToDo: Localize;
+			text = ""; //--- ToDo: Localize;
 			action = "closeDialog 0;5 call OT_fnc_choiceMade;";
 			x = 0.298906 * safezoneW + safezoneX;
 			y = 0.808 * safezoneH + safezoneY;

@@ -70,17 +70,31 @@ _allitems = _allitems - [""];
 
 private _itemqty = _allitems call BIS_fnc_consolidateArray;
 private _bought = [];
-private _warehouse = _pos call OT_fnc_nearestWarehouse;
-_warehouse params ["","_id"];
-{
-	_x params ["_cls","_num"];
-	if !(_cls isEqualTo "ItemMap") then {
-		_whqty = [_id, _cls] call OT_fnc_qtyInWarehouse;
-		if(_whqty < _num) then {_num = _num - _whqty} else {_num = 0};
-		if(_num > 0) then {
-			_cost = _cost + (([OT_nation,_cls,30] call OT_fnc_getPrice) * _num);
-			_bought pushback [_cls,_num];
-		};
+if (count _pos > 0) then {
+	private _wh = _pos call OT_fnc_nearestWarehouse;
+	if (count _wh > 0) then {
+		diag_log format ["[getSoldier]: _wh:%1", _wh];
+		_wh params ["","_warehouse"];
+		{
+			_x params ["_cls","_num"];
+			if !(_cls isEqualTo "ItemMap") then {
+
+				_whqty = [_warehouse, _cls] call OT_fnc_qtyInWarehouse;
+				if(_whqty < _num) then {_num = _num - _whqty} else {_num = 0};
+				if(_num > 0) then {
+					_cost = _cost + (([OT_nation,_cls,30] call OT_fnc_getPrice) * _num);
+					_bought pushback [_cls,_num];
+				};
+			};
+		}foreach(_itemqty);
+	} else {
+		{
+			_x params ["_cls","_num"];
+			if !(_cls isEqualTo "ItemMap") then {
+				_cost = _cost + (([OT_nation,_cls,30] call OT_fnc_getPrice) * _num);
+				_bought pushback [_cls,_num];
+			};
+		}foreach(_itemqty);
 	};
-}foreach(_itemqty);
+};
 [_cost,_cls,_loadout,_clothes,_allitems,_bought]

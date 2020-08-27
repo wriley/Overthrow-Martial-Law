@@ -1,4 +1,4 @@
-params ["_unit"];
+params ["_unit","_warehouse"];
 private _from = vehicle _unit;
 
 if (_from isEqualTo player) then {
@@ -7,4 +7,4 @@ if (_from isEqualTo player) then {
 
 if (isNull _from || isNil "_from") exitWith {};
 
-[_from, OT_currentWarehouse] call OT_fnc_transferHelper;
+[_from, _warehouse] call OT_fnc_transferHelper;
