@@ -145,7 +145,7 @@ OT_finishedHolster = true;
 OT_NATO_HQPos = [0,0,0];
 
 OT_fastTime = true; //When true, 1 day will last 6 hrs real time
-OT_spawnDistance = 2500;
+OT_spawnDistance = 1000;
 if (isNil "OT_spawnCivPercentage") then {
 	OT_spawnCivPercentage = 0.01;
 };
