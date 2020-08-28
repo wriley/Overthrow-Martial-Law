@@ -2,7 +2,7 @@ params ["_unit","_t",["_linkedItems",false]];
 
 _full = false;
 
-if(binocular _unit != "") then {
+if !(binocular _unit isEqualTo "") then {  // change from if(binocular _unit != "") then {
 	if !(_t canAdd binocular _unit) exitWith {
 		_full = true;
 	};

@@ -324,7 +324,7 @@ if (_newplayer) then {
         };
         [_x,getplayeruid player] call OT_fnc_setOwner;
     }foreach(_furniture);
-    player setVariable ["owned",[[_house] call OT_fnc_getBuildID],true];
+    player setVariable ["owned",[[_house] call OT_fnc_getBuildingId],true];
 
 };
 _count = 0;

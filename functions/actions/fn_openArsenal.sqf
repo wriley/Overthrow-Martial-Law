@@ -14,7 +14,7 @@ private _id = 0;
 private _missing = [];
 
 if(_target isEqualType "") then {
-	  private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse select 1;
+	private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse select 1;
     [_warehouse,_unit,true] call OT_fnc_dumpIntoWarehouse;
     _unit linkItem "ItemMap";
     {
@@ -29,7 +29,7 @@ if(_target isEqualType "") then {
     _closed = ["ace_arsenal_displayClosed", {
         _thisArgs params ["_unit"];
 		    private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse select 1;
-        [_warehouse, _unit] remoteExec ["OT_fnc_verifyLoadoutFromWarehouse", 2, false];
+        [_warehouse, _unit] remoteExec ["OT_fnc_verifyLoadoutFromWarehouse", 2];
         waitUntil {sleep .1;(!isNil (_warehouse getVariable ["verifiedLoadout", nil]))};
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;

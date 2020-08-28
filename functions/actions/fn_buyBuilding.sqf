@@ -35,10 +35,10 @@ if(_handled) then {
 	private _owned = player getVariable "owned";
 
 	if(_type isEqualTo "buy") then {
-		private _id = [_building] call OT_fnc_getBuildID;
+		private _id = [_building] call OT_fnc_getBuildingId;
 		[_building,getPlayerUID player] call OT_fnc_setOwner;
 		[-_price] call OT_fnc_money;
-		if (typeOf _building in OT_warehouses) then {
+		if (typeOf _building isEqualTo OT_warehouse) then {
 			[_building, getpos _building,"OT_fnc_initWarehouse"] remoteExec ["OT_fnc_initBuilding",2];
 		};
 		buildingpositions setVariable [_id,position _building,true];
@@ -48,7 +48,7 @@ if(_handled) then {
 		// Fetch the list of buildable houses
 		private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
 		if ((typeof _building) in OT_allRealEstate || ((typeOf _building) in _buildableHouses)) then {
-			private _id = [_building] call OT_fnc_getBuildID;
+			private _id = [_building] call OT_fnc_getBuildingId;
 			[_building,nil] call OT_fnc_setOwner;
 			private _leased = player getVariable ["leased",[]];
 			_leased deleteAt (_leased find _id);
@@ -65,7 +65,7 @@ if(_handled) then {
 			[_sell] call OT_fnc_money;
 		// Fallback for unknown buildings
 		}else{
-			_owned deleteAt (_owned find ([_building] call OT_fnc_getBuildID));
+			_owned deleteAt (_owned find ([_building] call OT_fnc_getBuildingId));
 		};
 
 		// Always attempt to remove the building, because it might be player-placed (for map-placed buildings, this won't do anything)

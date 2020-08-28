@@ -375,5 +375,5 @@ if(_scale > 0.16) then {
 			.5-(_scale/1.25),
 			.5-(_scale/1.25)
 		];};
-	};               
+	};
 } forEach allMapMarkers;

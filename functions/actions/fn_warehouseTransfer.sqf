@@ -1,8 +1,6 @@
 if (!isServer) exitWith {};
 waitUntil {!OT_whTransferring;};
 OT_whTransferring = true;
-[format ["server running warehouseTransfer, params:%1", _this]] remoteExec ["systemChat", 0, false];
-diag_log format ["server running warehouseTransfer, params:%1", _this];
 params ["_warehouse","_cls","_dest","_qtyout"];
 private _veh = (vehicle _dest);
 
@@ -18,11 +16,9 @@ _take params ["", ["_currentqty",0,[0]]];
 if(_qtyout > _currentqty || _qtyout isEqualTo -1) then {
 	_qtyout = _currentqty;
 };
-[format ["server attempting warehouseTransfer, veh:%1", _veh]] remoteExec ["systemChat", 0, false];
 for [{private _i=0;},{_i<_qtyout;},{_i=_i+1;}] do {
 	if!(_veh canAdd _cls) exitWith {
-		private _clientOwner = _warehouse getVariable ["clientOwnerTaking", 2];
-		"This vehicle is full, use a truck for more storage" remoteExec ["hint", _clientOwner, false];
+		"This vehicle is full, use a truck for more storage" remoteExec ["hint", (_warehouse getVariable ["clientOwnerTaking", 2]), false];
 		_warehouse setVariable ["clientOwnerTaking", nil, true];
 		_qtyout = _i
 	};

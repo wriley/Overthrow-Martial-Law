@@ -1,4 +1,3 @@
-diag_log format ["initWarehouse: %1", _this];
 params ["_pos","_building"];
 private _mrkid = format["%1-whouse",_pos];
 createMarker [_mrkid,_pos];

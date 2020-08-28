@@ -133,8 +133,8 @@ OT_factoryLevel = 0;
 OT_Resources = ["OT_Wood","OT_Steel","OT_Plastic","OT_Sugarcane","OT_Sugar","OT_Fertilizer","OT_Lumber","OT_Wine","OT_Grapes","OT_Olives"];
 OT_businessStorage = "B_Slingload_01_Cargo_F";
 
-OT_adminMode = false;
-OT_DEBUG = false;
+OT_adminMode = true;
+OT_DEBUG = true;
 
 OT_allIntel = [];
 OT_notifies = [];
@@ -1172,7 +1172,9 @@ OT_repairableRuins = [
 	["Land_Cargo_HQ_V1_ruins_F","Land_Cargo_HQ_V1_F",2500],
 	["Land_Cargo_HQ_V2_ruins_F","Land_Cargo_HQ_V2_F",2500],
 	["Land_Cargo_HQ_V3_ruins_F","Land_Cargo_HQ_V3_F",2500],
-	["Land_Cargo_HQ_V4_ruins_F","Land_Cargo_HQ_V4_F",2500]
+	["Land_Cargo_HQ_V4_ruins_F","Land_Cargo_HQ_V4_F",2500],
+	["Land_Warehouse_03_ruins_F","Land_Warehouse_03_F",12500]
+
 ];
 OT_allRepairableRuins = [];
 {

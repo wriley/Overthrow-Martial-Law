@@ -1,30 +1,36 @@
-
-params ["_building","_source","_damage","_instigator"];
-
-private _totalHit = _building getVariable ["totalHit", 0];
-diag_log format ["[fn_buildingHitHandler]: params: %1", _this];
-diag_log format ["[fn_buildingHitHandler]: _totalHit: %1", _totalHit];
-_totalHit = _totalHit + _damage;
-_building setVariable ["totalHit", _totalHit];
-
-
-private _id = [_building] call OT_fnc_getBuildID;
+params ["_building"];
+private _id = [_building] call OT_fnc_getBuildingId;
 private _type = typeof _building;
 private _town = (getpos _building) call OT_fnc_nearestTown;
+private _damage = _building call OT_fnc_getBuildingDamage;
 
-_perc = "%";
-//if !(_id in _damaged) then {
-//	_damaged pushback _id;
-//	owners setVariable ["damagedBuildings",_damaged,true];
-_lastHit = _building getVariable ["_lastHit", -5];
-if (_lastHit + time > 0) then {
-	if(_type isEqualTo OT_warehouse) then {
-		format ["Your Warehouse at %1 was damaged %2%3", _town, round(_totalHit*100), _perc] remoteExec ["hint",0,false];
+if !(_damage isEqualTo 100) then {
+	private _lastDamage = _building getVariable ["lastDamage", 0];
+	"warehouse taking damage" remoteExec ["systemChat", 0];
+	if ((_damage - 5) > _lastDamage) then {
+		private _perc = "%";
+		_building setVariable ["lastDamage", _damage, true];
+		if(_type isEqualTo OT_warehouse) then { format ["Your Warehouse at %1 is taking damage (%2%3)", _town, round(_damage), _perc] remoteExec ["hint",0,false]; };
+		if(_type isEqualTo OT_policeStation) then {	format ["Your Police station at %1 is taking damage (%2%3)", _town, round(_damage), _perc] remoteExec ["hint",0,false];	};
 	};
-	if(_type isEqualTo OT_policeStation) then {
-		format ["Your Police station at %1 was damaged %2%3", _town, round(_totalHit*100), _perc] remoteExec ["hint",0,false];
+} else {
+	if (damage _building isEqualTo 1) then {
+		_destroyed = owners getVariable ["destroyedBuildings",[]];
+		if !(_id in _destroyed) then {
+			format ["ded %1",_type] remoteExec ["systemChat", 0];
+			_destroyed pushback _id;
+			owners setVariable ["destroyedBuildings",_destroyed,true];
+
+			if(_type in [OT_warehouseRuins, OT_warehouse]) then {
+				format ["Warehouse destroyed in %1.", _town] remoteExec ["OT_fnc_notifyBad",0,false];
+			};
+			if(_type in OT_policeStationRuins) then {
+				server setVariable [format["police%1",_town],0,true];
+				if(_town in _abandoned) then {
+					[_town,-20] call OT_fnc_stability;
+					format ["Police Station destroyed in %1",_town] remoteExec ["OT_fnc_notifyBad",0,false];
+				};
+			};
+		};
 	};
 };
-//};
-
-_building setVariable ["lastHit", time + 5];
