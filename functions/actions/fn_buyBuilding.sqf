@@ -38,13 +38,12 @@ if(_handled) then {
 		private _id = [_building] call OT_fnc_getBuildID;
 		[_building,getPlayerUID player] call OT_fnc_setOwner;
 		[-_price] call OT_fnc_money;
-		if (typeOf _building in [OT_warehouses]) then {
-			[getpos _building, _building] call OT_fnc_initWarehouse;
+		if (typeOf _building in OT_warehouses) then {
+			[_building, getpos _building,"OT_fnc_initWarehouse"] remoteExec ["OT_fnc_initBuilding",2];
 		};
 		buildingpositions setVariable [_id,position _building,true];
 		_owned pushback _id;
 		[player,"Building Purchased",format["Bought: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),(getpos _building) call OT_fnc_nearestTown,_price]] call BIS_fnc_createLogRecord;
-		_building addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler];
 	}else{
 		// Fetch the list of buildable houses
 		private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
@@ -69,7 +68,7 @@ if(_handled) then {
 			_owned deleteAt (_owned find ([_building] call OT_fnc_getBuildID));
 		};
 
-		// Always attempt to remove the building, because it might be played-placed (for map-placed buildings, this won't do anything)
+		// Always attempt to remove the building, because it might be player-placed (for map-placed buildings, this won't do anything)
 		deleteVehicle _building;
 	};
 

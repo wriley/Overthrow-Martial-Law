@@ -9,7 +9,7 @@ private _hiding = _unit getVariable ["OT_hiding",0];
 if !(captive _unit) then {
 	//CURRENTLY WANTED
 	if(_timer >= 0) then {
-		_timer = _timer + 3;
+		_timer = _timer + 2;
 		_hiding = 60 - _timer;
 		if(_hiding <= 0) then {
 			//hidden for 30 seconds
@@ -273,5 +273,5 @@ _unit setVariable ["OT_hiding",_hiding,true];
 [
 	OT_fnc_wantedLoop,
 	_this,
-	3
+	2
 ] call CBA_fnc_waitAndExecute;
