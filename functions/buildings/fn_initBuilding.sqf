@@ -1,3 +1,4 @@
+diag_log format ["initBuilding: %1", _this];
 private _veh = _this select 0;
 private _pos = _this select 1;
 private _fnc = _this select 2;

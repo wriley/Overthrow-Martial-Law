@@ -124,6 +124,7 @@ class CfgFunctions
 			file = "\overthrow_main\functions\events";
 			class deathHandler {};
 			class buildingDamagedHandler {};
+			class buildingHitHandler {};
 			class cargoLoadedHandler {};
 			class explosivesPlacedHandler {};
 			class playerConnectHandler {};

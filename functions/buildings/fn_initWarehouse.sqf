@@ -1,3 +1,4 @@
+diag_log format ["initWarehouse: %1", _this];
 params ["_pos","_building"];
 private _mrkid = format["%1-whouse",_pos];
 createMarker [_mrkid,_pos];
@@ -5,6 +6,7 @@ _mrkid setMarkerShape "ICON";
 _mrkid setMarkerType "ot_Warehouse";
 _mrkid setMarkerColor "ColorWhite";
 _mrkid setMarkerAlpha 1;
-_building addEventHandler ["Dammaged", OT_fnc_buildingDamagedHandler];
 OT_allWarehouses pushbackUnique [_pos,_building];
 publicVariable "OT_allWarehouses";
+_building addEventHandler ["Dammaged", OT_fnc_buildingDamagedHandler];
+_building addEventHandler ["Hit", OT_fnc_buildingHitHandler];

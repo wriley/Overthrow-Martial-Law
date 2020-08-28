@@ -52,7 +52,6 @@ OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templat
 
 //Advanced towing script, credits to Duda http://www.armaholic.com/page.php?id=30575
 [] spawn OT_fnc_advancedTowingInit;
-
 [] spawn VCM_fnc_VcomInit;
 
 [] spawn {
