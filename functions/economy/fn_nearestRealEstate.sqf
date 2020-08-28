@@ -1,6 +1,6 @@
 private ["_buildings","_building","_gotbuilding","_price","_lease","_sell","_totaloccupants"];
 
-private _buildings =  _this nearObjects ["Building",30];
+private _buildings =  _this nearObjects ["Building",15];
 private _gotbuilding = false;
 private _building = objNULL;
 

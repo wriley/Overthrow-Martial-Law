@@ -9,7 +9,7 @@ if(damage _building isEqualTo 1) exitWith {
 	if(_money >= _price) then {
 		[-_price] call OT_fnc_money;
 		_building setDamage 0;
-		_id = [_building] call OT_fnc_getBuildID;
+		_id = [_building] call OT_fnc_getBuildingId;
 		_damaged = owners getVariable ["damagedBuildings",[]];
 		if(_id in _damaged) then {
 			_damaged deleteAt (_damaged find _id);
@@ -57,7 +57,7 @@ if(typename _b isEqualTo "ARRAY") then {
 if(_err) exitWith {};
 if(_handled) then {
 	private _leased = player getVariable ["leased",[]];
-	private _id = [_building] call OT_fnc_getBuildID;
+	private _id = [_building] call OT_fnc_getBuildingId;
 	if!(_id in _leased) then {
 		// If the house is player-built, we set its lease variable to true
 		if (_building getVariable ["OT_house_isPlayerBuilt", false]) then {

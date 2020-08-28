@@ -201,12 +201,11 @@ private _hasList_buildableHouses = false;
 				if (!(_warehouse isEqualTo []) && {_type in [OT_warehouse]}) then {
 					{
 						if (count _x > 0) then {
-							diag_log format ["[loadGame]: each _warehouse: %1", _x];
 							_veh setVariable [format["warehouse-%1",_x select 0], [_x select 0, _x select 1], true];
 						};
 					} foreach _warehouse;
 				};
-				
+
 				if (_posFormat == 1) then {
 					_veh setPosWorld _pos;		// format 1 is the new posWorld format
 				} else {
@@ -464,8 +463,6 @@ private _built = (allMissionObjects "Static");
 		_x params ["_name","_val"];
 		if(_name isEqualTo "owned") then {
 			{
-				diag_log format ["[loadgame]: owned vars: %1", _x];
-				
 				[_x,_uid] call OT_fnc_setOwner;
 
 				_pos = buildingpositions getVariable [_x,[]];
@@ -489,7 +486,7 @@ private _built = (allMissionObjects "Static");
 
 	// Add the built houses
 	{
-		private _ID = [_x] call OT_fnc_getBuildID;
+		private _ID = [_x] call OT_fnc_getBuildingId;
 		private _pos = position _x;
 		_leasedata pushBack [_ID, typeof _x,_pos,_pos call OT_fnc_nearestTown];
 		_leasedNew pushBack _ID;

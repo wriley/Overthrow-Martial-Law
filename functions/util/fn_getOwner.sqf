@@ -5,6 +5,6 @@ if(_this isEqualType "") exitWith {
     owners getVariable [_this,nil];
 };
 if((getObjectType _this) != 8 && (typeOf _this isKindOf ["Building", configFile >> "CfgVehicles"])) exitWith {
-    owners getVariable [[_this] call OT_fnc_getBuildID,nil];
+    owners getVariable [[_this] call OT_fnc_getBuildingId,nil];
 };
 _this getVariable ["owner",nil];

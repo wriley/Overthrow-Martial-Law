@@ -1,4 +1,5 @@
-if (!isServer || !OT_whTransferring) exitWith {};
+if (!isServer) exitWith {};
+waitUntil {!OT_whTransferring;sleep .1;};
 OT_whTransferring = true;
 params ["_warehouse","_unit",["_correct",true]];
 private _ignore = [];
@@ -52,7 +53,7 @@ private _ignore = [];
         };
 
         if(_count > 0) then {
-            [_warehouse, _cls, _count] remoteExec ["OT_fnc_removeFromWarehouse", 2, false];
+            [_warehouse, _cls, _count] call OT_fnc_removeFromWarehouse;
         };
     };
 }foreach(_unit call OT_fnc_unitStock);

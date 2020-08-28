@@ -12,6 +12,7 @@ waitUntil {sleep 1;missionNamespace getVariable ["OT_varInitDone",false]};
 private _allActiveShops = [];
 private _allActiveCarShops = [];
 private _allActivePiers = [];
+private _allActiveHardwares = [];
 
 private _version = server getVariable ["EconomyVersion",0];
 
@@ -162,6 +163,9 @@ if(_version < OTML_economyVersion) then {
 	_piers = server getVariable [format["activepiersin%1",_x],[]];
 	[_allActivePiers,_piers] call BIS_fnc_arrayPushStack;
 
+	_hardwares = server getVariable [format["activehardwarein%1",_x],[]];
+	[_allActiveHardwares,_hardwares] call BIS_fnc_arrayPushStack;
+
 	{
 		_mrk = createMarker [format["shop%1%2", _tname, _x select 1], _x select 0];
 		_mrk setMarkerShape "ICON";
@@ -175,6 +179,20 @@ if(_version < OTML_economyVersion) then {
 		_mrk setMarkerType "ot_Shop_CarStore";
 		_mrk setMarkerColor "ColorWhite";
 	}foreach _carshops;
+
+	{
+		_mrk = createMarker [format["piershop%1", _x], _x];
+		_mrk setMarkerShape "ICON";
+		_mrk setMarkerType "ot_Shop_CarStore";
+		_mrk setMarkerColor "ColorWhite";
+	}foreach _piers;
+
+	{
+		_mrk = createMarker [format["hardware%1", _tname], _x select 0];
+		_mrk setMarkerShape "ICON";
+		_mrk setMarkerType "ot_Shop_Hardware";
+		_mrk setMarkerColor "ColorWhite";
+	}foreach _hardwares;
     sleep 0.3;
 }foreach(OT_allTowns);
 

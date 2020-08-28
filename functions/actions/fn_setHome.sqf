@@ -17,7 +17,7 @@ if((typeof _building) in OT_allRepairableRuins) exitWith {
 		_money = player getVariable ["money",0];
 		if(_money >= _price) then {
 			[-_price] call OT_fnc_money;
-			_id = [_building] call OT_fnc_getBuildID;
+			_id = [_building] call OT_fnc_getBuildingId;
 			_damaged = owners getVariable ["damagedBuildings",[]];
 			if(_id in _damaged) then {
 				_damaged deleteAt (_damaged find _id);
@@ -42,7 +42,7 @@ if(typeof _building isEqualTo OT_warehouse) exitWith {
 	if(_money >= _price) then {
 		[-_price] call OT_fnc_money;
 		_building setDamage 0;
-		_id = [_building] call OT_fnc_getBuildID;
+		_id = [_building] call OT_fnc_getBuildingId;
 		_damaged = owners getVariable ["damagedBuildings",[]];
 		if(_id in _damaged) then {
 			_damaged deleteAt (_damaged find _id);

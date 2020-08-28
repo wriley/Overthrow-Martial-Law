@@ -1,9 +1,7 @@
 params ["_vehicle", "_hitPointIndex", "_hitPointDamage", ["_useEffects", true]];
-//"wheelRemovedHandler: params: [B Alpha 3-1:2,""hitrf2wheel"",1]"
-diag_log format ["wheelRemovedHandler: params: %1", _this];
 private _side = side _vehicle;
 if ((_side isEqualTo west) && (({alive _x} count crew _vehicle) > 0)) then {
-	private _culprit = ([(allPlayers - entities "HeadlessClient_F"),[],{_x distance _vehicle},"ASCEND"] call BIS_fnc_sortBy) select 0; 
+	private _culprit = ([(allPlayers - entities "HeadlessClient_F"),[],{_x distance _vehicle},"ASCEND"] call BIS_fnc_sortBy) select 0;
 	private _culpritID = owner _culprit;
 	"NATO caught you tampering with their vehicle!" remoteExec ["OT_fnc_notifyMinor", _culpritID, false];
 	_culprit setCaptive false;
@@ -30,7 +28,6 @@ if ((_side isEqualTo west) && (({alive _x} count crew _vehicle) > 0)) then {
 		unAssignVehicle _repairer;
 		doGetOut _repairer;
 		private _part = (getpos _repairer) nearEntities [["ACE_Wheel","ACE_Track"], 20] select 0;
-		diag_log format ["wheelRemoved: part:%1", _part];
 		if !(_part isEqualTo objNull) then {
 			_err = [_repairer, _part, 3] call OT_fnc_orderMove;
 			if (_err isEqualTo "Dead") exitWith {};

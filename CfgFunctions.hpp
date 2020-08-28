@@ -357,7 +357,8 @@ class CfgFunctions
 			class townsInRegion {};
 			class regionIsConnected {};
 			class getAO {};
-			class getBuildId {};
+			class getBuildingId {};
+			class getBuildingDamage {};
 			class weatherSystem {};
 			class getRandomRoadPosition {};
 			class isRadarInRange {};
