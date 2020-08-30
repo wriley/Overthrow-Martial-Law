@@ -24,7 +24,7 @@ if (count (_group call VCM_fnc_WyptChk) > 0) exitWith {};
 private _Leader = leader _Group;
 private _Units = units _Group;
 
-
+diag_log format ["[VehicleMove]: _Leader:%1 _Units:%2", _Leader, _Units];
 
 if (_Transport) then 
 {
@@ -33,8 +33,10 @@ if (_Transport) then
 	If (VCM_Debug) then {[_Leader,"TRANSPORT VEHICLE"] call VCM_fnc_DebugText;};
 	
 	//Let's find the nearest enemies and friendlies!	
-	private _nearestEnemy = _leader call VCM_fnc_ClstEmy;	
+	private _nearestEnemy = _leader call VCM_fnc_ClstEmy;
+	diag_log format ["[VehicleMove: _nearestEnemy:%1",_nearestEnemy];
 	private _nearestFriend = _nearestEnemy call VCM_fnc_ClstEmy;
+	diag_log format ["[VehicleMove: _nearestFriend:%1",_nearestFriend];
 	private _DisembarkLocation1 = getPosWorld _nearestFriend;
 	
 	//First find a good location to disembark.

@@ -1,8 +1,35 @@
 closeDialog 0;
+diag_log str _this;
 private _b = player call OT_fnc_nearestRealEstate;
 private _building = objNull;
 if(typename _b isEqualTo "ARRAY") then {
 	_building = (_b select 0);
+};
+private _damage = _building call OT_fnc_getBuildingDamage;
+if (_damage > 0 && !((typeof _building) in OT_allRepairableRuins)) exitWith {
+	private _price = ([OT_nation,(typeof _building),100] call OT_fnc_getPrice) * (_damage/100);
+	_money = player getVariable ["money",0];
+	if(_money >= _price) then {
+		[-_price] call OT_fnc_money;
+		_building setDamage 0;
+		/*_id = [_building] call OT_fnc_getBuildingId;
+		_damaged = owners getVariable ["damagedBuildings",[]];
+		if(_id in _damaged) then {
+			_damaged deleteAt (_damaged find _id);
+			owners setVariable ["damagedBuildings",_damaged,true];
+		};
+		_pos = getPosATL _building;
+		_dir = [vectorDir _building,vectorUp _building];
+		deleteVehicle _building;
+		_veh = createVehicle [_buildClass, _pos, [], 0, "CAN_COLLIDE"];
+		_veh enableDynamicSimulation true;
+		_veh setVectorDirAndUp _dir;
+		_veh setPosATL _pos;
+		[_veh,getPlayerUID player] call OT_fnc_setOwner;
+		*/
+	}else{
+		format["You need $%1 to repair this building",[_price, 1, 0, true] call CBA_fnc_formatNumber];
+	};
 };
 if((typeof _building) in OT_allRepairableRuins) exitWith {
 	private _ruins = [];
