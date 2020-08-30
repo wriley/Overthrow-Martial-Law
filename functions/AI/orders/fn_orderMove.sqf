@@ -35,6 +35,10 @@ while {_moving} do {
 		_err = "Stuck";
 		_moving = false;
 	};
+	if (!canStand _unit) then {
+		_err = "Injured";
+		_moving = false;
+	};
 	sleep 1;
 	_newpos = getpos _unit;
 };

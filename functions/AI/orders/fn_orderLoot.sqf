@@ -24,7 +24,7 @@ if ((typeOf vehicle ((_myunits select 0))) == "OT_I_Truck_recovery" && (driver v
 	[(_myunits select 0)] spawn OT_fnc_recover;
 };
 if (count _myunits > 1) then {
-	(_myunits select 1) globalchat format["<%1>: Looting bodies within 100m into the %2", name (_myunits select 0), (typeof _target) call OT_fnc_vehicleGetName];
+	(_myunits select 1) groupchat format["<%1>: Looting bodies within 100m into the %2", name (_myunits select 0), (typeof _target) call OT_fnc_vehicleGetName];
 };
 {
 	OT_Looters = OT_Looters + 1;
@@ -37,8 +37,8 @@ if (count _myunits > 1) then {
 		private _role = "";
 		private _roleindex = -1;
 		private _veh = objNull;
-		private _hasSupply = false;
-		private _supply = objNull;
+		//private _hasSupply = false;
+		//private _supply = objNull;
 		private _veh = vehicle _unit;
 		private _vehName = (typeof _t) call OT_fnc_vehicleGetName;
 
@@ -49,11 +49,11 @@ if (count _myunits > 1) then {
 		// Get vehicle positions
 		if ((count assignedVehicleRole _unit > 0) || ((driver _veh == _unit) && (vehicle _unit != _unit) && (typeof _veh != "OT_I_Truck_recovery"))) then {
 			_role = assignedVehicleRole _unit select 0;
-			_hasSupply = ((_veh getVariable ["OT_attachedClass",""]) in ["B_CargoNet_01_ammo_F"]);
+			/*_hasSupply = ((_veh getVariable ["OT_attachedClass",""]) in ["B_CargoNet_01_ammo_F"]);
 			if (_hasSupply) then {
-				_unit globalchat format["<%1>: Using supply box as additional storage, sir!", name _unit];
+				_unit groupchat format["<%1>: Using supply box as additional storage, sir!", name _unit];
 				_supply = _t getVariable ["OT_attachedWeapon",objNull];
-			};
+			};*/
 			if (_role == "cargo") then {
 				_roleindex = _veh getCargoIndex _unit;
 			};
@@ -66,8 +66,9 @@ if (count _myunits > 1) then {
 		// Initial move to vehicle or crate
 		_err = [_unit,_t,10] call OT_fnc_orderMove;
 		if (_err isEqualTo "Dead") exitWith {};
+		if (_err isEqualTo "Injured") exitWith { _unit groupchat format["<%1>: Man Down! Requesting Assistance!", name _unit]; };
 		if !([_unit,_t] call OT_fnc_dumpStuff) exitWith {
-			_unit globalchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
+			_unit groupchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
 			_active = false;
 		};
 
@@ -82,12 +83,12 @@ if (count _myunits > 1) then {
 			}foreach(entities "Man");
 			if (count _deadguys == 0) exitWith {
 				_active = false;
-				_unit globalchat format ["<%1>: I'm done!", name _unit];
+				_unit groupchat format ["<%1>: I'm done!", name _unit];
 			};
 
 			// Claim a body
 			_deadguy = ([_deadguys,[],{_x distance2D _t},"ASCEND"] call BIS_fnc_SortBy) select 0;
-            _unit globalchat format["<%1>: %2 bodies left to loot",name _unit, count _deadguys];
+            _unit groupchat format["<%1>: %2 bodies left to loot",name _unit, count _deadguys];
 			_deadguy setVariable ["OT_looted",true,true];
 
 			// Take deadguys weapons
@@ -95,11 +96,12 @@ if (count _myunits > 1) then {
 			private _wpns = _deadguy getVariable ["WeaponHolderSimulated",[]];
 			if (count _wpns > 0) then {
 				{
-					diag_log format ["weaponItems: %1", weaponsItems _x];
-					_wpn = ((weaponsItems _x select 0) select 0);
-					_err = [_unit,_x,6] call OT_fnc_orderMove;
-					if (_err isEqualTo "Dead") exitWith { _active = false; };
-					_unit action ["TakeWeapon", _x, _wpn];
+					if (count (weaponsItems _x) > 0) then {
+						_wpn = ((weaponsItems _x select 0) select 0);
+						_err = [_unit,_x,6] call OT_fnc_orderMove;
+						if (_err isEqualTo "Dead") exitWith { _active = false; };
+						_unit action ["TakeWeapon", _x, _wpn];
+					};
 				} forEach (_wpns);
 			};
 			if!(_active) exitWith {};
@@ -108,7 +110,7 @@ if (count _myunits > 1) then {
 			_err = [_unit,_deadguy,6] call OT_fnc_orderMove;
 			if (_err isEqualTo "Dead") exitWith { };
 			if (_err isEqualTo "Stuck") then {
-				_unit globalchat format ["<%1>: Can't get to a corpse, skipping it.", name _unit];
+				_unit groupchat format ["<%1>: Can't get to a corpse, skipping it.", name _unit];
 				_deadguy setVariable ["OT_looted",false,true];
 			} else {
 				if!(isNull _deadguy) then {
@@ -120,20 +122,10 @@ if (count _myunits > 1) then {
 			// Dump stuff
 			_err = [_unit,_t,8] call OT_fnc_orderMove;
 			if (_err isEqualTo "Dead") exitWith { };
-			if (alive _t) then {
-				if !([_unit,_t] call OT_fnc_dumpStuff) then {
-					if (_hasSupply) then {
-						if!(_supply isEqualTo objNull) then {
-							if !([_unit,_supply] call OT_fnc_dumpStuff) exitWith {
-								_unit globalchat format ["<%1>: This supply box is full, cancelling loot order", name _unit];
-								_active = false;
-							};
-						};
-					} else {
-						_unit globalchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
-						_active = false;
-					};
-				};
+			if (_err isEqualTo "Injured") exitWith { _unit groupchat format["<%1>: Man Down! Can't get to the loot sir!", name _unit]; };
+			if !([_unit,_t] call OT_fnc_dumpStuff) then {
+				_unit groupchat format ["<%1>: This vehicle is full, cancelling loot order", name _unit];
+				_active = false;
 			};
 			[_unit,5] call OT_fnc_experience;
 		};
@@ -164,7 +156,7 @@ if (count _myunits > 1) then {
 		_unit setVariable ["OT_looter", nil];
 		OT_Looters = OT_Looters - 1;
 		if (OT_Looters == 0) then {
-			_unit globalchat format ["<%1>: We're done here! Let's go!", name _unit];
+			_unit groupchat format ["<%1>: We're done here! Let's go!", name _unit];
 		};
 	};
 }foreach(_myunits);
