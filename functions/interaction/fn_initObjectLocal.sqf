@@ -31,38 +31,35 @@ if(typeof _this isEqualTo OT_item_Map) then {
 };
 
 if(typeof _this isEqualTo OT_item_Storage) then {
-	_this addAction ["Arsenal (Ammobox)", {
+	_this addAction ["ARSENAL (Ammobox)", {
 		[_this select 0,player] call OT_fnc_openArsenal;
 	},nil,0,false,true,"","(_target distance player < 5)"];
 
-	_this addAction ["Arsenal (Warehouse)", {
+	_this addAction ["ARSENAL (Warehouse)", {
 		["WAREHOUSE",player,_this select 0] call OT_fnc_openArsenal;
-	},nil,0,false,true,"","((_target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
+	},nil,0,false,true,"","((getpos _target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
 
-	_this addAction ["Warehouse", {
+	_this addAction ["WAREHOUSE", {
 		OT_warehouseTarget = _this select 0;
-		OT_currentWarehouse = (OT_warehouseTarget call OT_fnc_nearestWarehouse) select 1;
-		OT_currentWarehouse setVariable ["OT_warehouseTarget", OT_warehouseTarget, true];
+		OT_currentWarehouse = ((getpos (_this select 0)) call OT_fnc_nearestWarehouse) select 1;
 		[OT_currentWarehouse] call OT_fnc_warehouseDialog;
-	},nil,0,false,true,"","((_target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
+	},nil,0,false,true,"","((getpos _target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
 
-	_this addAction ["Store Ammobox in Warehouse", {
+	_this addAction ["Store Ammobox", {
 		OT_warehouseTarget = _this select 0;
-		OT_currentWarehouse = (OT_warehouseTarget call OT_fnc_nearestWarehouse) select 1;
-		OT_currentWarehouse setVariable ["OT_warehouseTarget", OT_warehouseTarget, true];
+		OT_currentWarehouse = ((getpos (_this select 0)) call OT_fnc_nearestWarehouse) select 1;
 		[player, OT_currentWarehouse] call OT_fnc_storeAll;
-	},nil,0,false,true,"","((_target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
+	},nil,0,false,true,"","((getpos _target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
 
-	_this addAction ["Dump Everything into Ammobox", {
+	_this addAction ["Dump to Ammobox", {
 		[player,_this select 0] call OT_fnc_dumpStuff;
 	},nil,0,false,true,"","(_target distance player < 5)"];
 
-	_this addAction ["Dump Everything into Warehouse", {
+	_this addAction ["Dump to Warehouse", {
 		OT_warehouseTarget = _this select 0;
-		OT_currentWarehouse = (OT_warehouseTarget call OT_fnc_nearestWarehouse) select 1;
-		OT_currentWarehouse setVariable ["OT_warehouseTarget", OT_warehouseTarget, true];
+		OT_currentWarehouse = ((getpos (_this select 0)) call OT_fnc_nearestWarehouse) select 1;
 		[player, OT_currentWarehouse] call OT_fnc_dumpIntoWarehouse;
-	},nil,0,false,true,"","((_target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
+	},nil,0,false,true,"","((getpos _target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
 
 	if(_this call OT_fnc_playerIsOwner) then {
 		_this addAction ["Lock", {

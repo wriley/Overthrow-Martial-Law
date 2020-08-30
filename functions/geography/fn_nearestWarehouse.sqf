@@ -4,10 +4,9 @@ private _result = ([OT_allWarehouses,[],{(_x select 0) distance _pos},"ASCEND"] 
 if (count _result > 0) then {
 	_nearest = _result select 0;
 	private _wpos = _nearest select 0;
-	private _building = _nearest select 1;
+	private _wid = _nearest select 1;
 	private _dist = _pos distance _wpos;
-
-	[_wpos,_building,_dist]
+	[_wpos,_wid,_dist]
 } else {
 	[]
 };

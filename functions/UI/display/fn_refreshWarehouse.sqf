@@ -2,8 +2,8 @@ if (isNull(findDisplay 8000)) exitWith {};
 private _cursel = lbCurSel 1500;
 lbClear 1500;
 _SearchTerm = ctrlText 1700;
-private _warehouse = OT_currentWarehouse;
-private _itemVars = (allVariables _warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")};
+private _wid = OT_currentWarehouse;
+private _itemVars = allVariables warehouses select {((toLower _x select [0,21]) isEqualTo (format["warehouse-%1_",_wid]))};
 private _numitems = 0;
 private _rifles = [];
 private _launchers = [];
@@ -12,38 +12,38 @@ private _default = [];
 private _bags = [];
 private _unsorted = [];
 {
-	private _d = _warehouse getVariable [_x,["",0]];
-	_d params [["_cls","",[""]], ["_num",0,[0]]];
+	private _itemArr = warehouses getVariable [_x,["",0]];
+	_itemArr params [["_cls","",[""]], ["_qty",0,[0]]];
 	_handled = false;
 	if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) then {
-		_rifles pushback [_cls,_num];
+		_rifles pushback [_cls,_qty];
 		_handled = true;
 	};
 	if(_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) then {
-		_launchers pushback [_cls,_num];
+		_launchers pushback [_cls,_qty];
 		_handled = true;
 	};
 	if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) then {
-		_pistols pushback [_cls,_num];
+		_pistols pushback [_cls,_qty];
 		_handled = true;
 	};
 	if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) then {
-		_default pushback [_cls,_num];
+		_default pushback [_cls,_qty];
 		_handled = true;
 	};
 	if(_cls isKindOf "Bag_Base") then {
-		_bags pushback [_cls,_num];
+		_bags pushback [_cls,_qty];
 		_handled = true;
 	};
 	if!(_handled) then {
-		_unsorted pushback [_cls,_num];
+		_unsorted pushback [_cls,_qty];
 	};
 }foreach _itemVars;
 private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted;
 
 {
-	_x params ["_cls","_num"];
-	if ((_cls isEqualType "") && _num > 0) then {
+	_x params ["_cls","_qty"];
+	if ((_cls isEqualType "") && _qty > 0) then {
 		private _searchnum = 0;
 		([_cls] call {
 			params ["_cls"];
@@ -94,9 +94,9 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 		}) params ["_name","_pic","_searchnum"];
 		if (_searchnum > 0) then {
 			_numitems = _numitems + _searchnum;
-			private _idx = lbAdd [1500,format["%1 x %2",_num,_name]];
+			private _idx = lbAdd [1500,format["%1 x %2",_qty,_name]];
 			lbSetPicture [1500,_idx,_pic];
-			lbSetValue [1500,_idx,_num];
+			lbSetValue [1500,_idx,_qty];
 			lbSetData [1500,_idx,_cls];
 		};
 	};

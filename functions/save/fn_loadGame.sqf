@@ -348,7 +348,25 @@ private _hasList_buildableHouses = false;
 		publicVariable "OT_Loadout_Police";
 		_set = false;
 	};
-
+	if(_key == "warehouses") then {
+		{
+			if(!isNil "_x") then {
+				if(_x isEqualType []) then {
+					_x params [["_id",0],"_itemString"];
+					_itemString params [["_cls","",[""]],["_qty",0,[0]]];
+					if (_qty > 0 && !(_cls isEqualTo "")) then {
+						warehouses setVariable [format["warehouse-%1_%2",_id,_cls],[_cls,_qty],true];
+					};
+				};
+			};
+		}foreach(_val);
+	};
+	if(_key == "allWarehouses") then {
+		diag_log format ["loading OT_allWarehouses:%1",_val];
+		OT_allWarehouses = _val;
+		publicVariable "OT_allWarehouses";
+		_set = false;
+	};
 	if(_set && !(isNil "_val")) then {
 		if!(toLower (_key select [0,4]) in ["ace_","cba_","bis_"]) then {
 			// server setvariable [_key,_val,true];
