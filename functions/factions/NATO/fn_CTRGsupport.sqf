@@ -85,7 +85,7 @@ _wp setWaypointSpeed "FULL";
 
 _wp = _tgroup addWaypoint [_ao,0];
 _wp setWaypointType "SCRIPTED";
-_wp setWaypointStatements ["true","[vehicle this,50] spawn OT_fnc_parachuteAll"];
+_wp setWaypointStatements ["true","[vehicle this,50] spawn OT_fnc_paraAll"];
 _wp setWaypointTimeout [10,10,10];
 
 _wp = _tgroup addWaypoint [_ao,0];

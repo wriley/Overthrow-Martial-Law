@@ -43,13 +43,13 @@ while {_count < 2} do {
 
 		_dir = [_pos,_obpos] call BIS_fnc_dirTo;
 		_ao = [_pos,_dir] call OT_fnc_getAO;
-		[_obpos,_ao,_pos,true,(280+random(40))] spawn OT_fnc_NATOGroundForces;
+		[_obpos,_ao,_pos,true,(150+random(30))] spawn OT_fnc_NATOGroundForces;
 		diag_log format["Overthrow: NATO Sent ground forces by air from %1 %2",_name,str _obpos];
 		_strength = _strength - 150;
 
 		if(_pri > 600 && _strength >= 500) then {
 			_ao = [_pos,_dir] call OT_fnc_getAO;
-			[_obpos,_ao,_pos,true,(400+random(40))] spawn OT_fnc_NATOGroundForces;
+			[_obpos,_ao,_pos,true,(120+random(60))] spawn OT_fnc_NATOGroundForces;
 			_strength = _strength - 150;
 			diag_log format["Overthrow: NATO Sent extra ground forces by air from %1 %2",_name,str _obpos];
 		};
@@ -92,32 +92,21 @@ if(_strength > 500 && (count _air) > 0) then {
 };
 sleep 2;
 
-if(_popControl > 1000 && _strength > 1000 && (count _air) > 0) then {
-	//Send more CAS
-	private _from = _air call BIS_fnc_selectRandom;
-	_obpos = _from select 0;
-	_name = _from select 1;
-	[_obpos,_pos,(100+random(40))] spawn OT_fnc_NATOAirSupport;
-	_strength = _strength - 300;
-	diag_log format["Overthrow: NATO Sent extra CAS from %1 %2",_name,str _obpos];
-};
-sleep 2;
-
 if(_popControl > 1500 && _strength > 1000) then {// change pop from 2000 strength from 1500
 	//Send delayed fixed-wing CAS
 	[nil,_pos,400] spawn OT_fnc_NATOScrambleJet;
 };
 
 //Send ground support
-if((count _ground > 0) && (_strength > 150)) then {//changed str from 250
+if((count _ground > 0) && (_strength > 100)) then {//changed str from 250
 	_obpos = (_ground select 0) select 0;
 	_name = (_ground select 0) select 1;
-	_send = 100;
+	_send = 101;
 	if(_strength > 1000) then {
-		_send = 300;
+		_send = 201;
 	};
 	if(_strength > 1500) then {
-		_send = 500;
+		_send = 401;
 	};
 	_strength = _strength - _send;
 	[_obpos,_pos,_send,0] spawn OT_fnc_NATOGroundSupport;
@@ -135,8 +124,19 @@ if((count _ground > 0) && (_strength > 1000) && (_popControl > 500)) then {// ch
 };
 sleep 2;
 
+if(_popControl > 1000 && _strength > 1000 && (count _air) > 0) then {
+	//Send more CAS
+	private _from = _air call BIS_fnc_selectRandom;
+	_obpos = _from select 0;
+	_name = _from select 1;
+	[_obpos,_pos,(100+random(40))] spawn OT_fnc_NATOAirSupport;
+	_strength = _strength - 300;
+	diag_log format["Overthrow: NATO Sent extra CAS from %1 %2",_name,str _obpos];
+};
+sleep 2;
+
 //Send in smoke to cover troops
-if((count _ground > 0) && (_strength > 350 || (random 100) > 25)) then {
+if((count _ground > 0) && (_strength > 350)) then {
 	_obpos = (_ground select 1) select 0;
 	_name = (_ground select 1) select 1;
 	_dir = [_pos,_obpos] call BIS_fnc_dirTo;

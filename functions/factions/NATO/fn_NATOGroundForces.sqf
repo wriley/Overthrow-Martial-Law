@@ -60,9 +60,10 @@ createVehicleCrew _veh;
 	[_x] joinSilent _tgroup;
 	_x setVariable ["garrison","HQ",false];
 	_x setVariable ["NOAI",true,false];
+	_x setVariable ["Vcm_Disable",true,false];
 }foreach(crew _veh);
 _allunits = (units _tgroup);
-{_x addCuratorEditableObjects [(units _tgroup) + [_veh], true];}forEach allCurators;
+{_x addCuratorEditableObjects [[_veh], true];}forEach allCurators;
 sleep 1;
 
 _tgroup deleteGroupWhenEmpty true;
@@ -74,7 +75,6 @@ _tgroup deleteGroupWhenEmpty true;
 	[_x] joinSilent _group1;
 	_allunits pushback _x;
 	_x setVariable ["garrison","HQ",false];
-	_x setVariable ["VCOM_NOPATHING_Unit",true,false];
 
 	[_x] call OT_fnc_initMilitary;
 
@@ -101,31 +101,69 @@ if !(_byair) then {
 };
 
 sleep 5;
+
 if(_byair && _tgroup isEqualType grpNull) then {
+
+	[_group1,_tgroup,_frompos,_veh] spawn {
+		params ["_group1","_tgroup","_frompos","_vehicle"];
+		waitUntil {sleep 1;((waypointName [group _vehicle, (currentWaypoint (group _vehicle))]) isEqualTo "HOME")};
+		_vehicle AnimateDoor ["Door_rear_source", 1, false];
+		sleep 2;
+		[_group1,_vehicle, ((getpos _vehicle) select 2), 50, true, true, true] spawn OT_fnc_haloAll;
+		waitUntil {(_vehicle getVariable ["OT_deployedTroops", false])};
+		_vehicle AnimateDoor ["Door_rear_source", 0, false];
+
+		for "_i" from count waypoints _tgroup - 1 to 0 step -1 do
+		{
+			deleteWaypoint [_tgroup, _i];
+		};
+
+		{ _vehicle deleteVehicleCrew _x } forEach crew _vehicle;
+		sleep 5;
+		private _tgroup = creategroup blufor;
+		_tgroup addVehicle _veh;
+		createVehicleCrew _vehicle;
+		{
+			[_x] joinSilent _tgroup;
+			_x setVariable ["garrison","HQ",false];
+			_x setVariable ["NOAI",true,false];
+		}foreach(crew _vehicle);
+		sleep 5;
+
+		_wp = _tgroup addWaypoint [_frompos,0];
+		_wp setWaypointType "SAD";
+		_wp setWaypointBehaviour "COMBAT";
+		_wp setWaypointSpeed "FULL";
+		_wp setWaypointCompletionRadius 1000;
+		_wp setWaypointStatements ["true","(vehicle this) flyInHeight 400"];
+
+		sleep 10;
+
+		_wp = _tgroup addWaypoint [_frompos,0];
+		_wp setWaypointType "SCRIPTED";
+		_wp setWaypointCompletionRadius 25;
+		_wp setWaypointStatements ["true","[vehicle this] spawn OT_fnc_landAndCleanupHelicopter"];
+	};
+
 	_wp = _tgroup addWaypoint [_frompos,0];
 	_wp setWaypointType "MOVE";
 	_wp setWaypointBehaviour "COMBAT";
 	_wp setWaypointSpeed "FULL";
-	_wp setWaypointCompletionRadius 150;
-	_wp setWaypointStatements ["true",format["(vehicle this) flyInHeight %1;",75+random 50]];
+	_wp setWaypointCompletionRadius 50;
+	_wp setWaypointStatements ["true","(vehicle this) flyInHeight 500"];
 
 	_wp = _tgroup addWaypoint [_ao,0];
 	_wp setWaypointType "MOVE";
 	_wp setWaypointBehaviour "COMBAT";
-	_wp setWaypointStatements ["true","(vehicle this) AnimateDoor ['Door_rear_source', 1, false];"];
-	_wp setWaypointCompletionRadius 50;
 	_wp setWaypointSpeed "FULL";
+	_wp setWaypointCompletionRadius 50;
 
-	_wp = _tgroup addWaypoint [_ao,0];
-	_wp setWaypointType "SCRIPTED";
-	_wp setWaypointStatements ["true","[vehicle this,75] spawn OT_fnc_parachuteAll"];
-	_wp setWaypointTimeout [5,5,5];
-
-	_wp = _tgroup addWaypoint [_ao,0];
-	_wp setWaypointType "SCRIPTED";
-	_wp setWaypointBehaviour "CARELESS";
-	_wp setWaypointStatements ["true","(vehicle this) AnimateDoor ['Door_rear_source', 0, false];"];
-	_wp setWaypointTimeout [20,20,20];
+	_wp = _tgroup addWaypoint [_pos,0];
+	_wp setWaypointName "HOME";
+	_wp setWaypointType "MOVE";
+	_wp setWaypointBehaviour "COMBAT";
+	_wp setWaypointSpeed "FULL";
+	_wp setWaypointCompletionRadius 50;
 }else{
 	if(typename _tgroup isEqualTo "GROUP") then {
 		_veh setdamage 0;
@@ -156,7 +194,7 @@ if(_byair && _tgroup isEqualType grpNull) then {
 		_wp setWaypointStatements ["true","[vehicle this] call OT_fnc_cleanup"];
 	};
 };
-sleep 10;
+sleep 5;
 
 _wp = _group1 addWaypoint [_attackpos,100];
 _wp setWaypointType "SAD";

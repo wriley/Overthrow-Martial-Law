@@ -10,7 +10,7 @@ private _ground = [];
         if([_pos,_obpos] call OT_fnc_regionIsConnected && (_obpos distance _pos) < 5000) then {
             _ground pushback _x;
         };
-        if(_x in OT_airportData) then {
+        if(_x in OT_airportData && (_obpos distance _pos) > 2000) then {
             _air pushback _x;
         };
     };
@@ -19,7 +19,7 @@ private _ground = [];
 //add helipads to possibles
 {
 	_x params ["_obpos","_name"];
-	if !((_name in _abandoned) || (_obpos distance _pos) < 300) then {
+	if !((_name in _abandoned) || (_obpos distance _pos) < 2000) then {
 		_air pushback _x;
 	};
 }foreach(OT_NATOHelipads);
