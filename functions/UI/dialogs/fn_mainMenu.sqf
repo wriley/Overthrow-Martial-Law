@@ -104,7 +104,7 @@ if(typename _b isEqualTo "ARRAY") then {
 			private _cost = 0;
 			{
 				if ((_cls == _x select 0) || (_cls == _x select 1)) then {
-					_cost = [(_x select 2) * (_damage/100), 1, 0, true] call CBA_fnc_formatNumber;
+					_cost = [(([OT_nation,(typeof _building),100] call OT_fnc_getPrice) * (_damage/100)), 1, 0, true] call CBA_fnc_formatNumber;
 				};
 			}foreach OT_repairableRuins;
 			ctrlEnable [1610,true];
@@ -160,8 +160,7 @@ if(typename _b isEqualTo "ARRAY") then {
 					ctrlSetText [1610,"Set as home"];
 					_ctrl1610 ctrlSetTooltip "Already your home";
 				} else {
-					if!(_cls in [OT_policeStation,OT_barracks,OT_trainingCamp,OT_refugeeCamp,OT_flag_IND,OT_item_Tent]) then {
-						// potential cause of sell bug
+					if!(_cls in (OT_garrisonBuildings + [OT_policeStation,OT_barracks,OT_trainingCamp,OT_refugeeCamp,OT_flag_IND,OT_item_Tent])) then {
 						ctrlEnable [1608,true];
 						ctrlSetText [1608,format["Sell ($%1)",[_sell, 1, 0, true] call CBA_fnc_formatNumber]];
 						_ctrl1608 ctrlSetTooltip "Sell this building";
@@ -261,7 +260,7 @@ if(typename _b isEqualTo "ARRAY") then {
 			private _cost = 0;
 			{
 				if ((_cls == _x select 0) || (_cls == _x select 1)) then {
-					_cost = [(_x select 2) * (_damage/100), 1, 0, true] call CBA_fnc_formatNumber;
+					_cost = [(([OT_nation,(typeof _building),100] call OT_fnc_getPrice) * (_damage/100)), 1, 0, true] call CBA_fnc_formatNumber;
 				};
 			}foreach OT_repairableRuins;
 			ctrlEnable [1610,true];

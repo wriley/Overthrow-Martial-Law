@@ -239,6 +239,10 @@ class ACE_Tags {
 #include "ui\dialogs\recruits.hpp"
 #include "ui\dialogs\police.hpp"
 #include "ui\dialogs\resistance.hpp"
+#include "ui\dialogs\garrison.hpp"
+#include "ui\dialogs\jobs.hpp"
+#include "ui\dialogs\logistics.hpp"
+
 #include "ui\dialogs\factory.hpp"
 #include "ui\dialogs\business.hpp"
 

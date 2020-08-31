@@ -104,7 +104,7 @@ if(_byair && _tgroup isEqualType grpNull) then {
 
 	_wp = _tgroup addWaypoint [_ao,0];
 	_wp setWaypointType "SCRIPTED";
-	_wp setWaypointStatements ["true","[vehicle this,75] spawn OT_fnc_parachuteAll"];
+	_wp setWaypointStatements ["true","[vehicle this,75] spawn OT_fnc_paraAll"];
 	_wp setWaypointTimeout [5,5,5];
 
 	_wp = _tgroup addWaypoint [_ao,0];

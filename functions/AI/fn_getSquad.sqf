@@ -19,12 +19,12 @@ private _totalitems = [];
 private _bought = [];
 private _cArray = _totalitems call BIS_fnc_consolidateArray;
 if (count _pos > 0) then {
-	private _wh = _pos call OT_fnc_nearestWarehouse;
+	private _warehouse = _pos call OT_fnc_nearestWarehouse;
+	private _wid = _warehouse select 1;
 	if (count _wh > 0) then {
-		_wh params ["","_warehouse"];
 		{
 			_x params ["_cls","_num"];
-			_whqty = [_warehouse, _cls] call OT_fnc_qtyInWarehouse;
+			_whqty = [_wid, _cls] call OT_fnc_qtyInWarehouse;
 			if(_whqty < _num) then {_num = _num - _whqty} else {_num = 0};
 			if(_num > 0) then {
 				_cost = _cost + (([OT_nation,_cls,30] call OT_fnc_getPrice) * _num);

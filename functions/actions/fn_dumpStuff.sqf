@@ -1,8 +1,9 @@
 params ["_unit","_t",["_linkedItems",false]];
+diag_log format ["dumpStuff: params: %1", _this];
 
 _full = false;
 
-if !(binocular _unit isEqualTo "") then {  // change from if(binocular _unit != "") then {
+if (binocular _unit != "") then {
 	if !(_t canAdd binocular _unit) exitWith {
 		_full = true;
 	};

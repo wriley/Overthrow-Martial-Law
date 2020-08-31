@@ -3445,6 +3445,10 @@ OT_priceData = [
 	['rhsgref_hidf_rhib',[7500,0,10,25]],
 	['rhsusf_mkvsoc',[52500,0,25,5]],
 	['rhs_bkm_t',[22500,0,15,5]],
-	['rhsgref_civ_canoe',[100,0,2,15]]
+	['rhsgref_civ_canoe',[100,0,2,15]],
+
+	// Garrison buildings
+	['Land_Bunker_01_tall_F',[10000,0,0,0]]
+
 
 ];

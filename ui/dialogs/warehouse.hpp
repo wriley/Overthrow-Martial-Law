@@ -70,7 +70,7 @@ class OT_dialog_warehouse
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			action = "[OT_currentWarehouse, player, -1] call OT_fnc_warehouseTake;";
+			action = "[OT_currentWarehouse, vehicle player, -1] call OT_fnc_warehouseTake;";
 			text = "Take All"; //--- ToDo: Localize;
 
 			x = 0.65082 * safezoneW + safezoneX;
@@ -82,7 +82,7 @@ class OT_dialog_warehouse
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
-			action = "[OT_currentWarehouse, player, 100] call OT_fnc_warehouseTake;";
+			action = "[OT_currentWarehouse, vehicle player, 100] call OT_fnc_warehouseTake;";
 			text = "Take 100"; //--- ToDo: Localize;
 
 
@@ -95,7 +95,7 @@ class OT_dialog_warehouse
 		class RscButton_1602: RscOverthrowButton
 		{
 			idc = 1602;
-			action = "[OT_currentWarehouse, player, 10] call OT_fnc_warehouseTake;";
+			action = "[OT_currentWarehouse, vehicle player, 10] call OT_fnc_warehouseTake;";
 			text = "Take 10"; //--- ToDo: Localize;
 
 			x = 0.65082 * safezoneW + safezoneX;
@@ -107,7 +107,7 @@ class OT_dialog_warehouse
 		class RscButton_1603: RscOverthrowButton
 		{
 			idc = 1603;
-			action = "[OT_currentWarehouse, player, 1] call OT_fnc_warehouseTake;";
+			action = "[OT_currentWarehouse, vehicle player, 1] call OT_fnc_warehouseTake;";
 			text = "Take 1"; //--- ToDo: Localize;
 
 			x = 0.65082 * safezoneW + safezoneX;

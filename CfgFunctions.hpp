@@ -476,7 +476,6 @@ class CfgFunctions
 			class createSoldier {};
 			class getSoldier {};
 			class getSquad {};
-			class parachuteAll {};
 			class NATOsearch {};
 			class NATOCpSearch {};
 			class createSquad {};
@@ -484,6 +483,10 @@ class CfgFunctions
 			class dangerCaused {};
 			class randomizeLoadout {};
 			class getRandomLoadout {};
+			class paraAll {};
+			class para {};
+			class haloAll {};
+			class halo {};
 		};
 
 		/*

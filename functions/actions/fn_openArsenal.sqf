@@ -1,4 +1,5 @@
-params ["_unit","_target",["_ammobox",false]];
+params ["_target","_unit",["_ammobox",false]];
+diag_log format ["openArsenal: params: %1", _this];
 
 if(_ammobox isEqualTo false) then {
     _ammobox = _target;
@@ -14,12 +15,13 @@ private _id = 0;
 private _missing = [];
 
 if(_target isEqualType "") then {
-	private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse select 1;
-    [_warehouse,_unit,true] call OT_fnc_dumpIntoWarehouse;
+	private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
+  private _wid = _warehouse select 1;
+    [_wid,_unit,true] call OT_fnc_dumpIntoWarehouse;
     _unit linkItem "ItemMap";
     {
-        if(_x select [0,10] isEqualTo "warehouse-") then {
-            private _d = _warehouse getVariable [_x,[_x select [10],0,[0]]];
+        if(_x select [0,11] isEqualTo format ["warehouse-%1",_id]) then {
+            private _d = warehouses getVariable [_x,[_x select [11],0,[0]]];
             if(_d isEqualType []) then {
                 _items pushback _d#0;
             };
@@ -28,13 +30,16 @@ if(_target isEqualType "") then {
 
     _closed = ["ace_arsenal_displayClosed", {
         _thisArgs params ["_unit"];
-		    private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse select 1;
-        [_warehouse, _unit] remoteExec ["OT_fnc_verifyLoadoutFromWarehouse", 2];
-        waitUntil {sleep .1;(!isNil (_warehouse getVariable ["verifiedLoadout", nil]))};
+		    private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
+        private _wid = _warehouse select 1;
+        [_wid, _unit] remoteExec ["OT_fnc_verifyLoadoutFromWarehouse", 2];
+        // ToDo fix this
+        waitUntil {!((warehouses getVariable ["verifiedLoadout", ""]) isEqualTo "")};
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;
     },[_unit]] call CBA_fnc_addEventHandlerArgs;
 }else{
+	diag_log format ["openArsenal: unit:%1 ammobox:%2", _unit, _ammobox];
     [_unit,_ammobox,true] call OT_fnc_dumpStuff;
     _unit linkItem "ItemMap";
     _weapons = weaponCargo _ammobox;

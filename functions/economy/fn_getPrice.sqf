@@ -1,6 +1,6 @@
 params ["_town","_cls",["_standing",0]];
 private _price = 0;
-
+diag_log str _this;
 private _trade = player getvariable ["OT_trade",1];
 private _discount = 0;
 if(_trade > 1) then {

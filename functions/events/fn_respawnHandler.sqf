@@ -74,7 +74,13 @@ call {
 
 titleText ["", "BLACK IN", 5];
 
+
 [] spawn {
-	sleep 5;
+	sleep 1;
+	if (!zeusToggle) then {
+		zeusToggle = !zeusToggle;
+		call OT_fnc_toggleZeus;
+	};
+	sleep 4;
 	player allowDamage true;
 };

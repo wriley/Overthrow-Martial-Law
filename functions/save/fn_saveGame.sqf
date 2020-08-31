@@ -29,7 +29,7 @@ OT_autoSave_last_time = time + (OT_autoSave_time*60);
 "Persistent Saving..." remoteExecCall ["OT_fnc_notifyAndLog",0,false];
 
 if!(_quiet) then {
-	diag_log "Step 1/10 - Saving game state";
+	diag_log "Step 1/11 - Saving game state";
 };
 
 // Save game array
@@ -65,7 +65,7 @@ private _server = (allVariables server select {
 };
 
 if!(_quiet) then {
-	diag_log  "Step 2/10 - Saving buildings";
+	diag_log  "Step 2/11 - Saving buildings";
 };
 
 private _prefixFilter = { !((toLower _x select [0,4]) in ["ace_","cba_","bis_","____"]) };
@@ -76,7 +76,7 @@ private _poses = (allVariables buildingpositions select _prefixFilter) apply {
 _data pushback ["buildingpositions",_poses];
 
 if!(_quiet) then {
-	diag_log "Step 3/10 - Saving civilians";
+	diag_log "Step 3/11 - Saving civilians";
 };
 
 private _civs = (allVariables OT_civilians select _prefixFilter) apply {
@@ -85,7 +85,7 @@ private _civs = (allVariables OT_civilians select _prefixFilter) apply {
 _data pushback ["civilians",_civs];
 
 if!(_quiet) then {
-	diag_log "Step 4/10 - Saving player data";
+	diag_log "Step 4/11 - Saving player data";
 };
 
 //get all online player data
@@ -109,7 +109,7 @@ private _tocheck = ((allMissionObjects "Static") + vehicles) select {
 
 private _tosave = count _tocheck;
 if!(_quiet) then {
-	diag_log format["Step 5/10 - Saving vehicles (%1 to save)",_tosave];
+	diag_log format["Step 5/11 - Saving vehicles (%1 to save)",_tosave];
 };
 
 private _count = 0;
@@ -171,25 +171,12 @@ private _vehicles = (_tocheck) apply {
 	if (_x getVariable ["OT_house_isPlayerBuilt", false]) then {
 /* 8 */		_params set [8, [_x getVariable ["OT_house_isLeased", false]]];
 	};
-	// Save warehouse contents
-	if (_type isKindOf OT_warehouse) then {
-		private _veh = _x;
-		private _warehouse = [];
-		{
-			_item = _veh getVariable [_x,[]];
-			diag_log format ["[saveGame]: variable:%1", _item];
-			
-			_warehouse pushback _item;
-		} foreach ((allVariables _veh) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
-		diag_log format ["[saveGame]: warehouse:%1", _warehouse];
-/* 9 */	_params set [9, _warehouse];
-	};
 	_params
 };
 _data pushback ["vehicles",_vehicles];
 
 if!(_quiet) then {
-	diag_log "Step 6/10 - Saving recruits";
+	diag_log "Step 6/11 - Saving recruits";
 };
 
 private _recruits = ((server getVariable ["recruits",[]]) select {
@@ -211,7 +198,7 @@ private _recruits = ((server getVariable ["recruits",[]]) select {
 _data pushback ["recruits",_recruits];
 
 if!(_quiet) then {
-	diag_log "Step 7/10 - Saving squads";
+	diag_log "Step 7/11 - Saving squads";
 };
 
 private _squads = ((server getVariable ["squads",[]]) select {
@@ -232,7 +219,7 @@ private _squads = ((server getVariable ["squads",[]]) select {
 _data pushback ["squads",_squads];
 
 if!(_quiet) then {
-	diag_log "Step 8/10 - Saving bases";
+	diag_log "Step 8/11 - Saving bases";
 };
 
 private _getGroupSoldiers = {
@@ -264,7 +251,7 @@ _server pushback ["revealedFOBs",_revealed];
 
 
 if!(_quiet) then {
-	diag_log "Step 9/10 - Saving garrisons";
+	diag_log "Step 9/11 - Saving garrisons";
 };
 
 {
@@ -291,7 +278,18 @@ _data pushBack ["recruitables",OT_Recruitables];
 _data pushBack ["policeLoadout",OT_Loadout_Police];
 
 if!(_quiet) then {
-	diag_log "Step 10/10 - Exporting";
+	diag_log "Step 10/11 - Saving warehouses";
+};
+
+_data pushBack ["allWarehouses",OT_allWarehouses];
+private _warehouses = [];
+{
+	_warehouses append [[((_x splitString "warehouse-" select 0) splitString "_" select 0), warehouses getVariable _x]];
+}foreach ((allVariables warehouses) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
+_data pushback ["warehouses", _warehouses];
+
+if!(_quiet) then {
+	diag_log "Step 11/11 - Exporting";
 };
 
 profileNameSpace setVariable [OT_saveName,_data];
