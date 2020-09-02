@@ -104,7 +104,7 @@ OT_highPopHouses = ["Land_i_House_Big_02_b_blue_F","Land_i_House_Big_02_b_pink_F
     };
 }foreach("(getNumber (_x >> 'scope') isEqualTo 2) && (configName _x isKindOf 'House') && (configName _x find '_House' > -1)" configClasses (configfile >> "CfgVehicles"));
 
-OT_allBuyableBuildings = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses + OT_mansions + [OT_item_Tent,OT_flag_IND];
+OT_allBuyableBuildings = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses + OT_mansions + [OT_item_Tent,OT_flag_IND,OT_warehouse];
 
 OT_allHouses = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses;
 OT_allRealEstate = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses + OT_mansions + [OT_warehouse,OT_policeStation,OT_barracks,OT_barracks,OT_workshopBuilding,OT_refugeeCamp,OT_trainingCamp];
@@ -158,6 +158,7 @@ OT_activeShops = [];
 OT_selling = false;
 OT_taking = false;
 OT_interactingWith = objNull;
+OT_crateBuyTarget = objNull;
 OT_currentWarehouse = "";
 OT_whTransferring = false;
 OT_maximumNATOFobs = 5;
@@ -986,6 +987,7 @@ OT_staticWeapons = ["I_Mortar_01_F","I_static_AA_F","I_static_AT_F","I_GMG_01_F"
 
 //Stuff you can build: [name,price,array of possible classnames,init function,??,description]
 OT_Buildables = [
+	// istpl
 	["Training Camp",3000,[
 	  ["Land_CanvasCover_02_F",[-0.039865,0.0991802,0],0,1,0,[0,0],"","",true,false],
       ["Land_Garbage_square5_F",[0.915764,-0.195568,0],72.3728,1,0,[0,0],"","",true,false],
@@ -994,13 +996,48 @@ OT_Buildables = [
       ["Land_Pallet_MilBoxes_F",[-1.60001,0.791025,0],0,1,0,[0,0],"","",true,false],
       ["Land_WoodenTable_02_large_F",[3.44396,0.227554,0.012908],313.565,1,0,[0.000236515,-0.193301],"","",true,false]
 	],"OT_fnc_initTrainingCamp",true,"Allows training of recruits && hiring of people with military experience"],
-	["Bunkers",5000,["Land_Hangar_F","Land_BagBunker_Tower_F","Land_BagBunker_Small_F","Land_HBarrierTower_F","Land_Bunker_01_blocks_3_F","Land_Bunker_01_blocks_1_f","Land_Bunker_01_big_F","Land_Bunker_01_small_F","Land_Bunker_01_tall_F","Land_Bunker_01_HQ_F","Land_BagBunker_01_small_green_F","Land_HBarrier_01_big_tower_green_F","Land_HBarrier_01_tower_green_F"],"",false,"Small Defensive Structures. CONTAINS TEST OBJECTS. Press space to change type."],
-	["Walls",100,["Land_HBarrier_1_F","Land_HBarrier_3_F","Land_HBarrier_5_F","Land_HBarrier_Big_F","Land_HBarrierWall_corner_F","Land_HBarrierWall_corridor_F","Land_HBarrierWall4_F","Land_HBarrierWall6_F","Land_HBarrier_01_line_1_green_F","Land_HBarrier_01_line_3_green_F","Land_HBarrier_01_line_5_green_F","Land_HBarrier_01_big_4_green_F","Land_HBarrier_01_wall_corner_green_F","Land_HBarrier_01_wall_corridor_green_F","Land_HBarrier_01_wall_4_green_F","Land_HBarrier_01_wall_6_green_F"],"",false,"Stop people (or tanks) from getting in. Press space to change type."],
-	["Helipad",150,["Land_HelipadCircle_F","Land_HelipadCivil_F","Land_HelipadRescue_F","Land_HelipadSquare_F"],"",false,"Informs helicopter pilots of where might be a nice place to land"],
-	["Observation Post",1800,["Land_Cargo_Patrol_V4_F","Land_Cargo_Patrol_V3_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V1_F"],"",false,"A small tower, can garrison a static HMG/GMG in it"],
-	["Barracks",50000,[OT_barracks],"",false,"Allows recruiting of squads"],
-	["Guard Tower",50000,["Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V1_F"],"",false,"It's a huge tower, what else do you need?."],
-	["Hangar",12000,["Land_Airport_01_hangar_F"],"",false,"A big empty building, could probably fit a plane inside it."],
+
+	["Bunkers",5000,[
+		"Land_BagBunker_Tower_F",
+		"Land_BagBunker_Small_F",
+		"Land_HBarrierTower_F",
+		"Land_Bunker_01_big_F",
+		"Land_Bunker_01_small_F",
+		"Land_Bunker_01_tall_F",
+		"Land_Bunker_01_HQ_F",
+		"Land_BagBunker_01_small_green_F",
+		"Land_HBarrier_01_big_tower_green_F",
+		"Land_HBarrier_01_tower_green_F"
+	],"",false,"Small Defensive Structures. CONTAINS TEST OBJECTS. Press space to change type."],
+
+	["Walls",100,[
+		"Land_Bunker_01_blocks_3_F","Land_Bunker_01_blocks_1_f","Land_HBarrier_1_F","Land_HBarrier_3_F","Land_HBarrier_5_F","Land_HBarrier_Big_F","Land_HBarrierWall_corner_F","Land_HBarrierWall_corridor_F","Land_HBarrierWall4_F","Land_HBarrierWall6_F","Land_HBarrier_01_line_1_green_F","Land_HBarrier_01_line_3_green_F","Land_HBarrier_01_line_5_green_F","Land_HBarrier_01_big_4_green_F","Land_HBarrier_01_wall_corner_green_F","Land_HBarrier_01_wall_corridor_green_F","Land_HBarrier_01_wall_4_green_F","Land_HBarrier_01_wall_6_green_F"
+	],"",false,"Stop people (or tanks) from getting in. Press space to change type."],
+
+	["Helipad",150,[
+		"Land_HelipadCircle_F","Land_HelipadCivil_F","Land_HelipadRescue_F","Land_HelipadSquare_F"
+	],"",false,"Informs helicopter pilots of where might be a nice place to land"],
+
+	["Observation Post",1800,[
+		"Land_Cargo_Patrol_V4_F",
+		"Land_Cargo_Patrol_V3_F",
+		"Land_Cargo_Patrol_V2_F",
+		"Land_Cargo_Patrol_V1_F"
+	],"",false,"A small tower, can garrison a static HMG/GMG in it"],
+
+	["Barracks",50000,[
+		OT_barracks
+	],"",false,"Allows recruiting of squads"],
+
+	["Guard Tower",50000,[
+		"Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V1_F"
+	],"",false,"It's a huge tower, what else do you need?."],
+
+	["Hangar",12000,[
+		"Land_Airport_01_hangar_F"
+	],"",false,"A big empty building, could probably fit a plane inside it."],
+	// istpl
+
 	["Workshop",5000,[
 		["Land_cargo_house_slum_F",[-1.77455,-0.311288,0],0,1,0,[0,0],"","",true,false],
 	    ["Land_ClutterCutter_large_F",[-0.01,-0.06,0],0,1,0,[0,0],"","",true,false],
@@ -1010,21 +1047,54 @@ OT_Buildables = [
 	    ["Land_ToolTrolley_02_F",[3.5115,-1.70831,-2.38419e-006],180.146,1,0,[-0.000596021,0.000931203],"","",true,false],
 	    ["Box_NATO_AmmoVeh_F",[-2.38986,-4.6511,0.0305414],3.30369e-005,1,0,[1.09284e-007,6.80265e-007],"","",true,false]
 	],"OT_fnc_initWorkshop",true,"Attach weapons to vehicles"],
-	["House",10000,["Land_House_Small_06_F","Land_House_Small_02_F","Land_House_Small_03_F","Land_GarageShelter_01_F","Land_Slum_04_F"],"",false,"4 walls, a roof, && if you're lucky a door that opens."],
-	["Police Station",12500,[OT_policeStation],"OT_fnc_initPoliceStation",false,"Allows hiring of policeman to raise stability in a town \& keep the peace. Comes with 2 units."],
-	["Warehouse",20000,[OT_warehouse],"OT_fnc_initWarehouse",false,"A house that you put wares in."],
-	["Refugee Camp",1600,[OT_refugeeCamp],"",false,"Can recruit civilians here without needing to chase them down"],
-	["Radar",250000,[OT_radarBuilding],"OT_fnc_initRadar",false,"Reveals enemy drones, helicopters and planes within 2.5km"]
-];
 
+	["House",10000,[
+		"Land_House_Small_06_F","Land_House_Small_02_F","Land_House_Small_03_F","Land_GarageShelter_01_F","Land_Slum_04_F"
+	],"",false,"4 walls, a roof, && if you're lucky a door that opens."],
+
+	["Police Station",12500,[
+		OT_policeStation
+	],"OT_fnc_initPoliceStation",false,"Allows hiring of policeman to raise stability in a town \& keep the peace. Comes with 2 units."],
+
+	["Warehouse",20000,[
+		OT_warehouse
+	],"OT_fnc_initWarehouse",false,"A house that you put wares in."],
+
+	["Refugee Camp",1600,[
+		OT_refugeeCamp
+	],"",false,"Can recruit civilians here without needing to chase them down"],
+
+	["Radar",250000,[
+		OT_radarBuilding
+	],"OT_fnc_initRadar",false,"Reveals enemy drones, helicopters and planes within 2.5km"]
+];
+OT_allBuildableBuildings = [];
+OT_allRepairableBuildings = [];
+OT_repairableBuildings = [];
 {
+	if (_x select 0 isEqualTo "Training Camp") then {
+		OT_allRepairableBuildings pushback (_x select 2 select 0 select 0);
+		OT_repairableBuildings pushback [(_x select 2 select 0 select 0),(_x select 1)];
+	};
+	if (_x select 0 isEqualTo "Workshop") then {
+		OT_allRepairableBuildings pushback (_x select 2 select 0 select 0);
+		OT_repairableBuildings pushback [(_x select 2 select 0 select 0),(_x select 1)];
+	};
+	if (_x select 0 in ["Bunkers","Observation Post","Barracks","Guard Tower","Hangar","House","Police Station","Warehouse","Refuge Camp","Radar"]) then {
+		_price = _x select 1;
+		{
+			OT_allRepairableBuildings pushback _x;
+			OT_repairableBuildings pushback [_x, _price];
+		}foreach (_x select 2);
+	};
+
 	if!(_x select 0 isEqualTo "Walls") then {
 		private _istpl = _x select 4;
 		if(_istpl) then {
 			private _tpl = _x select 2;
-			OT_allBuyableBuildings pushback ((_tpl select 0) select 0);
+			OT_allBuildableBuildings pushback ((_tpl select 0) select 0);
 		}else{
-			[OT_allBuyableBuildings,(_x select 2)] call BIS_fnc_arrayPushStack;
+			[OT_allBuildableBuildings,(_x select 2)] call BIS_fnc_arrayPushStack;
 		};
 	};
 }foreach(OT_Buildables);
@@ -1136,7 +1206,6 @@ OT_allSquads = OT_Squadables apply { _x params ["_name"]; _name };
 
 OT_workshop = [
 	["Static MG","C_Offroad_01_F",51250,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.25,-2,1]],0],
-	["Cargo Boxes","C_Offroad_01_F",51250,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.05,-1.75,.25]],0],
 	["Mounted Dshkm","C_Offroad_01_F",51250,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[0.25,-2,1]],0],
 	["Static GL","C_Offroad_01_F",64750,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.25,-2,1]],0],
 	["Static AT","C_Offroad_01_F",187500,"I_AT_01_weapon_F","I_static_AT_F",[[0,-1.5,0.25],180]],
@@ -1153,22 +1222,18 @@ OT_workshop = [
 	["Mounted Mortar","RHS_Ural_Open_Civ_01",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
 	["Mounted Mortar","RHS_Ural_Open_Civ_02",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
 	["Mounted Mortar","RHS_Ural_Open_Civ_03",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
-	["Cargo Boxes","RHS_Ural_Open_Civ_01",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
-	["Cargo Boxes","RHS_Ural_Open_Civ_02",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
-	["Cargo Boxes","RHS_Ural_Open_Civ_03",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.011,-2.174,0.5]],0],
-	["Mounted Dshkm","C_Van_01_transport_F",25,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.001,-2.74,1.0]],0],
-	["Cargo Boxes","C_Van_01_transport_F",25,"B_CargoNet_01_ammo_F","B_CargoNet_01_ammo_F",[[-0.01,-1.683,0.2]],0]
+	["Mounted Dshkm","C_Van_01_transport_F",25,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.001,-2.74,1.0]],0]
 ];
 
 OT_repairableRuins = [
-	["Land_Cargo_Tower_V4_ruins_F","Land_Cargo_Tower_V4_F",2000],
 	["Land_Cargo_Tower_V1_ruins_F","Land_Cargo_Tower_V1_F",2000],
 	["Land_Cargo_Tower_V2_ruins_F","Land_Cargo_Tower_V2_F",2000],
 	["Land_Cargo_Tower_V3_ruins_F","Land_Cargo_Tower_V3_F",2000],
-	["Land_Cargo_Patrol_V1_ruins_F","Land_Cargo_Patrol_V1_F",500],
-	["Land_Cargo_Patrol_V2_ruins_F","Land_Cargo_Patrol_V2_F",500],
-	["Land_Cargo_Patrol_V3_ruins_F","Land_Cargo_Patrol_V3_F",500],
-	["Land_Cargo_Patrol_V4_ruins_F","Land_Cargo_Patrol_V4_F",500],
+	["Land_Cargo_Tower_V4_ruins_F","Land_Cargo_Tower_V4_F",2000],
+	["Land_Cargo_Patrol_V1_ruins_F","Land_Cargo_Patrol_V1_F",900],
+	["Land_Cargo_Patrol_V2_ruins_F","Land_Cargo_Patrol_V2_F",900],
+	["Land_Cargo_Patrol_V3_ruins_F","Land_Cargo_Patrol_V3_F",900],
+	["Land_Cargo_Patrol_V4_ruins_F","Land_Cargo_Patrol_V4_F",900],
 	["Land_Cargo_HQ_V1_ruins_F","Land_Cargo_HQ_V1_F",2500],
 	["Land_Cargo_HQ_V2_ruins_F","Land_Cargo_HQ_V2_F",2500],
 	["Land_Cargo_HQ_V3_ruins_F","Land_Cargo_HQ_V3_F",2500],

@@ -237,6 +237,7 @@ class ACE_Tags {
 #include "ui\dialogs\buildobjective.hpp"
 #include "ui\dialogs\buildtown.hpp"
 #include "ui\dialogs\recruits.hpp"
+#include "ui\dialogs\recruit.hpp"
 #include "ui\dialogs\police.hpp"
 #include "ui\dialogs\resistance.hpp"
 #include "ui\dialogs\garrison.hpp"

@@ -1,5 +1,4 @@
 params ["_unit","_t",["_linkedItems",false]];
-diag_log format ["dumpStuff: params: %1", _this];
 
 _full = false;
 

@@ -1,5 +1,5 @@
 closedialog 0;
-createDialog "OT_dialog_charsheetsheet";
+createDialog "OT_dialog_charsheet";
 openMap false;
 
 disableSerialization;
@@ -77,12 +77,12 @@ buyPerk = {
 	player setVariable ["influence",_inf - _price,true];
 
 	private _ctrl = (findDisplay 8003) displayCtrl _idcc;
-	_txt = format["<t size=""2"">Fitness</t><br/><t size=""1.1"">Level %1</t><br/><t size=""0.7"">Increases the distance you can sprint</t>",_fitness];
+	_txt = format["<t size=""2"">Fitness</t><br/><t size=""1.2"">Level %1</t><br/><t size=""1"">Increases the distance you can sprint</t>",_fitness];
 	if(_perk isEqualTo "trade") then {
-		_txt = format["<t size=""2"">Trade</t><br/><t size=""1.1"">Level %1</t><br/><t size=""0.7"">Ability to negotiate better purchasing prices</t>",_fitness];
+		_txt = format["<t size=""2"">Trade</t><br/><t size=""1.2"">Level %1</t><br/><t size=""1"">Ability to negotiate better purchasing prices</t>",_fitness];
 	};
 	if(_perk isEqualTo "stealth") then {
-		_txt = format["<t size=""2"">Stealth</t><br/><t size=""1.1"">Level %1</t><br/><t size=""0.7"">Less chance of people recognizing you or finding illegal items</t>",_fitness];
+		_txt = format["<t size=""2"">Stealth</t><br/><t size=""1.2"">Level %1</t><br/><t size=""1"">Less chance of people recognizing you or finding illegal items</t>",_fitness];
 	};
 
 	_ctrl ctrlSetStructuredText parseText _txt;

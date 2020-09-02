@@ -33,3 +33,4 @@ if (typeof _building isEqualTo OT_barracks) then {
 	private _idx = lbAdd [1500,_name];
 	lbSetData [1500,_idx,_cls];
 }foreach(OT_Recruitables);
+lbSetCurSel [1500, 0];

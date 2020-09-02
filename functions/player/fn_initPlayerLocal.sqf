@@ -2,7 +2,7 @@ if (!hasInterface) exitWith {};
 
 if !(isClass (configFile >> "CfgPatches" >> "OT_Overthrow_Main")) exitWith {
 	[
-        format ["<t size='0.5' color='#000000'>Overthrow addon not detected, you must add @Overthrow to your -mod commandline</t>",_this],
+        format ["<t size='1' color='#000000'>Overthrow addon not detected, you must add @Overthrow to your -mod commandline</t>",_this],
         0,
         0.2,
         30,
@@ -67,7 +67,7 @@ showCinemaBorder false;
 
 if(!isMultiplayer) exitWith {
 	[
-		"<t size='0.5' color='#000000'>Overthrow currently does not work very well in Single Player mode. Please host a LAN game for solo play. See the wiki at http://armaoverthrow.com/</t>",
+		"<t size='1' color='#000000'>Overthrow currently does not work very well in Single Player mode. Please host a LAN game for solo play. See the wiki at http://armaoverthrow.com/</t>",
 		0,
 		0.2,
 		30,
@@ -513,17 +513,59 @@ player call OT_fnc_mapSystem;
         _base addAction ["Set As Home", {player setVariable ["home",getpos (_this select 0),true];"This FOB is now your home" call OT_fnc_notifyMinor},nil,0,false,true];
     };
 }foreach(server getVariable ["bases",[]]);
-
+/*
 funcProcessDiaryLink = {
     processDiaryLink createDiaryLink ["Tutorial", _this, ""];
 };
 
 // <img image='\overthrow_main\flags\example1.paa'width='100' height='100' />
 tutorialDiary1 = player createDiarySubject ["Tutorial","OT - Martial Law"];
-tutorialDiary2 = player createDiaryRecord ["Tutorial", ["Gendarmerie","font size='12' face='PuristaMedium'>A gendarmerie or gendarmery is a military component with jurisdiction in civil law enforcement. The term gendarme is derived from the medieval French expression gens d'armes, which translates to ""armed people"". In Overthrow, NATO will station gendarmerie in towns they control to keep the peace and stop any illegal activity. They can be spotted wearing blue uniforms. If those are killed, stability will drop in the town and more will be sent from the closest base. If there is no base with land access to the town then Stability will drop quickly. If the base is close enough they will walk, otherwise they will be sent in an offroad. The gendarmerie do not need to be physically in a town for stability to drop, if you kill them in transit it will still count for the town they are heading to. Killing gendarmerie will also drop your local standing"]];
-tutorialDiary3 = player createDiaryRecord ["Tutorial", ["Capturing a Town","font size='12' face='PuristaMedium'>Inorder to capture a town you must drop its stability to 0, this can be done by completing a number of unsavoury activities such as selling drugs to civilians,killing police and NATO soldiers, and completing certain jobs. (Keep in mind some activities may raise the stability of a town, mainly the bulk selling of needed goods.).<br></br><br></br>Once the stability hits 0, the town will enter “anarchy” and NATO will react by either abandoning it, leaving you free to return order as you please, or launch an attack to claim it back and restore order. It's important to note NATO will only choose to abandon towns with tiny populations. Another key detail is that the size of NATO’s assault is based off the size of the town, and its distance from NATO outposts, so for your first takeover, its wise to choose a village somewhere remote.<br></br><br></br>Assuming NATO didn't choose to abandon the town, you will receive a 10 minute notice prior to the sidge where NATO wont send any further troops to the town and will instead be moving units into position to assault. Because of this, the short break offers a key opportunity to place HMG nests, mine roads (NATO tends to attack from the direction of the closest bases), and lay other guerilla traps that will greatly increase your chances against the overwhelming and superior troops that NATO has to offer.<br></br><br></br>Once the battle starts the timer will transform into a percentage marker, showing the resistance which side of the conflict is winning. If it's green, you're winning, if it's blue then NATO is winning. Inorder to gain score you must have more troops within a certain range of the town then NATO. If the marker hits 100% for NATO or the battle ends in a stalemate (which occurred after a large amount of time passes) you’ll lose the fight and the town's stability will reset and the occupying military force will remain for some time. Obviously the opposite is true for you and if the marker hits 100% on your side, the town will remain in anarchy and NATO will leave it be for a large period of time (later in the game they will have the option to attempt to recapture it.) .<br></br><br></br> Once the town is anarchy, you're granted the chance to move in and gain favour to get overship over the locale. Inorder to do this you must raise its stability over 50% then the people will flip to your side and the town will be marked with a green circle around it. There are two main ways to do this, either destroy gangs that pop up around the place or build a police station and have the officers slowly restore law. Once you finally gain the town you can look forward to a sizable amount of tax income and influence every 6 months from the residence of the place."]];
-tutorialDiary4 = player createDiaryRecord ["Tutorial", ["Getting Started","<font size='12' face='PuristaMedium'>Welcome to Overthrow - Martial Law, where YOU are the resistance!<br></br><br></br>Most actions in Overthrow can be done by pressing the ""Y"" key on your keyboard. This menu is context sensitive and will change depending on if you are:<br></br>In a vehicle<br></br>Have recruits selected<br></br>Are near certain buildings such as the Workshop<br></br><br></br></font><font face='PuristaBold'>Background</font><font face='PuristaMedium'>NATO is currently occupying the nation and is in a heightened state after an assassination of a local grass-roots political figure just last night. Tensions are high as the public begins to question when the occupation of NATO forces will end and a local government is voted into power. <execute expression='tutorialDiary4 call funcProcessDiaryLink'>Gendarmerie</execute> forces are stationed in towns to try and keep the peace but random gunfire has broken out in some smaller towns. Therefore if any illegal activity or weapons are spotted by NATO they have orders to use maximum force. Be extremely careful to not brandish weapons around them or commit illegal acts unless you are prepared to fight.<br></br><br></br>Being seen and wanted<br></br>In the top right of your screen underneath your current money there will show a blue pair of eyes when NATO can currently see you, be careful what you do when that is showing. If they see anything suspicious you will get a ""WANTED"" text appear underneath signifying it's time to run, hide, or fight back! You will not receive a warning, NATO will shoot first and not bother asking questions." ]];
 
+tutorialDiary2 = player createDiaryRecord ["Tutorial", ["Gendarmerie","
+	<font size='12' face='PuristaMedium'>A gendarmerie or gendarmery is a military component with jurisdiction in civil law enforcement.
+	The term gendarme is derived from the medieval French expression gens d'armes, which translates to ""armed people"".
+	In Overthrow, NATO will station gendarmerie in towns they control to keep the peace and stop any illegal activity,
+	they can be spotted wearing blue uniforms. If those are killed, stability will drop in the town and more will be sent from the closest base.
+	If there is no base with land access to the town then Stability will drop quickly. If the base is close enough they will walk,
+	otherwise they will be sent in an offroad. The gendarmerie do not need to be physically in a town for stability to drop,
+	if you kill them in transit it will still count for the town they are heading to. Killing gendarmerie will also drop your local standing
+"]];
+
+tutorialDiary3 = player createDiaryRecord ["Tutorial", ["Capturing a Town","
+	<font size='12' face='PuristaMedium'>Inorder to capture a town you must drop its stability to 0,
+	this can be done by completing a number of unsavoury activities such as selling drugs to civilians,killing police and NATO soldiers,
+	and completing certain jobs. (Keep in mind some activities may raise the stability of a town, mainly the bulk selling of needed goods.).<br></br><br></br>
+
+	Once the stability hits 0, the town will enter “anarchy” and NATO will react by either abandoning it, leaving you free to return order as you please,
+	or launch an attack to claim it back and restore order. It's important to note NATO will only choose to abandon towns with tiny populations.
+	Another key detail is that the size of NATO’s assault is based off the size of the town, and its distance from NATO outposts, so for your first takeover,
+	its wise to choose a village somewhere remote.<br></br><br></br>Assuming NATO didn't choose to abandon the town,
+	you will receive a 10 minute notice prior to the sidge where NATO wont send any further troops to the town and will instead be moving units into position to assault.
+	Because of this, the short break offers a key opportunity to place HMG nests, mine roads (NATO tends to attack from the direction of the closest bases),
+	and lay other guerilla traps that will greatly increase your chances against the overwhelming and superior troops that NATO has to offer.<br></br><br></br>
+	
+	Once the battle starts the timer will transform into a percentage marker, showing the resistance which side of the conflict is winning. If it's green, you're winning,
+	if it's blue then NATO is winning. Inorder to gain score you must have more troops within a certain range of the town then NATO.
+	If the marker hits 100% for NATO or the battle ends in a stalemate (which occurred after a large amount of time passes) you’ll lose the fight and the town's stability
+	will reset and the occupying military force will remain for some time. Obviously the opposite is true for you and if the marker hits 100% on your side,
+	the town will remain in anarchy and NATO will leave it be for a large period of time (later in the game they will have the option to attempt to recapture it.) .<br></br><br></br>
+
+	Once the town is anarchy, you're granted the chance to move in and gain favour to get overship over the locale. Inorder to do this you must raise its
+	stability over 50% then the people will flip to your side and the town will be marked with a green circle around it. There are two main ways to do this,
+	either destroy gangs that pop up around the place or build a police station and have the officers slowly restore law. Once you finally gain the town you
+	can look forward to a sizable amount of tax income and influence every 6 months from the residence of the place.
+"]];
+
+tutorialDiary4 = player createDiaryRecord ["Tutorial", ["Getting Started","
+	<font size='12' face='PuristaMedium'>Welcome to Overthrow - Martial Law, where YOU are the resistance!<br></br><br></br>
+	<font size='10' face='PuristaMedium'>There is no set way to play Overthrow, everything can be done multiple ways and you will not be given instructions at every turn,
+	this can of course be quite daunting at first so here are some basic tips to give you some ideas.<br></br>
+
+	<font size='10' face='PuristaMedium'>The Y Menu<br></br><br></br>
+
+	<font size='10' face='PuristaMedium'>Most actions in Overthrow can be done by pressing the ""Y"" key on your keyboard. This menu is context sensitive and will change depending on if you are:<br></br>In a vehicle<br></br>Have recruits selected<br></br>Are near certain buildings such as the Workshop<br></br><br></br></font><font face='PuristaBold'>Background</font><font face='PuristaMedium'>NATO is currently occupying the nation and is in a heightened state after an assassination of a local grass-roots political figure just last night. Tensions are high as the public begins to question when the occupation of NATO forces will end and a local government is voted into power. <execute expression='tutorialDiary4 call funcProcessDiaryLink'>Gendarmerie</execute> forces are stationed in towns to try and keep the peace but random gunfire has broken out in some smaller towns. Therefore if any illegal activity or weapons are spotted by NATO they have orders to use maximum force. Be extremely careful to not brandish weapons around them or commit illegal acts unless you are prepared to fight.<br></br><br></br>Being seen and wanted<br></br>In the top right of your screen underneath your current money there will show a blue pair of eyes when NATO can currently see you, be careful what you do when that is showing. If they see anything suspicious you will get a ""WANTED"" text appear underneath signifying it's time to run, hide, or fight back! You will not receive a warning, NATO will shoot first and not bother asking questions.
+"]];
+*/
 
 [] call OT_fnc_setupPlayer;
 _introcam cameraEffect ["Terminate", "BACK" ];

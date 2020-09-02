@@ -1,7 +1,10 @@
-params ["_frompos","_attackpos",["_delay",0]];
+params ["_frompos","_attackpos",["_delay",0],["_light",false]];
 if (_delay > 0) then {sleep _delay};
-private _vehtype = OT_NATO_Vehicles_AirSupport call BIS_fnc_SelectRandom;
 
+private _vehtype = OT_NATO_Vehicles_AirSupport call BIS_fnc_SelectRandom;
+if (_light) then {
+	_vehtype = OT_NATO_Vehicles_AirSupport_Small call BIS_fnc_SelectRandom;
+};
 
 private _dir = _frompos getDir _attackpos;
 //look for a helipad

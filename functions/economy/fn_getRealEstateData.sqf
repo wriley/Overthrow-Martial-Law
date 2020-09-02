@@ -1,3 +1,4 @@
+diag_log format ["getRealEstateData params:%1", _this];
 private _town = "";
 private _type = "";
 if(typename _this isEqualTo "ARRAY") then {
@@ -24,6 +25,15 @@ _population = (_population / 1000);
 	if(_type in OT_hugePopHouses) exitWith {[75000,40,0.06]};
 	if(_type in OT_mansions) exitWith {[150000,10]};
 	if(_type == OT_warehouse) exitWith {[15000,0]};
+	if(_type in OT_allRepairableRuins) exitWith {{if (((_x select 0) isEqualTo _type) || ((_x select 1) isEqualTo _type)) exitWith {[_x select 2]};}foreach OT_repairableRuins;};
+	if(_type in OT_allRepairableBuildings) exitWith {
+		{
+			
+			if ((_x select 0) isEqualTo _type) exitWith {
+				[_x select 1]
+			};
+		}foreach OT_repairableBuildings;
+	};
 	[]
 }) params [["_baseprice", 0],["_totaloccupants",0],["_multiplier",0]];
 

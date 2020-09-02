@@ -1,4 +1,4 @@
-class OT_dialog_logistics
+class OT_dialog_recruit
 {
 	idd=8000;
 	movingenable=false;
@@ -25,71 +25,48 @@ class OT_dialog_logistics
 		class RscListbox_1500: RscOverthrowListbox
 		{
 			idc = 1500;
-			x = 0.244062 * safezoneW + safezoneX;
+			x = 0.434375 * safezoneW + safezoneX;
 			y = 0.22 * safezoneH + safezoneY;
-			w = 0.301875 * safezoneW;
+			w = 0.229687 * safezoneW;
 			h = 0.602 * safezoneH;
 			colorBackground[] = {0,0,0,0.9};
-			onLBSelChanged = "_this call OT_fnc_displayLogisticDetails";
-		};
-		class RscPicture_1200: RscOverthrowPicture
-		{
-			idc = 1200;
-			text = "";
-			x = 0.559062 * safezoneW + safezoneX;
-			y = 0.22 * safezoneH + safezoneY;
-			w = 0.190312 * safezoneW;
-			h = 0.21 * safezoneH;
-			colorBackground[] = {0,0,0,0};
+			onLBSelChanged = "_this call OT_fnc_displayShopPic";
 		};
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			text = "Set Waypoint"; //--- ToDo: Localize;
-			x = 0.690312 * safezoneW + safezoneX;
-			y = 0.752 * safezoneH + safezoneY;
-			w = 0.0590625 * safezoneW;
-			h = 0.07 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
-			action = "[] call OT_fnc_setVehicleWaypoint;";
+			action = "[] call OT_fnc_buy";
+
+			text = "Recruit"; //--- ToDo: Localize;
+			x = 0.670625 * safezoneW + safezoneX;
+			y = 0.22 * safezoneH + safezoneY;
+			w = 0.0853125 * safezoneW;
+			h = 0.056 * safezoneH;
 		};
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
-			text = "Clear Waypoint"; //--- ToDo: Localize;
-			x = 0.624688 * safezoneW + safezoneX;
-			y = 0.752 * safezoneH + safezoneY;
-			w = 0.0590625 * safezoneW;
-			h = 0.07 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
-			action = "[] call OT_fnc_clearPlayerWaypoint;";
-		};
-		class RscButton_1602: RscOverthrowButton
-		{
-			idc = 1602;
-			text = "Delete Vehicle"; //--- ToDo: Localize;
-			x = 0.559062 * safezoneW + safezoneX;
-			y = 0.752 * safezoneH + safezoneY;
-			w = 0.0590625‬ * safezoneW;
-			h = 0.07 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
-			tooltip = "Completely removes the vehicle without leaving a wreck, only the owner/general can do this."; //--- ToDo: Localize;
-			action = "[] call OT_fnc_UnownVehicle;";
+			action = "[] call OT_fnc_editLoadout";
+
+			text = "Edit"; //--- ToDo: Localize;
+			x = 0.670625 * safezoneW + safezoneX;
+			y = 0.29 * safezoneH + safezoneY;
+			w = 0.0853125 * safezoneW;
+			h = 0.056 * safezoneH;
 		};
 		class RscStructuredText_1100: RscOverthrowStructuredText
 		{
-			idc = 1100;
-			x = 0.559063 * safezoneW + safezoneX;
-			y = 0.458 * safezoneH + safezoneY;
-			w = 0.190312 * safezoneW;
-			h = 0.266 * safezoneH;
+			idc = 1100; // recruit details
+			x = 0.244062 * safezoneW + safezoneX;
+			y = 0.22 * safezoneH + safezoneY;
+			w = 0.18375 * safezoneW;
+			h = 0.602 * safezoneH;
 			colorBackground[] = {0,0,0,0.3};
 		};
 		class RscStructuredText_1101: RscOverthrowStructuredText // title text
 		{
 			idc = 1101;
-			text = "<t align='left' size='1.5'>Resistance Vehicle Garrison</t>";
-
+			text = "<t align='left' size='1.5'>Recruit Soldiers</t>";
 			x = 0.427812 * safezoneW + safezoneX;
 			y = 0.164 * safezoneH + safezoneY;
 			w = 0.308437 * safezoneW;
@@ -127,6 +104,18 @@ class OT_dialog_logistics
 			colorBackground[] = {0.664063,0.164063,0.175781,1};
             colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
+/*
+		class RscPicture_1200: RscOverthrowPicture
+		{
+			idc = 1200;
+
+			x = 0.244062 * safezoneW + safezoneX;
+			y = 0.22 * safezoneH + safezoneY;
+			w = 0.18375 * safezoneW;
+			h = 0.238 * safezoneH;
+			colorBackground[] = {0,0,0,0.3};
+		};
+*/
 		class RscButton_1699: RscOverthrowButton
         {
             idc = 1699;

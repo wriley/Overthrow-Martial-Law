@@ -1,4 +1,3 @@
-diag_log str _this;
 if (!isServer) exitWith {};
 waitUntil {!OT_whTransferring;};
 OT_whTransferring = true;

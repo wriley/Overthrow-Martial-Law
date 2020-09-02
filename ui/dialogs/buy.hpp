@@ -7,28 +7,44 @@ class OT_dialog_buy
 		class RscStructuredText_1199: RscOverthrowStructuredText
 		{
 			idc = 1199;
-			x = 0.298906 * safezoneW + safezoneX;
-			y = 0.181 * safezoneH + safezoneY;
-			w = 0.406055 * safezoneW;
-			h = 0.649 * safezoneH;
+			x = 0.2375 * safezoneW + safezoneX;
+			y = 0.15 * safezoneH + safezoneY;
+			w = 0.525 * safezoneW;
+			h = 0.7 * safezoneH;
 			colorBackground[] = {0.1,0.1,0.1,1};
 			colorActive[] = {0.1,0.1,0.1,1};
+		};
+		class RscStructuredText_1101: RscOverthrowStructuredText // title text
+		{
+			idc = 1101;
+			x = 0.427812 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.334687 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
+		};
+		class RscStructuredText_1102: RscOverthrowStructuredText // title left filler
+		{
+			idc = 1102;
+			x = 0.2375 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.190312 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
 	};
 
 	class controls
 	{
-		////////////////////////////////////////////////////////
-		// GUI EDITOR OUTPUT START (by ARMAzac, v1.063, #Jeduvu)
-		////////////////////////////////////////////////////////
-
 		class RscListbox_1500: RscOverthrowListbox
 		{
 			idc = 1500;
-			x = 0.414922 * safezoneW + safezoneX;
-			y = 0.247 * safezoneH + safezoneY;
-			w = 0.232031 * safezoneW;
-			h = 0.572 * safezoneH;
+			x = 0.434375 * safezoneW + safezoneX;
+			y = 0.22 * safezoneH + safezoneY;
+			w = 0.229687 * safezoneW;
+			h = 0.602 * safezoneH;
 			colorBackground[] = {0,0,0,0.9};
 			onLBSelChanged = "_this call OT_fnc_displayShopPic";
 			onMouseButtonDblClick = "[false] call OT_fnc_buy;";
@@ -36,11 +52,11 @@ class OT_dialog_buy
 		class RscPicture_1200: RscOverthrowPicture
 		{
 			idc = 1200;
-			text = "#(argb,8,8,3)color(1,1,1,1)";
-			x = 0.302773 * safezoneW + safezoneX;
-			y = 0.192 * safezoneH + safezoneY;
-			w = 0.108281 * safezoneW;
-			h = 0.308 * safezoneH;
+
+			x = 0.244062 * safezoneW + safezoneX;
+			y = 0.22 * safezoneH + safezoneY;
+			w = 0.18375 * safezoneW;
+			h = 0.238 * safezoneH;
 			colorBackground[] = {0,0,0,0.3};
 		};
 		class RscButton_1600: RscOverthrowButton
@@ -49,82 +65,51 @@ class OT_dialog_buy
 			action = "[false] call OT_fnc_buy;";
 
 			text = "Buy"; //--- ToDo: Localize;
-			x = 0.65082 * safezoneW + safezoneX;
-			y = 0.247 * safezoneH + safezoneY;
-			w = 0.0502734 * safezoneW;
-			h = 0.044 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
+			x = 0.670625 * safezoneW + safezoneX;
+			y = 0.22 * safezoneH + safezoneY;
+			w = 0.0853125 * safezoneW;
+			h = 0.056 * safezoneH;
 		};
 		class RscButton_1601: RscOverthrowButton
 		{
 			idc = 1601;
 			action = "[true,1] call OT_fnc_buy;";
 
-			text = "Buy to Crate"; //--- ToDo: Localize;
-			x = 0.65082 * safezoneW + safezoneX;
-			y = 0.302 * safezoneH + safezoneY;
-			w = 0.0502734 * safezoneW;
-			h = 0.044 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
+			text = "1 to Veh/Box"; //--- ToDo: Localize;
+			x = 0.670625 * safezoneW + safezoneX;
+			y = 0.29 * safezoneH + safezoneY;
+			w = 0.0853125 * safezoneW;
+			h = 0.056 * safezoneH;
 		};
-/*
-		class RscCombo_1701: RscOverthrowCombo
-		{
-			idc = 1701;
-			text = "1"; //--- ToDo: Localize;
-			x = 0.65082 * safezoneW + safezoneX;
-			y = 0.357 * safezoneH + safezoneY;
-			w = 0.0502734 * safezoneW;
-			h = 0.022 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
-		};
-*/
 		class RscButton_1602: RscOverthrowButton
 		{
 			idc = 1602;
 			action = "[true,10] call OT_fnc_buy;";
 
-			text = "Buy 10 to Crate"; //--- ToDo: Localize;
-			x = 0.65082 * safezoneW + safezoneX;
-			y = 0.357 * safezoneH + safezoneY;
-			w = 0.0502734 * safezoneW;
-			h = 0.044 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
+			text = "10 to Veh/Box"; //--- ToDo: Localize;
+			x = 0.670625 * safezoneW + safezoneX;
+			y = 0.36 * safezoneH + safezoneY;
+			w = 0.0853125 * safezoneW;
+			h = 0.056 * safezoneH;
 		};
-		class RscStructuredText_1100: RscOverthrowStructuredText
+		class RscStructuredText_1100: RscOverthrowStructuredText // item description
 		{
 			idc = 1100;
-			x = 0.302773 * safezoneW + safezoneX;
-			y = 0.478 * safezoneH + safezoneY;
-			w = 0.108281 * safezoneW;
-			h = 0.341 * safezoneH;
+			x = 0.244062 * safezoneW + safezoneX;
+			y = 0.472 * safezoneH + safezoneY;
+			w = 0.18375 * safezoneW;
+			h = 0.35 * safezoneH;
 			colorBackground[] = {0,0,0,0.3};
-		};
-		class RscStructuredText_1101: RscOverthrowStructuredText
-		{
-			idc = 1101;
-			x = 0.414922 * safezoneW + safezoneX;
-			y = 0.192 * safezoneH + safezoneY;
-			w = 0.235898 * safezoneW;
-			h = 0.055 * safezoneH;
-			colorBackground[] = {0,0,0,0};
-            colorActive[] = {0,0,0,0};
 		};
 		class RscButton_1699: RscOverthrowButton
         {
             idc = 1699;
 			action = "closeDialog 0";
             text = "X"; //--- ToDo: Localize;
-            x = 0.677891 * safezoneW + safezoneX;
-            y = 0.192 * safezoneH + safezoneY;
-            w = 0.0232031 * safezoneW;
-            h = 0.033 * safezoneH;
+            x = 0.73625 * safezoneW + safezoneX;
+            y = 0.15 * safezoneH + safezoneY;
+            w = 0.0196875 * safezoneW;
+            h = 0.042 * safezoneH;
         };
-		////////////////////////////////////////////////////////
-		// GUI EDITOR OUTPUT END
-		////////////////////////////////////////////////////////
-
-
-
 	};
 };

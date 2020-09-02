@@ -7,7 +7,6 @@ OT_priceData = [
 //Gun dealer stuff
 ['Set_HMG',[3400,0,0,0]],
 //Items
-//['ItemWatch',[20,0,0,1]],
 ['ItemCompass',[6,0,3,0]],
 ['ItemGPS',[100,0,0,4]],
 ['ItemRadio',[100,0,1,4]],
@@ -3446,9 +3445,4 @@ OT_priceData = [
 	['rhsusf_mkvsoc',[52500,0,25,5]],
 	['rhs_bkm_t',[22500,0,15,5]],
 	['rhsgref_civ_canoe',[100,0,2,15]],
-
-	// Garrison buildings
-	['Land_Bunker_01_tall_F',[10000,0,0,0]]
-
-
 ];

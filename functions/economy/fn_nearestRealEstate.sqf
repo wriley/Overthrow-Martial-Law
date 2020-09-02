@@ -1,3 +1,4 @@
+diag_log format ["nearestRealEstate params:%1", _this];
 private ["_buildings","_building","_gotbuilding","_price","_lease","_sell","_totaloccupants"];
 
 private _buildings =  _this nearObjects ["Building",15];
@@ -11,7 +12,7 @@ if(!isNil "modeTarget") then {
 };
 
 {
-	if ((typeof _x) in (OT_allBuyableBuildings+OT_allRepairableRuins)) exitWith {
+	if ((typeof _x) in (OT_allBuyableBuildings+OT_allBuildableBuildings+OT_allRepairableRuins+OT_allRepairableBuildings+OT_garrisonBuildings)) exitWith {
 		_building = _x;
 		_gotbuilding = true;
 	};

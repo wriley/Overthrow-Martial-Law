@@ -8,7 +8,7 @@ if(_takeFromWarehouse) then {
 		private _warehouse = _pos call OT_fnc_nearestWarehouse;
 		private _wpos = _warehouse select 0;
 		private _wid = _warehouse select 1;
-		if (_wpos distance _pos > 300) exitWith { diag_log "No warehouse within 300m"; _takeFromWarehouse = false; };
+		if (_wpos distance _pos > 1800) exitWith { diag_log "No warehouse within 1.8km"; _takeFromWarehouse = false; };
 		[_wid, _cls, _num] remoteExec ["OT_fnc_removeFromWarehouse", 2, false];
 	}foreach(_allitems call BIS_fnc_consolidateArray);
 };

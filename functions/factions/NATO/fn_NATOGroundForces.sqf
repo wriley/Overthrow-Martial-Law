@@ -1,5 +1,5 @@
 params ["_frompos","_ao","_attackpos","_byair",["_delay",0]];
-if (_delay > 0) then {sleep _delay};
+//if (_delay > 0) then {sleep _delay};
 private _vehtype = OT_NATO_Vehicle_Transport call BIS_fnc_selectRandom;
 if(_byair) then {
 	_vehtype = OT_NATO_Vehicle_AirTransport call BIS_fnc_selectRandom;
@@ -93,6 +93,7 @@ if !(_byair) then {
 		_x setVariable ["VCOM_NOPATHING_Unit",true,false];
 		_allunits pushback _x;
 		_x setVariable ["garrison","HQ",false];
+		_x setVariable ["debug", "NATOGroundForces group2 line 96", true];
 		[_x] call OT_fnc_initMilitary;
 
 	}foreach(units _group2);

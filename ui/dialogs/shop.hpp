@@ -1,4 +1,4 @@
-class OT_dialog_recruit
+class OT_dialog_shop
 {
 	idd=8000;
 	movingenable=false;
@@ -362,7 +362,7 @@ class OT_dialog_import
 		////////////////////////////////////////////////////////
 		// GUI EDITOR OUTPUT END
 		////////////////////////////////////////////////////////
-		
+
 		class RscButton_1603: RscOverthrowButton
 		{
 			idc = 1603;

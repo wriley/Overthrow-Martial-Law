@@ -36,16 +36,17 @@ class OT_dialog_resistance
         class RscListbox_1500: RscOverthrowListbox
         {
             idc = 1500;
-            x = 0.298906 * safezoneW + safezoneX;
+            x = 0.298438 * safezoneW + safezoneX;
             y = 0.236 * safezoneH + safezoneY;
-            w = 0.242344 * safezoneW;
-            h = 0.165 * safezoneH;
+            w = 0.242812 * safezoneW;
+            h = 0.378 * safezoneH;
 			onLBSelChanged = "_this call OT_fnc_showMemberInfo";
         };
         class RscStructuredText_1102: RscOverthrowStructuredText
         {
             idc = 1102;
-            x = 0.546406 * safezoneW + safezoneX;
+ 			text = "1102";
+           x = 0.546406 * safezoneW + safezoneX;
             y = 0.236 * safezoneH + safezoneY;
             w = 0.154687 * safezoneW;
             h = 0.11 * safezoneH;
@@ -72,6 +73,7 @@ class OT_dialog_resistance
             h = 0.044 * safezoneH;
 			action = "[] call OT_fnc_transferFunds;";
         };
+/*
         class RscStructuredText_1103: RscOverthrowStructuredText
         {
             idc = 1103;
@@ -95,6 +97,7 @@ class OT_dialog_resistance
         class RscStructuredText_1104: RscOverthrowStructuredText
         {
             idc = 1104;
+			text = "1104";
             x = 0.546406 * safezoneW + safezoneX;
             y = 0.445 * safezoneH + safezoneY;
             w = 0.154687 * safezoneW;
@@ -122,10 +125,11 @@ class OT_dialog_resistance
             h = 0.044 * safezoneH;
 			action = "[] call OT_fnc_hireEmployee;";
         };
+*/
 		class RscStructuredText_1106: RscOverthrowStructuredText
 		{
 			idc = 1106;
-
+			text = "1106";
 			x = 0.298906 * safezoneW + safezoneX;
 			y = 0.698 * safezoneH + safezoneY;
 			w = 0.402187 * safezoneW;
