@@ -67,12 +67,12 @@ class OT_dialog_main
 			y = 0.486 * safezoneH + safezoneY;
 			w = 0.164062 * safezoneW;
 			h = 0.042 * safezoneH;
-			tooltip = "Manage owned businesses and resistance funds"; //--- ToDo: Localize;
+			tooltip = "Manage resistance and it's funds"; //--- ToDo: Localize;
 		};
 		class RscButton_1603: RscOverthrowButton
 		{
 			idc = 1603;
-			action = "call OT_fnc_businessDialog";
+			action = "[] call OT_fnc_manageBusinessDialog";
 			text = "Business"; //--- ToDo: Localize;
 
 			x = 0.0078125 * safezoneW + safezoneX;
@@ -165,7 +165,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = "Build structures in towns and at bases"; //--- ToDo: Localize;
 		};
-		class RscButton_1611: RscOverthrowButton //1608
+		class RscButton_1611: RscOverthrowButton
 		{
 			idc = 1611;
 			action = "[] call OT_fnc_buyBuilding";
@@ -177,7 +177,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = ""; //--- ToDo: Localize;
 		};
-		class RscButton_1612: RscOverthrowButton //1609
+		class RscButton_1612: RscOverthrowButton
 		{
 			idc = 1612;
 			action = "[] call OT_fnc_leaseBuilding";
@@ -189,7 +189,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = ""; //--- ToDo: Localize;
 		};
-		class RscButton_1613: RscOverthrowButton //1610
+		class RscButton_1613: RscOverthrowButton
 		{
 			idc = 1613;
 			action = "[] call OT_fnc_setHome";
@@ -201,7 +201,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = ""; //--- ToDo: Localize;
 		};
-		class RscButton_1614: RscOverthrowButton // 1620
+		class RscButton_1614: RscOverthrowButton
 		{
 			idc = 1614;
 			action = "[] spawn OT_fnc_manageArea";
@@ -212,7 +212,7 @@ class OT_dialog_main
 			w = 0.0721875 * safezoneW;
 			h = 0.042 * safezoneH;
 		};
-		class RscButton_1615: RscOverthrowButton // 1621
+		class RscButton_1615: RscOverthrowButton
 		{
 			idc = 1615;
 			action = "(getpos player) call OT_fnc_garrisonDialog";

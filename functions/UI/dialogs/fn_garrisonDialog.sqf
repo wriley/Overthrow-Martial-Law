@@ -1,8 +1,4 @@
 private _b = (position player) call OT_fnc_nearestLocation;
-if((_b select 1) isEqualTo "Business") exitWith {
-	(_b select 0) call OT_fnc_manageBusinessDialog;
-};
-
 private _ob = (position player) call OT_fnc_nearestObjectiveOrCommsOrBaseOrFob;
 private _pos = _ob select 0;
 private _name = _ob select 1;

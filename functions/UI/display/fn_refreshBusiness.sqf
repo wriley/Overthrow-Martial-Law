@@ -52,15 +52,15 @@ private _nexthr = ((date select 3) + 1);
 if(_nexthr < 10) then {_nexthr = format ["0%1",_nexthr]};
 
 // business statistics
-private _text = format["<t size='1'>%1</t><br/>",_name];
-_text = _text + format["<t size='0.8'>Employees:  %1</t><br/>",_employees];
-_text = _text + format["<t size='0.8'>Wages:      $%1 /hr</t><br/>",_wages];
-_text = _text + format["<t size='0.8'>XP:         %1</t><br/>",_xp];
-_text = _text + format["<t size='0.8'>Level:      %1</t><br/>",_level];
-_text = _text + format["<t size='0.8'>Next Level: %1</t><br/><br/>",_nextlevel];
-_text = _text + format["<t size='0.8'>Income:     %1</t><br/>",_income];
-_text = _text + format["<t size='0.8'>Next cycle: %1:00</t><br/>",_nexthr];
-_textctrl = (findDisplay 8000) displayCtrl 1102;
+private _text = format["<t size='1.4'>%1</t><br/>",_name];
+_text = _text + format["<t size='1.2'>Employees:  %1</t><br/>",_employees];
+_text = _text + format["<t size='1.2'>Wages:      $%1 /hr</t><br/>",_wages];
+_text = _text + format["<t size='1.2'>XP:         %1</t><br/>",_xp];
+_text = _text + format["<t size='1.2'>Level:      %1</t><br/>",_level];
+_text = _text + format["<t size='1.2'>Next Level: %1</t><br/><br/>",_nextlevel];
+_text = _text + format["<t size='1.2'>Income:     %1</t><br/>",_income];
+_text = _text + format["<t size='1.2'>Next cycle: %1:00</t><br/>",_nexthr];
+_textctrl = (findDisplay 8000) displayCtrl 1108;
 _textctrl ctrlSetStructuredText parseText _text;
 
 // required for production
@@ -75,7 +75,7 @@ private _need = "";
 				_x params ["_cls", "_qty"];
 				if!(_cls isEqualTo "Money") then {
 					private _longname = _cls call OT_fnc_weaponGetName;
-					_need = _need + format["<t size='0.8'>%2 x %1</t><br/>",_longname,_qty];
+					_need = _need + format["<t size='1'>%2 x %1</t><br/>",_longname,_qty];
 				} else {
 					for [{private _i=0},{_i<_qty},{_i=_i+1}] do {
 						_cost = _cost + round((([OT_nation,_cls,0]) call OT_fnc_getPrice) * (1-(_level/10)));
@@ -84,45 +84,17 @@ private _need = "";
 			}foreach _inputs;
 			if (_cost > 0) then {
 				_cost = [_cost, 1, 0, true] call CBA_fnc_formatNumber;
-				_need = _need + format["<t size='0.8'>$%1</t><br/>",_cost];
+				_need = _need + format["<t size='1.2'>$%1</t><br/>",_cost];
 			};
 		} else {
-			_need = _need + format["<t size='0.8'>None</t><br/>"];
+			_need = _need + format["<t size='1.2'>None</t><br/>"];
 		};
 	};
 }foreach _production;
-_textctrl = (findDisplay 8000) displayCtrl 1104;
+_textctrl = (findDisplay 8000) displayCtrl 1109;
 _textctrl ctrlSetStructuredText parseText _need;
 
-// supply from other businesses
-private _demand = server getVariable [format["%1demand",_supplyname],[]];
-private _need = "";
-private _cost = 0;
-{
-	_x params ["_cls", "_qty"];
-	if!(_cls isEqualTo "Money") then {
-		private _longname = _cls call OT_fnc_weaponGetName;
-		_need = _need + format["<t size='0.8'>%2 x %1</t><br/>",_longname,_qty];
-	} else {
-		for [{private _i=0},{_i<_qty},{_i=_i+1}] do {
-			_cost = _cost + round((([OT_nation,_cls,0]) call OT_fnc_getPrice) * (1-(_level/10)));
-		};
-	};
-} foreach _demand;
-if (_cost > 0) then {
-	_cost = [_cost, 1, 0, true] call CBA_fnc_formatNumber;
-	_need = _need + format["<t size='0.8'>$%1</t><br/>",_cost];
-};
-_textctrl = (findDisplay 8000) displayCtrl 1107;
-_textctrl ctrlSetStructuredText parseText _need;
-
-/* should never be 0?
-if(lbCurSel 1500 isEqualTo -1) then {
-	_textctrl = (findDisplay 8000) displayCtrl 1102;
-	_textctrl ctrlSetStructuredText parseText "";
-};
-*/
 if(lbCurSel 1501 isEqualTo -1) then {
-	_textctrl = (findDisplay 8000) displayCtrl 1104;
+	_textctrl = (findDisplay 8000) displayCtrl 1109;
 	_textctrl ctrlSetStructuredText parseText "";
 };

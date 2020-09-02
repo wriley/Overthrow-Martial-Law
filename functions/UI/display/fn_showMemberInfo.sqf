@@ -24,11 +24,11 @@ if(_uid in (server getVariable ["generals",[]])) then {
     _on = _on + " (General)";
 };
 
-_text = format["<t size='0.8'>%1</t><br/>",_ctrl lbText _index];
-_text = _text + format["<t size='0.65'>%1</t><br/>",_on];
+_text = format["<t size='1.3'>%1</t><br/>",_ctrl lbText _index];
+_text = _text + format["<t size='1.05'>%1</t><br/>",_on];
 
 if(_amgen) then {
-    _text = _text + format["<t size='0.65'>$%1</t>",[_money, 1, 0, true] call CBA_fnc_formatNumber];
+    _text = _text + format["<t size='1.05'>$%1</t>",[_money, 1, 0, true] call CBA_fnc_formatNumber];
 };
 
 _textctrl = (findDisplay 8000) displayCtrl 1102;

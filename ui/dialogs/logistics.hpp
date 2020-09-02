@@ -29,6 +29,7 @@ class OT_dialog_logistics
 			y = 0.22 * safezoneH + safezoneY;
 			w = 0.301875 * safezoneW;
 			h = 0.602 * safezoneH;
+			rowHeight = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * (1 + (0.3 / (pixelGrid / 14)))))";
 			colorBackground[] = {0,0,0,0.9};
 			onLBSelChanged = "_this call OT_fnc_displayLogisticDetails";
 		};
@@ -70,7 +71,7 @@ class OT_dialog_logistics
 			text = "Delete Vehicle"; //--- ToDo: Localize;
 			x = 0.559062 * safezoneW + safezoneX;
 			y = 0.752 * safezoneH + safezoneY;
-			w = 0.0590625‬ * safezoneW;
+			w = 0.1101250‬ * safezoneW;
 			h = 0.07 * safezoneH;
 			colorBackground[] = {0,0,0,0.8};
 			tooltip = "Completely removes the vehicle without leaving a wreck, only the owner/general can do this."; //--- ToDo: Localize;
@@ -97,7 +98,7 @@ class OT_dialog_logistics
 			colorBackground[] = {0.664063,0.164063,0.175781,1};
             colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
-		class RscStructuredText_1102: RscOverthrowStructuredText // title left filler
+		class RscStructuredText_1191: RscOverthrowStructuredText // title left filler
 		{
 			idc = 1102;
 			x = 0.2375 * safezoneW + safezoneX;
@@ -107,7 +108,7 @@ class OT_dialog_logistics
 			colorBackground[] = {0.664063,0.164063,0.175781,1};
             colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
-		class RscStructuredText_1103: RscOverthrowStructuredText // close bottom filler
+		class RscStructuredText_1192: RscOverthrowStructuredText // close bottom filler
 		{
 			idc = 1103;
 			x = 0.729688 * safezoneW + safezoneX;
@@ -117,7 +118,7 @@ class OT_dialog_logistics
 			colorBackground[] = {0.664063,0.164063,0.175781,1};
             colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
-		class RscStructuredText_1104: RscOverthrowStructuredText // close right filler
+		class RscStructuredText_1193: RscOverthrowStructuredText // close right filler
 		{
 			idc = 1104;
 			x = 0.755937 * safezoneW + safezoneX;

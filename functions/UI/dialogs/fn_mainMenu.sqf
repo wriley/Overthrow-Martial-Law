@@ -25,7 +25,8 @@ if(rain > 0.9) then {
 
 private _ctrl = (findDisplay 8001) displayCtrl 1100;
 private _standing = [_town] call OT_fnc_support;
-
+private _townpop = server getVariable format ["population%1",_town];
+private _totalpop = call OT_fnc_getControlledPopulation;
 private _rep = server getVariable ["rep",0];
 private _extra = "";
 
@@ -40,20 +41,21 @@ if(isMultiplayer && { ((getplayeruid player) in (server getVariable ["generals",
 		"<t align='left'>Resistance Funds: $%1 (Tax Rate %2%3)</t>",
 		[server getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,
 		server getVariable ["taxrate",0],
-		"%"		
+		"%"
 	];
 };
 
 _ctrl ctrlSetStructuredText parseText format[
 	"<br/>
-		<t align='left'>Resistance Support:</t><br/>
-		<t align='left'>%1: (%2%3) %4: (%5%6)</t><br/>
-		<t align='left'>Influence: %7</t><br/>
-		<t align='left'>Weather: %8 (Forecast: %9)</t><br/>
-		<t align='left'>Fuel Price: $%10/L</t><br/>
-		%11
+		<t align='left'>%1 Population: (%2) Support: (%3%4)</t><br/>
+		<t align='left'>%5 Population: (%6) Support: (%7%8)</t><br/>
+		<t align='left'>Influence Points: %9</t><br/>
+		<t align='left'>Weather: %10 (Forecast: %11)</t><br/>
+		<t align='left'>Fuel Price: $%12/L</t><br/>
+		%13
 	",
-	_town, ["","+"] select (_standing > -1), _standing, OT_nation, ["","+"] select (_rep > -1), _rep,
+	_town, _townpop, ["","+"] select (_standing > -1), _standing,
+	OT_nation, _totalpop, ["","+"] select (_rep > -1), _rep,
 	player getVariable ["influence",0],
 	_weather, server getVariable "forecast",
 	[OT_nation,"FUEL",100] call OT_fnc_getPrice,
@@ -94,7 +96,7 @@ if(typename _b isEqualTo "ARRAY") then {
 	private _name = _cls call OT_fnc_vehicleGetName;
 	private _pic = getText(configFile >>  "CfgVehicles" >>  _cls >> "editorPreview");
 	private _damage = _building call OT_fnc_getBuildingDamage;
-	
+
 	private _cost = [(_price * (_damage/100)), 1, 0, true] call CBA_fnc_formatNumber;
 
 	if !(isNil "_pic") then {
@@ -105,7 +107,6 @@ if(typename _b isEqualTo "ARRAY") then {
 	if(_building call OT_fnc_hasOwner) then {
 		_owner = _building call OT_fnc_getOwner;
 		_ownername = players_NS getVariable format["name%1",_owner];
-		player globalchat format ["real estate:%1 ownername:%2",_b, _ownername];
 		if(isNil "_ownername") then {_ownername = "Someone"};
 
 		if (_damage > 0) then {
@@ -297,7 +298,6 @@ if(typename _b isEqualTo "ARRAY") then {
 
 	}else{
 		// Building has no owner
-		player globalchat format ["real estate:%1 damage:%2 price:%3",_b,_damage, _price];
 		/*if((_cls) in OT_allRepairableRuins) then {
 			private _cost = 0;
 			{
@@ -305,7 +305,6 @@ if(typename _b isEqualTo "ARRAY") then {
 					_cost = [(_price * (_damage/100)), 1, 0, true] call CBA_fnc_formatNumber;
 				};
 			}foreach OT_repairableRuins;
-			player globalchat format ["real estate:%1 damage:%2 price:%3 owner:%4 cost:%5",_b,_damage, _price, _owner, _cost];
 			ctrlEnable [1613,true];
 			ctrlSetText [1613,"Repair"];
 			_ctrl1613 ctrlSetTooltip format ["Repair ($%1)", _cost];
@@ -356,8 +355,6 @@ if(_obpos distance player < 250) then {
 	if((_ob select 1) isEqualTo "Business") then {
 		_obpos = (_ob select 2) select 0;
 		_obname = (_ob select 0);
-		ctrlSetText [1615,"Manage"];
-		ctrlEnable [1615,true];
 		if(_obpos distance player < 250) then {
 			if(_obname in (server getVariable ["GEURowned",[]])) then {
 				_price = _obname call OT_fnc_getBusinessPrice;
@@ -365,18 +362,15 @@ if(_obpos distance player < 250) then {
 				ctrlSetText [1201,OT_flagImage];
 				_areaText = format["<br/>
 					<t align='left'>%1</t><br/>
-					<t align='left'>Operational (Level %2)</t><br/>
-					<t align='left'>$%3</t>
-				",_obname,_level,[_price, 1, 0, true] call CBA_fnc_formatNumber];
+					<t align='left'>Operational (Level %2)</t>
+				",_obname,_level];
 			}else{
 				_price = _obname call OT_fnc_getBusinessPrice;
 				ctrlSetText [1201,"\overthrow_main\ui\closed.paa"];
 				_areaText = format["<br/>
 					<t align='left'>%1</t><br/>
-					<t align='left'>Out Of Operation</t><br/>
-					<t align='left'>$%2</t>
-				",_obname,[_price, 1, 0, true] call CBA_fnc_formatNumber];
-				ctrlEnable [1615,false];
+					<t align='left'>Out Of Operation</t>
+				",_obname];
 				ctrlSetText [1614,"Buy"];
 				if (call OT_fnc_playerIsGeneral) then {
 					ctrlEnable [1614,true];

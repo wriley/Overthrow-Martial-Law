@@ -135,7 +135,7 @@ if(_totalAmmo > 0) then {
 _textctrl = (findDisplay 8000) displayCtrl 1100;
 
 _textctrl ctrlSetStructuredText parseText format["
-	<t align='center' size='1.2'>%1</t><br/>
-	<t align='center' size='1'>Owner: %2</t><br/>
-	<t align='left' size='0.7'>%3</t>
+	<t align='center' size='1.5'>%1</t><br/>
+	<t align='center' size='1.2'>Owner: %2</t><br/>
+	<t align='left' size='1'>%3</t>
 ",_name,_owner,_txt];

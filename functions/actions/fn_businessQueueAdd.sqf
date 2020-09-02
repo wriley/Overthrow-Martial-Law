@@ -24,7 +24,7 @@ _queueitem set [1, (_queueitem select 1) + 1];
 if(_doadd) then {
     _queue pushback _queueitem;
 };
-player globalchat format ["[businessQueueAdd] - _name:%1 _queue:%2", _name, _queue];
+//player globalchat format ["[businessQueueAdd] - _name:%1 _queue:%2", _name, _queue];
 server setVariable [format["%1producing",_name],_queue,true];
 
 [] call OT_fnc_refreshBusiness;

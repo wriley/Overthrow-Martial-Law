@@ -3,7 +3,6 @@ params ["_ctrl","_index"];
 disableSerialization;
 
 _cls = _ctrl lbData _index;
-//player globalchat format ["[fn_displayWarehousePic] - item selected: %1", _cls];
 _qty = [_ctrl lbValue _index, 1, 0, true] call CBA_fnc_formatNumber;
 
 _pic = "";
@@ -43,7 +42,7 @@ if (_qty != "0") then {
 	_textctrl ctrlSetStructuredText parseText format["
 		<t align='center' size='1.5'>%1</t><br/>
 		<t align='center' size='1.2'>%3 in stock</t><br/><br/>
-		<t align='center' size='0.7'>%2</t>
+		<t align='center' size='1'>%2</t>
 	",_txt,_desc,_qty];
 } else {
 	_textctrl ctrlSetStructuredText parseText "";

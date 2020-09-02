@@ -14,26 +14,6 @@ class OT_dialog_buy
 			colorBackground[] = {0.1,0.1,0.1,1};
 			colorActive[] = {0.1,0.1,0.1,1};
 		};
-		class RscStructuredText_1101: RscOverthrowStructuredText // title text
-		{
-			idc = 1101;
-			x = 0.427812 * safezoneW + safezoneX;
-			y = 0.164 * safezoneH + safezoneY;
-			w = 0.334687 * safezoneW;
-			h = 0.042 * safezoneH;
-			colorBackground[] = {0.664063,0.164063,0.175781,1};
-            colorActive[] = {0.664063,0.164063,0.175781,1};
-		};
-		class RscStructuredText_1102: RscOverthrowStructuredText // title left filler
-		{
-			idc = 1102;
-			x = 0.2375 * safezoneW + safezoneX;
-			y = 0.164 * safezoneH + safezoneY;
-			w = 0.190312 * safezoneW;
-			h = 0.042 * safezoneH;
-			colorBackground[] = {0.664063,0.164063,0.175781,1};
-            colorActive[] = {0.664063,0.164063,0.175781,1};
-		};
 	};
 
 	class controls
@@ -100,6 +80,46 @@ class OT_dialog_buy
 			w = 0.18375 * safezoneW;
 			h = 0.35 * safezoneH;
 			colorBackground[] = {0,0,0,0.3};
+		};
+		class RscStructuredText_1101: RscOverthrowStructuredText // title text
+		{
+			idc = 1101;
+			x = 0.427812 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.308437 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
+		};
+		class RscStructuredText_1191: RscOverthrowStructuredText // title left filler
+		{
+			idc = 1102;
+			x = 0.2375 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.190312 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
+		};
+		class RscStructuredText_1192: RscOverthrowStructuredText // close bottom filler
+		{
+			idc = 1103;
+			x = 0.729688 * safezoneW + safezoneX;
+			y = 0.192 * safezoneH + safezoneY;
+			w = 0.02625 * safezoneW;
+			h = 0.014 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
+		};
+		class RscStructuredText_1193: RscOverthrowStructuredText // close right filler
+		{
+			idc = 1104;
+			x = 0.755937 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.0065625 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
 		class RscButton_1699: RscOverthrowButton
         {

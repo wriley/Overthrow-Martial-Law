@@ -72,26 +72,27 @@ class RscTitles {
 		};
 	};
     class OT_statsHUD {
-        idd = 745;
-        movingEnable =  0;
-        enableSimulation = 1;
-        enableDisplay = 1;
-        duration     =  10e10;
-        fadein       =  0;
-        fadeout      =  0;
-        name = "OT_statsHUD";
+		idd = 745;
+		movingEnable =  0;
+		enableSimulation = 1;
+		enableDisplay = 1;
+		duration     =  10e10;
+		fadein       =  0;
+		fadeout      =  0;
+		name = "OT_statsHUD";
 		onLoad = "with uiNameSpace do { OT_statsHUD = _this select 0 }";
 		class controls {
 		    class RscStructuredText_1106: RscOverthrowStructuredText {
-                idc = 1001;
+				idc = 1001;
 				x = safezoneX + (0.8 * safezoneW);
 				y = safezoneY + (0.15 * safezoneH);
 				w = 0.19 * safezoneW;
 				h = 0.4 * safezoneH;
-                colorBackground[] = {0,0,0,0.2};
-                colorText[] = {0.34,0.33,0.33,0};//{1,1,1,1}
-                text = "";
-            };
+				colorBackground[] = {0,0,0,0.2};
+				colorText[] = {0.34,0.33,0.33,0};//{1,1,1,1}
+				text = "";
+				size = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * (0.5 + (0.35 / (pixelGrid / 14))))";
+			};
 		};
 	};
 };

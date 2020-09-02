@@ -44,7 +44,7 @@ class OT_dialog_recruits
 		class RscStructuredText_1101: RscOverthrowStructuredText // title text
 		{
 			idc = 1101;
-			text = "<t align='left' size='1.5'>Manage Recruits</t>";
+			text = "<t align='left' size='2'>Manage Recruits</t>";
 
 			x = 0.427812 * safezoneW + safezoneX;
 			y = 0.164 * safezoneH + safezoneY;

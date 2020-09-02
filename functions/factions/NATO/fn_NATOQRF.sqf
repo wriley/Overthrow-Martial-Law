@@ -4,7 +4,7 @@ private _popControl = call OT_fnc_getControlledPopulation;
 
 if(_strength < 150) then {_strength = 150};
 if(_strength > 2500) then {_strength = 2500};
-_numPlayers = 2;
+
 _strength = round(_strength * (1 + (_numPlayers/6)));
 
 private _diff = server getVariable ["OT_difficulty",1];

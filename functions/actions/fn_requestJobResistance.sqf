@@ -77,8 +77,8 @@ _info params ["_title","_desc"];
 _textctrl = (findDisplay 8000) displayCtrl 1199;
 
 _textctrl ctrlSetStructuredText parseText format["
-    <t align='center' size='1.1'>%1</t><br/><br/>
-    <t align='center' size='0.8'>%2</t><br/>
+    <t align='center' size='1.5'>%1</t><br/><br/>
+    <t align='center' size='1.2'>%2</t><br/>
 ",_title,_desc];
 
 _job

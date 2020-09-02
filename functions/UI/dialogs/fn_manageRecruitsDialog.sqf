@@ -27,10 +27,10 @@ recruitSelected = {
 	disableSerialization;
 	_ctrl = (findDisplay 8004) displayCtrl 1100;
 	_ctrl ctrlSetStructuredText parseText format["
-		<t align='center' size='1.3'>%1</t><br/><br/>
-		<t align='left' size='0.7'>Location: %2</t><br/>
-		<t align='left' size='0.7'>Rank: %3</t><br/>
-		<t align='left' size='0.7'>XP: %4/%5</t>
+		<t align='center' size='1.5'>%1</t><br/><br/>
+		<t align='left' size='1.2'>Location: %2</t><br/>
+		<t align='left' size='1.2'>Rank: %3</t><br/>
+		<t align='left' size='1.2'>XP: %4/%5</t>
 	",name _recruit,(getpos _recruit) call BIS_fnc_locationDescription,rank _recruit,_recruit getVariable ["OT_xp",0],OT_rankXP select (rankId _recruit)];
 };
 
@@ -45,3 +45,4 @@ dismissRecruit = {
 };
 
 [] call refreshRecruits;
+lbSetCurSel [1500,0];
