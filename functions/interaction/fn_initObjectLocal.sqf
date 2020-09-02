@@ -85,7 +85,7 @@ if (typeof _this isEqualTo OT_businessStorage) then {
 	_this addAction ["Take Money", OT_fnc_safeTakeMoney,nil,0,false,true,"",""];
 };
 
-if(typeof _this isEqualTo "Land_Cargo_House_V4_F") then {
+if(typeof _this isEqualTo OT_workshopBuilding) then {
 	[_this] call ace_repair_fnc_moduleAssignRepairFacility;
 };
 

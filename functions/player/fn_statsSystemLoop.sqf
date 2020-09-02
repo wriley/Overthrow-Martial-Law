@@ -30,15 +30,15 @@ if(!isNil "OT_QRFstart" && (time - OT_QRFstart) < 600) then {
 	};
 	if(_mins < 10) then {_mins = format["0%1",_mins]};
 	if(_secs < 10) then {_secs = format["0%1",_secs]};
-	_qrf = format["<t size='0.7'>Battle of %1</t><br/>Starting (%2:%3)",_attacking,_mins,_secs];
+	_qrf = format["<t size='1.2'>Battle of %1</t><br/>Starting (%2:%3)",_attacking,_mins,_secs];
 };
 
 if(!isNil "OT_QRFstart" && (time - OT_QRFstart) > 600) then {
 	private _progress = server getVariable ["QRFprogress",0];
 	if(_progress > 0) then {
-		_qrf = format["<t size='0.7'>Battle of %1</t><br/><t color='#5D8AA8'>(%2%3)</t>",_attacking,round (_progress * 100),'%'];
+		_qrf = format["<t size='1.2'>Battle of %1</t><br/><t color='#5D8AA8'>(%2%3)</t>",_attacking,round (_progress * 100),'%'];
 	}else{
-		_qrf = format["<t size='0.7'>Battle of %1</t><br/><t color='#008000'>(%2%3)</t>",_attacking,round abs (_progress * 100),'%'];
+		_qrf = format["<t size='1.2'>Battle of %1</t><br/><t color='#008000'>(%2%3)</t>",_attacking,round abs (_progress * 100),'%'];
 	}
 };
 
@@ -49,7 +49,7 @@ if(vehicle _player != _player && vehicle _player isKindOf "LandVehicle" && isNul
 };
 
 private _txt = format [
-	"<t size='0.9' align='right'>$%1<br/>%2<br/>%3<br/>%4<br/>%5</t>",
+	"<t size='1' align='right'>$%1<br/>%2<br/>%3<br/>%4<br/>%5</t>",
 	[_player getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,
 	_seen,
 	_wanted,

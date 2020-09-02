@@ -21,7 +21,7 @@ private _cArray = _totalitems call BIS_fnc_consolidateArray;
 if (count _pos > 0) then {
 	private _warehouse = _pos call OT_fnc_nearestWarehouse;
 	private _wid = _warehouse select 1;
-	if (count _wh > 0) then {
+	if (count _wid > 0) then {
 		{
 			_x params ["_cls","_num"];
 			_whqty = [_wid, _cls] call OT_fnc_qtyInWarehouse;

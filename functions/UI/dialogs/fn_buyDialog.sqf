@@ -43,14 +43,14 @@ lbClear 1500;
 	};
 	lbSetValue [1500,_idx,_price];
 	lbSetData [1500,_idx,_cls];
-	lbSetCurSel [1500, 0];
 }foreach(_sorted);
+lbSetCurSel [1500, 0];
 ctrlEnable [1602, false];
 ctrlEnable [1601, false];
 
-if (_civ getvariable ["shop",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>%1 Shop</t>",(_civ getvariable ["OT_shopCategory", ""])];};
-if (_civ getvariable ["gundealer",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>Gun Dealer</t>"]; };
-if (_civ getvariable ["factionrep",false]) then { _canCrateBuy=true; _cat = format["<t align='center' size='2'>Faction Supplies</t>"]; };
+if (_civ getvariable ["shop",false]) then { _canCrateBuy=true; _cat = format["<t align='left' size='1.2'>%1 Shop</t>",(_civ getvariable ["OT_shopCategory", ""])];};
+if (_civ getvariable ["gundealer",false]) then { _canCrateBuy=true; _cat = format["<t align='left' size='1.2'>Gun Dealer</t>"]; };
+if (_civ getvariable ["factionrep",false]) then { _canCrateBuy=true; _cat = format["<t align='left' size='1.2'>Faction Supplies</t>"]; };
 
 _textctrl = (findDisplay 8000) displayCtrl 1101;
 _textctrl ctrlSetStructuredText parseText _cat;

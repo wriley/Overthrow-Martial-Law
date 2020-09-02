@@ -1,4 +1,5 @@
 closedialog 0;
+if (count units group player isEqualTo 1) exitWith { "You have no recruits." call OT_fnc_notifyMinor; };
 createDialog "OT_dialog_recruits";
 openMap false;
 

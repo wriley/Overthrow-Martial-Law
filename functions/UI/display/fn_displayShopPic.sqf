@@ -48,7 +48,7 @@ if(_price > -1) then {
             if(_text isEqualTo "") then {
                 _text = "All items required for this unit are available in the warehouse";
             }else{
-                _text = format["These items are not in the warehouse and must be purchased:<br/>%1",_text];
+                _text = format["These items are not in the warehouse(bugged) and must be purchased:<br/>%1",_text];
             };
 
     		[
@@ -126,5 +126,5 @@ if(_price isEqualType 0) then {
 _textctrl ctrlSetStructuredText parseText format["
 	<t align='center' size='1.5'>%1</t><br/>
 	<t align='center' size='1.2'>%3</t><br/><br/>
-	<t align='center' size='0.7'>%2</t>
+	<t align='center' size='1'>%2</t>
 ",_txt,_desc,_price];

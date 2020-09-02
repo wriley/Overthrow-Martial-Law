@@ -13,7 +13,7 @@ if((_b select 1) isEqualTo "Business") then {
 				server setVariable ["GEURowned",_owned + [_name],true];
 				server setVariable [format["%1employ",_name],2,true];
 				server setVariable [format["%1xp",_name],0,true];
-				server setVariable [format["%1level",_name],0,true];
+				server setVariable [format["%1level",_name],1,true];
                 _pos remoteExec ["OT_fnc_resetSpawn",2,false];
                 format["%1 is now operational",_name] remoteExec ["OT_fnc_notifyMinor",0,false];
                 _name setMarkerColor "ColorGUER";
