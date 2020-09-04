@@ -69,7 +69,7 @@ if ((date select 3) != _lasthr) then {
 	{
 		private _name = _x;
 		if(_name != "Factory") then {
-			private _queue = server getvariable [format["%1producing",_name],[]];
+			private _queue = server getvariable [format["%1queue",_name],[]];
 			if (count _queue != 0) then {
 				diag_log format ["[GUERLoop] - Business name: %1 Queue: %2", _name, _queue];
 				private _business = _name call OT_fnc_getBusinessData;
@@ -80,23 +80,23 @@ if ((date select 3) != _lasthr) then {
 				private _income = 0;
 				if(_funds >= _salary) then {
 					_business params ["_pos","","_production","_xp","_level"];
-					_producing = _queue select 0;
+					_producing = _queue select 0 select 0;
 					format ["[GUERLoop] - _producing:%2", _name, _producing] remoteExec ["systemChat", 0];
 					[-_salary] call OT_fnc_resistanceFunds;
 					_outpower = 2 * _employees;
 					_inpower = 2 * _employees;
 					_intotal = _inpower;
 					if(_employees > 0) then {
-						private _clsout = _producing select 1;
 						private _needArr = [];
 						{
-							if (_x select 1 == _producing select 1) exitWith {
-								_needArr = _x select 2;
+							if (_x select 0 == _producing) exitWith {
+								_needArr = _x select 1;
 							};
 						}foreach _production;
 						if(count _needArr isEqualTo 0) then {
-							_income = _salary * (1.1 + (_level/12.5)); // (110% to 150% profitability on wages)
+							_income = round(_salary * (1.1 + (_level/12.5))); // (110% to 150% profitability on wages)
 							[_income] call OT_fnc_resistanceFunds;
+							format["Resistance earned $%1 in revenues from %2.",_income, _name] remoteExec ["OT_fnc_notifyMinor",0,false];
 							format ["[GUERLoop] - Business %1 income:%2", _name, _income] remoteExec ["systemChat", 0];
 						} else {
 							private _success = false;
@@ -113,7 +113,7 @@ if ((date select 3) != _lasthr) then {
 										format ["[GUERLoop] - x params:%1", _x] remoteExec ["systemChat", 0];
 										if(_cls isEqualTo _inputClass) exitWith {
 											if(_amt >= _inputQty) then {
-												_income = _income + _costprice * _amt;
+												_income = _income + _costprice * _amt; // used for xp gain, player receives item
 												_success = true;
 												"[GUERLoop] - success" remoteExec ["systemChat", 0];
 											};
@@ -156,23 +156,23 @@ if ((date select 3) != _lasthr) then {
 										};
 									}foreach _needArr;
 									call {
-										format ["[GUERLoop] - adding item %1", _clsout] remoteExec ["systemChat", 0];
-										if(_clsout isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
-											_container addWeaponCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										format ["[GUERLoop] - adding item %1", _producing] remoteExec ["systemChat", 0];
+										if(_producing isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
+											_container addWeaponCargoGlobal [_producing, round(1 * (1 + (_employees/50)))];
 										};
-										if(_clsout isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
-											_container addWeaponCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										if(_producing isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
+											_container addWeaponCargoGlobal [_producing, round(1 * (1 + (_employees/50)))];
 										};
-										if(_clsout isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
-											_container addWeaponCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										if(_producing isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
+											_container addWeaponCargoGlobal [_producing, round(1 * (1 + (_employees/50)))];
 										};
-										if(_clsout isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
-											_container addMagazineCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										if(_producing isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
+											_container addMagazineCargoGlobal [_producing, round(1 * (1 + (_employees/50)))];
 										};
-										_container addItemCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										_container addItemCargoGlobal [_producing, round(1 * (1 + (_employees/50)))];
 									};
 								};
-								format ["[GUERLoop] - Business:%1 produced:%2", _name, _clsout] remoteExec ["systemChat", 0];
+								format ["[GUERLoop] - Business:%1 produced:%2", _name, _producing] remoteExec ["systemChat", 0];
 								diag_log format ["[GUERLoop] - Business:%1 _needArr:%2 _costprice:%3", _name, _needArr, _costprice];
 								if (_producing select 2 == 1) then {
 									_queue deleteAt 0;
@@ -180,9 +180,9 @@ if ((date select 3) != _lasthr) then {
 									_producing set [2, (_producing select 2)-1];
 									_queue set [0, _producing];
 								};
-								server setvariable [format["%1producing",_name],_queue,true];
+								server setvariable [format["%1queue",_name],_queue,true];
 								_xp = _xp + round(_income/100);
-								server setVariable ["%1xp", _xp, true];
+								server setVariable [format["%1xp",_name], _xp, true];
 								[] remoteExecCall ["OT_fnc_refreshBusiness", 0];
 							} else {
 								format["%1 is missing resources.",_name] remoteExec ["OT_fnc_notifyMinor",0,false];

@@ -29,7 +29,8 @@ private _townpop = server getVariable format ["population%1",_town];
 private _totalpop = call OT_fnc_getControlledPopulation;
 private _rep = server getVariable ["rep",0];
 private _geurOwned = (server getVariable ["GEURowned",[]]);
-private _extra = "";
+private _extra1 = "";
+private _extra2 = "";
 if (count _geurOwned isEqualTo 0) then {
 	ctrlEnable [1603,false];
 	findDisplay 8001 displayCtrl 1603 ctrlSetTooltip "Buy a business to access Business Management";
@@ -40,13 +41,18 @@ for [{private _i=1600;},{_i==1621;},{_i=_i+1;}] do {
 	private _ctrl = findDisplay 8001 displayCtrl _i;
 };
 
+_extra1 = format["
+	<br/>
+	<t align='left'> Funds (yours): $%1</t><br/>
+	",
+	[player getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber
+];
+
 if(isMultiplayer && { ((getplayeruid player) in (server getVariable ["generals",[]])) }) then {
-	_extra = format["
-		<t align='left'>Funds (yours): $%1</t><br/>
-		<t align='left'>Resistance: $%2 (Tax Rate %3%4)</t><br/>
+	_extra2 = format["
+		<t align='left'>Resistance: $%1 (Tax Rate %2%3)</t><br/>
 		",
-		[server getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,
-		[player getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,	server getVariable ["taxrate",0], "%"
+		[server getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,	server getVariable ["taxrate",0], "%"
 	];
 };
 
@@ -58,13 +64,15 @@ _ctrl ctrlSetStructuredText parseText format[
 		<t align='left'>Weather: %10 (Forecast: %11)</t><br/>
 		<t align='left'>Fuel Price: $%12/L</t><br/>
 		%13
+		%14
 	",
 	_town, _townpop, ["","+"] select (_standing > -1), _standing,
 	OT_nation, _totalpop, ["","+"] select (_rep > -1), _rep,
 	player getVariable ["influence",0],
 	_weather, server getVariable "forecast",
 	[OT_nation,"FUEL",100] call OT_fnc_getPrice,
-	_extra
+	_extra1,
+	_extra2
 ];
 
 sleep 0.3;

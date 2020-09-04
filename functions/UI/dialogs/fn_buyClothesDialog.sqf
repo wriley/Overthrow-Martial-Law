@@ -18,7 +18,7 @@ lbClear 1500;
 		lbSetValue [1500,_idx,_price];
 		lbSetData [1500,_idx,_cls];
 	};
-}foreach(OT_allClothing + ["V_RebreatherIA"]);
+}foreach(OT_allClothing - OT_illegalUniform + ["V_RebreatherIA"]);
 
 {
 	private _cls = _x;
@@ -34,4 +34,4 @@ lbClear 1500;
 	lbSetValue [1500,_idx,_price];
 	lbSetData [1500,_idx,_cls];
 
-}foreach(OT_allGlasses + OT_allGoggles + OT_allFacewear);
+}foreach(OT_allGlasses + OT_allGoggles + OT_allFacewear - OT_illegalHeadgear);
