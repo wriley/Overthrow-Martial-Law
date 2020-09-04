@@ -20,8 +20,7 @@ if (isNil "OT_item_Workbench") then {
 	OT_item_Workbench = "Land_Workbench_01_F";
 };
 
-
-
+/*
 if(typeof _this isEqualTo OT_item_Map) then {
 	_this addAction ["Town Info", OT_fnc_mapInfoDialog,nil,0,false,true,"",""];
 	_this addAction ["Reset UI", {
@@ -29,6 +28,7 @@ if(typeof _this isEqualTo OT_item_Map) then {
 		[] spawn OT_fnc_setupPlayer;
 	},nil,0,false,true,"",""];
 };
+*/
 
 if(typeof _this isEqualTo OT_item_Storage) then {
 	_this addAction ["ARSENAL (Ammobox)", {

@@ -24,6 +24,9 @@ if((_b select 1) isEqualTo "Business") then {
 				clearMagazineCargoGlobal _container;
 				clearBackpackCargoGlobal _container;
 				clearItemCargoGlobal _container;
+				{
+					_container addItemCargoGlobal [_x, 50];
+				} foreach OT_resources;
 
             } else {
             "The resistance cannot afford this" call OT_fnc_notifyMinor;
