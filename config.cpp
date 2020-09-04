@@ -233,6 +233,7 @@ class ACE_Tags {
 #include "ui\dialogs\choose.hpp"
 #include "ui\dialogs\newgame.hpp"
 #include "ui\dialogs\place.hpp"
+#include "ui\dialogs\input.hpp"
 #include "ui\dialogs\buildbase.hpp"
 #include "ui\dialogs\buildobjective.hpp"
 #include "ui\dialogs\buildtown.hpp"

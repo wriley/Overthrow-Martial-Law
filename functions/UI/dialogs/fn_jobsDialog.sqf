@@ -1,4 +1,5 @@
 closedialog 0;
+if (count (spawner getVariable ["OT_activeJobs",[]]) isEqualTo 0) exitWith { "You have no jobs yet" call OT_fnc_notifyMinor; };
 createDialog "OT_dialog_jobs";
 
 {

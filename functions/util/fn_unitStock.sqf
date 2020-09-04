@@ -10,7 +10,7 @@ if(_this isEqualType []) then {
 	_target = _this select 0;
 
 	if(_category isEqualTo "Hardware") then {
-		_categoryItems = ["OT_Steel","OT_Wood","OT_Plastic","OT_Fertilizer"];
+		_categoryItems = OT_Resources;
 	};
 	if(_category isEqualTo "Clothing") then {
 		_categoryItems = OT_allLegalClothing + OT_allGlasses + OT_allGoggles + OT_allFacewear;

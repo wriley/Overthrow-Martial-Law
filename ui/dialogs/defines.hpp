@@ -264,7 +264,7 @@ class RscOverthrowStructuredText
 	h = 0.035;
 	w = 0.1;
 	text = "";
-	size = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * (0.25 + (0.3 / (pixelGrid / 14))))";
+	size = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * (0.25 + (0.30 / (pixelGrid / 14))))";
 	shadow = 0;
 	lineSpacing = 0;
 };
@@ -571,7 +571,7 @@ class RscOverthrowListBox
 	fade = 0;
 	access = 0;
 	type = 5;
-	rowHeight = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1)";
+	rowHeight = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * (0.5 + (0.5 / (pixelGrid / 14))))";
 	onLBSelChanged  = "";
 	colorText[] =
 	{

@@ -39,10 +39,10 @@ class OT_dialog_main
 			action = "closeDialog 0;[] spawn OT_fnc_mapInfoDialog";
 
 			text = "Map Info"; //--- ToDo: Localize;
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.22 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.218 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "Retrieve information on town stability and more"; //--- ToDo: Localize;
 		};
 		class RscButton_1601: RscOverthrowButton
@@ -51,10 +51,10 @@ class OT_dialog_main
 			action = "closeDialog 0;[] spawn OT_fnc_fastTravel";
 			text = "Fast Travel"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.432 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.489 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "Instantly travel to various controlled locations"; //--- ToDo: Localize;
 		};
 		class RscButton_1602: RscOverthrowButton
@@ -63,22 +63,22 @@ class OT_dialog_main
 			action = "closeDialog 0;[] spawn OT_fnc_resistanceDialog";
 			text = "Resistance"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.486 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
-			tooltip = "Manage owned businesses and resistance funds"; //--- ToDo: Localize;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.544 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
+			tooltip = "Manage resistance and it's funds"; //--- ToDo: Localize;
 		};
 		class RscButton_1603: RscOverthrowButton
 		{
 			idc = 1603;
-			action = "call OT_fnc_businessDialog";
-			text = "Business"; //--- ToDo: Localize;
+			action = "[] call OT_fnc_manageBusinessDialog";
+			text = "Businesses"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.542 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.599 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "Manage businesses owned by the resistance"; //--- ToDo: Localize;
 		};
 		class RscButton_1604: RscOverthrowButton
@@ -87,10 +87,10 @@ class OT_dialog_main
 			action = "call OT_fnc_logisticsDialog";
 			text = "Vehicles"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.598 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.654 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "List of all military vehicles and their state"; //--- ToDo: Localize;
 		};
 		class RscButton_1605: RscOverthrowButton
@@ -99,10 +99,10 @@ class OT_dialog_main
 			action = "closeDialog 0;[] spawn OT_fnc_jobsDialog";
 			text = "Jobs"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.654 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.709 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "Jobs and tasks currently available"; //--- ToDo: Localize;
 		};
 		class RscButton_1606: RscOverthrowButton
@@ -111,10 +111,10 @@ class OT_dialog_main
 			action = "closeDialog 0;[] spawn OT_fnc_manageRecruitsDialog;";
 			text = "Manage Recruits"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.71 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.764 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "Manage recruits in your group"; //--- ToDo: Localize;
 		};
 		class RscButton_1607: RscOverthrowButton
@@ -123,10 +123,10 @@ class OT_dialog_main
 			action = "closeDialog 0;[] spawn OT_fnc_characterSheetDialog;";
 			text = "Character Sheet"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.766 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.819 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "Upgrade your character"; //--- ToDo: Localize;
 		};
 		class RscButton_1608: RscOverthrowButton
@@ -135,10 +135,10 @@ class OT_dialog_main
 			action = "call OT_fnc_optionsDialog";
 			text = "Options"; //--- ToDo: Localize;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.822 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.042 * safezoneH;
+			x = 0.00499997 * safezoneW + safezoneX;
+			y = 0.874 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.044 * safezoneH;
 			tooltip = "Persistent save, clear bodies/fog and more"; //--- ToDo: Localize;
 		};
 		class RscButton_1609: RscOverthrowButton
@@ -165,7 +165,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = "Build structures in towns and at bases"; //--- ToDo: Localize;
 		};
-		class RscButton_1611: RscOverthrowButton //1608
+		class RscButton_1611: RscOverthrowButton
 		{
 			idc = 1611;
 			action = "[] call OT_fnc_buyBuilding";
@@ -177,7 +177,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = ""; //--- ToDo: Localize;
 		};
-		class RscButton_1612: RscOverthrowButton //1609
+		class RscButton_1612: RscOverthrowButton
 		{
 			idc = 1612;
 			action = "[] call OT_fnc_leaseBuilding";
@@ -189,7 +189,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = ""; //--- ToDo: Localize;
 		};
-		class RscButton_1613: RscOverthrowButton //1610
+		class RscButton_1613: RscOverthrowButton
 		{
 			idc = 1613;
 			action = "[] call OT_fnc_setHome";
@@ -201,7 +201,7 @@ class OT_dialog_main
 			h = 0.042 * safezoneH;
 			tooltip = ""; //--- ToDo: Localize;
 		};
-		class RscButton_1614: RscOverthrowButton // 1620
+		class RscButton_1614: RscOverthrowButton
 		{
 			idc = 1614;
 			action = "[] spawn OT_fnc_manageArea";
@@ -212,7 +212,7 @@ class OT_dialog_main
 			w = 0.0721875 * safezoneW;
 			h = 0.042 * safezoneH;
 		};
-		class RscButton_1615: RscOverthrowButton // 1621
+		class RscButton_1615: RscOverthrowButton
 		{
 			idc = 1615;
 			action = "(getpos player) call OT_fnc_garrisonDialog";
@@ -233,17 +233,17 @@ class OT_dialog_main
 			w = 0.144375 * safezoneW;
 			h = 0.168 * safezoneH;
 		};
-		class RscStructuredText_1100: RscOverthrowStructuredText
+		class RscStructuredText_1100: RscOverthrowStructuredText // map details
 		{
 			idc = 1100;
 
-			x = 0.0078125 * safezoneW + safezoneX;
-			y = 0.276 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
-			h = 0.14 * safezoneH;
+			x = 0.00499972 * safezoneW + safezoneX;
+			y = 0.269 * safezoneH + safezoneY;
+			w = 0.170156 * safezoneW;
+			h = 0.209 * safezoneH;
 			colorBackground[] = {0,0,0,0.4};
 		};
-		class RscStructuredText_1101: RscOverthrowStructuredText
+		class RscStructuredText_1101: RscOverthrowStructuredText // business details
 		{
 			idc = 1101;
 
@@ -253,7 +253,7 @@ class OT_dialog_main
 			h = 0.14 * safezoneH;
 			colorBackground[] = {0,0,0,0.4};
 		};
-		class RscStructuredText_1102: RscOverthrowStructuredText
+		class RscStructuredText_1102: RscOverthrowStructuredText // building details
 		{
 			idc = 1102;
 
@@ -263,17 +263,7 @@ class OT_dialog_main
 			h = 0.14 * safezoneH;
 			colorBackground[] = {0,0,0,0.4};
 		};
-		class RscStructuredText_1106: RscOverthrowStructuredText
-		{
-			idc = 1106;
-			x = 0.847813 * safezoneW + safezoneX;
-			y = 0.108 * safezoneH + safezoneY;
-			w = 0.144375 * safezoneW;
-			h = 0.042 * safezoneH;
-			colorBackground[] = {0,0,0,0};
-			colorActive[] = {0,0,0,0};
-		};
-		class RscStructuredText_1150: RscOverthrowStructuredText
+		class RscStructuredText_1150: RscOverthrowStructuredText // notification log
 		{
 			idc = 1150;
 
@@ -290,7 +280,7 @@ class OT_dialog_main
 
 			x = 0.0078125 * safezoneW + safezoneX;
 			y = 0.001 * safezoneH + safezoneY;
-			w = 0.164062 * safezoneW;
+			w = 0.170156 * safezoneW;
 			h = 0.196 * safezoneW;
 			colorBackground[] = {0,0,0,1};
 			colorActive[] = {0,0,0,1};

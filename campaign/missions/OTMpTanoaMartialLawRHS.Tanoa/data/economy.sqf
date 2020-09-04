@@ -27,7 +27,7 @@ OT_economicData = [
     [[12507.4,7820.99,0],"Oumere Banana Plantations",[
 		["Bananas","ACE_Banana",				[["OT_Fertilizer",1]]]
 	]],
-    [[8526.85,12467.3,0],"Roadhouse",[
+    [[8502.68,12452.4,0],"Roadhouse",[
 		["Money","",							[]]
 	]],
     [[11921.1,10206.5,0],"Red Spring Surface Mine",[

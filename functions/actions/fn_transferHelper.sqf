@@ -1,6 +1,5 @@
-_this spawn { 
+_this spawn {
 	params ["_source", "_dest"];
-	player globalchat format ["running transferHelper params:%1", _this];
 	private _supplycache = _source getVariable ["NATOsupply",false];
 	if(_supplycache isEqualType "") then {
 		private _me = driver _dest;
@@ -52,7 +51,6 @@ _this spawn {
 	}foreach(_mags);
 
 	if (_iswarehouse) then {
-		player globalchat "calling addToWarehouse";
 		{
 			_x params ["_cls", "_qtyIn"];
 			[_dest, _cls, _qtyIn] remoteExecCall ["OT_fnc_addToWarehouse", 2, false];

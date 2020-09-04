@@ -28,7 +28,7 @@ if(OT_adminMode) then {
 };
 
 createDialog "OT_dialog_buy";
-
+(findDisplay 8000) displayCtrl 1101 ctrlSetStructuredText parseText "<t align='left' size='2'>Warehouse Procurement</t>";
 {
 	_x params ["_cls"];
 	if((_cls select [0,3]) != "IED") then {
@@ -78,5 +78,6 @@ private _idx = lbAdd [1500,format["Quadcopter"]];
 lbSetPicture [1500,_idx,OT_item_UAV call OT_fnc_vehicleGetPic];
 lbSetData [1500,_idx,OT_item_UAV];
 lbSetValue [1500,_idx,_price];
+lbSetCurSel [1500,0];
 ctrlShow [1601,false];
 ctrlShow [1602,false];

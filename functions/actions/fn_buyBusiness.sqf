@@ -17,13 +17,21 @@ if((_b select 1) isEqualTo "Business") then {
                 _pos remoteExec ["OT_fnc_resetSpawn",2,false];
                 format["%1 is now operational",_name] remoteExec ["OT_fnc_notifyMinor",0,false];
                 _name setMarkerColor "ColorGUER";
+				_contpos = _pos findEmptyPosition [5,100,OT_businessStorage];
+				_container = OT_businessStorage createVehicle _contpos;
+				[_container,(server getVariable ["generals",[]]) select 0] call OT_fnc_setOwner;
+				clearWeaponCargoGlobal _container;
+				clearMagazineCargoGlobal _container;
+				clearBackpackCargoGlobal _container;
+				clearItemCargoGlobal _container;
+
             } else {
             "The resistance cannot afford this" call OT_fnc_notifyMinor;
 			};
         };
     };
 }else{
-    if((getpos player) distance OT_factoryPos < 150) then {
+    if((getpos player) distance OT_factoryPos < 100) then {
         if (call OT_fnc_playerIsGeneral) then {
             private _name = "Factory";
 
