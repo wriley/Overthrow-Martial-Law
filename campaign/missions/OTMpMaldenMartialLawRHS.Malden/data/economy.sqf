@@ -42,7 +42,7 @@ OT_economicData = [
 		["ACE_bloodIV",			[["OT_Plastic",2],["FirstAidKit",1]]]
 	]],
     [[7842.64,3184.34,0],"Malden Power Plant"[
-		["Money","",			[]]
+		["Money",				[]]
 	]]
 ];
 OT_factoryPos = [7483.93,10552.6,0];
