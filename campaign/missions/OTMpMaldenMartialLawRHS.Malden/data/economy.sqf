@@ -41,7 +41,7 @@ OT_economicData = [
 		["ACE_bloodIV_500",		[["OT_Plastic",2]]],
 		["ACE_bloodIV",			[["OT_Plastic",2],["FirstAidKit",1]]]
 	]],
-    [[7842.64,3184.34,0],"Malden Power Plant"[
+    [[7842.64,3184.34,0],"Malden Power Plant",[
 		["Money",				[]]
 	]]
 ];
