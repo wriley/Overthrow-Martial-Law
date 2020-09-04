@@ -72,12 +72,11 @@ private _wages = 0;
 private _income = 0;
 {
     if(_x != "Factory") then {
-        _num = server getVariable [format["%1employ",_x],0];
-        _wages = _wages + (_num * _perhr);
-        if(_num > 20) then {_num = 20};
+        _employees = server getVariable [format["%1employ",_x],0];
+        _wages = _wages + (_employees * _perhr);
         _data = _x call OT_fnc_getBusinessData;
-        if(count _data isEqualTo 2) then {
-            _income = _income + ((_num * 200) * 6);
+        if(count _data isEqualTo 2) then { // not correct anymore
+            _income = _income + ((_employees * 200) * 6);
         };
     };
 }foreach(server getVariable ["GEURowned",[]]);

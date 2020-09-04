@@ -28,8 +28,12 @@ private _standing = [_town] call OT_fnc_support;
 private _townpop = server getVariable format ["population%1",_town];
 private _totalpop = call OT_fnc_getControlledPopulation;
 private _rep = server getVariable ["rep",0];
+private _geurOwned = (server getVariable ["GEURowned",[]]);
 private _extra = "";
-
+if (count _geurOwned isEqualTo 0) then {
+	ctrlEnable [1603,false];
+	findDisplay 8001 displayCtrl 1603 ctrlSetTooltip "Buy a business to access Business Management";
+};
 private _uiScale = 0.4 + (0.5 / (pixelGrid / 12));
 
 for [{private _i=1600;},{_i==1621;},{_i=_i+1;}] do {
@@ -37,18 +41,19 @@ for [{private _i=1600;},{_i==1621;},{_i=_i+1;}] do {
 };
 
 if(isMultiplayer && { ((getplayeruid player) in (server getVariable ["generals",[]])) }) then {
-	_extra = format[
-		"<t align='left'>Resistance Funds: $%1 (Tax Rate %2%3)</t>",
+	_extra = format["
+		<t align='left'>Funds (yours): $%1</t><br/>
+		<t align='left'>Resistance: $%2 (Tax Rate %3%4)</t><br/>
+		",
 		[server getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,
-		server getVariable ["taxrate",0],
-		"%"
+		[player getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,	server getVariable ["taxrate",0], "%"
 	];
 };
 
 _ctrl ctrlSetStructuredText parseText format[
 	"<br/>
 		<t align='left'>%1 Population: (%2) Support: (%3%4)</t><br/>
-		<t align='left'>%5 Population: (%6) Support: (%7%8)</t><br/>
+		<t align='left'>Your Population: (%6) %5 Support: (%7%8)</t><br/>
 		<t align='left'>Influence Points: %9</t><br/>
 		<t align='left'>Weather: %10 (Forecast: %11)</t><br/>
 		<t align='left'>Fuel Price: $%12/L</t><br/>
@@ -61,13 +66,6 @@ _ctrl ctrlSetStructuredText parseText format[
 	[OT_nation,"FUEL",100] call OT_fnc_getPrice,
 	_extra
 ];
-
-_ctrl = (findDisplay 8001) displayCtrl 1106;
-_ctrl ctrlSetStructuredText parseText format[
-	"<t align='right'>$%1</t>",
-	[player getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber
-];
-
 
 sleep 0.3;
 //Nearest building info
@@ -356,7 +354,7 @@ if(_obpos distance player < 250) then {
 		_obpos = (_ob select 2) select 0;
 		_obname = (_ob select 0);
 		if(_obpos distance player < 250) then {
-			if(_obname in (server getVariable ["GEURowned",[]])) then {
+			if(_obname in _geurOwned) then {
 				_price = _obname call OT_fnc_getBusinessPrice;
 				_level = (_obname call OT_fnc_getBusinessData) select 4;
 				ctrlSetText [1201,OT_flagImage];
@@ -382,7 +380,7 @@ if(_obpos distance player < 250) then {
 	}else{
 		if((getpos player) distance OT_factoryPos < 150) then {
 			_obname = "Factory";
-			if(_obname in (server getVariable ["GEURowned",[]])) then {
+			if(_obname in _geurOwned) then {
 				_areaText = format["<br/>
 					<t align='left'>%1</t><br/>
 					<t align='left'>Operational</t>

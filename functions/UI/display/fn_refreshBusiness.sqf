@@ -1,3 +1,4 @@
+if (isNull(findDisplay 8000) || !hasInterface) exitWith {};
 disableSerialization;
 private ["_name","_item","_cost","_need","_xp","_level","_nextlevel"];
 
@@ -6,10 +7,10 @@ private _name = lbText [1500,(lbCurSel 1500)];
 private _item = lbText [1501,(lbCurSel 1501)];
 private _supplyname = lbText [1502,(lbCurSel 1502)];
 private _business = _name call OT_fnc_getBusinessData; 
-_business params ["_pos","","_production","_xp","_level","_nextlevel"];
 private _employees = server getVariable [format["%1employ",_name],0];
 private _salary = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
 
+_business params ["_pos","","_production","_xp","_level","_nextlevel"];
 lbClear 1501;
 {
 	private _clsname = _x select 0;
@@ -41,8 +42,6 @@ lbClear 1501;
 	lbSetData [1501,_idx,_cls];
 	
 }foreach _production;
-//lbSetCurSel [1501,0];
-if(_name isEqualTo "Factory") then {_salary = _salary * 2};
 
 private _wages = _employees * _salary;
 // GET PRICES OF OUTPUT AND CALCULATE RESISTANCE INCOME
@@ -64,18 +63,29 @@ _textctrl = (findDisplay 8000) displayCtrl 1108;
 _textctrl ctrlSetStructuredText parseText _text;
 
 // required for production
-private _need = "";
+private _need = "<t size='1.4'>Required (in Store)</t><br/><br/></t><br/>";
 {
 	_x params ["_output","","_inputs"];
 	diag_log str _x;
 	if (_output isEqualTo _item) then {
 		if (count _inputs > 0) then {
+			private _stock = [];
+			{
+				_container = _x;
+				_stock = _container call OT_fnc_unitStock;
+			}foreach(_pos nearObjects [OT_businessStorage, 50]);
 			private _cost = 0;
 			{
 				_x params ["_cls", "_qty"];
 				if!(_cls isEqualTo "Money") then {
 					private _longname = _cls call OT_fnc_weaponGetName;
-					_need = _need + format["<t size='1'>%2 x %1</t><br/>",_longname,_qty];
+					private _contqty = 0;
+					{
+						_contcls = _x select 0;
+						if(_contcls isEqualTo _cls) then {_contqty = _x select 1;};
+					}foreach(_stock);
+					if (_contqty >= _qty) then {_need = _need + format["<t size='1.2'>%1 x %2 (%3)</t><br/>",_qty,_longname, _contqty];
+					} else {_need = _need + format["<t size='1.2'>%1 x %2</t><t size='1.2' color='#FF0000'>(%3)</t><br/>",_qty,_longname, _contqty];};					
 				} else {
 					for [{private _i=0},{_i<_qty},{_i=_i+1}] do {
 						_cost = _cost + round((([OT_nation,_cls,0]) call OT_fnc_getPrice) * (1-(_level/10)));
@@ -91,10 +101,17 @@ private _need = "";
 		};
 	};
 }foreach _production;
-_textctrl = (findDisplay 8000) displayCtrl 1109;
-_textctrl ctrlSetStructuredText parseText _need;
-
 if(lbCurSel 1501 isEqualTo -1) then {
 	_textctrl = (findDisplay 8000) displayCtrl 1109;
 	_textctrl ctrlSetStructuredText parseText "";
+} else {
+	_textctrl = (findDisplay 8000) displayCtrl 1109;
+	_textctrl ctrlSetStructuredText parseText _need;
 };
+lbClear 1502;
+private _queue = server getVariable [format ["%1producing", _name], []];
+{
+	_x params ["_name","_cls","_qty"];
+	private _idx = lbAdd [1502,format["%1 x %2",_qty, _name]];
+	lbSetData [1502,_idx,_cls];
+}foreach _queue;

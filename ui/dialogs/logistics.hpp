@@ -51,7 +51,6 @@ class OT_dialog_logistics
 			y = 0.752 * safezoneH + safezoneY;
 			w = 0.0590625 * safezoneW;
 			h = 0.07 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
 			action = "[] call OT_fnc_setVehicleWaypoint;";
 		};
 		class RscButton_1601: RscOverthrowButton
@@ -62,7 +61,6 @@ class OT_dialog_logistics
 			y = 0.752 * safezoneH + safezoneY;
 			w = 0.0590625 * safezoneW;
 			h = 0.07 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
 			action = "[] call OT_fnc_clearPlayerWaypoint;";
 		};
 		class RscButton_1602: RscOverthrowButton
@@ -73,7 +71,6 @@ class OT_dialog_logistics
 			y = 0.752 * safezoneH + safezoneY;
 			w = 0.1101250‬ * safezoneW;
 			h = 0.07 * safezoneH;
-			colorBackground[] = {0,0,0,0.8};
 			tooltip = "Completely removes the vehicle without leaving a wreck, only the owner/general can do this."; //--- ToDo: Localize;
 			action = "[] call OT_fnc_UnownVehicle;";
 		};

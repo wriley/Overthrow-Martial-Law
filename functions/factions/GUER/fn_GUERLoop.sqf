@@ -2,6 +2,7 @@ GUER_faction_loop_data params ["_lastmin","_lasthr","_currentProduction","_stabc
 diag_log format ["[GUERLoop] - GUER_faction_loop_data params: %1", GUER_faction_loop_data];
 private _numplayers = count([] call CBA_fnc_players);
 if(_numplayers isEqualTo 0) exitWith {};
+"[GUERLoop] - ..." remoteExec ["systemChat", 0];
 
 _trackcounter = _trackcounter + 1;
 if(_trackcounter > 5) then {
@@ -69,113 +70,122 @@ if ((date select 3) != _lasthr) then {
 		private _name = _x;
 		if(_name != "Factory") then {
 			private _queue = server getvariable [format["%1producing",_name],[]];
-			diag_log format ["[GUERLoop] - Business name: %1 Queue: %2", _name, _queue];
 			if (count _queue != 0) then {
+				diag_log format ["[GUERLoop] - Business name: %1 Queue: %2", _name, _queue];
+				private _business = _name call OT_fnc_getBusinessData;
 				private _perhr = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
 				private _employees = server getVariable [format["%1employ",_name],0];
 				private _funds = [] call OT_fnc_resistanceFunds;
 				private _salary = (_employees * _perhr);
 				private _income = 0;
-				diag_log format ["[GUERLoop] - Employees:%1 Funds:%2 Salary:%3", _employees, _funds, _salary];
 				if(_funds >= _salary) then {
+					_business params ["_pos","","_production","_xp","_level"];
 					_producing = _queue select 0;
+					format ["[GUERLoop] - _producing:%2", _name, _producing] remoteExec ["systemChat", 0];
 					[-_salary] call OT_fnc_resistanceFunds;
-					_business = _name call OT_fnc_getBusinessData;
-					_business params ["_pos","_name","_production","_xp","_level"];
-					_production params ["_produceName","_output","_input"];
 					_outpower = 2 * _employees;
 					_inpower = 2 * _employees;
 					_intotal = _inpower;
-					diag_log str _production;
 					if(_employees > 0) then {
-						if(count _input isEqualTo 0 && _name != "Factory") then {
-							_income = _employees * 200 * (1+(_level/10));
+						private _clsout = _producing select 1;
+						private _needArr = [];
+						{
+							if (_x select 1 == _producing select 1) exitWith {
+								_needArr = _x select 2;
+							};
+						}foreach _production;
+						if(count _needArr isEqualTo 0) then {
+							_income = _salary * (1.1 + (_level/12.5)); // (110% to 150% profitability on wages)
 							[_income] call OT_fnc_resistanceFunds;
+							format ["[GUERLoop] - Business %1 income:%2", _name, _income] remoteExec ["systemChat", 0];
 						} else {
-							//_input = _business select 2;
+							private _success = false;
+							private _costprice = 0;
 							_income = 0;
-							_sellprice = round(([OT_nation,_input,0] call OT_fnc_getSellPrice) * 1.2);
-							_container = _pos nearestObject OT_businessStorage;
-							if(_container isEqualTo objNull) then {
-								_contpos = _pos findEmptyPosition [5,100,OT_businessStorage];
-								_container = OT_businessStorage createVehicle _contpos;
-								[_container,(server getVariable ["generals",[]]) select 0] call OT_fnc_setOwner;
-								clearWeaponCargoGlobal _container;
-								clearMagazineCargoGlobal _container;
-								clearBackpackCargoGlobal _container;
-								clearItemCargoGlobal _container;
-							};
 							{
-								_stock = _name call OT_fnc_unitStock;
-								_container = _x;
+								_x params ["_inputClass",["_inputQty",1]];
+								_costprice = _costprice + round([OT_nation,_inputClass,0] call OT_fnc_getSellPrice) * _inputQty;
 								{
-									_x params ["_cls","_amt"];
-									if(_cls isEqualTo _input) exitWith {
-										if(_amt >= _inpower) then {
-											[_container, _cls, _inpower] call CBA_fnc_removeItemCargo;
-											_income = _income + (_sellprice * _inpower);
-										}else{
-											[_container, _cls, _amt] call CBA_fnc_removeItemCargo;
-											_inpower = _inpower - _amt;
-											_income = _income + (_sellprice * _amt);
-										};
-									};
-								}foreach(_stock);
-							}foreach(_pos nearObjects [OT_businessStorage, 50]);
-							[_income] call OT_fnc_resistanceFunds;
-						};
-						if(count _data isEqualTo 4) then {
-							_input = _data select 2;
-							_output = _data select 3;
-							_container = _pos nearestObject OT_businessStorage;
-							if(_container isEqualTo objNull) then {
-								_contpos = _pos findEmptyPosition [5,100,OT_businessStorage];
-								_container = OT_businessStorage createVehicle _contpos;
-								[_container,(server getVariable ["generals",[]]) select 0] call OT_fnc_setOwner;
-								clearWeaponCargoGlobal _container;
-								clearMagazineCargoGlobal _container;
-								clearBackpackCargoGlobal _container;
-								clearItemCargoGlobal _container;
-							};
-							if(_input != "") then {
-								_inputnum = 0;
-								{
-									_cont = _x;
+									_container = _x;
+									_stock = _container call OT_fnc_unitStock;
 									{
 										_x params ["_cls","_amt"];
-										if(_cls isEqualTo _input) exitWith {
-											if(_amt >= _inpower) then {
-												[_cont, _cls, _inpower] call CBA_fnc_removeItemCargo;
-												_inputnum = _inputnum + _inpower;
-											}else{
-												[_cont, _cls, _amt] call CBA_fnc_removeItemCargo;
-												_inpower = _inpower - _amt;
-												_inputnum = _inputnum + _amt;
+										format ["[GUERLoop] - x params:%1", _x] remoteExec ["systemChat", 0];
+										if(_cls isEqualTo _inputClass) exitWith {
+											if(_amt >= _inputQty) then {
+												_income = _income + _costprice * _amt;
+												_success = true;
+												"[GUERLoop] - success" remoteExec ["systemChat", 0];
 											};
 										};
-									}foreach(_cont call OT_fnc_unitStock);
+									}foreach(_stock);
 								}foreach(_pos nearObjects [OT_businessStorage, 50]);
-								_outpower = round (_outpower * (_inputnum / _intotal));
-							};
-							if(_output != "" && _outpower > 0) then {
-								if(_output in ["OT_Sugarcane","ACE_Banana"]) then {
-									_foundFertilizer = false;
+							}foreach _needArr;
+
+							if (_success) then {
+								if (count _needArr isEqualTo 0) then {
+									[_income] call OT_fnc_resistanceFunds;
+								} else {
+									private _container = _pos nearestObject OT_businessStorage;
 									{
-										_c = _x;
-										{
-											_x params ["_cls","_amt"];
-											if(_cls isEqualTo "OT_Fertilizer") exitWith {
-												[_c, _cls, 1] call CBA_fnc_removeItemCargo;
-												_foundFertilizer = true;
+										_x params ["_inputClass","_inputQty"];
+										format ["[GUERLoop] - needArr x params:%1", _x] remoteExec ["systemChat", 0];
+										call {
+											if(_inputClass isKindOf "Bag_Base") exitWith {
+												[_container, _inputClass, _inputQty] call CBA_fnc_removeBackpackCargo;
 											};
-										}foreach(_c call OT_fnc_unitStock);
-										if(_foundFertilizer) exitWith {};
-									}foreach(_pos nearObjects [OT_businessStorage, 50]);
-									if(_foundFertilizer) then {
-										_output = round(_output * 1.5);
+											if(_inputClass isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
+												[_container, _inputClass, _inputQty] call CBA_fnc_removeWeaponCargo;
+											};
+											if(_inputClass isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
+												[_container, _inputClass, _inputQty] call CBA_fnc_removeWeaponCargo;
+											};
+											if(_inputClass isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
+												[_container, _inputClass, _inputQty] call CBA_fnc_removeWeaponCargo;
+											};
+											if(_inputClass isKindOf ["NVGoggles",configFile >> "CfgWeapons"]) exitWith {
+												[_container, _inputClass, _inputQty] call CBA_fnc_removeItemCargo;
+											};
+											if(_inputClass isKindOf ["Binocular",configFile >> "CfgWeapons"]) exitWith {
+												[_container, _inputClass, _inputQty] call CBA_fnc_removeWeaponCargo;
+											};
+											if(_inputClass isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
+												[_container, _inputClass, _inputQty] call CBA_fnc_removeMagazineCargo;
+											};
+											[_container, _inputClass, _inputQty] call CBA_fnc_removeItemCargo;
+										};
+									}foreach _needArr;
+									call {
+										format ["[GUERLoop] - adding item %1", _clsout] remoteExec ["systemChat", 0];
+										if(_clsout isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
+											_container addWeaponCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										};
+										if(_clsout isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
+											_container addWeaponCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										};
+										if(_clsout isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
+											_container addWeaponCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										};
+										if(_clsout isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
+											_container addMagazineCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
+										};
+										_container addItemCargoGlobal [_clsout, round(1 * (1 + (_employees/50)))];
 									};
 								};
-								_container addItemCargoGlobal [_output,_outpower];
+								format ["[GUERLoop] - Business:%1 produced:%2", _name, _clsout] remoteExec ["systemChat", 0];
+								diag_log format ["[GUERLoop] - Business:%1 _needArr:%2 _costprice:%3", _name, _needArr, _costprice];
+								if (_producing select 2 == 1) then {
+									_queue deleteAt 0;
+								} else {
+									_producing set [2, (_producing select 2)-1];
+									_queue set [0, _producing];
+								};
+								server setvariable [format["%1producing",_name],_queue,true];
+								_xp = _xp + round(_income/100);
+								server setVariable ["%1xp", _xp, true];
+								[] remoteExecCall ["OT_fnc_refreshBusiness", 0];
+							} else {
+								format["%1 is missing resources.",_name] remoteExec ["OT_fnc_notifyMinor",0,false];
 							};
 						};
 					};
