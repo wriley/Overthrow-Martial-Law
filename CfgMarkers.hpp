@@ -1,10 +1,19 @@
 class CfgMarkers
 {
+	class ot_Shop_Gundealer
+	{
+		name = "Gun Dealer";
+		icon = "\overthrow_main\ui\markers\shop-Gundealer.paa";
+		color[] = {1, 1, 1, 1};
+		size = 128;
+		shadow = true;
+		scope = 1;
+	};
 	class ot_Shop_Clothing
 	{
 		name = "Clothing";
 		icon = "\overthrow_main\ui\markers\shop-Clothing.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -13,7 +22,7 @@ class CfgMarkers
 	{
 		name = "Electronics";
 		icon = "\overthrow_main\ui\markers\shop-Electronics.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -22,8 +31,8 @@ class CfgMarkers
 	{
 		name = "General";
 		icon = "\overthrow_main\ui\markers\shop-General.paa";
-		color[] = {1, 0, 0, 1};
-		size = 32;
+		color[] = {1, 1, 1, 1};
+		size = 128;
 		shadow = true;
 		scope = 1;
 	};
@@ -31,8 +40,8 @@ class CfgMarkers
 	{
 		name = "Hardware";
 		icon = "\overthrow_main\ui\markers\shop-Hardware.paa";
-		color[] = {1, 0, 0, 1};
-		size = 32;
+		color[] = {1, 1, 1, 1};
+		size = 128;
 		shadow = true;
 		scope = 1;
 	};
@@ -40,8 +49,8 @@ class CfgMarkers
 	{
 		name = "Pharmacy";
 		icon = "\overthrow_main\ui\markers\shop-Pharmacy.paa";
-		color[] = {1, 0, 0, 1};
-		size = 32;
+		color[] = {1, 1, 1, 1};
+		size = 128;
 		shadow = true;
 		scope = 1;
 	};
@@ -49,7 +58,7 @@ class CfgMarkers
 	{
 		name = "Surplus";
 		icon = "\overthrow_main\ui\markers\shop-Surplus.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -58,7 +67,7 @@ class CfgMarkers
 	{
 		name = "Camp";
 		icon = "\overthrow_main\ui\markers\camp.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -67,7 +76,7 @@ class CfgMarkers
 	{
 		name = "Police";
 		icon = "\overthrow_main\ui\markers\police.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -76,7 +85,7 @@ class CfgMarkers
 	{
 		name = "Anarchy";
 		icon = "\overthrow_main\ui\markers\anarchy.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -85,7 +94,7 @@ class CfgMarkers
 	{
 		name = "Warehouse";
 		icon = "\overthrow_main\ui\markers\warehouse.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -94,7 +103,7 @@ class CfgMarkers
 	{
 		name = "Business";
 		icon = "\overthrow_main\ui\markers\business.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -103,7 +112,7 @@ class CfgMarkers
 	{
 		name = "Factory";
 		icon = "\overthrow_main\ui\markers\factory.paa";
-		color[] = {1, 0, 0, 1};
+		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
 		scope = 1;
@@ -111,7 +120,7 @@ class CfgMarkers
 	class flag_Malden
 	{
 		name = "Malden";
-		icon = "\overthrow_main\flags\flag_malden.paa";
+		icon = "\overthrow_main\ui\flags\flag_malden.paa";
 		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
@@ -131,9 +140,8 @@ class CfgMarkers
 		name = "Car Store";
 		icon = "\overthrow_main\ui\markers\CarStore.paa";
 		color[] = {1, 1, 1, 1};
-		size = 32;
+		size = 128;
 		shadow = true;
 		scope = 1;
-		markerClass = "Flags";
 	};
 };

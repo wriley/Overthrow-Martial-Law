@@ -11,3 +11,4 @@ lbClear 1500;
 }foreach (server getVariable ["GEURowned",[]]);
 lbSort [1500,"ASC"];
 lbSetCurSel [1500, 0];
+[] call OT_fnc_refreshBusiness;

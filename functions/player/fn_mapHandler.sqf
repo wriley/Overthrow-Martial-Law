@@ -252,7 +252,7 @@ if(_scale <= 0.1) then {
 			};
 		};
 	}foreach(OT_allFactions);
-
+/*
 	{
 		_x params ["_tpos","_tname"];
 		if((_tpos distance2D _mousepos) < 2500) then {
@@ -269,7 +269,7 @@ if(_scale <= 0.1) then {
 			};
 		};
 	}foreach(_towns);
-
+*/
 	if (OT_showEnemyCorpses) then {
 		{
 			if (typeof _x != "B_UAV_AI") then {
@@ -372,8 +372,8 @@ if(_scale > 0.16) then {
 	if (markerShape _x == "ICON") then {
 	  if ("ot_Shop" in getMarkerType _x) then {
 		_x setMarkerSizeLocal [
-			.5-(_scale/1.25),
-			.5-(_scale/1.25)
+			.01/(_scale*0.75),
+			.01/(_scale*0.75)
 		];};
 	};
 } forEach allMapMarkers;

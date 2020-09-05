@@ -1,21 +1,25 @@
 if (isNull(findDisplay 8000) || !hasInterface) exitWith {};
 disableSerialization;
-private ["_name","_item","_cost","_need","_xp","_level","_nextlevel"];
+private ["_selBusiness","_selProduct","_cost","_need","_xp","_level","_nextlevel"];
 
-
-private _name = lbText [1500,(lbCurSel 1500)];
-private _item = lbText [1501,(lbCurSel 1501)];
-private _supplyname = lbText [1502,(lbCurSel 1502)];
-private _business = _name call OT_fnc_getBusinessData;
-private _employees = server getVariable [format["%1employ",_name],0];
-private _salary = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
-_business params ["_pos","","_production","_xp","_level","_nextlevel"];
 lbClear 1501;
-{
-	private _cls = _x select 0;
-	private _longname = _cls call OT_fnc_weaponGetName;
+lbClear 1502;
 
-	([_cls] call {
+
+private _selBusiness = lbText [1500,(lbCurSel 1500)];
+private _business = _selBusiness call OT_fnc_getBusinessData;
+_business params ["_pos","","_production","_xp","_level","_nextlevel"];
+private _employees = server getVariable [format["%1employ",_selBusiness],0];
+private _salary = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
+private _wages = _employees * _salary;
+private _income = round(_wages * (1.5 + (_level/10)));
+private _producingText = "Nothing"; // currently producing text
+
+{
+	_x params ["_product","_inputs"];
+	private _longname = _product call OT_fnc_weaponGetName;
+
+	([_product] call {
 		params ["_cls"];
 		if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) exitWith {
 			_pic = _cls call OT_fnc_weaponGetPic;
@@ -36,39 +40,23 @@ lbClear 1501;
 		_pic = _cls call OT_fnc_vehicleGetPic;
 		[_pic]
 	}) params ["_pic"];
-	if (_cls == "Money") then { _longname = "Cash!"; };
+	if (_product == "Money") then { _longname = "Cash!"; };
 	private _idx = lbAdd [1501,format["%1",_longname]];
 	lbSetPicture [1501,_idx,_pic];
-	lbSetData [1501,_idx,_cls];
-
+	lbSetData [1501,_idx,_product];
 }foreach _production;
 
-private _wages = _employees * _salary;
-// GET PRICES OF OUTPUT AND CALCULATE RESISTANCE INCOME
-private _income = 666;
 
-private _nexthr = ((date select 3) + 1);
-if(_nexthr < 10) then {_nexthr = format ["0%1",_nexthr]};
-
-// business statistics
-private _text = format["<t>%1 Statistics</t><br/>",_name];
-_text = _text + format["<t>Employees:  %1</t><br/>",_employees];
-_text = _text + format["<t>Wages:      $%1 /hr</t><br/>",_wages];
-_text = _text + format["<t>Business Level:      %1</t><br/>",_level];
-_text = _text + format["<t>XP:         %1</t><br/>",_xp];
-_text = _text + format["<t>Next Level: %1</t><br/>",_nextlevel];
-_text = _text + format["<t>Income:     %1</t><br/>",_income];
-_text = _text + format["<t>Next cycle: %1:00</t><br/>",_nexthr];
-_textctrl = (findDisplay 8000) displayCtrl 1108;
-_textctrl ctrlSetStructuredText parseText _text;
 
 // required for production
+private _selProduct = lbData [1501,(lbCurSel 1501)];
+private _selProductText = lbText [1501,(lbCurSel 1501)];
 private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
-
 {
-	_x params ["_output","_inputs"];
-	diag_log str _x;
-	if (_output isEqualTo _item) then {
+	_x params ["_product","_inputs"];
+	private _longname = _product call OT_fnc_weaponGetName;
+	format ["[refreshBusiness] - inputs:%1", _inputs] remoteExec ["systemChat", 0];
+	if (_product isEqualTo _selProduct) then {
 		if (count _inputs > 0) then {
 			private _stock = [];
 			{
@@ -78,7 +66,10 @@ private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
 			private _cost = 0;
 			{
 				_x params ["_cls", "_qty"];
-				if!(_cls isEqualTo "Money") then {
+				format ["[refreshBusiness] - input:%1", _x] remoteExec ["systemChat", 0];
+				if (_cls isEqualTo "Money") then {
+					_need = _need + format["<t size='1.2'>$%1</t><br/>", _wages];
+				} else {
 					private _longname = _cls call OT_fnc_weaponGetName;
 					private _contqty = 0;
 					{
@@ -87,22 +78,15 @@ private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
 					}foreach(_stock);
 					if (_contqty >= _qty) then {_need = _need + format["<t>%1 x %2 </t><t  color='#00CC00'>(%3)</t><br/>",_qty,_longname, _contqty];
 					} else {_need = _need + format["<t>%1 x %2 </t><t color='#FF0000'>(%3)</t><br/>",_qty,_longname, _contqty];};
-				} else {
-					_need = _need + format["<t size='1.2'>Nothing</t><br/>"];
-					for [{private _i=0},{_i<_qty},{_i=_i+1}] do {
-						_cost = _cost + round((([OT_nation,_cls,0]) call OT_fnc_getPrice) * (1-(_level/10)));
-					};
 				};
 			}foreach _inputs;
-			if (_cost > 0) then {
-				_cost = [_cost, 1, 0, true] call CBA_fnc_formatNumber;
-				_need = _need + format["<t size='1.2'>$%1</t><br/>",_cost];
-			};
 		} else {
 			_need = _need + format["<t size='1.2'>None</t><br/>"];
 		};
 	};
 }foreach _production;
+
+
 if(lbCurSel 1501 isEqualTo -1) then {
 	_textctrl = (findDisplay 8000) displayCtrl 1109;
 	_textctrl ctrlSetStructuredText parseText "";
@@ -110,18 +94,41 @@ if(lbCurSel 1501 isEqualTo -1) then {
 	_textctrl = (findDisplay 8000) displayCtrl 1109;
 	_textctrl ctrlSetStructuredText parseText _need;
 };
-lbClear 1502;
-private _queue = server getVariable [format ["%1queue", _name], []];
+private _queue = server getVariable [format ["%1queue", _selBusiness], []];
+private _curProducingText = "";
 {
 	_x params ["_cls","_qty"];
-	private _idx = -1;
-	private _producingtext = "";
-	if (_forEachIndex == 0) then {
-		_producingtext = _producingtext + format["(Producing..)"];
-	};
 	private _longname = _cls call OT_fnc_weaponGetName;
-	private _itemtext = format["%1 x %2",_qty, _longname];
-	if (_cls == "Money") then { _itemtext = format["Money"]; };
-	_idx = lbAdd [1502,format["%1 %2",_itemtext, _producingtext]];
+	private _producingText = format["%1 x %2",_qty, _longname];
+	if (_forEachIndex == 0) then {
+		if (_cls == "Money") then { 
+			_producingText = format["Cash! ($%1 Net/Hr)",[(_income-_wages), 1, 0, true] call CBA_fnc_formatNumber]; // (110% to 150% profitability on wages)
+			_curProducingText = format["Cash! ($%1 Net/Hr)",[(_income-_wages), 1, 0, true] call CBA_fnc_formatNumber]; // (110% to 150% profitability on wages)
+		} else {
+			_producingText =  format["%1 x %2 (Producing)",_qty, _longname];
+			_curProducingText = _longname;
+		};
+	};
+	_idx = lbAdd [1502,format["%1", _producingText]];
 	lbSetData [1502,_idx,_cls];
 }foreach _queue;
+
+// business statistics
+private _text = format["<t>%1 Statistics</t><br/>",_selBusiness];
+_text = _text + format["<t>Employees: %1/%2</t><br/>",_employees,_level*10];
+_text = _text + format["<t>Wages: $%1 /hr</t><br/>",_wages];
+_text = _text + format["<t>Business Level: %1</t><br/>",_level];
+_text = _text + format["<t>XP: %1</t><br/>",_xp];
+_text = _text + format["<t>Next Level: %1</t><br/>",_nextlevel];
+_text = _text + format["<t>Producing: %1</t><br/>",_curProducingText];
+private _nextMakeDate = numberToDate [date select 0,(server getVariable [format["%1lastMakeDateNumber", _selBusiness], -1])  + (60 * 0.0000019) - (_employees * 0.0000019)];
+if (_nextMakeDate isEqualType []) then {
+	if (_nextMakeDate select 4 < 10) then {
+		_nextMakeDate set [4, format["0%1", _nextMakeDate select 4]];
+	};
+	_text = _text + format["<t>Next cycle: %1:%2</t><br/>",_nextMakeDate select 3, _nextMakeDate select 4];
+} else {
+	_text = _text + format["<t>Next cycle: Not producing</t><br/>"];
+};
+_textctrl = (findDisplay 8000) displayCtrl 1108;
+_textctrl ctrlSetStructuredText parseText _text;
