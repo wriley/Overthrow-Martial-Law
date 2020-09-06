@@ -1,4 +1,4 @@
-params ["_posTown","_name","_spawnid"];
+params ["_obPos","_name","_spawnid"];
 
 private _numNATO = server getVariable format["garrison%1",_name];
 if(_name in (server getVariable ["NATOabandoned",[]])) exitWith {[]};
@@ -48,7 +48,7 @@ if(_name in OT_allComms) then {
 	_group setVariable ["VCM_TOUGHSQUAD",true,true];
 	_group setVariable ["VCM_NORESCUE",true,true];
 
-	private _start = _posTown findEmptyPosition [2,50];
+	private _start = _obPos findEmptyPosition [2,50];
 	private _civ = _group createUnit [OT_NATO_Unit_Sniper, _start, [], 0, "NONE"];
 	_civ setVariable ["garrison",_name,false];
 	_civ setRank "CAPTAIN";
@@ -58,7 +58,7 @@ if(_name in OT_allComms) then {
 	sleep 0.5;
 
 	if(_count < _numNATO) then {
-		_start = _posTown findEmptyPosition [2,50];
+		_start = _obPos findEmptyPosition [2,50];
 		_civ = _group createUnit [OT_NATO_Unit_Spotter, _start, [], 0, "NONE"];
 		_civ setVariable ["garrison",_name,false];
 		_civ setRank "CAPTAIN";
@@ -69,10 +69,10 @@ if(_name in OT_allComms) then {
 		sleep 0.5;
 	};
 
-	[_group,_posTown,75,6] call CBA_fnc_taskPatrol;
+	[_group,_obPos,75,6] call CBA_fnc_taskPatrol;
 
 	if(_count < _numNATO) then {
-		_start = _posTown findEmptyPosition [2,50];
+		_start = _obPos findEmptyPosition [2,50];
 		_civ = _group createUnit [OT_NATO_Unit_AA_spec, _start, [], 0, "NONE"];
 		_civ setVariable ["garrison",_name,false];
 		_civ setRank "CAPTAIN";
@@ -84,9 +84,9 @@ if(_name in OT_allComms) then {
 	};
 
 	if(_count < _numNATO) then {
-		_start = _posTown findEmptyPosition [2,50];
+		_start = _obPos findEmptyPosition [2,50];
 		if((count _start) isEqualTo 0) then {
-			_start = _posTown findEmptyPosition [2,150];
+			_start = _obPos findEmptyPosition [2,150];
 		};
 		_civ = _group createUnit [OT_NATO_Unit_AA_ass, _start, [], 0, "NONE"];
 		_civ setVariable ["garrison",_name,false];
@@ -97,13 +97,13 @@ if(_name in OT_allComms) then {
 		_count = _count + 1;
 		sleep 0.5;
 	};
-	[_group,_posTown,75,6] call CBA_fnc_taskPatrol;
+	[_group,_obPos,75,6] call CBA_fnc_taskPatrol;
 
 	{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
 
 }else{
 	//put up a flag
-	private _flag =  OT_flag_NATO createVehicle _posTown;
+	private _flag =  OT_flag_NATO createVehicle _obPos;
 	_groups pushback _flag;
 	[_flag,[format["Capture %1",_name], {call OT_fnc_triggerBattle},nil,0,false,true,"","true",5]] remoteExec ["addAction",0,_flag];
 };
@@ -112,7 +112,7 @@ if(_name in OT_allComms) then {
 if(_numNATO > 0) then {
 	private _garrisongroup = creategroup [blufor,true];
 	_groups pushback _garrisongroup;
-	private _buildings = nearestObjects [_posTown, OT_garrisonBuildings, 350];
+	private _buildings = nearestObjects [_obPos, OT_garrisonBuildings, 350];
 	{
 		private _addedVehicles = _x call {
 			private _building = _this;
@@ -185,7 +185,7 @@ sleep 0.5;
 private _range = 150;
 private _groupcount = 0;
 while {_count < _numNATO} do {
-	private _start = _posTown findEmptyPosition [5,200];
+	private _start = _obPos findEmptyPosition [5,200];
 	private _group = createGroup blufor;
 	_group setVariable ["VCM_TOUGHSQUAD",true,true];
 	_group setVariable ["VCM_NORESCUE",true,true];
@@ -219,7 +219,7 @@ while {_count < _numNATO} do {
 		sleep 0.5;
 	};
 
-	[_group,_posTown,_range,6] call CBA_fnc_taskPatrol;
+	[_group,_obPos,_range,6] call CBA_fnc_taskPatrol;
 	_range = _range + 50;
 	sleep 0.5;
 	{_x addCuratorEditableObjects[units _group, true];}foreach(allcurators);
@@ -228,7 +228,7 @@ while {_count < _numNATO} do {
 
 private _pos = [];
 private _dir = 0;
-private _terminal = nearestobjects [_posTown,OT_airportTerminals,350];
+private _terminal = nearestobjects [_obPos,OT_airportTerminals,350];
 if(count _terminal > 0) then {
 	private _tp = getpos (_terminal select 0);
 	_dir = getdir (_terminal select 0);
@@ -244,7 +244,7 @@ if(count _terminal > 0) then {
 		_pos = OT_NATO_HQ_garrisonPos;
 		_dir = OT_NATO_HQ_garrisonDir;
 	}else{
-		_pos = [_posTown, 10, 100, 10, 0, 0.3, 0] call BIS_Fnc_findSafePos;
+		_pos = [_obPos, 10, 100, 10, 0, 0.3, 0] call BIS_Fnc_findSafePos;
 		_dir = random 360;
 	};
 };
@@ -271,22 +271,22 @@ private _road = objNull;
 	private _vehtype = _x;
 	private _got = false;
 
-	private _pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
+	private _pos = [_obPos, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
 	if (_vehtype == "RHS_MELB_AH6M") then {
-		_pos = [_posTown, 25, 250, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
+		_pos = [_obPos, 25, 250, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
 	}else{
 		if(_x isKindOf "StaticWeapon") then {
-			_pos = [_posTown, 25, 250, 1, 0, 1, 0] call BIS_fnc_findSafePos;
+			_pos = [_obPos, 25, 250, 1, 0, 1, 0] call BIS_fnc_findSafePos;
 		}else{
-			_pos = [_posTown, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
+			_pos = [_obPos, 25, 250, 5, 0, 3, 0] call BIS_fnc_findSafePos;
 		};
 	};
 
 	private _dir = random 360;
 
 	private _loops = 0;
-	while {(isOnRoad _pos) && (_loops < 50)} do {
-		_pos = _posTown findEmptyPosition [25,250,_vehtype];
+	while {(!isNull ([_pos, 50] call BIS_fnc_nearestRoad)) && (_loops < 50)} do {
+		_pos = _obPos findEmptyPosition [25,250,_vehtype];
 		_loops = _loops + 1;
 	};
 
@@ -332,7 +332,7 @@ private _road = objNull;
 		private _group = createGroup blufor;
 		_groups pushBack _group;
 		_group setVariable ["Vcm_Disable",true,true]; //stop him from running off
-		private _vpos = _posTown findEmptyPosition [10,100,OT_NATO_Vehicle_HVT];
+		private _vpos = _obPos findEmptyPosition [10,100,OT_NATO_Vehicle_HVT];
 		//His empty APC
 		private _veh =  OT_NATO_Vehicle_HVT createVehicle _vpos;
 		_veh setpos _vpos;

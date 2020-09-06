@@ -1,5 +1,3 @@
-
-//[Pos, Name, Input 1, Input 2, Output]
 OT_economicData = [
     [[8211.58,10929.5,0],"Edessa Solar Energy Plant"],
     [[4228.01,15059.8,0],"Magos Power Plant"],

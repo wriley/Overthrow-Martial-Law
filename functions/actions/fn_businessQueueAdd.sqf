@@ -10,17 +10,21 @@ _doadd = true;
 
 if(count _queue > 0) then {
     _i = _queue select (count _queue - 1);
-    if((_i select 1) isEqualTo _cls) then {
+    if((_i select 0) isEqualTo _cls) then {
         _queueitem = _i;
         _doadd = false;
     };
 }else{
     if((server getVariable [format["%1queue",_name],""]) isEqualTo "") then {
         server setVariable [format["%1queue",_name],[_cls,_qty],true];
+		server setVariable [format["%1lastMakeDateNumber", _name], dateToNumber date, true];
     };
 };
-
-_queueitem set [1, (_queueitem select 1) + _qty];
+if (_cls == "Money" || _cls == "Support") then {
+	_queueitem set [1, 1];
+} else {
+	_queueitem set [1, (_queueitem select 1) + _qty];
+};
 
 if(_doadd) then {
     _queue pushback _queueitem;

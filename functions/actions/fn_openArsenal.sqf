@@ -17,7 +17,7 @@ private _missing = [];
 if(_target isEqualType "") then {
 	private _warehouse = (getpos _unit) call OT_fnc_nearestWarehouse;
   private _wid = _warehouse select 1;
-    [_wid,_unit,true] call OT_fnc_dumpIntoWarehouse;
+    [_unit,_wid,true] call OT_fnc_dumpIntoWarehouse;
     _unit linkItem "ItemMap";
     {
         if(_x select [0,11] isEqualTo format ["warehouse-%1",_id]) then {
@@ -26,7 +26,7 @@ if(_target isEqualType "") then {
                 _items pushback _d#0;
             };
         };
-    }foreach ((allVariables _warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
+    }foreach ((allVariables warehouses) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
 
     _closed = ["ace_arsenal_displayClosed", {
         _thisArgs params ["_unit"];
@@ -34,7 +34,7 @@ if(_target isEqualType "") then {
         private _wid = _warehouse select 1;
         [_wid, _unit] remoteExec ["OT_fnc_verifyLoadoutFromWarehouse", 2];
         // ToDo fix this
-        waitUntil {!((warehouses getVariable ["verifiedLoadout", ""]) isEqualTo "")};
+        //waitUntil {!((warehouses getVariable ["verifiedLoadout", ""]) isEqualTo "")};
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;
     },[_unit]] call CBA_fnc_addEventHandlerArgs;

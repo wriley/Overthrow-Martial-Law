@@ -20,6 +20,7 @@ if((_b select 1) isEqualTo "Business") then {
 				_contpos = _pos findEmptyPosition [5,100,OT_businessStorage];
 				_container = OT_businessStorage createVehicle _contpos;
 				[_container,(server getVariable ["generals",[]]) select 0] call OT_fnc_setOwner;
+				server setVariable [format["%1lastMakeDateNumber", _name], dateToNumber date, true];
 				clearWeaponCargoGlobal _container;
 				clearMagazineCargoGlobal _container;
 				clearBackpackCargoGlobal _container;

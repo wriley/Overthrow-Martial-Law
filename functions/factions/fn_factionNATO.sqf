@@ -576,7 +576,7 @@ publicVariable "OT_nextNATOTurn";
 			};
 
 			if(!(spawner getVariable ["NATOdeploying",false]) && {(_spend > 500)} && {(count _fobs) < OT_maximumNATOFobs} && {(random 100) > _chance}) then {
-				//Deploy an FOB
+				//Deploy a FOB
 				_lowest = "";
 				{
 					_stability = server getVariable [format["stability%1",_x],100];

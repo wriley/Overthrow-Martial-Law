@@ -2,7 +2,6 @@ GUER_faction_loop_data params ["_lastmin","_lasthr","_currentProduction","_stabc
 diag_log format ["[GUERLoop] - GUER_faction_loop_data params: %1", GUER_faction_loop_data];
 private _numplayers = count([] call CBA_fnc_players);
 if(_numplayers isEqualTo 0) exitWith {};
-"[GUERLoop] - ..." remoteExec ["systemChat", 0];
 
 _trackcounter = _trackcounter + 1;
 if(_trackcounter > 5) then {
@@ -65,71 +64,95 @@ if(_dead > 150) then {
 
 if ((date select 3) != _lasthr) then {
 	_lasthr = date select 3;
-	private _wages = 0;
+};
+
+if (dateToNumber date > _lastmin) then {
+	private _oneMinute = 0.0000019;
+	_lastmin = dateToNumber date + _oneMinute;
 	{
 		private _name = _x;
 		if(_name != "Factory") then {
 			private _queue = server getvariable [format["%1queue",_name],[]];
 			if (count _queue != 0) then {
-				diag_log format ["[GUERLoop] - Business name: %1 Queue: %2", _name, _queue];
 				private _business = _name call OT_fnc_getBusinessData;
-				private _perhr = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
+				_business params ["_pos","","_production","_xp","_level","_nextlevel"];
 				private _employees = server getVariable [format["%1employ",_name],0];
-				private _funds = [] call OT_fnc_resistanceFunds;
-				private _salary = (_employees * _perhr);
-				private _income = 0;
-				if(_funds >= _salary) then {
-					_business params ["_pos","","_production","_xp","_level"];
-					_producing = _queue select 0 select 0;
-					format ["[GUERLoop] - _producing:%2", _name, _producing] remoteExec ["systemChat", 0];
-					[-_salary] call OT_fnc_resistanceFunds;
-					_outpower = 2 * _employees;
-					_inpower = 2 * _employees;
-					_intotal = _inpower;
-					if(_employees > 0) then {
-						private _needArr = [];
-						{
-							if (_x select 0 == _producing) exitWith {
-								_needArr = _x select 1;
-							};
-						}foreach _production;
-						if(count _needArr isEqualTo 0) then {
-							_income = round(_salary * (1.1 + (_level/12.5))); // (110% to 150% profitability on wages)
-							[_income] call OT_fnc_resistanceFunds;
-							format["Resistance earned $%1 in revenues from %2.",_income, _name] remoteExec ["OT_fnc_notifyMinor",0,false];
-							format ["[GUERLoop] - Business %1 income:%2", _name, _income] remoteExec ["systemChat", 0];
-						} else {
-							private _success = false;
-							private _costprice = 0;
-							_income = 0;
-							{
-								_x params ["_inputClass",["_inputQty",1]];
-								_costprice = _costprice + round([OT_nation,_inputClass,0] call OT_fnc_getSellPrice) * _inputQty;
-								{
-									_container = _x;
-									_stock = _container call OT_fnc_unitStock;
-									{
-										_x params ["_cls","_amt"];
-										format ["[GUERLoop] - x params:%1", _x] remoteExec ["systemChat", 0];
-										if(_cls isEqualTo _inputClass) exitWith {
-											if(_amt >= _inputQty) then {
-												_income = _income + _costprice * _amt; // used for xp gain, player receives item
-												_success = true;
-												"[GUERLoop] - success" remoteExec ["systemChat", 0];
-											};
-										};
-									}foreach(_stock);
-								}foreach(_pos nearObjects [OT_businessStorage, 50]);
-							}foreach _needArr;
+				private _lastMakeDateNumber = server getVariable [format["%1lastMakeDateNumber", _name], -1];
+				if ((dateToNumber date) > (_lastMakeDateNumber  + (60 * _oneMinute) - (_employees * _oneMinute))) then {
+					private _salary = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
+					private _funds = [] call OT_fnc_resistanceFunds;
+					private _wages = (_employees * _salary);
+					private _income = 0;
+					private _costprice = 0;
 
+					if(_funds >= _wages) then {
+						_producing = _queue select 0 select 0;
+						[-_wages] call OT_fnc_resistanceFunds;
+						if(_employees > 0) then {
+							private _success = false;
+							private _needArr = [];
+							{
+								if (_x select 0 == _producing) exitWith {
+									_needArr = _x select 1;
+								};
+							}foreach _production;
+							if(count _needArr isEqualTo 0) then {
+								_success = true;
+							} else {
+								{
+									_x params ["_inputClass",["_inputQty",1]];
+									switch (_inputClass) do {
+										case "Money": {
+											_success = true;
+											_costprice = 100 * _inputQty;
+										};
+										default {
+											{
+												_container = _x;
+												_stock = _container call OT_fnc_unitStock;
+												{
+													_x params ["_cls","_amt"];
+													if(_cls isEqualTo _inputClass) exitWith {
+														if(_amt >= _inputQty) then {
+															_success = true;
+														};
+													};
+												}foreach(_stock);
+											}foreach(_pos nearObjects [OT_businessStorage, 50]);
+										};
+									};
+								}foreach _needArr;
+								_income = _income - _costprice;
+							};
 							if (_success) then {
-								if (count _needArr isEqualTo 0) then {
-									[_income] call OT_fnc_resistanceFunds;
-								} else {
+								server setVariable [format["%1lastMakeDateNumber", _name], dateToNumber date, true];
+								switch (_producing) do {
+									case "Money": {
+										_income = _income + (round(_wages * (1.5 + (_level/10)))); // (150% to 200% profitability on wages)
+										[_income] call OT_fnc_resistanceFunds;
+										format["Resistance earned $%1 in revenues from %2.",_income, _name] remoteExec ["OT_fnc_notifyMinor",0,false];
+									};
+									case "Support": {
+										[_income*10] call OT_fnc_resistanceFunds;
+										_town = _pos call OT_fnc_nearestTown;
+										[_town,abs(round(_income/100))] call OT_fnc_support;
+										format["Resistance gained %1 support from %2 through %3.",abs(round(_income/100)), _town, _name] remoteExec ["OT_fnc_notifyMinor",0,false];
+									};
+									default {
+										format["Resistance produced %1 at %2.", (_producing call OT_fnc_weaponGetName), _name] remoteExec ["OT_fnc_notifyMinor",0,false];
+										if ((_queue select 0 select 1) == 1) then {
+											_queue deleteAt 0;
+										} else {
+											(_queue select 0) set [1, ((_queue select 0 select 1)-1)];
+										};
+										server setvariable [format["%1queue",_name],_queue,true];
+									};
+								};
+
+								if (count _needArr > 0) then {
 									private _container = _pos nearestObject OT_businessStorage;
 									{
 										_x params ["_inputClass","_inputQty"];
-										format ["[GUERLoop] - needArr x params:%1", _x] remoteExec ["systemChat", 0];
 										call {
 											if(_inputClass isKindOf "Bag_Base") exitWith {
 												[_container, _inputClass, _inputQty] call CBA_fnc_removeBackpackCargo;
@@ -156,7 +179,6 @@ if ((date select 3) != _lasthr) then {
 										};
 									}foreach _needArr;
 									call {
-										format ["[GUERLoop] - adding item %1", _producing] remoteExec ["systemChat", 0];
 										if(_producing isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
 											_container addWeaponCargoGlobal [_producing, round(1 * (1 + (_employees/50)))];
 										};
@@ -172,33 +194,33 @@ if ((date select 3) != _lasthr) then {
 										_container addItemCargoGlobal [_producing, round(1 * (1 + (_employees/50)))];
 									};
 								};
-								format ["[GUERLoop] - Business:%1 produced:%2", _name, _producing] remoteExec ["systemChat", 0];
-								diag_log format ["[GUERLoop] - Business:%1 _needArr:%2 _costprice:%3", _name, _needArr, _costprice];
-								if (_producing select 2 == 1) then {
-									_queue deleteAt 0;
+
+								if !(_nextlevel isEqualType "") then {
+									_xp = _xp + abs(round(_income/5));
+									//_xp = _xp + round(_income/100);
+									if (_xp >= _nextlevel) then {
+										format["%1 was upgraded and can now employ more workers!", _name] remoteExec ["OT_fnc_notifyMinor",0,false];
+										server setVariable [format["%1level",_name], (_level + 1), true];
+										server setVariable [format["%1xp",_name], (_xp - _nextlevel), true];
+									} else {
+										server setVariable [format["%1xp",_name], _xp, true];
+									};
 								} else {
-									_producing set [2, (_producing select 2)-1];
-									_queue set [0, _producing];
+									server setVariable [format["%1xp",_name], 10000, true];
 								};
-								server setvariable [format["%1queue",_name],_queue,true];
-								_xp = _xp + round(_income/100);
-								server setVariable [format["%1xp",_name], _xp, true];
 								[] remoteExecCall ["OT_fnc_refreshBusiness", 0];
 							} else {
 								format["%1 is missing resources.",_name] remoteExec ["OT_fnc_notifyMinor",0,false];
 							};
 						};
+					}else{
+						format["Resistance was unable to pay wages at %1",_x] remoteExec ["OT_fnc_notifyMinor",0,false];
 					};
-				}else{
-					format["Resistance was unable to pay wages at %1",_x] remoteExec ["OT_fnc_notifyMinor",0,false];
 				};
 			};
 		};
 	}foreach(server getVariable ["GEURowned",[]]);
-};
-
-if ((date select 4) != _lastmin) then {
-	_lastmin = date select 4;
+	[] remoteExecCall ["OT_fnc_refreshBusiness", 0];
 
 	if(!(call OT_fnc_generalIsOnline) && _dead > 300) then {
 		format["There are %1 dead bodies, initiating auto-cleanup",_dead] remoteExec ["OT_fnc_notifyMinor",0,false];
