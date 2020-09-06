@@ -35,7 +35,7 @@ OT_economicData = [
 	]],
     [[12503,14235.3,0],		"Ravi-ta Island Resort",[
 		["Money",				[]],
-		["Support",				["Money",1]]
+		["Support",				[["Money",1]]]
 	]],
     [[4687.63,3590.75,0],	"Katkoula Sugar Plantations",[
 		["OT_Sugarcane",		[["OT_Fertilizer",1]]]
