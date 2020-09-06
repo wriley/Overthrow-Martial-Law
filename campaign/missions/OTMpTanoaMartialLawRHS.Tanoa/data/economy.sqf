@@ -1,66 +1,67 @@
 OT_economicData = [
-    [[7364.45,8428.28,0],"Diesel Power Plant",[
+    [[7440.33,8550.34,0],	"Diesel Power Plant",[
 		["Money",				[["OT_Fertilizer",1]]]
 	]],
-    [[8939.47,6627.97,0],"Cocoa Plantations",[
+    [[9082.68,6861.33,0],	"Cocoa Plantations",[
 		["OT_Blow",				[["OT_Fertilizer",1]]],
 		["OT_Ganja",			[["OT_Fertilizer",1]]]
 	]],
-    [[9456.82,7552.04,0],"Lami Lumberyard",[
+    [[9416.72,7496.72,0],	"Lami Lumberyard",[
 		["OT_Wood",				[["Money",1]]]
 	]],
-    [[8389.24,10229.8,0],"Tanoa Sugar Company",[
+    [[8506.58,10227.9,0],	"Tanoa Sugar Company",[
 		["OT_Sugar",			[["OT_Sugarcane",1]]]
 	]],
-    [[10945.1,7860.1,0],"Kotomo Banana Plantation",[
+    [[10942.2,7840.73,0],	"Kotomo Banana Plantation",[
 		["ACE_Banana",			[["OT_Fertilizer",1]]]
 	]],
-    [[11761.2,6949.91,0],"Sawmill",[
+    [[11750.1,6942.49,0],	"Sawmill",[
 		["OT_Lumber",			[["OT_Wood",1]]]
 	]],
-    [[5511.58,11888.2,0],"Saint Julien Lumberyard",[
+    [[5467.27,11893.8,0],	"Saint Julien Lumberyard",[
 		["OT_Wood",				[["Money",1]]]
 	]],
-    [[8878.1,11889.1,0],"Galili Lumberyard",[
+    [[8876.59,11890.9,0],	"Galili Lumberyard",[
 		["OT_Wood",				[["Money",1]]]
 	]],
-    [[12507.4,7820.99,0],"Oumere Banana Plantations",[
+    [[12497.1,7821.3,0],	"Oumere Banana Plantations",[
 		["ACE_Banana",			[["OT_Fertilizer",1]]]
 	]],
-    [[8502.68,12452.4,0],"Roadhouse",[
+    [[8495.01,12454.2,0],	"Roadhouse",[
 		["Money",				[]]
 	]],
-    [[11921.1,10206.5,0],"Red Spring Surface Mine",[
+    [[11783.6,10151.3,0],	"Red Spring Surface Mine",[
 		["OT_Steel",			[["Money",1]]]
 	]],
-    [[12383,14135.3,0],"Ravi-ta Island Resort",[
-		["Money",				[]]
+    [[12503,14235.3,0],		"Ravi-ta Island Resort",[
+		["Money",				[]],
+		["Support",				["Money",1]]
 	]],
-    [[4687.63,3590.75,0],"Katkoula Sugar Plantations",[
+    [[4687.63,3590.75,0],	"Katkoula Sugar Plantations",[
 		["OT_Sugarcane",		[["OT_Fertilizer",1]]]
 	]],
-    [[8026.38,8946.16,0],"Lifou Sugar Plantations",[
+    [[8038.88,8940.94,0],	"Lifou Sugar Plantations",[
 		["OT_Sugarcane",		[["OT_Fertilizer",1]]]
 	]],
-    [[12445.6,3982.46,0],"Saioko Lumberyard",[
+    [[12448.3,3997.16,0],	"Saioko Lumberyard",[
 		["OT_Wood",				[["Money",1]]]
 	]],
-    [[5550.8,3928.31,0],"Tattoo's Natural Sugar",[
+    [[5492.65,3899.77,0],	"Tattoo's Natural Sugar",[
 		["OT_Sugar",			[["OT_Sugarcane",1]]]
 	]],
-    [[852.771,7632.717,0],"Tavu Medical Supplies",[
+    [[845.151,7672.07,0],	"Tavu Medical Supplies",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
 		["ACE_bloodIV_250",		[["OT_Plastic",1]]],
 		["ACE_bloodIV_500",		[["OT_Plastic",2]]],
 		["ACE_bloodIV",			[["OT_Plastic",2],["FirstAidKit",1]]]
 	]],
-    [[1929.1,3936.75,0],"Fertilizer Farm",[
+    [[1865.37,3987.25,0],	"Fertilizer Farm",[
 		["OT_Fertilizer",		[["Money",1]]]
 	]],
-    [[14153.5,12103.5,0],"Tanoa Fertilizer Factory",[
+    [[13909,11780.5,0],		"Tanoa Fertilizer Factory",[
 		["OT_Fertilizer",		[["OT_Wood",1]]]
 	]],
-    [[11649.1,4085.09,0],"Jolene's Herbal Medicine",[
+    [[13909,11780.5,0],		"Jolene's Herbal Medicine",[
 		["OT_Ganja",			[["OT_Fertilizer",1]]]
 	]]
 ];
