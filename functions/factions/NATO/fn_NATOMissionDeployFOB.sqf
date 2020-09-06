@@ -27,7 +27,8 @@ if(isNil "_close") then {
 	}foreach([OT_airportData,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 };
 if (isNil "_close") exitWith {server setVariable ["NATOresources",(server getVariable "NATOresources")+500,true]};
-_start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
+_start = [_close,50,0,0,[0,0],[200,OT_NATO_Vehicle_AirTransport_Small]] call SHK_pos_fnc_pos;
+
 _group = [_start, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support" >> OT_NATO_Group_Engineers)] call BIS_fnc_spawnGroup;
 
 sleep 0.5;

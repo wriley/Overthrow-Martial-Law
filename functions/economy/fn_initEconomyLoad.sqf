@@ -177,28 +177,24 @@ if(_version < OTML_economyVersion) then {
 		_mrk = createMarker [format["shop%1%2", _tname, _x select 1], _x select 0];
 		_mrk setMarkerShape "ICON";
 		_mrk setMarkerType format["ot_Shop_%1", _x select 1];
-		_mrk setMarkerColor "ColorWhite";
 	}foreach _shops;
 
 	{
 		_mrk = createMarker [format["carshop%1", _x], _x];
 		_mrk setMarkerShape "ICON";
 		_mrk setMarkerType "ot_Shop_CarStore";
-		_mrk setMarkerColor "ColorWhite";
 	}foreach _carshops;
 
 	{
 		_mrk = createMarker [format["piershop%1", _x], _x];
 		_mrk setMarkerShape "ICON";
-		_mrk setMarkerType "ot_Shop_CarStore";
-		_mrk setMarkerColor "ColorWhite";
+		_mrk setMarkerType "ot_Shop_Pier";
 	}foreach _piers;
 
 	{
 		_mrk = createMarker [format["hardware%1", _tname], _x select 0];
 		_mrk setMarkerShape "ICON";
 		_mrk setMarkerType "ot_Shop_Hardware";
-		_mrk setMarkerColor "ColorWhite";
 	}foreach _hardwares;
     sleep 0.3;
 }foreach(OT_allTowns);

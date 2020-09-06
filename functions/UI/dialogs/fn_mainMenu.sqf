@@ -338,29 +338,11 @@ if(typename _b isEqualTo "ARRAY") then {
 };
 private _areaText = "";
 _areatxtctrl = (findDisplay 8001) displayCtrl 1101;
-private _ob = (getpos player) call OT_fnc_nearestObjective;
-_ob params ["_obpos","_obname"];
-if(_obpos distance player < 250) then {
-	ctrlSetText [1615,"Garrison"];
-	if(_obname in (server getVariable ["NATOabandoned",[]])) then {
-		_areaText = format["<br/>
-			<t align='left'>%1</t><br/>
-			<t align='left'>Under resistance control</t>
-		",_obname];
-		if!(_obname in OT_allComms) then {
-			ctrlEnable [1615,true];
-		};
-	}else{
-		_areaText = format["<br/>
-			<t align='left'>%1</t><br/>
-			<t align='left'>Under NATO control</t>
-		",_obname];
-	};
-}else{
-	private _ob = (getpos player) call OT_fnc_nearestLocation;
-	if((_ob select 1) isEqualTo "Business") then {
-		_obpos = (_ob select 2) select 0;
-		_obname = (_ob select 0);
+private _ob = (getpos player) call OT_fnc_nearestLocation;
+private _obname = _ob select 0;
+private _obpos = (_ob select 2) select 0;
+switch (_obname) do {
+	case "Business": {
 		if(_obpos distance player < 250) then {
 			if(_obname in _geurOwned) then {
 				_price = _obname call OT_fnc_getBusinessPrice;
@@ -385,7 +367,8 @@ if(_obpos distance player < 250) then {
 				};
 			};
 		};
-	}else{
+	};
+	case "Factory": {
 		if((getpos player) distance OT_factoryPos < 150) then {
 			_obname = "Factory";
 			if(_obname in _geurOwned) then {
@@ -414,6 +397,23 @@ if(_obpos distance player < 250) then {
 		}else{
 			ctrlEnable [1614,false];
 			ctrlEnable [1615,false];
+		};
+	};
+	case "Objective": {
+		ctrlSetText [1615,"Garrison"];
+		if(_obname in (server getVariable ["NATOabandoned",[]])) then {
+			_areaText = format["<br/>
+				<t align='left'>%1</t><br/>
+				<t align='left'>Under resistance control</t>
+			",_obname];
+			if!(_obname in OT_allComms) then {
+				ctrlEnable [1615,true];
+			};
+		}else{
+			_areaText = format["<br/>
+				<t align='left'>%1</t><br/>
+				<t align='left'>Under NATO control</t>
+			",_obname];
 		};
 	};
 };

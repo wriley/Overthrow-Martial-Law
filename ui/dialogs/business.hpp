@@ -1,6 +1,6 @@
 class OT_dialog_business
 {
-	idd=8000;
+	idd=8035;
 	movingenable=false;
 
 	class controlsBackground {

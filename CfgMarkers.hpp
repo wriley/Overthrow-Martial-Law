@@ -14,7 +14,7 @@ class CfgMarkers
 		name = "Clothing";
 		icon = "\overthrow_main\ui\markers\shop-Clothing.paa";
 		color[] = {1, 1, 1, 1};
-		size = 32;
+		size = 128;
 		shadow = true;
 		scope = 1;
 	};
@@ -60,6 +60,24 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Surplus.paa";
 		color[] = {1, 1, 1, 1};
 		size = 32;
+		shadow = true;
+		scope = 1;
+	};
+	class ot_Shop_CarStore
+	{
+		name = "Car Store";
+		icon = "\overthrow_main\ui\markers\CarStore.paa";
+		color[] = {1, 1, 1, 1};
+		size = 128;
+		shadow = true;
+		scope = 1;
+	};
+	class ot_Shop_Pier
+	{
+		name = "Pier";
+		icon = "\overthrow_main\ui\markers\shop-Pier.paa";
+		color[] = {1, 1, 1, 1};
+		size = 128;
 		shadow = true;
 		scope = 1;
 	};
@@ -132,15 +150,6 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\hq.paa";
 		color[] = {1, 1, 1, 1};
 		size = 32;
-		shadow = true;
-		scope = 1;
-	};
-	class ot_Shop_CarStore
-	{
-		name = "Car Store";
-		icon = "\overthrow_main\ui\markers\CarStore.paa";
-		color[] = {1, 1, 1, 1};
-		size = 128;
 		shadow = true;
 		scope = 1;
 	};

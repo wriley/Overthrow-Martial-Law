@@ -20,7 +20,7 @@ if(count _queue > 0) then {
 		server setVariable [format["%1lastMakeDateNumber", _name], dateToNumber date, true];
     };
 };
-if (_cls == "Money") then {
+if (_cls == "Money" || _cls == "Support") then {
 	_queueitem set [1, 1];
 } else {
 	_queueitem set [1, (_queueitem select 1) + _qty];
