@@ -199,7 +199,7 @@ if (dateToNumber date > _lastmin) then {
 									_xp = _xp + abs(round(_income/5));
 									//_xp = _xp + round(_income/100);
 									if (_xp >= _nextlevel) then {
-										format["%1 was upgraded and can now employ more workers!", _name] remoteExec ["OT_fnc_notifyMinor",0,false];
+										format["%1 is now more advanced and can employ more workers", _name] remoteExec ["OT_fnc_notifyMinor",0,false];
 										server setVariable [format["%1level",_name], (_level + 1), true];
 										server setVariable [format["%1xp",_name], (_xp - _nextlevel), true];
 									} else {

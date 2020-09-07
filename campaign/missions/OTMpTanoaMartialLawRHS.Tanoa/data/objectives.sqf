@@ -1,3 +1,4 @@
+// PARAMS : pos, name, distance, priority(cost/worth)
 OT_objectiveData = [
     [[2261.28,6331.25,0],"Fuel Depot",200,450],
     [[4166.48,11723.6,0],"The Harbor Remnants",200,250],

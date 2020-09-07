@@ -1,5 +1,4 @@
 if (isNull(findDisplay 8000)) exitWith {};
-private _cursel = lbCurSel 1500;
 lbClear 1500;
 _SearchTerm = ctrlText 1700;
 private _wid = OT_currentWarehouse;
@@ -101,5 +100,6 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 		};
 	};
 }foreach(_sorted);
+private _cursel = lbCurSel 1500;
 if(_cursel >= _numitems) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];

@@ -17,6 +17,7 @@ lbSort [1500,"ASC"];
 private _selBusiness = lbText [1500,(lbCurSel 1500)];
 private _business = _selBusiness call OT_fnc_getBusinessData;
 _business params ["_pos","","_production","_xp","_level","_nextlevel"];
+diag_log str _business;
 private _employees = server getVariable [format["%1employ",_selBusiness],0];
 private _salary = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
 private _wages = _employees * _salary;
@@ -98,6 +99,9 @@ private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
 	};
 }foreach _production;
 
+private _cursel = lbCurSel 1501;
+if(_cursel >= count _production) then {_cursel = 0};
+lbSetCurSel [1501, _cursel];
 
 if(lbCurSel 1501 isEqualTo -1) then {
 	_textctrl = (findDisplay 8035) displayCtrl 1109;

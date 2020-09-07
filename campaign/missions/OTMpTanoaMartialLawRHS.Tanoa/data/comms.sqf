@@ -1,3 +1,4 @@
+// PARAMS : pos, name, distance, priority(cost/worth)
 OT_commsData = [
     [[10098.7,11818.1,0],"Comms Alpha",200,400],
     [[11144,11456.5,0],"Comms Bravo",50,200],
