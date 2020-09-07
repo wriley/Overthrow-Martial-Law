@@ -136,7 +136,7 @@ private _hasList_buildableHouses = false;
 				*/
 
 				if(count _x > 7) then {		// index range 0..6
-					(_x select 7) params ["_fuel","_dmg"];
+					(_x select 7) params ["_fuel","_dmg","_stolen"];
 					//Fuel in tank
 					if !(_veh isKindOf "Building") then {
 						_veh setFuel _fuel;
@@ -146,24 +146,30 @@ private _hasList_buildableHouses = false;
 								_veh setHitPointDamage [_x, _d, false];
 							};
 						}foreach(_dmg select 0);
-						if(count (_x select 7) > 2) then {
-							//ACE refuel (fuel trucks)
-							[_veh, (_x select 7) select 2] call ace_refuel_fnc_setFuel;
-						};
+
+						_veh setVariable ["stolen", _stolen, true];
+
 						if(count (_x select 7) > 3) then {
-							//Lock/unlock
-							_veh setVariable ["OT_locked",(_x select 7) select 3,true];
+							//ACE refuel (fuel trucks)
+							[_veh, (_x select 7) select 3] call ace_refuel_fnc_setFuel;
 						};
+
 						if(count (_x select 7) > 4) then {
+							//Lock/unlock
+							_veh setVariable ["OT_locked",(_x select 7) select 4,true];
+						};
+
+						if(count (_x select 7) > 5) then {
 							//Ammo
-							_ammo = (_x select 7) select 4;
+							_ammo = (_x select 7) select 5;
 							{
 								_veh setAmmo [_x select 0,_x select 1];
-							}foreach((_x select 7) select 4);
+							}foreach((_x select 7) select 5);
 						};
-						if(count (_x select 7) > 5) then {
+
+						if(count (_x select 7) > 6) then {
 							//Attached
-							_a = (_x select 7) select 5;
+							_a = (_x select 7) select 6;
 							if(count _a > 0) then {
 								_a params ["_attached","_am"];
 								_veh setVariable ["OT_attachedClass",_attached,true];

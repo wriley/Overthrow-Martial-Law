@@ -68,7 +68,7 @@ publicVariable "OT_nextNATOTurn";
 		//Objective QRF && drone intel reports
 		if !(_countered) then {
 			{
-				_x params ["_pos","_name","_cost"];
+				_x params ["_pos","_name","",_cost"];
 				if (!(_name in _abandoned) && (spawner getvariable [format["spawnid%1",_name],""] in OT_allspawned)) then {
 					if(_pos call OT_fnc_inSpawnDistance) then {
 						_numgarrison = server getVariable [format["garrison%1"],0];
@@ -442,7 +442,7 @@ publicVariable "OT_nextNATOTurn";
 
 			//Spawn missing drones & counter objectives
 			{
-				_x params ["_pos","_name","_pri"];
+				_x params ["_pos","_name","",_pri"];
 				private _chance = 99;
 				if(_pri > 800) then {_chance = _chance - 1};
 				if(_popControl > 250) then {_chance = _chance - 1};

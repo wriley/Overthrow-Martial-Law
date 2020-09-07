@@ -12,7 +12,7 @@ private _popControl = call OT_fnc_getControlledPopulation;
 
 private _cost = 350;
 {
-    _x params ["","_name","_pri"];
+    _x params ["","_name","","_pri"];
     if(_name isEqualTo _obname) exitWith {_cost = _pri};
 }foreach(OT_objectiveData + OT_airportData);
 
