@@ -369,14 +369,8 @@ if(_scale > 0.16) then {
 
 //Scale shop markers
 {
-	if (_scale > 0.015) then {
-		if (markerShape _x == "ICON") then {
-		  if ("ot_Shop" in getMarkerType _x) then {
-			_x setMarkerSizeLocal [
-				.01/(_scale*0.9),
-				.01/(_scale*0.9)
-			];};
-		};
+	if ("ot_Shop" in getMarkerType _x) then {
+		if (_scale > 0.015) then { _x setMarkerSizeLocal [0.01/(_scale*0.9),	0.01/(_scale*0.9)];};
+		if (_scale > 0.13) then { _x setMarkerSizeLocal[0,0]; };
 	};
-	if (_scale > 0.13) then {_x setMarkerSizeLocal[0,0]; };
 } forEach allMapMarkers;

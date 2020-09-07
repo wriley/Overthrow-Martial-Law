@@ -442,7 +442,7 @@ publicVariable "OT_nextNATOTurn";
 
 			//Spawn missing drones & counter objectives
 			{
-				_x params ["_pos","_name","",_pri"];
+				_x params ["_pos","_name","","_pri"];
 				private _chance = 99;
 				if(_pri > 800) then {_chance = _chance - 1};
 				if(_popControl > 250) then {_chance = _chance - 1};
