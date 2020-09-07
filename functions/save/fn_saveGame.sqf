@@ -164,7 +164,7 @@ private _vehicles = (_tocheck) apply {
 				_att = [_attachedClass, (_attached call OT_fnc_unitStock)];
 			};
 		};
-/* 7 */		_params set [7, [fuel _x,getAllHitPointsDamage _x,_x call ace_refuel_fnc_getFuel,_x getVariable ["OT_locked",false],_ammo,_att]];
+/* 7 */		_params set [7, [fuel _x,getAllHitPointsDamage _x,_x getVariable ["stolen",false],_x call ace_refuel_fnc_getFuel,_x getVariable ["OT_locked",false],_ammo,_att]];
 	};
 
 	// If the house is player-built, save some extra variables

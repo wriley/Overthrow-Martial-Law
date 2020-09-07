@@ -51,17 +51,19 @@ OT_economicData = [
 	]],
     [[845.151,7672.07,0],	"Tavu Medical Supplies",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
-		["ACE_bloodIV_250",		[["OT_Plastic",1]]],
-		["ACE_bloodIV_500",		[["OT_Plastic",2]]],
-		["ACE_bloodIV",			[["OT_Plastic",2],["FirstAidKit",1]]]
+		["ACE_salineIV_250",	[["OT_Plastic",4]]],
+		["ACE_plasmaIV_250",	[["OT_Plastic",7]]],
+		["ACE_bloodIV_250",		[["OT_Plastic",3]]],
+		["ACE_bloodIV_500",		[["OT_Plastic",4]]],
+		["ACE_bloodIV",			[["OT_Plastic",10],["FirstAidKit",1]]]
 	]],
-    [[1865.37,3987.25,0],	"Fertilizer Farm",[
+    [[1865,3987,0],	"Fertilizer Farm",[
 		["OT_Fertilizer",		[["Money",1]]]
 	]],
-    [[13909,11780.5,0],		"Tanoa Fertilizer Factory",[
+    [[13909,11780,0],		"Tanoa Fertilizer Factory",[
 		["OT_Fertilizer",		[["OT_Wood",1]]]
 	]],
-    [[13909,11780.5,0],		"Jolene's Herbal Medicine",[
+    [[13909,11780,0],		"Jolene's Herbal Medicine",[
 		["OT_Ganja",			[["OT_Fertilizer",1]]]
 	]]
 ];

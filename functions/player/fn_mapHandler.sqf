@@ -244,8 +244,8 @@ if(_scale <= 0.1) then {
 						_flag,
 						[1,1,1,1],
 						_factionPos,
-						0.6/_scale,
-						0.5/_scale,
+						0.6/(_scale max 0.03),
+						0.5/(_scale max 0.03),
 						0
 					];
 				};
@@ -369,11 +369,8 @@ if(_scale > 0.16) then {
 
 //Scale shop markers
 {
-	if (markerShape _x == "ICON") then {
-	  if ("ot_Shop" in getMarkerType _x) then {
-		_x setMarkerSizeLocal [
-			.01/(_scale*0.75),
-			.01/(_scale*0.75)
-		];};
+	if ("ot_Shop" in getMarkerType _x) then {
+		if (_scale > 0.015) then { _x setMarkerSizeLocal [0.01/(_scale*0.9),	0.01/(_scale*0.9)];};
+		if (_scale > 0.13) then { _x setMarkerSizeLocal[0,0]; };
 	};
 } forEach allMapMarkers;

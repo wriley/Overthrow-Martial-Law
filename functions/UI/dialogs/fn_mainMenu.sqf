@@ -340,8 +340,9 @@ private _areaText = "";
 _areatxtctrl = (findDisplay 8001) displayCtrl 1101;
 private _ob = (getpos player) call OT_fnc_nearestLocation;
 private _obname = _ob select 0;
+private _obtype = _ob select 1;
 private _obpos = (_ob select 2) select 0;
-switch (_obname) do {
+switch (_obtype) do {
 	case "Business": {
 		if(_obpos distance player < 250) then {
 			if(_obname in _geurOwned) then {

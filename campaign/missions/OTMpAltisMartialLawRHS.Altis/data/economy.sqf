@@ -1,22 +1,54 @@
 OT_economicData = [
-    [[8211.58,10929.5,0],"Edessa Solar Energy Plant"],
-    [[4228.01,15059.8,0],"Magos Power Plant"],
-    [[17092.5,11294.6,0],"Pyrgos Mines","","OT_Steel"],
-    [[12146.1,8418.28,0],"Vikos Sawmill","","OT_Wood"],
-    [[17139.3,13050.5,0],"Pyrgos Vineyard","OT_Fertilizer","OT_Grapes"],
-    [[18123.6,13022.5,0],"Olive Plantation","OT_Fertilizer","OT_Olives"],
-    [[14305.6,18883.7,0],"Athira Wines","OT_Grapes","OT_Wine"],
-    [[7449.35,21559.5,0],"Aristi Wind Farm"],
-    [[9978.95,10212.9,0],"Altis Fertilizer Production","OT_Wood","OT_Fertilizer"],
-    [[11532.7,7072.72,0],"High Thymes Natural Cures","OT_Fertilizer","OT_Ganja"],
-    [[6129.49,10565.1,0],"Edoris Mines","","OT_Steel"],
-    [[3997.72,17565.9,0],"AK Medical Supplies","OT_Plastic","FirstAidKit"],
-    [[5399.11,14494.3,0],"Plenty-O-Plastics","","OT_Plastic"],
-    [[25418.5,20339.1,0],"Sofia Power Plant"],
-    [[3739.4,12994.6,0],"Kavala Blood Supply","","ACE_bloodIV_250"],
-    [[3694.53,13189.4,0],"KV Plasma","","ACE_plasmaIV_250"],
-    [[3707.53,13377.2,0],"KV Saline Solutions","","ACE_salineIV_250"],
-    [[4211.91,12830.4,0],"Kenny's Lumberyard","OT_Wood","OT_Lumber"]
+    [[8250,10900,0],		"Zaros Solar Energy",[
+		["Money",				[]]
+	]],
+    [[4163,15059,0],		"Magos Power Plant",[
+		["Money",				[]]
+	]],
+    [[17076,11233,0],		"Pyrgos Mines",[
+		["OT_Steel",			[]]
+	]],
+    [[12176,8441,0],		"Vikos Sawmill",[
+		["OT_Wood",				[]]
+	]],
+    [[17159,13080,0],		"Pyrgos Vineyard",[
+		["OT_Grapes",			[["OT_Fertilizer",1]]]
+	]],
+    [[18099,13038,0],		"Dorida Olives",[
+		["OT_Olives",			[["OT_Fertilizer",1]]]
+	]],
+    [[14305,18883,0],		"Athira Wines",[
+		["OT_Wine",				[["OT_Grapes",1]]]
+	]],
+    [[7493,21525,0],		"Synneforos Wind Farm",[
+		["Money",				[]]
+	]],
+    [[10008,10222,0],		"Altis Fertilizer Production",[
+		["OT_Fertilizer",		[["OT_Wood",1]]]
+	]],
+    [[11536,7070,0],		"High Thymes Natural Cures",[
+		["OT_Ganja",			[["OT_Fertilizer",1]]]
+	]],
+    [[6126,10567,0],		"Edoris Mines",[
+		["OT_Steel",			[]]
+	]],
+    [[3977,17531,0],		"AK Medical Supplies",[
+		["FirstAidKit",			[["OT_Plastic",1]]],
+		["ACE_salineIV_250",	[["OT_Plastic",4]]],
+		["ACE_plasmaIV_250",	[["OT_Plastic",7]]],
+		["ACE_bloodIV_250",		[["OT_Plastic",3]]],
+		["ACE_bloodIV_500",		[["OT_Plastic",4]]],
+		["ACE_bloodIV",			[["OT_Plastic",10],["FirstAidKit",1]]]
+	]],
+    [[5392,14519,0],		"Plenty-O-Plastics",[
+		["OT_Plastic",			[["Money",1]]]
+	]],
+    [[25443,20321,0],		"Sofia Power Plant",[
+		["Money",				[]]
+	]],
+    [[4172,12860,0],		"Kenny's Lumberyard",[
+		["OT_Lumber",			[["OT_Wood",1]]]
+	]]
 ];
 OT_factoryPos = [6201.09,16257.1,0];
 OT_factoryVehicleSpawn = [6183.15,16269.7,0];

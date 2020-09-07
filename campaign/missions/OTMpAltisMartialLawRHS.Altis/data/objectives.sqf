@@ -1,3 +1,4 @@
+// PARAMS : pos, name, distance, priority(cost/worth)
 OT_objectiveData = [
     [[10009.6,11242,0],"Zaros Base",200,400],
     [[3892.37,12329.5,0],"Kavala Base",100,350],
@@ -9,7 +10,7 @@ OT_objectiveData = [
     [[16650.9,12307.9,0],"Pyrgos Base",200,400],
     [[19322,16545.2,0],"Chemical Plant",200,600],
     [[12285.5,8891.48,0],"Vikos Base",200,350],
-    [[17407.2,13204,0],"Pyrgosa Base",170,500],
+    [[17431.7,13153.8,0],"Pyrgosa Base",150,500],
     [[9967.93,19355.9,0],"Galati Base",200,350],
     [[8746.56,17465.5,0],"Syrta Base",200,350],
     [[20068.2,6707.49,0],"Selakano Base",500,600],
