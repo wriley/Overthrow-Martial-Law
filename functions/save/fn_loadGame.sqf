@@ -354,6 +354,36 @@ private _hasList_buildableHouses = false;
 		publicVariable "OT_Loadout_Police";
 		_set = false;
 	};
+	if(_key == "knownFactions") then {
+		OT_knownFactions = _val;
+		publicVariable "OT_knownFactions";
+		_set = false;
+	};
+	if(_key == "knownGundealers") then {
+		OT_knownGundealers = _val;
+		publicVariable "OT_knownGundealers";
+		_set = false;
+	};
+	if(_key == "knownShops") then {
+		OT_knownShops = _val;
+		publicVariable "OT_knownShops";
+		_set = false;
+	};
+	if(_key == "knownCarShops") then {
+		OT_knownCarShops = _val;
+		publicVariable "OT_knownCarShops";
+		_set = false;
+	};
+	if(_key == "knownPiers") then {
+		OT_knownPiers = _val;
+		publicVariable "OT_knownPiers";
+		_set = false;
+	};
+	if(_key == "knownHardwares") then {
+		OT_knownHardwares = _val;
+		publicVariable "OT_knownHardwares";
+		_set = false;
+	};
 	if(_key == "warehouses") then {
 		{
 			if(!isNil "_x") then {

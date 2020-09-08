@@ -276,6 +276,12 @@ _data pushback ["timedate",date];
 _data pushback ["autosave",[OT_autoSave_time,OT_autoSave_last_time]];
 _data pushBack ["recruitables",OT_Recruitables];
 _data pushBack ["policeLoadout",OT_Loadout_Police];
+_data pushback ["knownFactions",OT_knownFactions];
+_data pushback ["knownGundealers",OT_knownGundealers];
+_data pushback ["knownShops",OT_knownShops];
+_data pushback ["knownCarShops",OT_knownCarShops];
+_data pushback ["knownPiers",OT_knownPiers];
+_data pushback ["knownHardwares",OT_knownHardwares];
 
 if!(_quiet) then {
 	diag_log "Step 10/11 - Saving warehouses";

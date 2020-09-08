@@ -365,6 +365,7 @@ class CfgFunctions
 			class positionIsAtWarehouse {};
 			class nearestWarehouse {};
 			class getposNoWater {};
+			class playerInRange {};
 		};
 
 		/*
