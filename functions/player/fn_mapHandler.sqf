@@ -343,7 +343,7 @@ if(_scale <= 0.1) then {
 	}foreach OT_knownPiers;
 
 	{
-		private _pos = _x select 0;
+		private _pos = _x;
 		if !([format["hardware%1", _pos]] in allMapMarkers) then {
 			_mrk = createMarker [format["hardware%1", _pos], _pos];
 			_mrk setMarkerShape "ICON";
