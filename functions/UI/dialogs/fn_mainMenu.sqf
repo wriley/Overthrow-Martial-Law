@@ -4,7 +4,7 @@ openMap false;
 
 private _ft = server getVariable ["OT_fastTravelType",1];
 if(!OT_adminMode && _ft > 1) then {
-	ctrlEnable [1600,false];
+	ctrlEnable [1601,false];
 };
 
 disableSerialization;
@@ -34,11 +34,6 @@ private _extra2 = "";
 if (count _geurOwned isEqualTo 0) then {
 	ctrlEnable [1603,false];
 	findDisplay 8001 displayCtrl 1603 ctrlSetTooltip "Buy a business to access Business Management";
-};
-private _uiScale = 0.4 + (0.5 / (pixelGrid / 12));
-
-for [{private _i=1600;},{_i==1621;},{_i=_i+1;}] do {
-	private _ctrl = findDisplay 8001 displayCtrl _i;
 };
 
 _extra1 = format["
