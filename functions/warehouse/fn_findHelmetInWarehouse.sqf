@@ -9,7 +9,7 @@ private _possible = [];
 			_possible pushback _cls;
 		};
 	};
-}foreach((allVariables warehouses) select {((toLower _x select [0,5]) isEqualTo (format["warehouse-%1_",_wid]))});
+}foreach((allVariables warehouses) select {((toLower _x select [0,11]) isEqualTo (format["warehouse-%1_",_wid]))});
 
 if(count _possible > 0) then {
 	private _sorted = [_possible,[],{(cost getvariable [_x,[200]]) select 0},"DESCEND"] call BIS_fnc_SortBy;

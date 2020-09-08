@@ -93,7 +93,7 @@ if(_version < OTML_economyVersion) then {
     }foreach(OT_allFactions);
     diag_log "Overthrow: Economy Load Complete";
 };
-
+/*
 //Save upgrade for existing factions > 0.7.5.1
 {
     _x params ["_cls","_name","_side"];
@@ -102,12 +102,12 @@ if(_version < OTML_economyVersion) then {
         server setVariable [format["factionname%1",_cls],_name,true];
     };
 }foreach(OT_allFactions);
-
+*/
 //Stability markers
 {
     private _stability = server getVariable format["stability%1",_x];
 	private _posTown = server getVariable _x;
-	private _tname = _x;
+	private _town = _x;
     private _pos = [_posTown,40,-90] call BIS_fnc_relPos;
     _mSize = 250;
 
@@ -166,36 +166,6 @@ if(_version < OTML_economyVersion) then {
 	_hardwares = server getVariable [format["activehardwarein%1",_x],[]];
 	[_allActiveHardwares,_hardwares] call BIS_fnc_arrayPushStack;
 
-	_gunpos = server getVariable [format["gundealer%1",_x],[]];
-	if(count _gunpos > 0) then {
-		_mrk = createMarker [format["gundealer%1", _tname], _gunpos];
-		_mrk setMarkerShape "ICON";
-		_mrk setMarkerType "ot_Shop_Gundealer";
-	};
-
-	{
-		_mrk = createMarker [format["shop%1%2", _tname, _x select 1], _x select 0];
-		_mrk setMarkerShape "ICON";
-		_mrk setMarkerType format["ot_Shop_%1", _x select 1];
-	}foreach _shops;
-
-	{
-		_mrk = createMarker [format["carshop%1", _x], _x];
-		_mrk setMarkerShape "ICON";
-		_mrk setMarkerType "ot_Shop_CarStore";
-	}foreach _carshops;
-
-	{
-		_mrk = createMarker [format["piershop%1", _x], _x];
-		_mrk setMarkerShape "ICON";
-		_mrk setMarkerType "ot_Shop_Pier";
-	}foreach _piers;
-
-	{
-		_mrk = createMarker [format["hardware%1", _tname], _x select 0];
-		_mrk setMarkerShape "ICON";
-		_mrk setMarkerType "ot_Shop_Hardware";
-	}foreach _hardwares;
     sleep 0.3;
 }foreach(OT_allTowns);
 

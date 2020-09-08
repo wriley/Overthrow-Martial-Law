@@ -126,6 +126,7 @@ OT_allAirports = OT_airportData apply { _x select 1 };
 
 //Global overthrow variables related to any map
 
+OT_lastMapDrawScale = 0;
 OT_currentMissionFaction = "";
 OT_rankXP = [100,250,500,1000,4000,10000,100000];
 OT_factoryXP = 0;
@@ -133,8 +134,8 @@ OT_factoryLevel = 0;
 OT_Resources = ["OT_Wood","OT_Steel","OT_Plastic","OT_Sugarcane","OT_Sugar","OT_Fertilizer","OT_Lumber","OT_Wine","OT_Grapes","OT_Olives"];
 OT_businessStorage = "B_Slingload_01_Cargo_F";
 
-OT_adminMode = true;
-OT_DEBUG = true;
+OT_adminMode = false;
+OT_DEBUG = false;
 
 OT_allIntel = [];
 OT_notifies = [];
@@ -525,6 +526,12 @@ private _allGlasses = "
 " configClasses ( configFile >> "CfgGlasses" );
 
 OT_allFactions = [];
+OT_knownFactions = [];
+OT_knownGundealers = [];
+OT_knownShops = [];
+OT_knownCarShops = [];
+OT_knownPiers = [];
+OT_knownHardwares = [];
 OT_allSubMachineGuns = [];
 OT_allAssaultRifles = [];
 OT_allMachineGuns = [];

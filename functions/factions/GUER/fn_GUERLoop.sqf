@@ -227,6 +227,70 @@ if (dateToNumber date > _lastmin) then {
 		call OT_fnc_cleanDead;
 	};
 
+	// Reveal nearby faction/gun dealers and shops
+	{
+		_x params ["_cls","_name","_side"];
+		if!(_side isEqualTo 1) then {
+			private _factionPos = server getVariable format["factionrep%1",_cls];
+			if!(isNil "_factionPos") then {
+				if([_factionPos, 300] call OT_fnc_playerInRange && !(_x in OT_knownFactions)) then {
+					OT_knownFactions pushback _x;
+					publicVariable "OT_knownFactions";
+					format ["The Resistance found the %1 faction dealer in %2!", _name, (_factionPos call OT_fnc_nearestTown)] remoteExecCall ["OT_fnc_notifyMinor",0];
+				};
+			};
+		};
+
+	} foreach OT_allFactions;
+	{
+		_x params ["_tpos","_town"];
+		private _gundealerpos = server getVariable format["gundealer%1",_town];
+		if!(isNil "_gundealerpos") then {
+			if([_gundealerpos, 300] call OT_fnc_playerInRange && !(_x in OT_knownGundealers)) then {
+				OT_knownGundealers pushback _x;
+				publicVariable "OT_knownGundealers";
+				format ["The Resistance found a gun dealer in %1!", _town] remoteExecCall ["OT_fnc_notifyMinor",0];
+			};
+		};
+
+		private _shops = server getVariable [format["activeshopsin%1",_town],[]];
+		{
+			private _pos = _x select 0;
+			private _cat = _x select 1;
+			if([_pos, 300] call OT_fnc_playerInRange && !(_x in OT_knownShops)) then {
+				OT_knownShops pushback _x;
+				publicVariable "OT_knownShops";
+			};
+		}foreach _shops;
+
+		private _carshops = server getVariable [format["activecarshopsin%1",_town],[]];
+		{
+			private _pos = _x;
+			if([_pos, 300] call OT_fnc_playerInRange && !(_pos in OT_knownCarShops)) then {
+				OT_knownCarShops pushback _pos;
+				publicVariable "OT_knownCarShops";
+			};
+		}foreach _carshops;
+
+		private _piers = server getVariable [format["activepiersin%1",_town],[]];
+		{
+			private _pos = _x;
+			if([_pos, 300] call OT_fnc_playerInRange && !(_pos in OT_knownPiers)) then {
+				OT_knownPiers pushback _pos;
+				publicVariable "OT_knownPiers";
+			};
+		}foreach _piers;
+
+		private _hardwares = server getVariable [format["activehardwarein%1",_town],[]];
+		{
+			private _pos = _x select 0;
+			if([_pos, 300] call OT_fnc_playerInRange && !(_pos in OT_knownHardwares)) then {
+				OT_knownHardwares pushback _pos;
+				publicVariable "OT_knownHardwares";
+			};
+		}foreach _hardwares;
+	}foreach OT_townData;
+
 	//chance to reveal a FOB
 	_revealed = server getVariable ["revealedFOBs",[]];
 	{
