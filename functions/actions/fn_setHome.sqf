@@ -42,7 +42,7 @@ if(typename _b isEqualTo "ARRAY") then {
 		_handled = true;
 	};
 
-	if (_cls in OT_allRepairableBuildings) exitWith {
+	if (_cls in OT_allRepairableBuildings && _damage > 0) exitWith {
 		_money = player getVariable ["money",0];
 		if(_money >= _cost) then {
 			[-_cost] call OT_fnc_money;

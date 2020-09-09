@@ -3,7 +3,7 @@ params ["_ctrl","_index"];
 disableSerialization;
 
 private _uid = _ctrl lbData _index;
-private _generals = _generals;
+private _generals = (server getVariable ["generals",[]]);
 _amgen = (getPlayerUID player) in _generals;
 
 _isonline = false;
