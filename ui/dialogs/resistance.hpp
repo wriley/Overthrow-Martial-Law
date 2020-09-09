@@ -31,7 +31,19 @@ class OT_dialog_resistance
 			h = 0.588 * safezoneH;
 			onLBSelChanged = "_this call OT_fnc_showMemberInfo";
         };
-        class RscStructuredText_1102: RscOverthrowStructuredText
+		class RscStructuredText_1101: RscOverthrowStructuredText // title text
+		{
+			idc = 1101;
+
+			text = "<t align='left' size='2'>Resistance Information</t>";
+			x = 0.427812 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.308437 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
+		};
+        class RscStructuredText_1102: RscOverthrowStructuredText // member info
         {
             idc = 1102;
 
@@ -52,6 +64,36 @@ class OT_dialog_resistance
 			h = 0.224 * safezoneH;
 			colorBackground[] = {0,0,0,0.2};
 			colorActive[] = {0,0,0,0};
+		};
+		class RscStructuredText_1191: RscOverthrowStructuredText // title left filler
+		{
+			idc = 1102;
+			x = 0.2375 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.190312 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
+		};
+		class RscStructuredText_1192: RscOverthrowStructuredText // close bottom filler
+		{
+			idc = 1103;
+			x = 0.729688 * safezoneW + safezoneX;
+			y = 0.192 * safezoneH + safezoneY;
+			w = 0.02625 * safezoneW;
+			h = 0.014 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
+		};
+		class RscStructuredText_1193: RscOverthrowStructuredText // close right filler
+		{
+			idc = 1104;
+			x = 0.755937 * safezoneW + safezoneX;
+			y = 0.164 * safezoneH + safezoneY;
+			w = 0.0065625 * safezoneW;
+			h = 0.042 * safezoneH;
+			colorBackground[] = {0.664063,0.164063,0.175781,1};
+            colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
 		class RscButton_1600: RscOverthrowButton
 		{
@@ -96,48 +138,6 @@ class OT_dialog_resistance
 			y = 0.514 * safezoneH + safezoneY;
 			w = 0.07875 * safezoneW;
 			h = 0.056 * safezoneH;
-		};
-		class RscStructuredText_1101: RscOverthrowStructuredText // title text
-		{
-			idc = 1101;
-
-			text = "<t align='left' size='2'>Resistance Information</t>";
-			x = 0.427812 * safezoneW + safezoneX;
-			y = 0.164 * safezoneH + safezoneY;
-			w = 0.308437 * safezoneW;
-			h = 0.042 * safezoneH;
-			colorBackground[] = {0.664063,0.164063,0.175781,1};
-            colorActive[] = {0.664063,0.164063,0.175781,1};
-		};
-		class RscStructuredText_1191: RscOverthrowStructuredText // title left filler
-		{
-			idc = 1102;
-			x = 0.2375 * safezoneW + safezoneX;
-			y = 0.164 * safezoneH + safezoneY;
-			w = 0.190312 * safezoneW;
-			h = 0.042 * safezoneH;
-			colorBackground[] = {0.664063,0.164063,0.175781,1};
-            colorActive[] = {0.664063,0.164063,0.175781,1};
-		};
-		class RscStructuredText_1192: RscOverthrowStructuredText // close bottom filler
-		{
-			idc = 1103;
-			x = 0.729688 * safezoneW + safezoneX;
-			y = 0.192 * safezoneH + safezoneY;
-			w = 0.02625 * safezoneW;
-			h = 0.014 * safezoneH;
-			colorBackground[] = {0.664063,0.164063,0.175781,1};
-            colorActive[] = {0.664063,0.164063,0.175781,1};
-		};
-		class RscStructuredText_1193: RscOverthrowStructuredText // close right filler
-		{
-			idc = 1104;
-			x = 0.755937 * safezoneW + safezoneX;
-			y = 0.164 * safezoneH + safezoneY;
-			w = 0.0065625 * safezoneW;
-			h = 0.042 * safezoneH;
-			colorBackground[] = {0.664063,0.164063,0.175781,1};
-            colorActive[] = {0.664063,0.164063,0.175781,1};
 		};
         class RscButton_1699: RscOverthrowButton
         {
