@@ -40,7 +40,7 @@ if(!isNil "_close") then {
 	_usecar = false;
 	_veh = objNull;
 
-	if(((_close distance _townPos) > 1200) && (random 100) > 50) then { //changed 2000 to 1200
+	if(((_close distance _townPos) > 800) && (random 100) > 50) then { //changed 2000 to 1200
 		_spawnpos = _start findEmptyPosition [5,100,OT_NATO_Vehicle_Police];
 		_veh =  OT_NATO_Vehicle_Police createVehicle _spawnpos;
 		_veh setDir (random 360);

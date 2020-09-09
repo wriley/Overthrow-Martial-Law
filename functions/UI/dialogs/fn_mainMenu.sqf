@@ -4,7 +4,7 @@ openMap false;
 
 private _ft = server getVariable ["OT_fastTravelType",1];
 if(!OT_adminMode && _ft > 1) then {
-	ctrlEnable [1600,false];
+	ctrlEnable [1601,false];
 };
 
 disableSerialization;
@@ -34,11 +34,6 @@ private _extra2 = "";
 if (count _geurOwned isEqualTo 0) then {
 	ctrlEnable [1603,false];
 	findDisplay 8001 displayCtrl 1603 ctrlSetTooltip "Buy a business to access Business Management";
-};
-private _uiScale = 0.4 + (0.5 / (pixelGrid / 12));
-
-for [{private _i=1600;},{_i==1621;},{_i=_i+1;}] do {
-	private _ctrl = findDisplay 8001 displayCtrl _i;
 };
 
 _extra1 = format["
@@ -114,13 +109,6 @@ if(typename _b isEqualTo "ARRAY") then {
 		_owner = _building call OT_fnc_getOwner;
 		_ownername = players_NS getVariable format["name%1",_owner];
 		if(isNil "_ownername") then {_ownername = "Someone"};
-
-		if (_damage > 0) then {
-			ctrlEnable [1613,true];
-			ctrlSetText [1613,"Repair"];
-			_ctrl1613 ctrlSetTooltip format ["Repair ($%1)", _cost];
-		};
-
 
 		if(_cls isEqualTo OT_warehouse) exitWith {
 			ctrlEnable [1612,true];
@@ -302,6 +290,11 @@ if(typename _b isEqualTo "ARRAY") then {
 			",_name,_ownername,_damage,"%"];
 		};
 
+		if (_damage > 0) then {
+			ctrlEnable [1613,true];
+			ctrlSetText [1613,"Repair"];
+			_ctrl1613 ctrlSetTooltip format ["Repair ($%1)", _cost];
+		};
 	}else{
 		// Building has no owner
 		/*if((_cls) in OT_allRepairableRuins) then {

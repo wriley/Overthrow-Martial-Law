@@ -375,7 +375,7 @@ player addEventHandler ["WeaponAssembled",{
 }];
 
 // Temp fix for guns disappearing
-/*player addEventHandler ["InventoryOpened", {
+player addEventHandler ["InventoryOpened", {
     params ["_unit","_veh"];
     private _locked = false;
     if (_veh isKindOf "Vehicles" && !(_veh call OT_fnc_playerIsOwner)) then {
@@ -385,28 +385,30 @@ player addEventHandler ["WeaponAssembled",{
             _locked = true;
         };
     };
+	/*
     if (_veh isKindOf "Man") then {
-    private _holder = nearestObject [player, "WeaponHolderSimulated"];
-    private _pos = getposATL _holder;
-    private _item = weaponsItemsCargo _holder;
-    private _vectorDirUp = [vectorDir _holder, vectorUp _holder];
-    [{
-        params ["_holder","_pos","_vectorDirUp","_item"];
-        (((getposATL _holder) select 2) < 1 or isnull (findDisplay 602));
-    },{
-        params ["_holder","_pos","_vectorDirUp","_item"];
-        if ((getposATL _holder) select 2 < 1) then {
-            deletevehicle _holder;
-            private _newholder = createVehicle ["WeaponHolderSimulated", _pos, [], 0, "NONE"];
-            _newholder setVectorDirAndUp _vectorDirUp;
-            _newholder setposATL _pos;
-            _newholder addWeaponWithAttachmentsCargoGlobal [(_item select 0), 1];
-        };
-    },[_holder,_pos,_vectorDirUp,_item]] call CBA_fnc_waitUntilAndExecute;
+		private _holder = nearestObject [player, "WeaponHolderSimulated"];
+		private _pos = getposATL _holder;
+		private _item = weaponsItemsCargo _holder;
+		private _vectorDirUp = [vectorDir _holder, vectorUp _holder];
+		[{
+			params ["_holder","_pos","_vectorDirUp","_item"];
+			(((getposATL _holder) select 2) < 1 or isnull (findDisplay 602));
+		},{
+			params ["_holder","_pos","_vectorDirUp","_item"];
+			if ((getposATL _holder) select 2 < 1) then {
+				deletevehicle _holder;
+				private _newholder = createVehicle ["WeaponHolderSimulated", _pos, [], 0, "NONE"];
+				_newholder setVectorDirAndUp _vectorDirUp;
+				_newholder setposATL _pos;
+				_newholder addWeaponWithAttachmentsCargoGlobal [(_item select 0), 1];
+			};
+		},[_holder,_pos,_vectorDirUp,_item]] call CBA_fnc_waitUntilAndExecute;
     };
+	*/
     _locked
 }];
-*/
+
 
 player addEventHandler ["InventoryOpened", {
 	params ["","_veh"];

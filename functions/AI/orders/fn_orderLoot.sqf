@@ -132,7 +132,7 @@ if (count _myunits > 1) then {
 
 		// Get back in vehicle
 		if (!(_role isEqualTo "") && (!isNull _veh && alive _unit) && canMove _veh) then {
-			_err = [_unit, _veh, 8] call OT_fncOT_fnc_orderMove;
+			_err = [_unit, _veh, 8] call OT_fnc_orderMove;
 			if (_err isEqualTo "Dead") exitWith { };
 			if (_role == "driver") then {
 				_unit moveInDriver _veh;

@@ -1,14 +1,14 @@
 createDialog 'OT_dialog_resistance';
 
 ctrlEnable [1600,false];
-ctrlEnable [1601,false];
+//ctrlEnable [1601,false];
 
 private _amgen = (getPlayerUID player) in (server getVariable ["generals",[]]);
 if(!isMultiplayer) then {_amgen = true};
 
 if(!_amgen) then {
     ctrlEnable [1605,false];
-    ctrlEnable [1602,false];
+    //ctrlEnable [1602,false];
     ctrlEnable [1603,false];
 };
 
