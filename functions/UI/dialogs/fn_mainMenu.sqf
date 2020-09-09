@@ -110,13 +110,6 @@ if(typename _b isEqualTo "ARRAY") then {
 		_ownername = players_NS getVariable format["name%1",_owner];
 		if(isNil "_ownername") then {_ownername = "Someone"};
 
-		if (_damage > 0) then {
-			ctrlEnable [1613,true];
-			ctrlSetText [1613,"Repair"];
-			_ctrl1613 ctrlSetTooltip format ["Repair ($%1)", _cost];
-		};
-
-
 		if(_cls isEqualTo OT_warehouse) exitWith {
 			ctrlEnable [1612,true];
 			ctrlSetText [1612,"Procurement"];
@@ -297,6 +290,11 @@ if(typename _b isEqualTo "ARRAY") then {
 			",_name,_ownername,_damage,"%"];
 		};
 
+		if (_damage > 0) then {
+			ctrlEnable [1613,true];
+			ctrlSetText [1613,"Repair"];
+			_ctrl1613 ctrlSetTooltip format ["Repair ($%1)", _cost];
+		};
 	}else{
 		// Building has no owner
 		/*if((_cls) in OT_allRepairableRuins) then {
