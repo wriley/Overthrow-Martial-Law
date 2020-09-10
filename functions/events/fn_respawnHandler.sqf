@@ -47,7 +47,7 @@ removeBackpack player;
 removeVest player;
 
 player setVariable ["ot_isSmoking", false];
-player setVariable ["BeingSearched",nil,true];
+player setVariable ["OT_beingSearched",nil,true];
 player addWeaponGlobal "ItemMap";
 
 _housepos = _old getVariable "home";

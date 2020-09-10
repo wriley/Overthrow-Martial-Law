@@ -140,7 +140,7 @@ if !(captive _unit) then {
 				if(isPlayer _unit) then {
 					"You've been caught dealing with a Gun dealer!" call OT_fnc_notifyMinor;
 					_unit setVariable ["OT_wantedReason", " (DEALING)"];
-};
+				};
 			};
 			// smoking
 			if(_unit getvariable ["ot_isSmoking",false]) exitWith {
@@ -178,7 +178,7 @@ if !(captive _unit) then {
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
 			};
-			//added illegal uniforms 
+			//added illegal uniforms
 		    if (((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) || { (uniform _unit in OT_illegalUniform) }) exitWith {
 				if(isPlayer _unit) then {
 					"You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
@@ -213,14 +213,8 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 			};
 			if(isPlayer _unit) then { //Who dosn't like a random search
-				if (random 1000 < 3) exitWith { //1/1000 chance every second to have chance of being searched
-					private _foundillegal = _unit call OT_fnc_IllegalInInventory; //Don't waste time searching an innocent player
-					private _playersearch = _unit getVariable ["BeingSearched",""];
-					if (_playersearch isEqualTo "") then {
-						if (_foundillegal) then {
-						[_unit] spawn OT_fnc_NATOsearch;
-						};
-					};
+				if (random 1000 < 20) exitWith { //10/1000 chance every second to have chance of being searched
+					[_unit] spawn OT_fnc_NATOsearch;
 				};
 			};
 			private _unitpos = getPosATL _unit;
