@@ -1,6 +1,5 @@
 private _target = objNull;
 private _cop = objNull;
-private _playersearch = false;
 
 if((count _this) isEqualTo 3) then {
 	//its a position
@@ -24,8 +23,8 @@ if((count _this) isEqualTo 3) then {
 	};
 };
 if(isNil "_cop" || isNil "_target") exitWith{};
-
-_target setVariable ["BeingSearched","Yes",true];
+if (_target getVariable ["OT_beingSearched", false]) exitWith {};
+_target setVariable ["OT_beingSearched",true,true];
 _cop setVariable ["OT_searching",true,true];
 
 if((isplayer _target) && !(captive _target)) exitWith{};
@@ -70,7 +69,7 @@ private _cleanup = {
 	};
 	if(isplayer _target) then {
 		_target removeEventHandler ["InventoryOpened",_handler];
-		_target setVariable ["BeingSearched",nil,true];
+		_target setVariable ["OT_beingSearched",nil,true];
 	}else{
 		[_target, "MOVE"] remoteExec ["enableAI",_target,false];
 	};
@@ -122,6 +121,7 @@ if((isplayer _target && !captive _target) || (!alive _cop) || ((time - _timenow)
 if((_target distance _posnow) > 2) exitWith {
 	if(isplayer _target) then {
 		"You tried to escape a NATO search" remoteExecCall ["hint",_target,false];
+		_target setVariable ["OT_wantedReason", " (EVADING)", true];
 	};
 	[_group,_cop,_target,_hdl] call _cleanup;
 	_target setCaptive false;
@@ -149,11 +149,18 @@ if(isplayer _target) then {
 		};
 	}foreach(_target call OT_fnc_getSearchStock);
 
+	if (count (_target getVariable ["handgunState", []]) > 0) then {
+		_foundweapons = true;
+		_target setVariable ["handgunState", [], true];
+		_target setVariable ["handgunItems", [], true];
+	};
+
 	if(_foundillegal || _foundweapons) then {
 		if(_foundweapons) then {
 			if(isplayer _target) then {
 				[_cop,"What's this!?"] remoteExec ["globalchat",_target,false];
 				"NATO found weapons" remoteExecCall ["hint",_target,false];
+				_target setVariable ["OT_wantedReason", " (ARMED)", true];
 			};
 			_target setCaptive false;
 			[_target] call OT_fnc_revealToNATO;
@@ -167,7 +174,7 @@ if(isplayer _target) then {
 				if((random 100) < _chance) then {
 					[_cop,"We found some illegal items && confiscated them, be on your way"] remoteExec ["globalchat",_target,false];
 					"NATO confiscated illegal items" remoteExecCall ["hint",_target,false];
-					private _town = (getpos _target) call OT_fnc_nearestTown;
+					_target setVariable ["OT_wantedReason", " (ILLEGAL)", true];
 				}else{
 					[_cop,"Thank you for your co-operation"] remoteExec ["globalchat",_target,false];
 				};

@@ -103,6 +103,7 @@ class CfgFunctions
 			class hasWeaponEquipped {};
 			class carriesStaticWeapon {};
 			class illegalInCar {};
+			class illegalInInventory {};
 			class detectedByReputation {};
 			class detectedByReputationNATO {};
 			class gangRep {};

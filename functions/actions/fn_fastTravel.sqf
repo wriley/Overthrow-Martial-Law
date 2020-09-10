@@ -27,6 +27,8 @@ private _hasdrugs = false;
 
 if(_hasdrugs && _ftrules > 0) exitWith {"You cannot fast travel while carrying drugs" call OT_fnc_notifyMinor};
 
+if (_ftrules > 1 && (player call OT_fnc_IllegalInInventory)) exitWith {"You cannot fast travel while carrying anything illegal" call OT_fnc_notifyMinor};
+
 private _exit = false;
 if((vehicle player) != player) then {
 	
