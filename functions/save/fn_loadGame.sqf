@@ -173,7 +173,7 @@ private _hasList_buildableHouses = false;
 							if(count _a > 0) then {
 								_a params ["_attached","_am"];
 								_veh setVariable ["OT_attachedClass",_attached,true];
-								[_veh,_am] remoteExec OT_fnc_initAttached;
+								[_veh,_am] call OT_fnc_initAttached;
 							};
 						};
 					};
