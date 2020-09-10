@@ -29,7 +29,7 @@ if !(captive _unit) then {
 			_timer = 0;
 		};
 	};
-}else{
+} else {
 	//CURRENTLY NOT WANTED
 
 	// reset vars for next wanted state
@@ -40,6 +40,7 @@ if !(captive _unit) then {
 	private _vehicle = vehicle _unit;
 
 	private _gottem = false;
+	if (isPlayer _unit) then { _unit setVariable ["OT_wantedReason", ""]; };
 
 	//Enemy radar detection/No-fly zones
 	if((typeOf _vehicle isKindOf ["Air",configFile>>"CfgVehicles"]) && (_playerpos select 2) > 30) then {
@@ -53,6 +54,7 @@ if !(captive _unit) then {
 			) then {
 				if(isPlayer _unit) then {
 					"This is a no-fly zone" call OT_fnc_notifyMinor;
+					_unit setVariable ["OT_wantedReason", " (NOFLY)"];
 				};
 				_unit setCaptive false;
 				[vehicle _unit] call OT_fnc_revealToNATO;
@@ -85,6 +87,7 @@ if !(captive _unit) then {
 					[_unit] call OT_fnc_revealToCRIM;
 					if(isPlayer _unit) then {
 						format["%1 have recognized you",_name] call OT_fnc_notifyMinor;
+						_unit setVariable ["OT_wantedReason", " (WAR)"];
 					};
 				};
 				if(_rep < 10) then {
@@ -94,6 +97,7 @@ if !(captive _unit) then {
 						[_unit] call OT_fnc_revealToCRIM;
 						if(isPlayer _unit) then {
 							format["%1 have seen the static weapon",_name] call OT_fnc_notifyMinor;
+							_unit setVariable ["OT_wantedReason", " (ARMED)"];
 						};
 					};
 
@@ -110,6 +114,7 @@ if !(captive _unit) then {
 					if (_unit call OT_fnc_hasWeaponEquipped) exitWith {
 						if(isPlayer _unit) then {
 							format["%1 have seen your weapon",_name] call OT_fnc_notifyMinor;
+							_unit setVariable ["OT_wantedReason", " (ARMED)"];
 						};
 						_unit setCaptive false;
 						[_unit] call OT_fnc_revealToCRIM;
@@ -125,6 +130,7 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 				if(isPlayer _unit) then {
 					"You've been caught dealing in the Black Market!" call OT_fnc_notifyMinor;
+					_unit setVariable ["OT_wantedReason", " (DEALING)"];
 				};
 			};
 			// talking to gun dealers
@@ -133,7 +139,8 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 				if(isPlayer _unit) then {
 					"You've been caught dealing with a Gun dealer!" call OT_fnc_notifyMinor;
-				};
+					_unit setVariable ["OT_wantedReason", " (DEALING)"];
+};
 			};
 			// smoking
 			if(_unit getvariable ["ot_isSmoking",false]) exitWith {
@@ -141,6 +148,7 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 				if(isPlayer _unit) then {
 					"NATO has seen your spliff!" call OT_fnc_notifyMinor;
+					_unit setVariable ["OT_wantedReason", " (SPLIFF)"];
 				};
 			};
 			if(_unit call OT_fnc_carriesStaticWeapon) exitWith {
@@ -148,6 +156,7 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 				if(isPlayer _unit) then {
 					"NATO has seen the static weapon" call OT_fnc_notifyMinor;
+					_unit setVariable ["OT_wantedReason", " (ARMED)"];
 				};
 			};
 			if(!(_vehicle isEqualTo _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
@@ -157,33 +166,39 @@ if !(captive _unit) then {
 					_x setcaptive false;
 				}forEach(units _vehicle);
 				[vehicle _unit] call OT_fnc_revealToNATO;
+				if (isPlayer _unit) then {
+					_unit setVariable ["OT_wantedReason", " (STOLEN)"];
+				};
 
 				//Record any threats as known targets
 				(vehicle _unit) call OT_fnc_NATOreportThreat;
 			};
 			if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
+				_unit setVariable ["OT_wantedReason", " (ARMED)"];
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
 			};
 			//added illegal uniforms 
-		      if (((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) || { (uniform _unit in OT_illegalUniform) }) exitWith {
-		      if(isPlayer _unit) then {
-		          "You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
-		       };
-					 _unit setCaptive false;
-					 [_unit] call OT_fnc_revealToNATO;
-		    };
+		    if (((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) || { (uniform _unit in OT_illegalUniform) }) exitWith {
+				if(isPlayer _unit) then {
+					"You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
+					_unit setVariable ["OT_wantedReason", " (GEAR)"];
+				};
+				_unit setCaptive false;
+				[_unit] call OT_fnc_revealToNATO;
+			};
 
 		if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
-			private _offroadDist = 125; //Distance you are alloud off road
-			private _checkpointOffroadRange = 200; //Distance from a checkpoint for the stricter off road distance
-			private _checkpointOffroadDist = 30;
+			private _offroadDist = 25; //Distance you are allowed off road
+			private _checkpointOffroadRange = 50; //Distance from a checkpoint for the stricter off road distance
+			private _checkpointOffroadDist = 5;
 			if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
 					_offroadDist = _checkpointOffroadDist
 			};
 			if(isNull ([position _unit, _offroadDist] call BIS_fnc_nearestRoad)) then {
 				if(isPlayer _unit) then {
 					"You are driving offroad" call OT_fnc_notifyMinor;
+					_unit setVariable ["OT_wantedReason", " (OFFROAD)"];
 				};
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
@@ -192,6 +207,7 @@ if !(captive _unit) then {
 			if !(hmd _unit isEqualTo "") exitWith {
 				if(isPlayer _unit) then {
 					"NATO has spotted your NV Goggles" call OT_fnc_notifyMinor;
+					_unit setVariable ["OT_wantedReason", " (NVGs)"];
 				};
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
@@ -240,6 +256,7 @@ if !(captive _unit) then {
 				if((_obpos distance _unitpos) < _dist) then {
 					if(isPlayer _unit) then {
 						"You are in a restricted area" call OT_fnc_notifyMinor;
+						_unit setVariable ["OT_wantedReason", " (RESTRICTED)"];
 					};
 					_unit setCaptive false;
 					[_unit] call OT_fnc_revealToNATO;

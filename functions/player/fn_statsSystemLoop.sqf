@@ -1,16 +1,6 @@
 params ["_player"];
 if !(alive _player) exitWith {};
 
-private _wanted = "<br/>";
-if !(captive _player) then {
-	private _hiding = _player getVariable ["OT_hiding", 0];
-	if((_hiding > 0) && (_hiding < 30)) then {
-		_wanted = format["<t color='#C0392B'>(%1) WANTED</t>",_hiding];
-	}else{
-		_wanted = "<t color='#C0392B'>WANTED</t>";
-	};
-};
-
 private _seen = "^.^";
 if(_player call OT_fnc_unitSeenNATO) then {
 	_seen = "<t color='#0000FF'>O_O</t>";//changed from 5D8AA8 and o_o
@@ -19,6 +9,18 @@ if(_player call OT_fnc_unitSeenNATO) then {
 		_seen = "<t color='#FF0000'>O_O</t>";//changed from B2282f and o_o
 	};
 };
+
+private _wanted = "<br/>";
+if !(captive _player) then {
+	private _hiding = _player getVariable ["OT_hiding", 0];
+	private _reason = _player getVariable ["OT_wantedReason",""];
+	if((_hiding > 0) && (_hiding < 30)) then {
+		_wanted = format["<t color='#C0392B'>(%1) WANTED%2</t>", _hiding, _reason];
+	}else{
+		_wanted = format["<t color='#C0392B'>WANTED%1</t>", _reason];
+	};
+};
+
 private _qrf = "";
 private _attacking = server getVariable ["NATOattacking",OT_nation];
 if(!isNil "OT_QRFstart" && (time - OT_QRFstart) < 600) then {
@@ -42,19 +44,18 @@ if(!isNil "OT_QRFstart" && (time - OT_QRFstart) > 600) then {
 	}
 };
 
-//Offroad
+/*//Offroad
 private _offroad = "";
 if(vehicle _player != _player && vehicle _player isKindOf "LandVehicle" && isNull ([position _player, 125] call BIS_fnc_nearestRoad)) then {
 	_offroad = "OFFROAD";
-};
+};*/
 
 private _txt = format [
 	"<t size='1' align='right'>$%1<br/>%2<br/>%3<br/>%4<br/>%5</t>",
 	[_player getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,
 	_seen,
 	_wanted,
-	_qrf,
-	_offroad
+	_qrf
 ];
 
 private _setText = (uiNameSpace getVariable "OT_statsHUD") displayCtrl 1001;

@@ -567,7 +567,6 @@ class FSM
                          "{" \n
                          "	_VCOM_GARRISONED = false;" \n
                          "};" \n
-                         "_Group setCombatMode ""YELLOW"";" \n
                          "//See if we can take any vehicles." \n
                          "if (VCM_StealVeh) then {group call VCM_fnc_VehicleCommandeer};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
