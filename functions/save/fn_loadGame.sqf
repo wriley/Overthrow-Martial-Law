@@ -388,9 +388,9 @@ private _hasList_buildableHouses = false;
 		{
 			if(!isNil "_x") then {
 				if(_x isEqualType []) then {
-					_x params [["_id",0],"_itemString"];
-					if (_itemString isEqualType []) then {
-						_itemString params [["_cls","",[""]],["_qty",0,[0]]];
+					_x params [["_id",0],["_itemArr",""]];
+					if (_itemArr isEqualType []) then {
+						_itemArr params [["_cls","",[""]],["_qty",0,[0]]];
 						if (_qty > 0 && !(_cls isEqualTo "")) then {
 							warehouses setVariable [format["warehouse-%1_%2",_id,_cls],[_cls,_qty],true];
 						};
