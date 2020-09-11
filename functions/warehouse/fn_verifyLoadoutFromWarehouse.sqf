@@ -4,6 +4,7 @@ OT_whTransferring = true;
 diag_log format ["verifyLoadoutFromWarehouse: params: %1", _this];
 params ["_wid","_unit",["_correct",true]];
 private _ignore = [];
+private _missing = [];
 {
     _x params [["_cls",""], ["_count",0]];
     if !(_cls in _ignore) then {

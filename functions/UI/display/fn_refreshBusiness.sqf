@@ -6,11 +6,11 @@ private ["_pos","","_production","_xp","_level","_nextlevel"];
 {
 	_queue = server getVariable [format["%1queue", _x], []];
 	if (count _queue > 0) then {
-		lbSetColor [1500, _idx, [0, .8, 0, 1]];
+		lbSetColor [1500, _forEachIndex, [0, .8, 0, 1]];
 	} else {
-		lbSetColor [1500, _idx, [0, 0, 0, 1]];
+		lbSetColor [1500, _forEachIndex, [1, 1, 1, 1]];
 	};
-}foreach (server getVariable ["GEURowned",[]]);
+}foreach ((server getVariable ["GEURowned",[]]) call BIS_fnc_sortAlphabetically);
 
 if (lbCurSel 1500 isEqualTo -1) exitWith {};
 private _selBusiness = lbText [1500,(lbCurSel 1500)];

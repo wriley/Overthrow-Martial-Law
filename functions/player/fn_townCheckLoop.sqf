@@ -27,10 +27,10 @@ if (!isNil "_town" && {OT_Map_EachFrameLastTown != _town}) then {
 
 			[format [
 				"<t align='left' size='1.2' color='#eeeeee'>%1</t><br/>
-				<t align='left' size='0.5' color='#bbbbbb'>Status: %7</t><br/>
-				<t align='left' size='0.5' color='#bbbbbb'>Population: %2</t><br/>
-				<t align='left' size='0.5' color='#bbbbbb'>Stability: %3%4</t><br/>
-				<t align='left' size='0.5' color='#bbbbbb'>Resistance Support: %5%6</t>",
+				<t align='left' size='0.8' color='#bbbbbb'>Status: %7</t><br/>
+				<t align='left' size='0.8' color='#bbbbbb'>Population: %2</t><br/>
+				<t align='left' size='0.8' color='#bbbbbb'>Stability: %3%4</t><br/>
+				<t align='left' size='0.8' color='#bbbbbb'>Resistance Support: %5%6</t>",
 				_town,
 				[_pop, 1, 0, true] call CBA_fnc_formatNumber,
 				_stability,

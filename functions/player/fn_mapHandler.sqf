@@ -234,6 +234,7 @@ if(_scale <= 0.1) then {
 		};
 	}foreach(player getvariable ["owned",[]]);
 
+	// known faction markers
 	{
 		_x params ["_cls","","","_flag"];
 		private _factionPos = server getVariable format["factionrep%1",_cls];
@@ -246,59 +247,8 @@ if(_scale <= 0.1) then {
 			0
 		];
 	}foreach(OT_knownFactions);
-/*
-	{	// revealing shops and gundealers to player
-		_x params ["_tpos","_town"];
-		private _shops = server getVariable [format["activeshopsin%1",_town],[]];
-		private _carshops = server getVariable [format["activecarshopsin%1",_town],[]];
-		private _piers = server getVariable [format["activepiersin%1",_town],[]];
-		private _hardwares = server getVariable [format["activehardwarein%1",_town],[]];
-		if ([_tpos, 500] call OT_fnc_playerInRange) then {
-			{
-				private _pos = _x select 0;
-				private _cat = _x select 1;
-				if !([format["shop%1%2", _pos, _cat]] in allMapMarkers) then {
-					_mrk = createMarker [format["shop%1%2", _pos, _cat], _pos];
-					_mrk setMarkerShape "ICON";
-					_mrk setMarkerType format["ot_Shop_%1", _cat];
-					OT_lastMapDrawScale = -1;
-				};
-			}foreach _shops;
 
-			{
-				private _pos = _x;
-				if !([format["carshop%1", _pos]] in allMapMarkers) then {
-					_mrk = createMarker [format["carshop%1", _pos], _pos];
-					_mrk setMarkerShape "ICON";
-					_mrk setMarkerType "ot_Shop_CarStore";
-					OT_lastMapDrawScale = -1;
-				};
-			}foreach _carshops;
-
-			{
-				private _pos = _x;
-				if !([format["piershop%1", _pos]] in allMapMarkers) then {
-					_mrk = createMarker [format["piershop%1", _pos], _pos];
-					_mrk setMarkerShape "ICON";
-					_mrk setMarkerType "ot_Shop_Pier";
-					OT_lastMapDrawScale = -1;
-				};
-			}foreach _piers;
-
-			{
-				private _pos = _x select 0;
-				if !([format["hardware%1%2", _pos]] in allMapMarkers) then {
-					_mrk = createMarker [format["hardware%1", _pos], _pos];
-					_mrk setMarkerShape "ICON";
-					_mrk setMarkerType "ot_Shop_Hardware";
-					OT_lastMapDrawScale = -1;
-				};
-			}foreach _hardwares;
-
-		};
-	}foreach OT_townData;
-*/
-	// Create known Gun dealer markers
+	// known gun dealer markers
 	{
 		_x params ["","_town"];
 		private _gundealerpos = server getVariable format["gundealer%1",_town];
@@ -310,7 +260,7 @@ if(_scale <= 0.1) then {
 		};		
 	}foreach OT_knownGundealers;
 
-	// Create known shop markers
+	// known shop markers
 	{
 		private _pos = _x select 0;
 		private _cat = _x select 1;
@@ -322,6 +272,7 @@ if(_scale <= 0.1) then {
 		};
 	}foreach OT_knownShops;
 
+	// known car shop markers
 	{
 		private _pos = _x;
 		if !([format["carshop%1", _pos]] in allMapMarkers) then {
@@ -332,6 +283,7 @@ if(_scale <= 0.1) then {
 		};
 	}foreach OT_knownCarShops;
 
+	// known pier markers
 	{
 		private _pos = _x;
 		if !([format["piershop%1", _pos]] in allMapMarkers) then {
@@ -342,6 +294,7 @@ if(_scale <= 0.1) then {
 		};
 	}foreach OT_knownPiers;
 
+	// known hardware markers
 	{
 		private _pos = _x;
 		if !([format["hardware%1", _pos]] in allMapMarkers) then {
@@ -352,6 +305,7 @@ if(_scale <= 0.1) then {
 		};
 	}foreach OT_knownHardwares;
 
+	// RIP markers
 	if (OT_showEnemyCorpses) then {
 		{
 			if (typeof _x != "B_UAV_AI") then {
