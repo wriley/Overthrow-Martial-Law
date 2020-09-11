@@ -6,7 +6,7 @@ if(count _blueprints isEqualTo 0) then {
 };
 //Keeps track of all entities that should trigger the spawner
 
-private _lastmin = dateToNumber date;
+private _lastmin = date select 4;
 private _lasthr = date select 3;
 private _currentProduction = "";
 private _stabcounter = 0;

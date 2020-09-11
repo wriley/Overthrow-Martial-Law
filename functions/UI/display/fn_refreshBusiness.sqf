@@ -1,29 +1,28 @@
-if (isNull(findDisplay 8035) || !hasInterface) exitWith {};
+if (isNull(findDisplay 8035)) exitWith {};
 disableSerialization;
-private ["_selBusiness","_selProduct","_cost","_need","_xp","_level","_nextlevel"];
-lbClear 1500;
-lbClear 1501;
-lbClear 1502;
+private ["_pos","","_production","_xp","_level","_nextlevel"];
+
 
 {
-	_idx = lbAdd [1500,_x];
 	_queue = server getVariable [format["%1queue", _x], []];
 	if (count _queue > 0) then {
 		lbSetColor [1500, _idx, [0, .8, 0, 1]];
+	} else {
+		lbSetColor [1500, _idx, [0, 0, 0, 1]];
 	};
 }foreach (server getVariable ["GEURowned",[]]);
-lbSort [1500,"ASC"];
 
+if (lbCurSel 1500 isEqualTo -1) exitWith {};
 private _selBusiness = lbText [1500,(lbCurSel 1500)];
 private _business = _selBusiness call OT_fnc_getBusinessData;
 _business params ["_pos","","_production","_xp","_level","_nextlevel"];
-diag_log str _business;
 private _employees = server getVariable [format["%1employ",_selBusiness],0];
 private _salary = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
 private _wages = _employees * _salary;
 private _income = round(_wages * (1.5 + (_level/10)));
 private _productText = "Nothing"; // currently producing text
 
+lbClear 1501;
 {
 	_x params ["_product","_inputs"];
 	private _longname = _product call OT_fnc_weaponGetName;
@@ -56,16 +55,11 @@ private _productText = "Nothing"; // currently producing text
 	lbSetData [1501,_idx,_product];
 }foreach _production;
 
-
-
 // required for production
 private _selProduct = lbData [1501,(lbCurSel 1501)];
-private _selProductText = lbText [1501,(lbCurSel 1501)];
 private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
 {
 	_x params ["_product","_inputs"];
-	private _longname = _product call OT_fnc_weaponGetName;
-	//format ["[refreshBusiness] - inputs:%1", _inputs] remoteExec ["systemChat", 0];
 	if (_product isEqualTo _selProduct) then {
 		if (count _inputs > 0) then {
 			private _stock = [];
@@ -76,7 +70,6 @@ private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
 			private _cost = 0;
 			{
 				_x params ["_cls", "_qty"];
-				//format ["[refreshBusiness] - input:%1", _x] remoteExec ["systemChat", 0];
 				switch (_cls) do {
 					case "Money": {
 						_need = _need + format["<t size='1.2'>$%1</t><br/>", 100*_qty];
@@ -99,17 +92,15 @@ private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
 	};
 }foreach _production;
 
-private _cursel = lbCurSel 1501;
-if(_cursel >= count _production) then {_cursel = 0};
-lbSetCurSel [1501, _cursel];
-
-if(lbCurSel 1501 isEqualTo -1) then {
-	_textctrl = (findDisplay 8035) displayCtrl 1109;
-	_textctrl ctrlSetStructuredText parseText "";
-} else {
-	_textctrl = (findDisplay 8035) displayCtrl 1109;
-	_textctrl ctrlSetStructuredText parseText _need;
+private _cursel = (lbCurSel 1501);
+if((count _production isEqualTo 0) && _cursel > 0) then {
+	_cursel = 0;
+	lbSetCurSel [1501, _cursel];
 };
+_textctrl = (findDisplay 8035) displayCtrl 1109;
+_textctrl ctrlSetStructuredText parseText _need;
+
+lbClear 1502;
 private _queue = server getVariable [format ["%1queue", _selBusiness], []];
 private _producingText = "";
 {

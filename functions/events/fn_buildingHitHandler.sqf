@@ -6,7 +6,7 @@ private _damage = _building call OT_fnc_getBuildingDamage;
 
 if !(_damage isEqualTo 100) then {
 	private _lastDamage = _building getVariable ["lastDamage", 0];
-	"warehouse taking damage" remoteExec ["systemChat", 0];
+	IF(OT_DEBUG) then { "warehouse taking damage" remoteExec ["systemChat", 0]; };
 	if ((_damage - 5) > _lastDamage) then {
 		private _perc = "%";
 		_building setVariable ["lastDamage", _damage, true];
@@ -17,7 +17,7 @@ if !(_damage isEqualTo 100) then {
 	if (damage _building isEqualTo 1) then {
 		_destroyed = owners getVariable ["destroyedBuildings",[]];
 		if !(_id in _destroyed) then {
-			format ["ded %1",_type] remoteExec ["systemChat", 0];
+			IF (OT_DEBUG) then { format ["ded %1",_type] remoteExec ["systemChat", 0]; };
 			_destroyed pushback _id;
 			owners setVariable ["destroyedBuildings",_destroyed,true];
 

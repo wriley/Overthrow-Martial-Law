@@ -1,7 +1,4 @@
 params ["_unit", "_to", ["_dis",6]];
-
-_unit globalchat format ["<%1>: moving to %2 of distance %3/%4", name _unit, _to, getpos _unit distance2D getpos _to, _dis];
-diag_log format ["<%1>: moving to %2 of distance %3/%4", name _unit, _to, getpos _unit distance2D getpos _to, _dis];
 private _moving = true;
 private _time = 3;
 private _fail = 0;

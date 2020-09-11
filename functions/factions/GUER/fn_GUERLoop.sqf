@@ -1,5 +1,5 @@
 GUER_faction_loop_data params ["_lastmin","_lasthr","_currentProduction","_stabcounter","_trackcounter"];
-diag_log format ["[GUERLoop] - GUER_faction_loop_data params: %1", GUER_faction_loop_data];
+//diag_log format ["[GUERLoop] - params: %1", GUER_faction_loop_data];
 private _numplayers = count([] call CBA_fnc_players);
 if(_numplayers isEqualTo 0) exitWith {};
 
@@ -62,13 +62,13 @@ if(_dead > 150) then {
 	};
 }foreach(vehicles);
 
-if ((date select 3) != _lasthr) then {
+if (date select 3 != _lasthr) then {
 	_lasthr = date select 3;
 };
 
-if (dateToNumber date > _lastmin) then {
+if (date select 4 > _lastmin) then {
+	_lastmin = date select 4;
 	private _oneMinute = 0.0000019;
-	_lastmin = dateToNumber date + _oneMinute;
 	{
 		private _name = _x;
 		if(_name != "Factory") then {
@@ -220,7 +220,6 @@ if (dateToNumber date > _lastmin) then {
 			};
 		};
 	}foreach(server getVariable ["GEURowned",[]]);
-	[] remoteExecCall ["OT_fnc_refreshBusiness", 0];
 
 	if(!(call OT_fnc_generalIsOnline) && _dead > 300) then {
 		format["There are %1 dead bodies, initiating auto-cleanup",_dead] remoteExec ["OT_fnc_notifyMinor",0,false];
