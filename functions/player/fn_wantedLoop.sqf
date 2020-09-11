@@ -182,7 +182,7 @@ if !(captive _unit) then {
 		    if (((headgear _unit in OT_illegalHeadgear) || { (vest _unit in OT_illegalVests) }) || { (uniform _unit in OT_illegalUniform) }) exitWith {
 				if(isPlayer _unit) then {
 					"You are wearing ILLEGAL gear" call OT_fnc_notifyMinor;
-					_unit setVariable ["OT_wantedReason", " (GEAR)"];
+					_unit setVariable ["OT_wantedReason", " (ILLEGAL)"];
 				};
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
@@ -191,7 +191,7 @@ if !(captive _unit) then {
 		if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
 			private _offroadDist = 25; //Distance you are allowed off road
 			private _checkpointOffroadRange = 50; //Distance from a checkpoint for the stricter off road distance
-			private _checkpointOffroadDist = 5;
+			private _checkpointOffroadDist = 15;
 			if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
 					_offroadDist = _checkpointOffroadDist
 			};

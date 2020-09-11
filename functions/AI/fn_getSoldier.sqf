@@ -72,8 +72,8 @@ private _itemqty = _allitems call BIS_fnc_consolidateArray;
 private _bought = [];
 if (count _pos > 0) then {
 	private _warehouse = _pos call OT_fnc_nearestWarehouse;
-	private _wid = _warehouse select 1;
-	if (count _wid > 0) then {
+	if (count _warehouse > 0) then {
+		private _wid = _warehouse select 1;
 		{
 			_x params ["_cls","_num"];
 			if !(_cls isEqualTo "ItemMap") then {

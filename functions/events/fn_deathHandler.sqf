@@ -1,26 +1,26 @@
-params ["_me",["_killer", objNull]];
+params ["_killed",["_killer", objNull]];
 
-if !(local _me) exitWith {}; //Only run this on the machine where unit is local
+if !(local _killed) exitWith {}; //Only run this on the machine where unit is local
 
 _aikiller = objNull;
 
-_myitems = weaponsItems _me;
-[_me,_myitems] spawn {
-	params ["_me","_myitems"];
+_weapons = weaponsItems _killed;
+[_killed,_weapons] spawn {
+	params ["_killed","_weapons"];
 	_holders = [];
 	sleep 1;
 	{
-		if (((weaponsItems _x select 0) in _myitems) && !(isNull _x)) then {
+		if (((weaponsItems _x select 0) in _weapons) && !(isNull _x)) then {
 			_holders append [_x];
 		};
-	}foreach(_me nearentities ["WeaponHolderSimulated",5]);
+	}foreach(_killed nearentities ["WeaponHolderSimulated",15]);
 	if (count _holders > 0) then {
-		_me setVariable ["WeaponHolderSimulated", _holders, true];
+		_killed setVariable ["WeaponHolderSimulated", _holders, true];
 	};
 };
 
-if ((isNull _killer) || (_killer == _me)) then {
-	private _aceSource = _me getVariable ["ace_medical_lastDamageSource", objNull];
+if ((isNull _killer) || (_killer == _killed)) then {
+	private _aceSource = _killed getVariable ["ace_killeddical_lastDamageSource", objNull];
 	if ((!isNull _aceSource) && {_aceSource != _unit}) then {
 		_killer = _aceSource;
 	};
@@ -46,15 +46,15 @@ if(_killer call OT_fnc_unitSeen) then {
 	_killer setVariable ["lastkill",time,true];
 };
 
-_town = (getpos _me) call OT_fnc_nearestTown;
+_town = (getpos _killed) call OT_fnc_nearestTown;
 
-if(isPlayer _me) exitWith {
+if(isPlayer _killed) exitWith {
 	if !(_town in (server getVariable ["NATOabandoned",[]])) then {
 		[_town,1] call OT_fnc_stability;
 	}else{
 		[_town,-1] call OT_fnc_stability;
 	};
-	[_me,true] remoteExecCall ["setCaptive",_me];
+	[_killed,true] remoteExecCall ["setCaptive",_killed];
 	private _money = player getVariable ["money",0];
 	private _take = floor(_money * 0.05);
 	if(_take > 0) then {
@@ -88,22 +88,22 @@ if(isPlayer _me) exitWith {
 	};
 };
 
-_civ = _me getvariable "civ";
-_garrison = _me getvariable "garrison";
-_employee = _me getvariable "employee";
-_polgarrison = _me getvariable "polgarrison";
-_vehgarrison = _me getvariable "vehgarrison";
-_airgarrison = _me getvariable "airgarrison";
-_criminal = _me getvariable "criminal";
-_crimleader = _me getvariable "crimleader";
-_mobster = _me getvariable "mobster";
-_mobboss = _me getvariable "mobboss";
-_hvt = _me getvariable "hvt_id";
+_civ = _killed getvariable "civ";
+_garrison = _killed getvariable "garrison";
+_employee = _killed getvariable "employee";
+_polgarrison = _killed getvariable "polgarrison";
+_vehgarrison = _killed getvariable "vehgarrison";
+_airgarrison = _killed getvariable "airgarrison";
+_criminal = _killed getvariable "criminal";
+_crimleader = _killed getvariable "crimleader";
+_mobster = _killed getvariable "mobster";
+_mobboss = _killed getvariable "mobboss";
+_hvt = _killed getvariable "hvt_id";
 _reveal = false;
 
 _standingChange = 0;
 
-_bounty = _me getVariable ["OT_bounty",0];
+_bounty = _killed getVariable ["OT_bounty",0];
 if(_bounty > 0) then {
 	[_killer,_bounty] call OT_fnc_rewardMoney;
 	if (!isNull _aikiller) then {
@@ -111,7 +111,7 @@ if(_bounty > 0) then {
 	} else {
 		[_killer,_bounty] call OT_fnc_experience;
 	};
-	_me setVariable ["OT_bounty",0,false];
+	_killed setVariable ["OT_bounty",0,false];
 };
 
 call {
@@ -148,9 +148,9 @@ call {
 	};
 	if(!isNil "_criminal") exitWith {
 		_killer setVariable ["OPFkills",(_killer getVariable ["OPFkills",0])+1,true];
-		_civid = _me getVariable ["OT_civid",-1];
-		_gangid = _me getVariable ["OT_gangid",-1];
-		_hometown = _me getVariable ["hometown",""];
+		_civid = _killed getVariable ["OT_civid",-1];
+		_gangid = _killed getVariable ["OT_gangid",-1];
+		_hometown = _killed getVariable ["hometown",""];
 		_reward = 50;
 		_stability = 2;
 		_standingChange = 1;
@@ -160,9 +160,9 @@ call {
 			if(_gangid > -1) then {
 				_gang = OT_civilians getVariable [format["gang%1",_gangid],[]];
 				if(count _gang > 0) then {
-					_members = _gang select 0;
-					_members deleteAt (_members find _civid);
-					_gang set [0,_members];
+					_killedmbers = _gang select 0;
+					_killedmbers deleteAt (_killedmbers find _civid);
+					_gang set [0,_killedmbers];
 					OT_civilians setVariable [format["gang%1",_gangid],_gang,true];
 				};
 			};
@@ -175,10 +175,10 @@ call {
 	};
 	if(!isNil "_crimleader") exitWith {
 		_killer setVariable ["OPFkills",(_killer getVariable ["OPFkills",0])+1,true];
-		_gangid = _me getVariable ["OT_gangid",-1];
-		_civid = _me getVariable ["OT_civid",-1];
-		_gangid = _me getVariable ["OT_gangid",-1];
-		_hometown = _me getVariable ["hometown",""];
+		_gangid = _killed getVariable ["OT_gangid",-1];
+		_civid = _killed getVariable ["OT_civid",-1];
+		_gangid = _killed getVariable ["OT_gangid",-1];
+		_hometown = _killed getVariable ["hometown",""];
 		_reward = 500 + ((round random 6) * 50);
 		_stability = 10;
 		_standingChange = 10;
@@ -245,23 +245,23 @@ call {
 
 		if(!isNil "_vehgarrison") then {
 			_vg = server getVariable format["vehgarrison%1",_vehgarrison];
-			_vg deleteAt (_vg find (typeof _me));
+			_vg deleteAt (_vg find (typeof _killed));
 			server setVariable [format["vehgarrison%1",_vehgarrison],_vg,false];
 		};
 
 		if(!isNil "_airgarrison") then {
 			_vg = server getVariable format["airgarrison%1",_airgarrison];
-			_vg deleteAt (_vg find (typeof _me));
+			_vg deleteAt (_vg find (typeof _killed));
 			server setVariable [format["airgarrison%1",_airgarrison],_vg,false];
 		};
 	}else{
-		if(side _me isEqualTo west) then {
+		if(side _killed isEqualTo west) then {
 			[_town,-1] call OT_fnc_stability;
 		};
-		if(side _me isEqualTo east) then {
+		if(side _killed isEqualTo east) then {
 			[_town,1] call OT_fnc_stability;
 		};
-		if((side _me isEqualTo resistance) || captive _me) then {
+		if((side _killed isEqualTo resistance) || captive _killed) then {
 			if !(_town in (server getVariable ["NATOabandoned",[]])) then {
 				[_town,1] call OT_fnc_stability;
 			}else{
