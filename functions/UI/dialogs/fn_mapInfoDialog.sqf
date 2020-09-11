@@ -66,9 +66,7 @@ OT_MapSingleClickEHId = addMissionEventHandler["MapSingleClick", {
 			_cancount = 1;
 			{
 				_x params ["_output"];
-				_canmake = _canmake + format ["%1", _x select 0];
-				if (_cancount < (count _production)) then { _canmake = format["%1, ", _canmake]; };
-				_cancount = _cancount + 1;
+				_canmake = _canmake + format ["<t size='0.5' color='#222222'>%1</t></br>", (_output call OT_fnc_weaponGetName)];
 			}foreach _production;
 			//lbClear 1501;
 
@@ -79,16 +77,22 @@ OT_MapSingleClickEHId = addMissionEventHandler["MapSingleClick", {
 					Owned</t><br/>
 					<t size='0.5' color='#222222'>Employees: %1</t></br>
 					<t size='0.5' color='#222222'>Level: %2</t></br>
-					<t size='0.5' color='#222222'>Exp: %3
-					",_employees,_level,_xp
+					<t size='0.5' color='#222222'>Xp: %3
+					",
+					_employees,
+					_level,
+					_xp
 				];
 			};
 			_txt = format ["
 				<t size='1.2' color='#222222'>%1</t><br/>
 				<t size='0.5' color='#222222'>Status: %2</t><br/>
 				<t size='0.65' color='#222222'>Available Production</t><br/>
-				<t size='0.5' color='#222222'>%3</t></br>
-				",_name,_status,_canmake
+				%3
+				",
+				_name,
+				_status,
+				_canmake
 			];
 		};
 	};

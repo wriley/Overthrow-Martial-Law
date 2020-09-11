@@ -3,7 +3,7 @@ params ["_qty"];
 private _name = lbText [1500,(lbCurSel 1500)];
 private _cls = lbData [1501,(lbCurSel 1501)];
 private _queue = server getVariable [format["%1queue",_name],[]];
-
+if (_cls isEqualTo "") exitWith {};
 
 private _queueitem = [_cls,0];
 _doadd = true;
