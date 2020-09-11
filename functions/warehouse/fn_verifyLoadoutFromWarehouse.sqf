@@ -114,4 +114,4 @@ if !(_goggles isEqualTo "") then {
 };
 diag_log format ["verifyLoadoutFromWarehouse RETURNED missing:%1", _missing];
 warehouses setVariable ["verifiedLoadout", _missing, true];
-OT_whTransferring = true;
+OT_whTransferring = false;
