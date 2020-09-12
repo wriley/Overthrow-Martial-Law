@@ -97,8 +97,7 @@ if(typename _b isEqualTo "ARRAY") then {
 	private _name = _cls call OT_fnc_vehicleGetName;
 	private _pic = getText(configFile >>  "CfgVehicles" >>  _cls >> "editorPreview");
 	private _damage = _building call OT_fnc_getBuildingDamage;
-
-	private _cost = [(_price * (_damage/100)), 1, 0, true] call CBA_fnc_formatNumber;
+	private _cost = [(_price * ((_building call OT_fnc_getBuildingDamage)/100)), 1, 0, true] call CBA_fnc_formatNumber;
 
 	if !(isNil "_pic") then {
 		ctrlSetText [1201,_pic];
@@ -287,7 +286,7 @@ if(typename _b isEqualTo "ARRAY") then {
 				<t align='left'>%1</t><br/>
 				<t align='left'>Owned by %2</t><br/>
 				<t align='left'>Damage: %3%4</t>
-			",_name,_ownername,_damage,"%"];
+			",_name,_ownername,round(_damage),"%"];
 		};
 
 		if (_damage > 0) then {
