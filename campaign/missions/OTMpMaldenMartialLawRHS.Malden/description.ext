@@ -18,6 +18,7 @@ class CfgRemoteExec
 		mode = 2;
 		jip = 1;
 
+		class OT_fnc_refreshWarehouse { allowedTargets = 0;jip=0; };
 		class vcm_serverask { allowedTargets = 0;jip = 1; };
 		class VCM_PublicScript { allowedTargets = 0;jip = 1; };
 		class BIS_fnc_debugConsoleExec { allowedTargets = 0;jip = 1; };
@@ -33,12 +34,5 @@ class CfgRemoteExec
 class Extended_PreInit_EventHandlers {
 	VCM_CBASettings = call compile preprocessFileLineNumbers "overthrow_main\functions\AI\Vcom\Functions\VCM_Functions\fn_CBASettings.sqf";
 };
-
-
-
-/*class CfgFunctions
-{
-	#include "overthrow_main\CfgFunctions.hpp"
-};*/
 
 cba_settings_hasSettingsFile = 1;

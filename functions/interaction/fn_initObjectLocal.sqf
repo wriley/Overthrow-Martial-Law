@@ -31,15 +31,15 @@ if(typeof _this isEqualTo OT_item_Map) then {
 */
 
 if(typeof _this isEqualTo OT_item_Storage) then {
-	_this addAction ["ARSENAL (Ammobox)", {
+	_this addAction ["Arsenal (Ammobox)", {
 		[_this select 0,player] call OT_fnc_openArsenal;
 	},nil,0,false,true,"","(_target distance player < 5)"];
 
-	_this addAction ["ARSENAL (Warehouse)", {
+	_this addAction ["Arsenal (Warehouse)", {
 		["WAREHOUSE",player,_this select 0] call OT_fnc_openArsenal;
 	},nil,0,false,true,"","((getpos _target call OT_fnc_positionIsAtWarehouse) && _target distance player < 5)"];
 
-	_this addAction ["WAREHOUSE", {
+	_this addAction ["Warehouse", {
 		OT_warehouseTarget = _this select 0;
 		OT_currentWarehouse = ((getpos (_this select 0)) call OT_fnc_nearestWarehouse) select 1;
 		[OT_currentWarehouse] call OT_fnc_warehouseDialog;

@@ -1076,7 +1076,7 @@ OT_Buildables = [
 	],"OT_fnc_initRadar",false,"Reveals enemy drones, helicopters and planes within 2.5km"]
 ];
 OT_allBuildableBuildings = [];
-OT_allRepairableBuildings = [];
+OT_allRepairableBuildings = OT_allRealEstate;
 OT_repairableBuildings = [];
 {
 	if (_x select 0 isEqualTo "Training Camp") then {

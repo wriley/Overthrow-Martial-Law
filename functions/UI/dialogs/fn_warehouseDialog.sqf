@@ -10,5 +10,5 @@ if (vehicle player != player) then {
 } else {
 	createDialog "OT_dialog_warehouse";
 };
-[] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
+call OT_fnc_refreshWarehouse;
 lbSetCurSel [1500, 0];
