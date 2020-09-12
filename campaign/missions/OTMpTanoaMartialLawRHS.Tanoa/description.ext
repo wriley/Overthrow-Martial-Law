@@ -18,6 +18,7 @@ class CfgRemoteExec
 		mode = 2;
 		jip = 1;
 
+		class OT_fnc_warehouseTransfer { allowedTargets = 0;jip=0; };
 		class OT_fnc_refreshWarehouse { allowedTargets = 0;jip=0; };
 		class vcm_serverask { allowedTargets = 0;jip = 1; };
 		class VCM_PublicScript { allowedTargets = 0;jip = 1; };

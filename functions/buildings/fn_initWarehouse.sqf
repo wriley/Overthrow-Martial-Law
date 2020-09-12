@@ -7,7 +7,7 @@ _mrkid setMarkerColor "ColorWhite";
 _mrkid setMarkerAlpha 1;
 private _xc = floor(_pos select 0);
 private _yc = floor(_pos select 1);
-private _wid = "0";
+private _wid = "";
 while {count _wid < 5} do { _xc = format ["%1%2", "0", _xc]; _wid = _xc; };
 while {count _wid < 10} do { _yc = format ["%1%2", "0", _yc]; _wid = format ["%1%2", _xc, _yc]; };
 OT_allWarehouses pushbackUnique [_pos,_wid];
