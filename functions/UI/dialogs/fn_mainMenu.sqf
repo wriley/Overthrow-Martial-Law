@@ -109,7 +109,7 @@ if(typename _b isEqualTo "ARRAY") then {
 		_ownername = players_NS getVariable format["name%1",_owner];
 		if(isNil "_ownername") then {_ownername = "Someone"};
 
-		if(_cls isEqualTo OT_warehouse) exitWith {
+		if(_cls isEqualTo OT_warehouse) then {
 			ctrlEnable [1612,true];
 			ctrlSetText [1612,"Procurement"];
 			_ctrl1612 ctrlSetTooltip "Purchase Vehicles from Warehouse";
@@ -158,7 +158,7 @@ if(typename _b isEqualTo "ARRAY") then {
 					ctrlSetText [1613,"Set as home"];
 					_ctrl1613 ctrlSetTooltip "Already your home";
 				} else {
-				if (_cls in OT_allBuyableBuildings) then {
+				if (_cls in (OT_allBuyableBuildings - OT_allBuildableBuildings)) then {
 						ctrlEnable [1611,true];
 						ctrlSetText [1611,format["Sell ($%1)",[_sell, 1, 0, true] call CBA_fnc_formatNumber]];
 						_ctrl1611 ctrlSetTooltip "Sell this building";

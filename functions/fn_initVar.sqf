@@ -1079,17 +1079,15 @@ OT_allBuildableBuildings = [];
 OT_allRepairableBuildings = OT_allRealEstate;
 OT_repairableBuildings = [];
 {
-	if (_x select 0 isEqualTo "Training Camp") then {
-		OT_allRepairableBuildings pushback (_x select 2 select 0 select 0);
-		OT_repairableBuildings pushback [(_x select 2 select 0 select 0),(_x select 1)];
-	};
-	if (_x select 0 isEqualTo "Workshop") then {
+	if ((_x select 0) in ["Workshop","Training Camp"]) then {
+		OT_allBuildableBuildings pushback (_x select 2 select 0 select 0);
 		OT_allRepairableBuildings pushback (_x select 2 select 0 select 0);
 		OT_repairableBuildings pushback [(_x select 2 select 0 select 0),(_x select 1)];
 	};
 	if (_x select 0 in ["Bunkers","Observation Post","Barracks","Guard Tower","Hangar","House","Police Station","Warehouse","Refuge Camp","Radar"]) then {
 		_price = _x select 1;
 		{
+			OT_allBuildableBuildings pushback _x;
 			OT_allRepairableBuildings pushback _x;
 			OT_repairableBuildings pushback [_x, _price];
 		}foreach (_x select 2);
