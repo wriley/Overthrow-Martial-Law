@@ -1,5 +1,4 @@
 GUER_faction_loop_data params ["_lastmin","_lasthr","_currentProduction","_stabcounter","_trackcounter"];
-//diag_log format ["[GUERLoop] - params: %1", GUER_faction_loop_data];
 private _numplayers = count([] call CBA_fnc_players);
 if(_numplayers isEqualTo 0) exitWith {};
 
@@ -66,25 +65,24 @@ if (date select 3 != _lasthr) then {
 	_lasthr = date select 3;
 };
 
-if (date select 4 > _lastmin) then {
+if (date select 4 != _lastmin) then {
 	_lastmin = date select 4;
 	private _oneMinute = 0.0000019;
 	{
 		private _name = _x;
 		if(_name != "Factory") then {
+			private _lastMakeDateNumber = server getVariable [format["%1lastMakeDateNumber", _name], -1];
 			private _queue = server getvariable [format["%1queue",_name],[]];
-			if (count _queue != 0) then {
-				private _business = _name call OT_fnc_getBusinessData;
-				_business params ["_pos","","_production","_xp","_level","_nextlevel"];
-				private _employees = server getVariable [format["%1employ",_name],0];
-				private _lastMakeDateNumber = server getVariable [format["%1lastMakeDateNumber", _name], -1];
-				if ((dateToNumber date) > (_lastMakeDateNumber  + (60 * _oneMinute) - (_employees * _oneMinute))) then {
+			private _business = _name call OT_fnc_getBusinessData;
+			_business params ["_pos","","_production","_xp","_level","_nextlevel"];
+			private _employees = server getVariable [format["%1employ",_name],0];
+			if ((dateToNumber date) > (_lastMakeDateNumber  + (60 * _oneMinute) - (_employees * _oneMinute))) then {
+				if (count _queue > 0) then {
 					private _salary = [OT_nation,"WAGE",0] call OT_fnc_getPrice;
 					private _funds = [] call OT_fnc_resistanceFunds;
 					private _wages = (_employees * _salary);
 					private _income = 0;
 					private _costprice = 0;
-
 					if(_funds >= _wages) then {
 						_producing = _queue select 0 select 0;
 						[-_wages] call OT_fnc_resistanceFunds;

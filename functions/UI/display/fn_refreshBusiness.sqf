@@ -1,8 +1,6 @@
 if (isNull(findDisplay 8035)) exitWith {};
 disableSerialization;
-private ["_pos","","_production","_xp","_level","_nextlevel"];
-
-
+private ["_pos","_production","_xp","_level","_nextlevel"];
 {
 	_queue = server getVariable [format["%1queue", _x], []];
 	if (count _queue > 0) then {
@@ -134,13 +132,13 @@ _text = _text + format["<t>XP: %1</t><br/>",_xp];
 _text = _text + format["<t>Next Level: %1</t><br/>",_nextlevel];
 _text = _text + format["<t>Producing: %1</t><br/>",_producingText];
 private _nextMakeDate = numberToDate [date select 0,(server getVariable [format["%1lastMakeDateNumber", _selBusiness], -1])  + (60 * 0.0000019) - (_employees * 0.0000019)];
-if (_nextMakeDate isEqualType []) then {
+if (_producingText != "") then {
 	if (_nextMakeDate select 4 < 10) then {
 		_nextMakeDate set [4, format["0%1", _nextMakeDate select 4]];
 	};
 	_text = _text + format["<t>Next cycle: %1:%2</t><br/>",_nextMakeDate select 3, _nextMakeDate select 4];
 } else {
-	_text = _text + format["<t>Next cycle: Not producing</t><br/>"];
+	_text = _text + format["<t>Next cycle: N/A</t><br/>"];
 };
 _textctrl = (findDisplay 8035) displayCtrl 1108;
 _textctrl ctrlSetStructuredText parseText _text;

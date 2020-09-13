@@ -213,8 +213,8 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 			};
 			if(isPlayer _unit) then { //Who dosn't like a random search
-				if (random 1000 < 20) exitWith { //10/1000 chance every second to have chance of being searched
-					[_unit] spawn OT_fnc_NATOsearch;
+				if (random 1000 < 4) exitWith { //2/1000 chance every second to have chance of being searched
+					//[_unit] spawn OT_fnc_NATOsearch; // too buggy to take serious
 				};
 			};
 			private _unitpos = getPosATL _unit;
