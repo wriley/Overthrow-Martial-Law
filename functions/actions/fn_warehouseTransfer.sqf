@@ -2,14 +2,6 @@ if (!isServer) exitWith {};
 waitUntil {!OT_whTransferring;};
 OT_whTransferring = true;
 params ["_wid","_cls","_dest","_qtyout"];
-/*private _veh = (vehicle _dest);
-
-if (_veh isEqualTo _dest) then {
-	if (getpos _veh call OT_fnc_positionIsAtWarehouse) then {
-		_veh = warehouses getVariable ["OT_warehouseTarget", objNull];
-	};
-};
-*/
 private _take = warehouses getVariable [format["warehouse-%1_%2",_wid,_cls],[_cls,0]];
 _take params ["", ["_currentqty",0,[0]]];
 
