@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=390;
+		nextID=391;
 	};
 	class Camera
 	{
-		pos[]={9082.8281,168.85516,6578.478};
-		dir[]={-0.2495499,-0.51595467,0.81958956};
-		up[]={-0.15030143,0.85657418,0.49362957};
-		aside[]={0.95674086,3.5061385e-007,0.29131478};
+		pos[]={5609.5386,277.16998,3849.0295};
+		dir[]={0.92606527,-0.3766402,0.023945274};
+		up[]={0.37652174,0.9263525,0.0097362418};
+		aside[]={0.025850005,2.0478819e-007,-0.99967706};
 	};
 };
 binarizationWanted=0;
@@ -33234,8 +33234,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={5599.1421,270.40991,3710.218};
-				angles[]={0,5.7756262,0};
+				position[]={6503.6401,241.9649,3796.6899};
+				angles[]={0,3.9910736,0};
 			};
 			side="Empty";
 			flags=5;
@@ -33245,7 +33245,6 @@ class Mission
 			};
 			id=2206;
 			type="Land_TTowerBig_1_F";
-			atlOffset=0.125;
 		};
 		class Item51
 		{
