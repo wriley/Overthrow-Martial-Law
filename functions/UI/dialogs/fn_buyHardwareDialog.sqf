@@ -19,3 +19,5 @@ private _standing = [_town] call OT_fnc_support;
 
 createDialog "OT_dialog_buy";
 [_town,_standing,_s] call OT_fnc_buyDialog;
+_textctrl = (findDisplay 8000) displayCtrl 1101;
+_textctrl ctrlSetStructuredText parseText "<t align='left' size='1.2'>Hardware Shop</t>";

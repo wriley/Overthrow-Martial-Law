@@ -26,10 +26,6 @@ _mrkid setMarkerSize [50, 50];
 
 if(_method != "INIT") then {
 	_revealed = server getVariable ["revealedFOBs",[]];
-
 	_revealed pushback _id;
-
 	server setVariable ["revealedFOBs",_revealed,false];
 }
-
-
