@@ -338,7 +338,7 @@ diag_log "Overthrow: NATO Init Done";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerAlpha 0;
 	}else{
-		_mrk setMarkerAlpha 0.4;
+		_mrk setMarkerAlpha 0.75;
 	};
 
 	server setVariable [_name,_pos,true];
@@ -444,7 +444,7 @@ sleep 0.3;
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerAlpha 0;
 	}else{
-		_mrk setMarkerAlpha 0.4;
+		_mrk setMarkerAlpha 0.75;
 	};
 }foreach(OT_NATOcomms);
 sleep 0.3;

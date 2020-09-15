@@ -10,7 +10,7 @@ if(_qtyout > _currentqty || _qtyout isEqualTo -1) then {
 };
 for [{private _i=0;},{_i<_qtyout;},{_i=_i+1;}] do {
 	if!(_dest canAdd _cls) exitWith {
-		"This vehicle is full, use a truck for more storage" remoteExec ["hint", (warehouses getVariable ["clientOwnerTaking", 2]), false];
+		"Destination is full" remoteExec ["hint", (warehouses getVariable ["clientOwnerTaking", 2]), false];
 		warehouses setVariable ["clientOwnerTaking", nil, true];
 		_qtyout = _i
 	};

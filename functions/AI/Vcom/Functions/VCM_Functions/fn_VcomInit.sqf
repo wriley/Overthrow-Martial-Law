@@ -22,8 +22,17 @@
 			}
 			else
 			{
-				[] call compile preprocessFileLineNumbers "overthrow_main\functions\AI\Vcom\Functions\VCOMAI_DefaultSettings.sqf";
-				[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];
+				private _Filecheck = loadFile "overthrow_main\AISettingsV3.hpp";
+				if !(_FileCheck isEqualTo "") then
+				{
+					[] call compile preprocessFileLineNumbers "overthrow_main\AISettingsV3.hpp";
+					[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];
+				}
+				else
+				{
+					[] call compile preprocessFileLineNumbers "overthrow_main\functions\AI\Vcom\Functions\VCOMAI_DefaultSettings.sqf";
+					[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];
+				};
 			};
 		}
 		else

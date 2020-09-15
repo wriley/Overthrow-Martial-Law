@@ -122,7 +122,7 @@ if !(captive _unit) then {
 				};
 			};
 		};
-	}else{
+	} else {
 		if(_unit call OT_fnc_unitSeenNATO && !_gottem) then {
 			// talking to faction dealers
 			if(OT_interactingWith getVariable ["factionrep",false]) exitWith {
@@ -188,22 +188,23 @@ if !(captive _unit) then {
 				[_unit] call OT_fnc_revealToNATO;
 			};
 
-		if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
-			private _offroadDist = 25; //Distance you are allowed off road
-			private _checkpointOffroadRange = 50; //Distance from a checkpoint for the stricter off road distance
-			private _checkpointOffroadDist = 15;
-			if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
-					_offroadDist = _checkpointOffroadDist
-			};
-			if(isNull ([position _unit, _offroadDist] call BIS_fnc_nearestRoad)) then {
-				if(isPlayer _unit) then {
-					"You are driving offroad" call OT_fnc_notifyMinor;
-					_unit setVariable ["OT_wantedReason", " (OFFROAD)"];
+			if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
+				private _offroadDist = 25; //Distance you are allowed off road
+				private _checkpointOffroadRange = 50; //Distance from a checkpoint for the stricter off road distance
+				private _checkpointOffroadDist = 15;
+				if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
+						_offroadDist = _checkpointOffroadDist
 				};
-				_unit setCaptive false;
-				[_unit] call OT_fnc_revealToNATO;
+				if(isNull ([position _unit, _offroadDist] call BIS_fnc_nearestRoad)) then {
+					if(isPlayer _unit) then {
+						"You are driving offroad" call OT_fnc_notifyMinor;
+						_unit setVariable ["OT_wantedReason", " (OFFROAD)"];
+					};
+					_unit setCaptive false;
+					[_unit] call OT_fnc_revealToNATO;
+				};
 			};
-			};
+
 			if !(hmd _unit isEqualTo "") exitWith {
 				if(isPlayer _unit) then {
 					"NATO has spotted your NV Goggles" call OT_fnc_notifyMinor;
@@ -212,42 +213,17 @@ if !(captive _unit) then {
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
 			};
+			/* // too buggy to take serious
 			if(isPlayer _unit) then { //Who dosn't like a random search
 				if (random 1000 < 4) exitWith { //2/1000 chance every second to have chance of being searched
-					//[_unit] spawn OT_fnc_NATOsearch; // too buggy to take serious
+					[_unit] spawn OT_fnc_NATOsearch;
 				};
 			};
-			private _unitpos = getPosATL _unit;
-			private _base = _unitpos call OT_fnc_nearestObjectiveOrFOB;
-			private _dist = 0;
-			if !(isNil "_base") then {
-				_base params ["_obpos","_obname"];
-				if !(_base in (server getVariable ["NATOfobs",[]])) then {
-					//obj or comms
-					if!(_obname in (server getvariable ["NATOabandoned",[]])) then {
-						_dist = _obname call {
-							_obname = _this;
-							if (_obname in OT_NATO_priority) exitWith {500};
-							if (_this in OT_allComms) exitWith {
-								{
-									_x params ["","_name","_dist"];
-									if (_name isEqualTo _obname) exitWith { _dist };
-								} foreach OT_commsData;
-							};
-							if (_obname in OT_allObjectives) exitWith {
-								{
-									_x params ["","_name","_dist"];
-									if (_name isEqualTo _obname) exitWith { _dist };
-								} foreach OT_objectiveData;
-							};
-							200
-						};
-					};
-				} else {
-					//fob
-					_dist = 50;
-				};
-				if((_obpos distance _unitpos) < _dist) then {
+			*/
+			// restricted areas
+			{
+				private _unitpos = getPosATL _unit;
+				if ([_unitpos,_x] call SHK_pos_fnc_isInCircle) then {
 					if(isPlayer _unit) then {
 						"You are in a restricted area" call OT_fnc_notifyMinor;
 						_unit setVariable ["OT_wantedReason", " (RESTRICTED)"];
@@ -255,11 +231,10 @@ if !(captive _unit) then {
 					_unit setCaptive false;
 					[_unit] call OT_fnc_revealToNATO;
 				};
-			};
+			} foreach ((allMapMarkers) select {("restrict" in _x)});
 		};
 	};
 };
-
 // NATO attacks
 private _attack = server getVariable ["NATOattacking",""];
 if!(_attack isEqualTo "") then {

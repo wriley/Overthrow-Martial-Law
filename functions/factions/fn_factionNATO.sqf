@@ -27,7 +27,6 @@ publicVariable "OT_nextNATOTurn";
 
 	private _numplayers = count([] call CBA_fnc_players);
 	if(_numplayers > 0) then {
-		private _fobs = server getVariable ["NATOfobs",[]];
 		private _abandoned = server getVariable ["NATOabandoned",[]];
 		private _resources = server getVariable ["NATOresources",2000];
 		private _countered = (server getVariable ["NATOattacking",""]) != "";
@@ -212,17 +211,18 @@ publicVariable "OT_nextNATOTurn";
 		{
 			_pos = _x select 0;
 			_name = _x select 1;
+			_range = _x select 2;
 			if (!(_name in _abandoned) && (spawner getvariable [format["spawnid%1",_name],""] in OT_allspawned)) then {
 				if(_pos call OT_fnc_inSpawnDistance) then {
 					_progress = 0;
 					_influence = 0;
-					_nummil = {side _x isEqualTo west} count (_pos nearEntities [["CAManBase","Land"],100]);
-					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
+					_nummil = {side _x isEqualTo west} count (_pos nearEntities [["CAManBase","Land"],_range]);
+					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",_range]);
 					_players = [];
 					{
 						if(isPlayer _x && alive _x) then {
 							_players pushback _x;
-							if (_x distance _pos > 50 && _x getVariable ["COMMSCapturing", false]) then {
+							if (_x distance _pos > _range && _x getVariable ["COMMSCapturing", false]) then {
 								[0,true] remoteExec ["OT_fnc_progressBar",_x,false];
 								_x setVariable ["COMMSCapturing", false, false]
 							};
@@ -230,7 +230,7 @@ publicVariable "OT_nextNATOTurn";
 					}foreach(_pos nearEntities ["Man",OT_spawnDistance]);
 					if(_nummil isEqualTo 0 && _numres > 0) then {
 						{
-							if (_x distance _pos < 50 && !(_x getvariable ["ace_isunconscious",false])) then {
+							if (_x distance _pos < _range && !(_x getvariable ["ace_isunconscious",false])) then {
 								format ["You are capturing the %1 tower", _name] remoteExec ["OT_fnc_notifyMinor",_x,false];
 								_x setVariable ["COMMSCapturing", true, false];
 							} else {
@@ -257,7 +257,7 @@ publicVariable "OT_nextNATOTurn";
 								format["%1_restrict",_name] setMarkerAlpha 0;
 							} else {
 								{
-									if(_x distance _pos < 75) then {
+									if(_x distance _pos < _range) then {
 										if((side _x isEqualTo resistance || captive _x) && (_x call OT_fnc_hasWeaponEquipped) && (alive _x) && !(_x getvariable ["ace_isunconscious",false])) then {
 											if(isPlayer _x) then {
 												_progress = _progress + 0.04;
@@ -301,15 +301,15 @@ publicVariable "OT_nextNATOTurn";
 		}foreach(OT_NATOcomms);
 
 		//Check on FOBs
-		_clearedFOBs = [];
-		_revealed = server getVariable ["revealedFOBs",[]];
+		private _fobs = server getVariable ["NATOfobs",[]];
+		private _clearedFOBs = [];
 		{
 			_x params ["_pos","_garrison"];
 			_fob = _x;
 			//Check for clear
 			_nummil = {side _x isEqualTo west && alive _x} count (_pos nearEntities ["CAManBase",200]);
 			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",50]);
-			if(_nummil isEqualTo 0 && {_numres > 0}) then {
+			if(_nummil isEqualTo 0 && _numres > 0) then {
 				_clearedFOBs pushback _x;
 				"Cleared NATO FOB" remoteExec ["OT_fnc_notifyMinor",0,false];
 				_flag = _pos nearobjects [OT_flag_NATO,50];
@@ -321,6 +321,7 @@ publicVariable "OT_nextNATOTurn";
 			};
 			//Check for reveal
 			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",150]);
+			private _revealed = server getVariable ["revealedFOBs",[]];
 			if (!(str _pos in _revealed) && _numres > 0) then {
 				[_pos, "PLAYER"] call OT_fnc_revealNATOFOB;
 			};
