@@ -120,6 +120,7 @@ if(_cls in OT_allVehicles) exitWith {
 		[_veh,3,"ACE_Wheel"] call ace_repair_fnc_addSpareParts;
 	};
 
+	[player, _veh, true] call ace_vehiclelock_fnc_addKeyForVehicle;
 	player reveal _veh;
 
 	format["You bought a %1 for $%2",_cls call OT_fnc_vehicleGetName,([_price, 1, 0, true] call CBA_fnc_formatNumber)] call OT_fnc_notifyMinor;
@@ -138,6 +139,7 @@ if(_cls isKindOf "Ship") exitWith {
 	clearBackpackCargoGlobal _veh;
 	clearItemCargoGlobal _veh;
 
+	[player, _veh, true] call ace_vehiclelock_fnc_addKeyForVehicle;
 	player reveal _veh;
 	format["You bought a %1",_cls call OT_fnc_vehicleGetName] call OT_fnc_notifyMinor;
 	playSound "3DEN_notificationDefault";
