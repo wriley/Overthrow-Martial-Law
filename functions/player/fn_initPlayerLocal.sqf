@@ -297,6 +297,7 @@ if (_newplayer) then {
 		clearBackpackCargoGlobal _veh;
 		clearItemCargoGlobal _veh;
 		player reveal _veh;
+		[player, _veh, true] call ace_vehiclelock_fnc_addKeyForVehicle;
 	};
 
     [_house,getplayeruid player] call OT_fnc_setOwner;

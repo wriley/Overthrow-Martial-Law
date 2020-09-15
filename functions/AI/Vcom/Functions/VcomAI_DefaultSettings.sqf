@@ -150,7 +150,7 @@ Vcm_Settings =
 		} forEach (units _this);
 	};
 	
-	diag_log "VCOM: Loaded Default Settings";
+	diag_log "VCOM: Loaded Default VCOM Settings";
 
 if (VCM_USECBASETTINGS) then {
     [] call VCM_fnc_CBASettings;

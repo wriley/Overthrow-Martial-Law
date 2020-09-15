@@ -23,7 +23,7 @@ class CfgMarkers
 		name = "Electronics";
 		icon = "\overthrow_main\ui\markers\shop-Electronics.paa";
 		color[] = {1, 1, 1, 1};
-		size = 32;
+		size = 128;
 		shadow = true;
 		scope = 1;
 	};
@@ -59,7 +59,7 @@ class CfgMarkers
 		name = "Surplus";
 		icon = "\overthrow_main\ui\markers\shop-Surplus.paa";
 		color[] = {1, 1, 1, 1};
-		size = 32;
+		size = 128;
 		shadow = true;
 		scope = 1;
 	};

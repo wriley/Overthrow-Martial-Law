@@ -613,7 +613,7 @@ OT_allBLURifleMagazines = [];
 	//Get vehicles && weapons
 	private _vehicles = [];
 	private _weapons = [];
-	private _blacklist = ["Throw","Put","NLAW_F"];
+	private _blacklist = ["Throw","Put","NLAW_F","rhs_mag_fakeMuzzle1","rhs_mag_fold_stock"];
 
 	private _all = format["(getNumber( _x >> ""scope"" ) isEqualTo 2 ) && (getText( _x >> ""faction"" ) isEqualTo '%1')",_name] configClasses ( configFile >> "cfgVehicles" );
 	{
