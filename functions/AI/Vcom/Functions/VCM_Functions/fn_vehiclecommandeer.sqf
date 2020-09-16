@@ -54,7 +54,7 @@ if (VCM_ClassSteal) then
 	
 		if (count _Crewmen > 0) then
 		{
-			if (_x iskindof "Tank" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2}) then
+		if (_x iskindof "Tank" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2} && {!(_x getVariable ["OT_locked",false])}) then
 			{
 				_this addvehicle _x;
 			};				
@@ -62,14 +62,14 @@ if (VCM_ClassSteal) then
 		
 		if (count _Pilots > 0) then
 		{
-			if (_x iskindof "Air" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2}) then
+			if (_x iskindof "Air" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2} && {!(_x getVariable ["OT_locked",false])}) then
 			{
 				_this addvehicle _x;
 			};			
 		};
 
 	
-		if (_x iskindof "Car" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2}) then
+		if (_x iskindof "Car" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2} && {!(_x getVariable ["OT_locked",false])}) then
 		{
 			_this addvehicle _x;
 		};
@@ -81,7 +81,7 @@ else
 	
 	{
 	
-		if (_x iskindof "LandVehicle" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2}) then
+		if (_x iskindof "LandVehicle" && {crew _x isEqualTo []} && {_x distance _Leader < VCM_AIDISTANCEVEHPATH} && {locked _x != 2} && {!(_x getVariable ["OT_locked",false])}) then
 		{
 			_this addvehicle _x;
 		};

@@ -399,15 +399,39 @@ switch (_obtype) do {
 				<t align='left'>%1</t><br/>
 				<t align='left'>Under resistance control</t>
 			",_obname];
-			if!(_obname in OT_allComms) then {
-				ctrlEnable [1615,true];
-			};
+			ctrlEnable [1615,true];
 		}else{
 			_areaText = format["<br/>
 				<t align='left'>%1</t><br/>
 				<t align='left'>Under NATO control</t>
 			",_obname];
 		};
+	};
+	case "Airport": {
+		ctrlSetText [1615,"Garrison"];
+		if(_obname in (server getVariable ["NATOabandoned",[]])) then {
+			_areaText = format["<br/>
+				<t align='left'>%1</t><br/>
+				<t align='left'>Under resistance control</t>
+			",_obname];
+			ctrlEnable [1615,true];
+		}else{
+			_areaText = format["<br/>
+				<t align='left'>%1</t><br/>
+				<t align='left'>Under NATO control</t>
+			",_obname];
+		};
+	};
+	case "FOB": {
+		_areaText = format["<br/>
+			<t align='left'>NATO FOB</t>
+		"];
+	};
+	case "Town": {
+		_areaText = format["<br/>
+			<t align='left'>%1</t><br/>
+			<t align='left'>Population: %2</t>
+		",_town, _townpop];
 	};
 };
 
