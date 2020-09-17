@@ -411,7 +411,7 @@ if (_scale != OT_lastMapDrawScale) then {
 			if (_scale > 0.15) then { _x setMarkerSizeLocal[0,0]; };
 		};
 		if ("ot_Shop_Gundealer" in getMarkerType _x) then {
-			if (_scale > 0.015) then { _x setMarkerSizeLocal [0.01/(_scale*0.3),	0.01/(_scale*0.3)];};
+			if (_scale > 0.015) then { _x setMarkerSizeLocal [0.01/(_scale*0.35),	0.01/(_scale*0.35)];};
 			if (_scale > 0.2) then { _x setMarkerSizeLocal[0,0]; };
 		};
 	} forEach allMapMarkers;

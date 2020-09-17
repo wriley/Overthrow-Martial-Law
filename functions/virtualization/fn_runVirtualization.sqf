@@ -8,18 +8,6 @@ diag_log "Overthrow: Virtualization start";
 diag_log format["Overthrow: %1 businesses virtualized",count OT_economicData];
 
 waitUntil {!isNil "OT_economyLoadDone"};
-_count = 0;
-{
-	private _cls = _x select 0;
-	private _name = _x select 1;
-	private _pos = server getVariable [format["factionrep%1",_cls],[]];
-
-    if(count _pos > 0) then {
-		_count = _count + 1;
-		[_pos,OT_fnc_spawnFactionRep,[_cls,_name]] call OT_fnc_registerSpawner;
-    }
-}foreach(OT_allFactions);
-diag_log format["Overthrow: %1 faction reps virtualized",_count];
 
 private _allobs = OT_NATOobjectives + OT_NATOcomms;
 {
@@ -59,6 +47,19 @@ OT_townSpawners = [
 }foreach(OT_allTowns);
 
 diag_log format["Overthrow: %1 towns virtualized",count OT_allTowns];
+
+_count = 0;
+{
+	private _cls = _x select 0;
+	private _name = _x select 1;
+	private _pos = server getVariable [format["factionrep%1",_cls],[]];
+
+    if(count _pos > 0) then {
+		_count = _count + 1;
+		[_pos,OT_fnc_spawnFactionRep,[_cls,_name]] call OT_fnc_registerSpawner;
+    }
+}foreach(OT_allFactions);
+diag_log format["Overthrow: %1 faction reps virtualized",_count];
 
 //Start Virtualization Loop
 ["OT_virtualization_loop","_counter%4 isEqualTo 0","

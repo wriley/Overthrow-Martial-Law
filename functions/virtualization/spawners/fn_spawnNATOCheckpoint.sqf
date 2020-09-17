@@ -18,9 +18,6 @@ _start = getPos _road;
 
 if((count _start) isEqualTo 0 || _start#1 isEqualTo 0) exitWith {diag_log format["Overthrow: WARNING: Couldnt find road for %1 %2",_name,_start];[]};
 
-//This is not used
-//private _vehtype = OT_vehTypes_civ call BIS_Fnc_selectRandom;
-
 private _roadscon = roadsConnectedto _road;
 private _dir = [_road, _roadscon select 0] call BIS_fnc_DirTo;
 if(isNil "_dir") then {_dir = 90};

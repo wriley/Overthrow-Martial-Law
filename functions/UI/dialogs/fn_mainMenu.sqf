@@ -53,16 +53,14 @@ if(isMultiplayer && { ((getplayeruid player) in (server getVariable ["generals",
 
 _ctrl ctrlSetStructuredText parseText format[
 	"<br/>
-		<t align='left'>%1 Population: (%2) Support: (%3%4)</t><br/>
-		<t align='left'>Your Population: (%6) %5 Support: (%7%8)</t><br/>
-		<t align='left'>Influence Points: %9</t><br/>
-		<t align='left'>Weather: %10 (Forecast: %11)</t><br/>
-		<t align='left'>Fuel Price: $%12/L</t><br/>
-		%13
-		%14
+		<t align='left'>Resistance Strength: (%1) %2</t><br/>
+		<t align='left'>Influence Points: %3</t><br/>
+		<t align='left'>Weather: %4 (Forecast: %5)</t><br/>
+		<t align='left'>Fuel Price: $%6/L</t><br/>
+		%7
+		%8
 	",
-	_town, _townpop, ["","+"] select (_standing > -1), _standing,
-	OT_nation, _totalpop, ["","+"] select (_rep > -1), _rep,
+	OT_nation, _totalpop,
 	player getVariable ["influence",0],
 	_weather, server getVariable "forecast",
 	[OT_nation,"FUEL",100] call OT_fnc_getPrice,
@@ -424,14 +422,19 @@ switch (_obtype) do {
 	};
 	case "FOB": {
 		_areaText = format["<br/>
-			<t align='left'>NATO FOB</t>
+			<t align='left'>FOB</t>
 		"];
 	};
 	case "Town": {
 		_areaText = format["<br/>
 			<t align='left'>%1</t><br/>
 			<t align='left'>Population: %2</t>
-		",_town, _townpop];
+			<t align='left'>Support: (%3%4)</t>
+			",
+			_town,
+			_townpop,
+			["","+"] select (_standing > -1), _standing
+		];
 	};
 };
 
