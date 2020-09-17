@@ -1,6 +1,6 @@
 // PARAMS : pos, name, distance, priority(cost/worth)
 OT_objectiveData = [
-    [[2261.28,6331.25,0],"Fuel Depot",200,450],
+    [[2261.28,6331.25,0],"Fuel Depot",200,400],
     [[4166.48,11723.6,0],"The Harbor Remnants",200,250],
     [[3432.65,12893.3,0],"The Firing Range",200,250],
     [[3870.23,13412.4,0],"The Vehicle Range",200,300],
@@ -10,7 +10,7 @@ OT_objectiveData = [
     [[11570.3,7345.21,0],"Kotomo Base",200,300],
     [[4414.39,8529.59,0],"Regina Base",200,500],
 	[[11022.2,11507.6,0],"Hamato Base",200,300],
-    [[2101.76,7938.43,0],"Matsu Base",200,200],
+    [[2101.76,7938.43,0],"Matsu Base",200,300],
     [[9131.01,9803.53,0],"Tanouka Base",200,450],
     [[5003.15,4454.97,0],"Davis Camp",200,250],
     [[12507.9,2466.97,0],"Hollander Base",200,450],

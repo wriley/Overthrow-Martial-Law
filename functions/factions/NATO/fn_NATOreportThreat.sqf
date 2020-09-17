@@ -40,6 +40,14 @@ call {
         _targetType = "H";
         _threat = 300;
     };
+	if(_ty == OT_warehouse) exitWith {
+		_targetType = "W";
+		private _warehouse = getpos _veh call OT_fnc_nearestWarehouse;
+		private _wid = _warehouse select 1;
+		{
+		  _threat = _threat + (warehouses getvariable _x select 1);
+		} forEach (allVariables warehouses select {((toLower _x select [0,21]) isEqualTo (format["warehouse-%1_",_wid]))});
+	};
 };
 
 _targets pushback [_targetType,position _veh,_threat,_veh,false,time];
