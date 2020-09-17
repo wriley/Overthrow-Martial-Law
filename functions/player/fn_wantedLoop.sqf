@@ -232,6 +232,11 @@ if !(captive _unit) then {
 					[_unit] call OT_fnc_revealToNATO;
 				};
 			} foreach ((allMapMarkers) select {("restrict" in _x)});
+			
+			//check warehouses with near players
+			if (getpos _unit call OT_fnc_positionIsAtWarehouse) then {
+				(nearestBuilding ((getpos _unit call OT_fnc_nearestWarehouse) select 0)) call OT_fnc_NATOreportThreat;
+			};
 		};
 	};
 };

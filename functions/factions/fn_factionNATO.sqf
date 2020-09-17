@@ -626,8 +626,8 @@ publicVariable "OT_nextNATOTurn";
 					_population = server getVariable format ["population%1",_town];
 					if!(_town in _abandoned) then {
 						_max = round(_population / 40);
-						if(_max < 4) then {_max = 4};
-						_garrison = 2+round((1-(_stability / 100)) * _max);
+						if(_max < 5) then {_max = 5};
+						_garrison = ceil(random(3))+round((1-(_stability / 100)) * _max);
 						if(_town in OT_NATO_priority) then {
 							_garrison = round(_garrison * 2);
 						};
@@ -665,6 +665,7 @@ publicVariable "OT_nextNATOTurn";
 								_resources = _resources - 150;
 								[_basename,_townPos] spawn OT_fnc_NATOGroundPatrol;
 								spawner setVariable ["NATOlastpatrol",time,false];
+								format ["Sending a ground patrol to %1", _town] remoteExec ["systemChat", 0];
 							};
 						};
 					};

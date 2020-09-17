@@ -141,9 +141,8 @@ if(_isAir) then {
 sleep 2;
 
 //This squad operates in stealth mode, therefore does not respond to calls for help from other units
-{
-	_x setVariable ["VCOM_NOPATHING_Unit",true,false];
-}foreach(units _group);
+_group setVariable ["VCM_TOUGHSQUAD",true,true];
+_group setVariable ["VCM_NORESCUE",true,true];
 
 _wp = _group addWaypoint [_posTarget,0];
 _wp setWaypointType "GUARD";

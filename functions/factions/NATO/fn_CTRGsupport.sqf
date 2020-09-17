@@ -63,9 +63,9 @@ createVehicleCrew _veh;
 	_x moveInCargo _veh;
 	_soldiers pushback _x;
 	_x setVariable ["garrison","HQ",false];
-	_x setVariable ["VCOM_NOPATHING_Unit",1,false];
 }foreach(units _group);
-
+_group setVariable ["VCM_TOUGHSQUAD",true,true];
+_group setVariable ["VCM_NORESCUE",true,true];
 sleep 1;
 
 _moveto = [OT_NATO_HQPos,500,_dir] call SHK_pos_fnc_pos;
