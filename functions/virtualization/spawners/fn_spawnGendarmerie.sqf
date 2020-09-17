@@ -27,8 +27,6 @@ while {_count < _numNATO} do {
 
 		private _groupcount = 0;
 		private _group = createGroup west;
-		_group setVariable ["VCM_TOUGHSQUAD",true,true];
-		_group setVariable ["VCM_NORESCUE",true,true];
 		_group deleteGroupWhenEmpty true;
 		_groups pushBack _group;
 

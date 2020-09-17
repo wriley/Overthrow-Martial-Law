@@ -189,9 +189,9 @@ if !(captive _unit) then {
 			};
 
 			if(vehicle _unit != _unit && vehicle _unit isKindOf "LandVehicle") then {
-				private _offroadDist = 25; //Distance you are allowed off road
-				private _checkpointOffroadRange = 50; //Distance from a checkpoint for the stricter off road distance
-				private _checkpointOffroadDist = 15;
+				private _offroadDist = 75; //Distance you are allowed off road
+				private _checkpointOffroadRange = 150; //Distance from a checkpoint for the stricter off road distance
+				private _checkpointOffroadDist = 25;
 				if(_unit distance getMarkerPos (_unit call OT_fnc_nearestCheckpoint) < _checkpointOffroadRange) then {
 						_offroadDist = _checkpointOffroadDist
 				};
