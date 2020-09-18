@@ -1,7 +1,8 @@
 if (isNull(findDisplay 8000)) exitWith {};
-lbClear 1500;
-_SearchTerm = ctrlText 1700;
-private _wid = OT_currentWarehouse;
+params ["_wid"];
+if (isNil "_wid") then {
+	_wid = OT_currentWarehouse;
+};
 private _itemVars = allVariables warehouses select {((toLower _x select [0,21]) isEqualTo (format["warehouse-%1_",_wid]))};
 private _numitems = 0;
 private _rifles = [];
@@ -38,8 +39,9 @@ private _unsorted = [];
 		_unsorted pushback [_cls,_qty];
 	};
 }foreach _itemVars;
-private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted;
 
+private _sorted = _rifles + _launchers + _pistols + _default + _unsorted + _bags;
+private _list = [];
 {
 	_x params ["_cls","_qty"];
 	if ((_cls isEqualType "") && _qty > 0) then {
@@ -47,9 +49,10 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 		([_cls] call {
 			params ["_cls"];
 			private _numitems = 0;
+			private _SearchTerm = ctrlText 1700;
 			if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) exitWith {
 				_name = _cls call OT_fnc_weaponGetName;
-				_searchtext = _name + format["%1<br/>%2",getText(configFile >> "CfgWeapons" >> _cls >> "descriptionShort"),_cls call OT_fnc_magazineGetDescription];
+				_searchtext = _cls + _name + format["%1<br/>%2",getText(configFile >> "CfgWeapons" >> _cls >> "descriptionShort"),_cls call OT_fnc_magazineGetDescription];
 				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = _cls call OT_fnc_weaponGetPic;
@@ -58,7 +61,7 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 			};
 			if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 				_name = _cls call OT_fnc_magazineGetName;
-				_searchtext = _name + (_cls call OT_fnc_magazineGetDescription);
+				_searchtext = _cls + _name + (_cls call OT_fnc_magazineGetDescription);
 				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = _cls call OT_fnc_magazineGetPic;
@@ -67,7 +70,7 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 			};
 			if(_cls isKindOf "Bag_Base") exitWith {
 				_name = _cls call OT_fnc_vehicleGetName;
-				_searchtext = _name + (_cls call OT_fnc_vehicleGetDescription);
+				_searchtext = _cls + _name + (_cls call OT_fnc_vehicleGetDescription);
 				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = _cls call OT_fnc_vehicleGetPic;
@@ -76,7 +79,7 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 			};
 			if(isClass (configFile >> "CfgGlasses" >> _cls)) exitWith {
 				_name = gettext(configFile >> "CfgGlasses" >> _cls >> "displayName");
-				_searchtext = _name;
+				_searchtext = _cls + _name;
 				if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 					_numitems = 1;
 					_pic = gettext(configFile >> "CfgGlasses" >> _cls >> "picture");
@@ -84,7 +87,7 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 				};
 			};
 			_name = _cls call OT_fnc_vehicleGetName;
-			_searchtext = _name;
+			_searchtext = _cls + _name;
 			if(tolower(_searchtext) find tolower(_SearchTerm) > -1) then {
 				_numitems = 1;
 				_pic = _cls call OT_fnc_vehicleGetPic;
@@ -93,13 +96,35 @@ private _sorted = _rifles + _launchers + _pistols + _default + _bags + _unsorted
 		}) params ["_name","_pic","_searchnum"];
 		if (_searchnum > 0) then {
 			_numitems = _numitems + _searchnum;
+			_list pushback [_name, _cls, _qty, _pic];
+			/*
 			private _idx = lbAdd [1500,format["%1 x %2",_qty,_name]];
 			lbSetPicture [1500,_idx,_pic];
 			lbSetValue [1500,_idx,_qty];
 			lbSetData [1500,_idx,_cls];
+			*/
 		};
 	};
 }foreach(_sorted);
+diag_log str _list;
+
+if (lbSize 1500 != _numitems) then {
+	lbClear 1500;
+	{
+		_x params ["_name", "_cls", "_qty", "_pic"];
+		private _idx = lbAdd [1500,format["%1 x %2",_qty,_name]];
+		lbSetPicture [1500,_idx,_pic];
+		lbSetValue [1500,_idx,_qty];
+		lbSetData [1500,_idx,_cls];
+	} foreach _list;
+} else {
+	for [{private _i=0;},{_i<_numitems;},{_i=_i+1;}] do {
+		lbSetText [1500,_i,format["%1 x %2",_qty,_name]];
+		lbSetPicture [1500,_i,_pic];
+		lbSetValue [1500,_i,_qty];
+		lbSetData [1500,_i,_cls];
+	};
+};	
 private _cursel = lbCurSel 1500;
 if(_cursel >= _numitems) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];

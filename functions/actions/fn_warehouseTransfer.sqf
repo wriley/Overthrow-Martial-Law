@@ -41,5 +41,5 @@ if(_newqty > 0) then {
 }else{
 	warehouses setVariable [format["warehouse-%1_%2",_wid,_cls],nil,true];
 };
-[] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
+[_wid] remoteExec ["OT_fnc_refreshWarehouse", 0, false];
 OT_whTransferring = false;
