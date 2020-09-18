@@ -406,13 +406,15 @@ switch (_obtype) do {
 		};
 	};
 	case "Airport": {
-		ctrlSetText [1615,"Garrison"];
 		if(_obname in (server getVariable ["NATOabandoned",[]])) then {
 			_areaText = format["<br/>
 				<t align='left'>%1</t><br/>
 				<t align='left'>Under resistance control</t>
 			",_obname];
+			ctrlEnable [1614,true];
 			ctrlEnable [1615,true];
+			ctrlSetText [1614,"Procurement"];
+			ctrlSetText [1615,"Garrison"];
 		}else{
 			_areaText = format["<br/>
 				<t align='left'>%1</t><br/>

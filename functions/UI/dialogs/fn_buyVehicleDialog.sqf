@@ -1,6 +1,7 @@
+closeDialog 0;
 private _town = player call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
-private _items = OT_vehicles;
+private _items = +OT_vehicles;
 
 player setVariable ["OT_shopTarget","Self"];
 
@@ -12,7 +13,7 @@ if((_obpos distance player) < 250) then {
 		_standing = 100;
 		_items append OT_staticBackpacks;
 		_items append [["Set_HMG"]];
-		if((_obname in OT_allAirports) || OT_adminMode) then {
+		if(_obname in OT_allAirports) then {
 			_items append OT_helis;
 		}else{
 			_items append OT_boats;
@@ -21,6 +22,8 @@ if((_obpos distance player) < 250) then {
 			_items append (OT_explosives + OT_detonators);
 		};
 	}
+} else {
+	_obname = "Warehouse";
 };
 
 if(OT_adminMode) then {
@@ -28,7 +31,7 @@ if(OT_adminMode) then {
 };
 
 createDialog "OT_dialog_buy";
-(findDisplay 8000) displayCtrl 1101 ctrlSetStructuredText parseText "<t align='left' size='2'>Warehouse Procurement</t>";
+(findDisplay 8000) displayCtrl 1101 ctrlSetStructuredText parseText format ["<t align='left' size='1.6'>%1 Procurement</t>", _obname];
 {
 	_x params ["_cls"];
 	if((_cls select [0,3]) != "IED") then {
