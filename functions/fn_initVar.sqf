@@ -1084,7 +1084,7 @@ OT_repairableBuildings = [];
 		OT_allRepairableBuildings pushback (_x select 2 select 0 select 0);
 		OT_repairableBuildings pushback [(_x select 2 select 0 select 0),(_x select 1)];
 	};
-	if (_x select 0 in ["Bunkers","Observation Post","Barracks","Guard Tower","Hangar","House","Police Station","Warehouse","Refugee Camp","Radar"]) then {
+	if (_x select 0 in ["Bunkers","Observation Post","Barracks","Guard Tower","Hangar","Police Station","Warehouse","Refugee Camp","Radar"]) then {
 		_price = _x select 1;
 		{
 			OT_allBuildableBuildings pushback _x;
@@ -1093,7 +1093,7 @@ OT_repairableBuildings = [];
 		}foreach (_x select 2);
 	};
 
-	if!(_x select 0 isEqualTo "Walls") then {
+	if!(_x select 0 in ["Walls","House"]) then {
 		private _istpl = _x select 4;
 		if(_istpl) then {
 			private _tpl = _x select 2;

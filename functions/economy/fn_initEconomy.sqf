@@ -10,7 +10,7 @@ OT_allShops = [];
     if(_name in OT_capitals + OT_sprawling) then {//larger search radius
         _mSize = 1000;
     };
-    private _pos= server getVariable _x;
+    private _pos = server getVariable _name;
 
     private _info = [_name,_pos];
 
@@ -67,18 +67,19 @@ OT_allShops = [];
     server setVariable [_popVar,_pop,true];
 
     {
-        if(_pos inArea _x) exitWith {server setVariable [format["region_%1",_name],_x,true]};
+        if(_pos inArea _region) exitWith {server setVariable [format["region_%1",_name],_region,true]};
     }foreach(OT_regions);
     sleep 0.1;
 }foreach (OT_allTowns);
+
 private _spawn = OT_spawnTowns call BIS_fnc_selectrandom;
 diag_log format["Overthrow: Spawn town is %1",_spawn];
 server setVariable ["spawntown",_spawn,true];
 {
     private _region = _x;
 
-    private _towns = [_x] call OT_fnc_townsInRegion;
-    server setVariable [format ["towns_%1",_x],_towns,true];
+    private _towns = [_region] call OT_fnc_townsInRegion;
+    server setVariable [format ["towns_%1",_region],_towns,true];
 }foreach(OT_regions);
 
 OT_allShops = nil; //Clean this up we dont need it anymore
