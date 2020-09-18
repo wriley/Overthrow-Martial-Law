@@ -23,7 +23,7 @@ _population = (_population / 1000);
 	if(_type in OT_medPopHouses) exitWith {[15000,8,0.2]};
 	if(_type in OT_highPopHouses) exitWith {[35000,12,0.15]};
 	if(_type in OT_hugePopHouses) exitWith {[75000,25,0.06]};
-	if(_type in OT_mansions) exitWith {[150000,10]};
+	if(_type in OT_mansions) exitWith {[150000,10,0.05]};
 	if(_type == OT_warehouse) exitWith {[15000,0]};
 	if(_type in OT_allRepairableRuins) exitWith {{if (((_x select 0) isEqualTo _type) || ((_x select 1) isEqualTo _type)) exitWith {[_x select 2]};}foreach OT_repairableRuins;};
 	if(_type in OT_allRepairableBuildings) exitWith {

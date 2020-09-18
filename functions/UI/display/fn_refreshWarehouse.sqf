@@ -1,8 +1,11 @@
-if (isNull(findDisplay 8000)) exitWith {};
-params ["_wid"];
-if (isNil "_wid") then {
-	_wid = OT_currentWarehouse;
+if (isNull(findDisplay 8000) || !(player call OT_fnc_positionIsAtWarehouse)) exitWith {};
+params ["_refreshID"];
+private _wid = getpos player call OT_fnc_nearestWarehouse select 1;
+if (_refreshID != _wid) exitWith {};
+if !(isNil "_refreshID") then {
+	_wid = _refreshID;
 };
+
 private _itemVars = allVariables warehouses select {((toLower _x select [0,21]) isEqualTo (format["warehouse-%1_",_wid]))};
 private _numitems = 0;
 private _rifles = [];
