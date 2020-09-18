@@ -222,14 +222,18 @@ if !(captive _unit) then {
 			*/
 			// restricted areas
 			{
-				private _unitpos = getPosATL _unit;
-				if ([_unitpos,_x] call SHK_pos_fnc_isInCircle) then {
-					if(isPlayer _unit) then {
-						"You are in a restricted area" call OT_fnc_notifyMinor;
-						_unit setVariable ["OT_wantedReason", " (RESTRICTED)"];
+				private _pos = getMarkerPos _x;
+				private _name = _pos call OT_fnc_nearestObjective select 1;
+				if!(_name in (server getVariable ["NATOabandoned",[]])) then {
+					private _unitpos = getPosATL _unit;
+					if ([_unitpos,_x] call SHK_pos_fnc_isInCircle) then {
+						if(isPlayer _unit) then {
+							"You are in a restricted area" call OT_fnc_notifyMinor;
+							_unit setVariable ["OT_wantedReason", " (RESTRICTED)"];
+						};
+						_unit setCaptive false;
+						[_unit] call OT_fnc_revealToNATO;
 					};
-					_unit setCaptive false;
-					[_unit] call OT_fnc_revealToNATO;
 				};
 			} foreach ((allMapMarkers) select {("restrict" in _x)});
 			
