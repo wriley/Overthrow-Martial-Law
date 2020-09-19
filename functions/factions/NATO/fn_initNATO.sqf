@@ -155,14 +155,14 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["MLNATOve
 			server setVariable [format ["vehgarrison%1",_name],[],true];
 
             private _vehgarrison = [];
-			for [{private _i=0;},{_i<(floor(_worth/150)min 3)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_VehicleGarrison_LevelOne; };
-			for [{private _i=0;},{_i<(floor(_worth/250)min 3)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_VehicleGarrison_LevelTwo; };
-			for [{private _i=0;},{_i<(floor(_worth/450)min 3)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_VehicleGarrison_LevelThree; };
-			for [{private _i=0;},{_i<(floor(_worth/150)min 3)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_StaticGarrison_LevelOne; };
-			for [{private _i=0;},{_i<(floor(_worth/250)min 3)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_StaticGarrison_LevelTwo; };
+			for [{private _i=0;},{_i<(floor(_worth/200)min 4)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_VehicleGarrison_LevelOne; };
+			for [{private _i=0;},{_i<(floor(_worth/400)min 3)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_VehicleGarrison_LevelTwo; };
+			for [{private _i=0;},{_i<(floor(_worth/750)min 2)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_VehicleGarrison_LevelThree; };
+			for [{private _i=0;},{_i<(floor(_worth/150)min 2)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_StaticGarrison_LevelOne; };
+			for [{private _i=0;},{_i<(floor(_worth/250)min 2)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_StaticGarrison_LevelTwo; };
 			for [{private _i=0;},{_i<(floor(_worth/1000)min 2)},{_i=_i+1;}] do { _vehgarrison pushback selectRandom OT_NATO_StaticGarrison_LevelThree; };
 
-			private _garrison = ((floor(_worth/25) + random(floor(_worth/75))) min 48);
+			private _garrison = round(((_worth/75) min 4) + random(_worth/75) min 60);
 			if(_name isEqualTo OT_NATO_HQ) then {
 				_garrison = 64;
 				server setVariable [format ["vehgarrison%1",_name],["B_T_APC_Tracked_01_AA_F","B_T_APC_Tracked_01_AA_F","B_GMG_01_high_F","B_GMG_01_high_F","B_GMG_01_high_F","B_HMG_01_high_F","B_HMG_01_high_F","B_HMG_01_high_F"],true];
