@@ -7,6 +7,7 @@ if !(isNil "_refreshID") then {
 };
 
 private _itemVars = allVariables warehouses select {((toLower _x select [0,21]) isEqualTo (format["warehouse-%1_",_wid]))};
+private _listbox = (findDisplay 8000) displayCtrl 1500;
 private _numitems = 0;
 private _rifles = [];
 private _launchers = [];
@@ -100,34 +101,31 @@ private _list = [];
 		if (_searchnum > 0) then {
 			_numitems = _numitems + _searchnum;
 			_list pushback [_name, _cls, _qty, _pic];
-			/*
-			private _idx = lbAdd [1500,format["%1 x %2",_qty,_name]];
-			lbSetPicture [1500,_idx,_pic];
-			lbSetValue [1500,_idx,_qty];
-			lbSetData [1500,_idx,_cls];
-			*/
 		};
 	};
 }foreach(_sorted);
-diag_log str _list;
 
-if (lbSize 1500 != _numitems) then {
-	lbClear 1500;
-	{
-		_x params ["_name", "_cls", "_qty", "_pic"];
-		private _idx = lbAdd [1500,format["%1 x %2",_qty,_name]];
-		lbSetPicture [1500,_idx,_pic];
-		lbSetValue [1500,_idx,_qty];
-		lbSetData [1500,_idx,_cls];
-	} foreach _list;
-} else {
-	for [{private _i=0;},{_i<_numitems;},{_i=_i+1;}] do {
-		lbSetText [1500,_i,format["%1 x %2",_qty,_name]];
-		lbSetPicture [1500,_i,_pic];
-		lbSetValue [1500,_i,_qty];
-		lbSetData [1500,_i,_cls];
+if (lbSize 1500 != _numitems) then { lbClear 1500; };
+{
+	_x params ["_name", "_cls", "_qty", "_pic"];
+	private _lbCls = lbData [1500, _forEachIndex];
+	private _lbQty = lbValue [1500, _forEachIndex];
+	if ((_lbCls != _cls) || (_lbQty != _qty)) then {
+		if (_forEachIndex >= (lbSize 1500)) then {
+			lbAdd [1500,format["%1 x %2",_qty,_name]];
+		} else {
+			_listbox lbSetText [_forEachIndex, format["%1 x %2",_qty,_name]];
+		};
+		if (_lbCls != _cls) then {
+			lbSetPicture [1500,_forEachIndex,_pic];
+			lbSetData [1500,_forEachIndex,_cls];
+		};
+		if (_lbQty != _qty) then {
+			lbSetValue [1500,_forEachIndex,_qty];
+		};
 	};
-};	
+} foreach _list;
+
 private _cursel = lbCurSel 1500;
 if(_cursel >= _numitems) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];
