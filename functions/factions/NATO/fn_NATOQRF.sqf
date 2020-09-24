@@ -44,7 +44,7 @@ if (count _air > 0) then {
 
 	if(_pri > 400 || _strength >= 300) then {
 		_ao = [_pos,_dir] call OT_fnc_getAO;
-		[_obpos,_ao,_pos,true,(380+random(60))] spawn OT_fnc_NATOGroundForces;
+		[_obpos,_ao,_pos,true,(380+random(60)),true] spawn OT_fnc_NATOGroundForces;
 		_strength = _strength - 75;
 		diag_log format["Overthrow: NATO Sent extra ground forces by air from %1 %2",_name,str _obpos];
 	};
