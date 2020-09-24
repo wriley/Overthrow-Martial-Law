@@ -87,7 +87,7 @@ if !(captive _unit) then {
 					[_unit] call OT_fnc_revealToCRIM;
 					if(isPlayer _unit) then {
 						format["%1 have recognized you",_name] call OT_fnc_notifyMinor;
-						_unit setVariable ["OT_wantedReason", " (WAR)"];
+						_unit setVariable ["OT_wantedReason", " (GANG)"];
 					};
 				};
 				if(_rep < 10) then {
@@ -226,7 +226,7 @@ if !(captive _unit) then {
 				private _name = _pos call OT_fnc_nearestObjective select 1;
 				if!(_name in (server getVariable ["NATOabandoned",[]])) then {
 					private _unitpos = getPosATL _unit;
-					if ([_unitpos,_x] call SHK_pos_fnc_isInCircle) then {
+					if (_unit inArea _x) then {
 						if(isPlayer _unit) then {
 							"You are in a restricted area" call OT_fnc_notifyMinor;
 							_unit setVariable ["OT_wantedReason", " (RESTRICTED)"];

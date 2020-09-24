@@ -1,10 +1,13 @@
-params ["_frompos","_ao","_attackpos","_byair",["_delay",0]];
+params ["_frompos","_ao","_attackpos","_byair",["_delay",0],["_large",false]];
 if (_delay > 0) then {sleep _delay};
-private _vehtype = OT_NATO_Vehicle_Transport call BIS_fnc_selectRandom;
+private _vehtype = selectRandom OT_NATO_Vehicle_Transport;
 if(_byair) then {
-	_vehtype = OT_NATO_Vehicle_AirTransport call BIS_fnc_selectRandom;
+	_vehtype = selectRandom OT_NATO_Vehicle_AirTransport;
+	if (_large) then {
+		_vehtype = selectRandom OT_NATO_Vehicle_AirTransport_Large;
+	};
 };
-private _squadtype = OT_NATO_GroundForces call BIS_fnc_SelectRandom;
+private _squadtype = selectRandom OT_NATO_GroundForces;
 private _spawnpos = _frompos;
 private _group1 = [_spawnpos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
@@ -12,7 +15,7 @@ private _group2 = "";
 private _tgroup = false;
 if !(_byair) then {
 	sleep 0.3;
-	_squadtype = OT_NATO_GroundForces call BIS_fnc_SelectRandom;
+	_squadtype = selectRandom OT_NATO_GroundForces;
 	_group2 = [_spawnpos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
 	_group2 deleteGroupWhenEmpty true;
 };
