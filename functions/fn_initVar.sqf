@@ -401,7 +401,7 @@ _allVehs = "
 }foreach(_allVehs);
 {
 	OT_allVehicleThreats pushBackUnique _x;
-}foreach(OT_NATO_VehicleGarrison_LevelOne+OT_NATO_VehicleGarrison_LevelTwo+OT_NATO_VehicleGarrison_LevelThree+OT_NATO_Vehicle_Transport+OT_NATO_Vehicles_PoliceSupport+OT_NATO_Vehicles_AirSupport+OT_NATO_Vehicles_AirSupport_Small+OT_NATO_Vehicles_GroundSupport+OT_NATO_Vehicles_TankSupport+OT_NATO_Vehicles_Convoy+OT_NATO_Vehicles_AirWingedSupport+[OT_NATO_Vehicle_AirTransport_Small]+OT_NATO_Vehicle_AirTransport+OT_NATO_Vehicle_AirTransport_Large+OT_NATO_Vehicles_AirGarrison+OT_NATO_Vehicles_JetGarrison);
+}foreach(OT_NATO_VehicleGarrison_LevelOne+OT_NATO_VehicleGarrison_LevelTwo+OT_NATO_VehicleGarrison_LevelThree+[OT_NATO_Vehicle_PoliceHeli]+OT_NATO_Vehicle_Transport+[OT_NATO_Vehicles_PoliceSupport]+OT_NATO_Vehicles_AirSupport+OT_NATO_Vehicles_AirSupport_Small+OT_NATO_Vehicles_GroundSupport+OT_NATO_Vehicles_TankSupport+OT_NATO_Vehicles_Convoy+OT_NATO_Vehicles_AirWingedSupport+[OT_NATO_Vehicle_AirTransport_Small]+OT_NATO_Vehicle_AirTransport+OT_NATO_Vehicle_AirTransport_Large+OT_NATO_Vehicles_AirGarrison);
 private _allHelis = "
     ( getNumber ( _x >> ""scope"" ) > 1
     &&
