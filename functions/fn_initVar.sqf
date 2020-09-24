@@ -111,7 +111,10 @@ OT_allRealEstate = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hug
 
 OT_allTowns = [];
 OT_allTownPositions = [];
-OT_allWarehouses = [];
+
+if (isNil "OT_allWarehouses") then {
+	OT_allWarehouses = [];
+};
 
 {
 	_x params ["_pos","_name"];
