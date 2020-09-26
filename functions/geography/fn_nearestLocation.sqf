@@ -5,7 +5,7 @@ private _nearest = _results select 0;
 private _near = _results select 1;
 private _type = "";
 _type = _nearest call {
-	if(_this in [[OT_factoryPos]]) exitWith {"Factory"};
+	if(_this in [[OT_factoryPos,"Factory"]]) exitWith {"Factory"};
 	if(_this in OT_economicData) exitWith {"Business"};
 	if(_this in OT_townData) exitWith {"Town"};
 	if(_this in OT_commsData) exitWith {"Radio Tower"};
