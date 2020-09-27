@@ -5,6 +5,9 @@ OT_economicData = [
     [[4163,15059,0],		"Magos Power Plant",[
 		["Money",				[]]
 	]],
+    [[15562.2,16277.8,0],	  "Agola Solar Power Plant",[
+    ["Money",				[]]
+  ]],
     [[17076,11233,0],		"Pyrgos Mines",[
 		["OT_Steel",			[]]
 	]],
@@ -17,7 +20,7 @@ OT_economicData = [
     [[18099,13038,0],		"Dorida Olives",[
 		["OT_Olives",			[["OT_Fertilizer",1]]]
 	]],
-    [[14305,18883,0],		"Athira Wines",[
+    [[14508,17286.9,0],		"Gravia Wines",[
 		["OT_Wine",				[["OT_Grapes",1]]]
 	]],
     [[7493,21525,0],		"Synneforos Wind Farm",[
