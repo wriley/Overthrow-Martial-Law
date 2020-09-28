@@ -18,8 +18,8 @@ _population = (_population / 1000);
 
 ([_type] call {
 	params ["_type"];
-	if(_type in OT_spawnHouses) exitWith {[2000,2]};
-	if(_type in OT_lowPopHouses) exitWith {[5000,5]};
+	if(_type in OT_spawnHouses) exitWith {[2000,2,.05]};
+	if(_type in OT_lowPopHouses) exitWith {[5000,5,.1]};
 	if(_type in OT_medPopHouses) exitWith {[15000,8,0.2]};
 	if(_type in OT_highPopHouses) exitWith {[35000,12,0.15]};
 	if(_type in OT_hugePopHouses) exitWith {[75000,25,0.06]};
@@ -35,7 +35,7 @@ _population = (_population / 1000);
 		}foreach OT_repairableBuildings;
 	};
 	[]
-}) params [["_baseprice", 0],["_totaloccupants",0],["_multiplier",0]];
+}) params [["_baseprice", 2000],["_totaloccupants",2],["_multiplier",.1]];
 
 private _price = round(_baseprice + ((_baseprice * _stability * _population) * (1 + OT_standardMarkup)));
 private _sell = round(_baseprice + (_baseprice * _stability * _population));
