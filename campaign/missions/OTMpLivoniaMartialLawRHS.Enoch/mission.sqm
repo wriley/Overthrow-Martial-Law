@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=392;
+		nextID=393;
 	};
 	class Camera
 	{
-		pos[]={7585.7729,191.82404,2492.3303};
-		dir[]={-0.84691793,-0.52338558,0.094774656};
-		up[]={-0.52016115,0.85208374,0.058208629};
-		aside[]={0.11121552,-1.0535587e-007,0.99388129};
+		pos[]={7470.3208,191.82404,2549.2568};
+		dir[]={0.45162013,-0.67262244,-0.58636129};
+		up[]={0.4104349,0.739986,-0.53288633};
+		aside[]={-0.79232246,-1.2853998e-006,-0.61025661};
 	};
 };
 binarizationWanted=0;
@@ -29600,6 +29600,7 @@ class Mission
 					name="control_1";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=1153;
 					atlOffset=-126.231;
 				};
@@ -29610,6 +29611,7 @@ class Mission
 					name="control_2";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2169;
 					atlOffset=8.0108643e-005;
 				};
@@ -29620,6 +29622,7 @@ class Mission
 					name="control_3";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2170;
 					atlOffset=-0.0051040649;
 				};
@@ -29630,6 +29633,7 @@ class Mission
 					name="control_4";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2171;
 					atlOffset=-7.2479248e-005;
 				};
@@ -29640,6 +29644,7 @@ class Mission
 					name="control_5";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2172;
 					atlOffset=0.0004196167;
 				};
@@ -29650,6 +29655,7 @@ class Mission
 					name="control_6";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2173;
 					atlOffset=9.1552734e-005;
 				};
@@ -29660,6 +29666,7 @@ class Mission
 					name="control_7";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2237;
 					atlOffset=0.00022888184;
 				};
@@ -29670,6 +29677,7 @@ class Mission
 					name="control_8";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2238;
 					atlOffset=-0.00015258789;
 				};
@@ -29680,6 +29688,7 @@ class Mission
 					name="control_9";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2239;
 					atlOffset=0.0004119873;
 				};
@@ -29690,6 +29699,7 @@ class Mission
 					name="control_10";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2240;
 					atlOffset=0.00023555756;
 				};
@@ -29700,6 +29710,7 @@ class Mission
 					name="control_11";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2245;
 					atlOffset=-0.00047302246;
 				};
@@ -29710,6 +29721,7 @@ class Mission
 					name="control_12";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2246;
 					atlOffset=0.00025939941;
 				};
@@ -29720,6 +29732,7 @@ class Mission
 					name="control_13";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2259;
 					atlOffset=-0.00039672852;
 				};
@@ -29730,6 +29743,7 @@ class Mission
 					name="control_14";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2271;
 					atlOffset=-0.023476601;
 				};
@@ -29740,18 +29754,20 @@ class Mission
 					name="control_15";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2272;
 					atlOffset=-0.00030517578;
 				};
 				class Item15
 				{
 					dataType="Marker";
-					position[]={7730.7271,176.96924,3392};
+					position[]={7730.7271,176.96899,3392};
 					name="control_16";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2327;
-					atlOffset=-1.1941681;
+					atlOffset=-1.1944122;
 				};
 				class Item16
 				{
@@ -29760,6 +29776,7 @@ class Mission
 					name="control_17";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2328;
 					atlOffset=-0.00045776367;
 				};
@@ -29770,6 +29787,7 @@ class Mission
 					name="control_18";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2329;
 					atlOffset=0.00019741058;
 				};
@@ -29780,6 +29798,7 @@ class Mission
 					name="control_19";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2330;
 					atlOffset=0.00030517578;
 				};
@@ -29790,6 +29809,7 @@ class Mission
 					name="control_20";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2331;
 					atlOffset=0.00049591064;
 				};
@@ -29800,6 +29820,7 @@ class Mission
 					name="control_21";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2332;
 					atlOffset=-0.00024414063;
 				};
@@ -29810,6 +29831,7 @@ class Mission
 					name="control_22";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2333;
 					atlOffset=0.00042724609;
 				};
@@ -29820,6 +29842,7 @@ class Mission
 					name="control_23";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2339;
 					atlOffset=-0.00028991699;
 				};
@@ -29830,6 +29853,7 @@ class Mission
 					name="control_24";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2340;
 					atlOffset=-0.011039734;
 				};
@@ -29840,6 +29864,7 @@ class Mission
 					name="control_25";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2341;
 					atlOffset=-9.1552734e-005;
 				};
@@ -29850,6 +29875,7 @@ class Mission
 					name="control_26";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2342;
 					atlOffset=-0.00015258789;
 				};
@@ -29860,6 +29886,7 @@ class Mission
 					name="control_27";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2406;
 					atlOffset=-0.00029945374;
 				};
@@ -29870,6 +29897,7 @@ class Mission
 					name="control_28";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2433;
 					atlOffset=-9.1552734e-005;
 				};
@@ -29880,6 +29908,7 @@ class Mission
 					name="control_29";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2434;
 					atlOffset=-0.0004119873;
 				};
@@ -29890,6 +29919,7 @@ class Mission
 					name="control_30";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2435;
 					atlOffset=-0.00049972534;
 				};
@@ -29900,6 +29930,7 @@ class Mission
 					name="control_31";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2436;
 					atlOffset=-0.00040435791;
 				};
@@ -29910,6 +29941,7 @@ class Mission
 					name="control_32";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2437;
 					atlOffset=-1.5258789e-005;
 				};
@@ -29920,6 +29952,7 @@ class Mission
 					name="control_33";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2438;
 					atlOffset=0.0002746582;
 				};
@@ -29930,6 +29963,7 @@ class Mission
 					name="control_34";
 					type="mil_triangle";
 					colorName="ColorWEST";
+					alpha=0;
 					id=2439;
 					atlOffset=8.392334e-005;
 				};
@@ -37806,8 +37840,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={7426.1157,119.6285,2606.1262};
-				angles[]={0,0.72488302,0};
+				position[]={7426.1162,119.6285,2606.126};
+				angles[]={0,0.72488761,0};
 			};
 			side="Empty";
 			flags=5;
@@ -37822,8 +37856,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={7541.0522,120.51926,2500.6133};
-				angles[]={0,2.3131092,0};
+				position[]={7541.0518,120.51915,2500.613};
+				angles[]={0,2.3131025,0};
 			};
 			side="Empty";
 			flags=5;
@@ -37832,7 +37866,6 @@ class Mission
 			};
 			id=2474;
 			type="Land_House_2W01_F";
-			atlOffset=0.22410583;
 		};
 		class Item238
 		{
