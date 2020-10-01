@@ -8,22 +8,22 @@ class EditorData
 	toggles=1538;
 	class ItemIDProvider
 	{
-		nextID=2573;
+		nextID=2575;
 	};
 	class MarkerIDProvider
 	{
-		nextID=75;
+		nextID=76;
 	};
 	class LayerIndexProvider
 	{
-		nextID=559;
+		nextID=564;
 	};
 	class Camera
 	{
-		pos[]={5438.2935,39.231392,15036.767};
-		dir[]={-0.2486261,-0.33404663,-0.90925366};
-		up[]={-0.08811973,0.94254059,-0.3222611};
-		aside[]={-0.96466351,-6.0928869e-007,0.26377976};
+		pos[]={15296.21,55.785614,17046.322};
+		dir[]={-0.56846523,-0.41311017,0.71163177};
+		up[]={-0.25786316,0.91061366,0.322804};
+		aside[]={0.78141451,-2.8844806e-007,0.6242283};
 	};
 };
 binarizationWanted=0;
@@ -34092,7 +34092,7 @@ class Mission
 			type="mil_box";
 			alpha=0;
 			id=2161;
-			atlOffset=4.2761655;
+			atlOffset=2.7054186;
 		};
 		class Item47
 		{
@@ -39340,6 +39340,7 @@ class Mission
 			};
 			id=2570;
 			type="Box_Syndicate_WpsLaunch_F";
+			atlOffset=-0.00030517578;
 		};
 		class Item277
 		{
@@ -39355,6 +39356,7 @@ class Mission
 			};
 			id=2571;
 			type="Box_Syndicate_Wps_F";
+			atlOffset=0.022197723;
 		};
 		class Item278
 		{

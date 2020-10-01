@@ -58,9 +58,11 @@ OT_townData = [
     [[17059.7,9992.32,0],"Ekali"],
     [[18753.4,16597.1,0],"Rodopoli"],
     [[3608.63,10281.1,0],"Athanos"],
-	  [[6175.82,15044.3,0],"Stadium View"]
+	  [[6175.82,15044.3,0],"Stadium View"],
+    [[7217.5,11035.1,0],"Edessa"],
+    [[26705.5,21209,0],"Gatolia"]
 ];
 
-OT_spawnTowns = ["Oreokastro","Agios Konstantinos","Negades","Kore","Syrta","Abdera","Stadium View"];
+OT_spawnTowns = ["Oreokastro","Agios Konstantinos","Negades","Kore","Edessa","Syrta","Abdera","Stadium View"];
 OT_capitals = ["Kavala","Athira","Pyrgos"]; //region capitals
 OT_sprawling = ["Stadium View"];
