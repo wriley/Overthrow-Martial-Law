@@ -37,11 +37,11 @@ OT_economicData = [
 	]],
     [[3977,17531,0],		"AK Medical Supplies",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
-		["ACE_salineIV_250",	[["OT_Plastic",4]]],
-		["ACE_plasmaIV_250",	[["OT_Plastic",7]]],
+		["ACE_salineIV_250",	[["OT_Plastic",3]]],
+		["ACE_plasmaIV_250",	[["OT_Plastic",3]]],
 		["ACE_bloodIV_250",		[["OT_Plastic",3]]],
 		["ACE_bloodIV_500",		[["OT_Plastic",4]]],
-		["ACE_bloodIV",			[["OT_Plastic",10],["FirstAidKit",1]]]
+		["ACE_bloodIV",			[["OT_Plastic",6],["FirstAidKit",1]]]
 	]],
     [[5392,14519,0],		"Plenty-O-Plastics",[
 		["OT_Plastic",			[["Money",1]]]

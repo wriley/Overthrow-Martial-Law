@@ -19,7 +19,7 @@ OT_flag_IND = "Flag_Green_F";
 OT_flagImage = "\overthrow_main\ui\flags\flag_malden.paa";
 OT_flagMarker = "flag_Malden";
 
-OT_populationMultiplier = 1.5; //Used to tweak populations per map
+OT_populationMultiplier = 1.4; //Used to tweak populations per map
 
 //Building templates
 //To generate these templates:

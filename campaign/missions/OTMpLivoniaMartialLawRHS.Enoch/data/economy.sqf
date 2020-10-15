@@ -25,11 +25,11 @@ OT_economicData = [
 	]],
     [[11336.9,9461.08,0],"Sitnik Medical",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
-		["ACE_salineIV_250",	[["OT_Plastic",4]]],
-		["ACE_plasmaIV_250",	[["OT_Plastic",7]]],
+		["ACE_salineIV_250",	[["OT_Plastic",3]]],
+		["ACE_plasmaIV_250",	[["OT_Plastic",3]]],
 		["ACE_bloodIV_250",		[["OT_Plastic",3]]],
 		["ACE_bloodIV_500",		[["OT_Plastic",4]]],
-		["ACE_bloodIV",			[["OT_Plastic",10],["FirstAidKit",1]]]
+		["ACE_bloodIV",			[["OT_Plastic",6],["FirstAidKit",1]]]
 	]],
     [[1956.49,6677.26,0],"Campfire Wines",[
 		["OT_Wine",				[["OT_Grapes",1]]]

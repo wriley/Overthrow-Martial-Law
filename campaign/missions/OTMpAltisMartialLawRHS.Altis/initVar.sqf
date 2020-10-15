@@ -19,7 +19,7 @@ OT_flag_IND = "Flag_Altis_F";
 OT_flagImage = "\A3\ui_f\data\map\markers\flags\Altis_ca.paa";
 OT_flagMarker = "flag_Altis";
 
-OT_populationMultiplier = 1.2; //Used to tweak populations per map
+OT_populationMultiplier = 1.1; //Used to tweak populations per map
 
 //Building templates
 //To generate these templates:

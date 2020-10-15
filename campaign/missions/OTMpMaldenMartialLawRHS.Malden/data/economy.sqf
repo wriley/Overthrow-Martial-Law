@@ -37,16 +37,16 @@ OT_economicData = [
 	]],
     [[3623.17,3228.52,0],"Ocean Side Medical",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
-		["ACE_salineIV_250",	[["OT_Plastic",4]]],
-		["ACE_plasmaIV_250",	[["OT_Plastic",7]]],
+		["ACE_salineIV_250",	[["OT_Plastic",3]]],
+		["ACE_plasmaIV_250",	[["OT_Plastic",3]]],
 		["ACE_bloodIV_250",		[["OT_Plastic",3]]],
 		["ACE_bloodIV_500",		[["OT_Plastic",4]]],
-		["ACE_bloodIV",			[["OT_Plastic",10],["FirstAidKit",1]]]
+		["ACE_bloodIV",			[["OT_Plastic",6],["FirstAidKit",1]]]
 	]],
     [[7842.64,3184.34,0],"Malden Power Plant",[
 		["Money",				[]]
 	]]
 ];
-OT_factoryPos = [7483.93,10552.6,0];
-OT_factoryVehicleSpawn = [7561.83,10496.6,0];
+OT_factoryPos = [10079.3,4046.78,0];
+OT_factoryVehicleSpawn = [10102.3,3996.15,0];
 OT_factoryVehicleDir = 0;

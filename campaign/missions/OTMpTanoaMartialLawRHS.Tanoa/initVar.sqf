@@ -19,7 +19,7 @@ OT_flag_IND = "Flag_HorizonIslands_F";
 OT_flagImage = "\A3\ui_f\data\map\markers\flags\Tanoa_ca.paa";
 OT_flagMarker = "flag_Tanoa";
 
-OT_populationMultiplier = 1.4; //Used to tweak populations per map
+OT_populationMultiplier = 1.3; //Used to tweak populations per map
 
 //Building templates
 //To generate these templates:
