@@ -33,7 +33,7 @@ class CfgWeapons {
         descriptionShort = "A porous and fibrous structural tissue found in the stems and roots of trees and other woody plants.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 250;
+            mass = 200;
         };
     };
 	class OT_Lumber: OT_ItemCore {
@@ -43,7 +43,7 @@ class CfgWeapons {
         descriptionShort = "Lumber or timber is a type of wood that has been processed into beams and planks, a stage in the process of wood production.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 200;
+            mass = 150;
         };
     };
 	class OT_Steel: OT_ItemCore {
@@ -53,7 +53,7 @@ class CfgWeapons {
         descriptionShort = "An alloy of iron and other elements, primarily carbon, that is widely used in construction and other applications because of its high tensile strength and low cost.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 400;
+            mass = 200;
         };
     };
 	class OT_Plastic: OT_ItemCore {
@@ -63,7 +63,7 @@ class CfgWeapons {
         descriptionShort = "A material consisting of any of a wide range of synthetic or semi-synthetic organic compounds that are malleable and can be molded into solid objects.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 150;
+            mass = 75;
         };
     };
 	class OT_Sugarcane: OT_ItemCore {
@@ -103,7 +103,7 @@ class CfgWeapons {
         descriptionShort = "An alcoholic beverage made from grapes, generally Vitis vinifera, fermented without the addition of sugars, acids, enzymes, water, or other nutrients.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 50;
+            mass = 75;
         };
     };
 	class OT_Olives: OT_ItemCore {
