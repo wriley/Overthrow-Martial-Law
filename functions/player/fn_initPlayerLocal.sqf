@@ -15,7 +15,7 @@ if !(isClass (configFile >> "CfgPatches" >> "OT_Overthrow_Main")) exitWith {
 //waitUntil {!isNull player && {player isEqualTo player} && {!isNull server}};
 waitUntil {time > 1 && {server isEqualType bigboss} && {count (allvariables server) > 0}}; // per MaxP
 
-ace_interaction_EnableTeamManagement = false; //Disable group switching
+ace_interaction_EnableTeamManagement = true; //Enable\Disable group switching
 ace_interaction_disableNegativeRating = true; //Disable ACE negative ratings
 
 enableSaving [false,false];
@@ -535,7 +535,7 @@ tutorialDiary3 = player createDiaryRecord ["Tutorial", ["Capturing a Town","
 	you will receive a 10 minute notice prior to the sidge where NATO wont send any further troops to the town and will instead be moving units into position to assault.
 	Because of this, the short break offers a key opportunity to place HMG nests, mine roads (NATO tends to attack from the direction of the closest bases),
 	and lay other guerilla traps that will greatly increase your chances against the overwhelming and superior troops that NATO has to offer.<br></br><br></br>
-	
+
 	Once the battle starts the timer will transform into a percentage marker, showing the resistance which side of the conflict is winning. If it's green, you're winning,
 	if it's blue then NATO is winning. Inorder to gain score you must have more troops within a certain range of the town then NATO.
 	If the marker hits 100% for NATO or the battle ends in a stalemate (which occurred after a large amount of time passes) you’ll lose the fight and the town's stability
