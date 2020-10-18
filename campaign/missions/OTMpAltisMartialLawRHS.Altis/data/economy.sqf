@@ -9,10 +9,10 @@ OT_economicData = [
     ["Money",				[]]
   ]],
     [[17076,11233,0],		"Pyrgos Mines",[
-		["OT_Steel",			[]]
+		["OT_Steel",			[["Money",1]]]
 	]],
     [[12176,8441,0],		"Vikos Sawmill",[
-		["OT_Wood",				[]]
+		["OT_Wood",				[["Money",1]]]
 	]],
     [[17159,13080,0],		"Pyrgos Vineyard",[
 		["OT_Grapes",			[["OT_Fertilizer",1]]]
@@ -33,7 +33,7 @@ OT_economicData = [
 		["OT_Ganja",			[["OT_Fertilizer",1]]]
 	]],
     [[6126,10567,0],		"Edoris Mines",[
-		["OT_Steel",			[]]
+		["OT_Steel",			[["Money",1]]]
 	]],
     [[3977,17531,0],		"AK Medical Supplies",[
 		["FirstAidKit",			[["OT_Plastic",1]]],

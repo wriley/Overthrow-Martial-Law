@@ -3,7 +3,7 @@ OT_economicData = [
 		["Money",				[]]
 	]],
     [[1662.92,3688.21,0],"Polana Sawmill",[
-		["OT_Wood",				[]]
+		["OT_Wood",				[["Money",1]]]
 	]],
     [[2558.82,5523.93,0],"Topolin Cattle Yards",[
 		["OT_Fertilizer",		[["OT_Wood",1]]]
@@ -15,13 +15,13 @@ OT_economicData = [
 		["OT_Grapes",			[["OT_Fertilizer",1]]]
 	]],
     [[1223.91,8923.21,0],"Topolin Quarry",[
-		["OT_Steel",			[]]
+		["OT_Steel",			[["Money",1]]]
 	]],
     [[5210.57,5668.39,0],"Huta Lumberyard",[
 		["OT_Lumber",			[["OT_Wood",1]]]
 	]],
     [[7690.4,2723.96,0],"Livonia Plastics",[
-		["OT_Plastic",			[]]
+		["OT_Plastic",			[["Money",1]]]
 	]],
     [[11336.9,9461.08,0],"Sitnik Medical",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
@@ -38,10 +38,10 @@ OT_economicData = [
 		["OT_Lumber",			[["OT_Wood",1]]]
 	]],
     [[10975.2,1939.36,0],"Livonia Loggers",[
-		["OT_Wood",				[]]
+		["OT_Wood",				[["Money",1]]]
 	]],
     [[4534.43,4715.82,0],"Huta Loggers",[
-		["OT_Wood",				[]]
+		["OT_Wood",				[["Money",1]]]
 	]]
 ];
 OT_factoryPos = [7343.56,2838.22,0];
