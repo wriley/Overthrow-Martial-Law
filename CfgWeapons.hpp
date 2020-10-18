@@ -13,7 +13,7 @@ class CfgWeapons {
         descriptionShort = "1/2 oz. of the finest bud around.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 2;
+            mass = 1;
         };
     };
 	class OT_Blow: OT_ItemCore {
@@ -23,7 +23,7 @@ class CfgWeapons {
         descriptionShort = "A white powder that turns madmen into world leaders, or world leaders into madmen.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 2;
+            mass = 1;
         };
     };
 	class OT_Wood: OT_ItemCore {
@@ -33,7 +33,7 @@ class CfgWeapons {
         descriptionShort = "A porous and fibrous structural tissue found in the stems and roots of trees and other woody plants.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 200;
+            mass = 100;
         };
     };
 	class OT_Lumber: OT_ItemCore {
@@ -43,7 +43,7 @@ class CfgWeapons {
         descriptionShort = "Lumber or timber is a type of wood that has been processed into beams and planks, a stage in the process of wood production.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 150;
+            mass = 75;
         };
     };
 	class OT_Steel: OT_ItemCore {
@@ -63,7 +63,7 @@ class CfgWeapons {
         descriptionShort = "A material consisting of any of a wide range of synthetic or semi-synthetic organic compounds that are malleable and can be molded into solid objects.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 75;
+            mass = 50;
         };
     };
 	class OT_Sugarcane: OT_ItemCore {
@@ -73,7 +73,7 @@ class CfgWeapons {
         descriptionShort = "A perennial grass of the genus Saccharum used to produce Sugar.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 50;
+            mass = 75;
         };
     };
 	class OT_Sugar: OT_ItemCore {
@@ -123,7 +123,7 @@ class CfgWeapons {
         descriptionShort = "A material of natural or synthetic origin that is applied to soils or to plant tissues (usually leaves) to supply one or more plant nutrients essential to the growth of plants.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 80;
+            mass = 50;
         };
     };
 	class OT_ammo50cal: OT_ItemCore {
