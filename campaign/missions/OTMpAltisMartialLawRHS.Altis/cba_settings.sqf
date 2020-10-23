@@ -123,8 +123,8 @@ force force VA_wpPistCivAdd = "ACE_Flashlight_Maglite_ML300L";
 force force VA_wpPistMilAdd = "";
 force force VA_wpPistPolR = "";
 force force VA_wpRiflCivAdd = "";
-force force VA_wpRiflMilAdd = "rhs_weap_ak74n,arifle_AKS_F,srifle_DMR_06_olive_F,rhs_weap_m24sws_wd,rhs_weap_mg42,SMG_03C_TR_camo";
-force force VA_wpRiflPolR = "rhs_weap_ak74n,arifle_AKS_F,srifle_DMR_06_olive_F,rhs_weap_m24sws_wd,rhs_weap_mg42,SMG_03C_TR_camo";
+force force VA_wpRiflMilAdd = "rhs_weap_ak74n,arifle_AKS_F,srifle_DMR_06_olive_F,rhs_weap_m24sws_wd,rhs_weap_mg42,SMG_03C_TR_camo,rhs_weap_m16a4_carryhandle,rhs_weap_m4_carryhandle,rhs_weap_m4a1,arifle_MXC_F,arifle_MXM_Black_F,rhs_weap_pkm";
+force force VA_wpRiflPolR = "rhs_weap_ak74n,arifle_AKS_F,srifle_DMR_06_olive_F,rhs_weap_m24sws_wd,rhs_weap_mg42,SMG_03C_TR_camo,rhs_weap_m16a4_carryhandle,rhs_weap_m4_carryhandle,rhs_weap_m4a1,arifle_MXC_F,arifle_MXM_Black_F,rhs_weap_pkm";
 
 // Vandeanson's Apocalypse - Loot Economy - Blacklisting
 force force VA_EqBlItems = "eo_flashlight,VA_AVM_Pill_F,VA_AVM_Injector_F,VA_Bloodbag_F,VA_Bandage_F";
