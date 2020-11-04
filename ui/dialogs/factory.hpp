@@ -167,7 +167,7 @@ class OT_dialog_factory
 			h = 0.044 * safezoneH;
 			colorBackground[] = {0,0,0,0};
 		};
-		
+
 		class RscStructuredText_1105: RscOverthrowStructuredText
 		{
 			idc = 1105;
@@ -178,7 +178,7 @@ class OT_dialog_factory
 			h = 0.066 * safezoneH;
 			colorBackground[] = {0,0,0,0};
 		};
-		
+
 		class RscButton_1608: RscOverthrowButton
 		{
 			idc = 1608;

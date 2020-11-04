@@ -8,7 +8,7 @@ class EditorData
 	toggles=1545;
 	class ItemIDProvider
 	{
-		nextID=2520;
+		nextID=2530;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=669;
+		nextID=674;
 	};
 	class Camera
 	{
-		pos[]={6178.106,493.44348,7543.9307};
-		dir[]={0.86962682,-0.48305359,0.10329616};
-		up[]={0.47973669,0.87555265,0.05698492};
-		aside[]={0.11796439,4.9995288e-007,-0.99313098};
+		pos[]={11691.444,52.036808,4489.645};
+		dir[]={-0.71513349,-0.66842288,-0.20501865};
+		up[]={-0.64255023,0.743756,-0.18421046};
+		aside[]={-0.27561167,-9.1864422e-007,0.96136814};
 	};
 };
 binarizationWanted=0;
@@ -91,7 +91,8 @@ addons[]=
 	"A3_Props_F_Orange_Humanitarian_Garbage",
 	"A3_Props_F_Orange_Humanitarian_Camps",
 	"A3_Structures_F_Exp_Infrastructure_Airports",
-	"A3_Structures_F_Ind_Factory"
+	"A3_Structures_F_Ind_Factory",
+	"A3_Structures_F_Ind_ConcreteMixingPlant"
 };
 class AddonsMetaData
 {
@@ -30914,7 +30915,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=165;
+		items=168;
 		class Item0
 		{
 			dataType="Layer";
@@ -37970,7 +37971,58 @@ class Mission
 			};
 			id=2519;
 			type="Land_Communication_F";
-			atlOffset=0.00049591064;
+			atlOffset=0.00048828125;
+		};
+		class Item165
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7663.1001,14.229589,3375.5066};
+				angles[]={0,4.5874066,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=2526;
+			type="Land_cmp_Tower_F";
+			atlOffset=-5.7220459e-006;
+		};
+		class Item166
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={11639.894,14.06,4483.6475};
+				angles[]={-0,3.0807667,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2527;
+			type="Land_HelipadCircle_F";
+		};
+		class Item167
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={11575.14,23.501122,4381.9868};
+				angles[]={0,1.4796203,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				dynamicSimulation=1;
+			};
+			id=2528;
+			type="Land_Cargo_Patrol_V1_F";
+			atlOffset=-0.010000229;
 		};
 	};
 	class Connections

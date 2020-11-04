@@ -924,6 +924,31 @@ class CfgFunctions
 
 	};
 
+	class RYD {
+	// Fire For Effect: The God of War
+	class FFE_Functions
+	{
+		file = "\overthrow_main\functions\AI\Vcom\Functions\FFE_Functions";
+		class AngTowards {};
+		class ArtyMission {};
+		class ArtyPrep {};
+		class AutoConfig {};
+		class FFE {};
+		class CFF {};
+		class CFF_FFE {};
+		class CFF_Fire {};
+		class CFF_TGT {};
+		class PosTowards2D {};
+		class ShellsInRadius {};
+	};
+
+	class FFE_Shellview
+	{
+		file = "\overthrow_main\functions\AI\Vcom\Functions\FFE_Shellview";
+		class Shellview {};
+	};
+};
+
     class lambs_danger{
 		//lambs danger fsm
 		class functions

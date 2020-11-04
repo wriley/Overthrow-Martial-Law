@@ -53,7 +53,7 @@ class CfgWeapons {
         descriptionShort = "An alloy of iron and other elements, primarily carbon, that is widely used in construction and other applications because of its high tensile strength and low cost.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 200;
+            mass = 150;
         };
     };
 	class OT_Plastic: OT_ItemCore {
@@ -63,7 +63,7 @@ class CfgWeapons {
         descriptionShort = "A material consisting of any of a wide range of synthetic or semi-synthetic organic compounds that are malleable and can be molded into solid objects.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 50;
+            mass = 25;
         };
     };
 	class OT_Sugarcane: OT_ItemCore {
@@ -73,7 +73,7 @@ class CfgWeapons {
         descriptionShort = "A perennial grass of the genus Saccharum used to produce Sugar.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 75;
+            mass = 50;
         };
     };
 	class OT_Sugar: OT_ItemCore {
@@ -83,7 +83,7 @@ class CfgWeapons {
         descriptionShort = "The generalized name for sweet, short-chain, soluble carbohydrates, many of which are used in food.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 30;
+            mass = 25;
         };
     };
 	class OT_Grapes: OT_ItemCore {
@@ -93,7 +93,7 @@ class CfgWeapons {
         descriptionShort = "A fruit, botanically a berry, of the deciduous woody vines of the flowering plant genus Vitis. Can be turned into Wine.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 50;
+            mass = 25;
         };
     };
 	class OT_Wine: OT_ItemCore {
@@ -103,7 +103,7 @@ class CfgWeapons {
         descriptionShort = "An alcoholic beverage made from grapes, generally Vitis vinifera, fermented without the addition of sugars, acids, enzymes, water, or other nutrients.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 75;
+            mass = 50;
         };
     };
 	class OT_Olives: OT_ItemCore {
@@ -113,7 +113,7 @@ class CfgWeapons {
         descriptionShort = "A species of small tree in the family Oleaceae, found in the Mediterranean Basin from Portugal to the Levant, the Arabian Peninsula, and southern Asia as far east as China, as well as the Canary Islands, Mauritius, and Altis.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 50;
+            mass = 25;
         };
     };
 	class OT_Fertilizer: OT_ItemCore {
@@ -123,7 +123,7 @@ class CfgWeapons {
         descriptionShort = "A material of natural or synthetic origin that is applied to soils or to plant tissues (usually leaves) to supply one or more plant nutrients essential to the growth of plants.";
         descriptionUse = "";
         class ItemInfo: InventoryItem_Base_F {
-            mass = 50;
+            mass = 25;
         };
     };
 	class OT_ammo50cal: OT_ItemCore {
@@ -136,6 +136,46 @@ class CfgWeapons {
             mass = 25;
         };
     };
+		class OT_Rawsources: OT_ItemCore {
+	        scope = 2;
+	        picture = "\overthrow_main\ui\items\rawsources_x_ca.paa";
+	        displayName = "Raw Sources";
+	        descriptionShort = "Raw ores and other natural resources taken from a mining operation.";
+	        descriptionUse = "";
+	        class ItemInfo: InventoryItem_Base_F {
+	            mass = 200;
+	        };
+	    };
+			class OT_Asst_Powder_Chems: OT_ItemCore {
+		        scope = 2;
+		        picture = "\overthrow_main\ui\items\refinedsources_x_ca.paa";
+		        displayName = "Assorted Powder Chems";
+		        descriptionShort = "Raw resources mined and reduced to powder form for use in making plastics and explosives.";
+		        descriptionUse = "";
+		        class ItemInfo: InventoryItem_Base_F {
+		            mass = 25;
+		        };
+		    };
+				class OT_Explosivematerials: OT_ItemCore {
+			        scope = 2;
+			        picture = "\overthrow_main\ui\items\explosivematerial_x_ca.paa";
+			        displayName = "Explosive Materials";
+			        descriptionShort = "Several different materials used to make explosives";
+			        descriptionUse = "";
+			        class ItemInfo: InventoryItem_Base_F {
+			            mass = 25;
+			        };
+			    };
+					class OT_Coal: OT_ItemCore {
+				        scope = 2;
+				        picture = "\overthrow_main\ui\items\coal_x_ca.paa";
+				        displayName = "Coal";
+				        descriptionShort = "Mined from the Earth, coal is primarily used as a fuel.";
+				        descriptionUse = "";
+				        class ItemInfo: InventoryItem_Base_F {
+				            mass = 2;
+				        };
+				    };
 
 
 	//Craftable items

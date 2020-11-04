@@ -14,7 +14,8 @@ OT_objectiveData = [
     [[9131.01,9803.53,0],"Tanouka Base",200,450],
     [[5003.15,4454.97,0],"Davis Camp",200,250],
     [[12507.9,2466.97,0],"Hollander Base",200,450],
-    [[10823.8,4901.08,0],"Seeker Base",200,350]
+    [[10823.8,4901.08,0],"Seeker Base",200,350],
+    [[13401.1,11340.9,0],"BP Guard Base",100,200]
 ];
 OT_NATO_HQ = "Tuvanaka Airbase";
 OT_NATO_priority = ["Tuvanaka Airbase","Comms Alpha","Comms Whiskey","Lijnhaven","Blue Pearl industrial port","Nani","Belfort","Tuvanaka","Georgetown","Katkoula","Harcourt","Hamato Base","Regina Base"];

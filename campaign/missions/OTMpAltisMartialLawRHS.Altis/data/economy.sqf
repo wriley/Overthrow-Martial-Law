@@ -3,13 +3,14 @@ OT_economicData = [
 		["Money",				[]]
 	]],
     [[4163,15059,0],		"Magos Power Plant",[
-		["Money",				[]]
+		["Money",				[["OT_Coal",1]]]
 	]],
     [[15562.2,16277.8,0],	  "Agola Solar Power Plant",[
     ["Money",				[]]
   ]],
     [[17076,11233,0],		"Pyrgos Mines",[
-		["OT_Steel",			[["Money",1]]]
+		["OT_Rawsources",			[["Money",1]]],
+    ["OT_Coal",    [["OT_Rawsources",1]]]
 	]],
     [[12176,8441,0],		"Vikos Sawmill",[
 		["OT_Wood",				[["Money",1]]]
@@ -33,7 +34,8 @@ OT_economicData = [
 		["OT_Ganja",			[["OT_Fertilizer",1]]]
 	]],
     [[6126,10567,0],		"Edoris Mines",[
-		["OT_Steel",			[["Money",1]]]
+		["OT_Rawsources",			[["Money",1]]],
+    ["OT_Coal",    [["OT_Rawsources",1]]]
 	]],
     [[3977,17531,0],		"AK Medical Supplies",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
@@ -44,14 +46,31 @@ OT_economicData = [
 		["ACE_bloodIV",			[["OT_Plastic",6],["FirstAidKit",1]]]
 	]],
     [[5392,14519,0],		"Plenty-O-Plastics",[
-		["OT_Plastic",			[["Money",1]]]
+		["OT_Plastic",			[["OT_Asst_Powder_Chems",1]]]
 	]],
     [[25443,20321,0],		"Sofia Power Plant",[
-		["Money",				[]]
+		["Money",				[["OT_Coal",1]]]
 	]],
     [[4172,12860,0],		"Kenny's Lumberyard",[
 		["OT_Lumber",			[["OT_Wood",1]]]
-	]]
+	]],
+  [[5869.01,20121.1,0],		"Max Salvage Yard",[
+    ["OT_Plastic",    [["Money",1]]],
+    ["OT_Steel",	  [["Money",1]]],
+    ["OT_Wood",	  [["Money",1]]]
+  ]],
+  [[5995.59,12518,0],		"Old Man's Junkyard",[
+    ["OT_Plastic",    [["Money",1]]],
+    ["OT_Steel",	  [["Money",1]]],
+    ["OT_Wood",	  [["Money",1]]]
+  ]],
+  [[9525.04,15121.3,0],		"Processing Plant",[
+    ["OT_Steel",			[["OT_Rawsources",1]]],
+    ["OT_Asst_Powder_Chems",    [["OT_Rawsources",1]]]
+  ]],
+  [[10237.4,14846.7,0],		"Secret Chemical Plant",[
+    ["OT_Explosivematerials",			[["OT_Asst_Powder_Chems",1]]]
+  ]]
 ];
 OT_factoryPos = [6201.09,16257.1,0];
 OT_factoryVehicleSpawn = [6183.15,16269.7,0];

@@ -134,7 +134,7 @@ OT_currentMissionFaction = "";
 OT_rankXP = [100,250,500,1000,4000,10000,100000];
 OT_factoryXP = 0;
 OT_factoryLevel = 0;
-OT_Resources = ["OT_Wood","OT_Steel","OT_Plastic","OT_Sugarcane","OT_Sugar","OT_Fertilizer","OT_Lumber","OT_Wine","OT_Grapes","OT_Olives"];
+OT_Resources = ["OT_Wood","OT_Steel","OT_Plastic","OT_Sugarcane","OT_Sugar","OT_Fertilizer","OT_Lumber","OT_Wine","OT_Grapes","OT_Olives","OT_Coal","OT_Explosivematerials","OT_Asst_Powder_Chems","OT_Rawsources"];
 OT_businessStorage = "B_Slingload_01_Cargo_F";
 
 OT_adminMode = false;
@@ -254,16 +254,20 @@ if(OT_hasAPEX) then {
 };
 
 if (isServer) then {
-	cost setVariable ["OT_Wood",[5,0,0,0],true];
+	cost setVariable ["OT_Wood",[3,0,0,0],true];
 	cost setVariable ["OT_Lumber",[8,0,0,0],true];
 	cost setVariable ["OT_Steel",[25,0,0,0],true];
-	cost setVariable ["OT_Plastic",[40,0,0,0],true];
+	cost setVariable ["OT_Plastic",[15,0,0,0],true];
 	cost setVariable ["OT_Sugarcane",[5,0,0,0],true];
 	cost setVariable ["OT_Grapes",[5,0,0,0],true];
 	cost setVariable ["OT_Sugar",[15,0,0,0],true];
 	cost setVariable ["OT_Wine",[25,0,0,0],true];
 	cost setVariable ["OT_Olives",[7,0,0,0],true];
-	cost setVariable ["OT_Fertilizer",[20,0,0,0],true];
+	cost setVariable ["OT_Coal",[2,0,0,0],true];
+	cost setVariable ["OT_Fertilizer",[5,0,0,0],true];
+	cost setVariable ["OT_Rawsources",[5,0,0,0],true];
+	cost setVariable ["OT_Asst_Powder_Chems",[10,0,0,0],true];
+	cost setVariable ["OT_Explosivematerials",[40,0,0,0],true];
 };
 
 
@@ -275,12 +279,12 @@ OT_boats = [
 	["C_Boat_Transport_02_F",3000,1,0,1]
 ];
 OT_vehicles = [
-	["RHS_Ural_Civ_01",7000,2,25,2],
-	["RHS_Ural_Open_Civ_01",7000,2,25,2],
-	["RHS_Ural_Civ_02",7000,2,25,2],
-	["RHS_Ural_Open_Civ_02",7000,2,25,2],
-	["RHS_Ural_Civ_03",7000,2,25,2],
-	["RHS_Ural_Open_Civ_03",7000,2,25,2]
+	["RHS_Ural_Civ_01",10000,2,25,2],
+	["RHS_Ural_Open_Civ_01",10000,2,25,2],
+	["RHS_Ural_Civ_02",10000,2,25,2],
+	["RHS_Ural_Open_Civ_02",10000,2,25,2],
+	["RHS_Ural_Civ_03",10000,2,25,2],
+	["RHS_Ural_Open_Civ_03",10000,2,25,2]
 ];
 OT_helis = [];
 OT_allVehicles = [];
@@ -1190,8 +1194,8 @@ OT_Placeables = [
 		["Box_Syndicate_Ammo_F",100,"Ammo Supply Box"],
 		["Box_Syndicate_WpsLaunch_F",100,"Launchers Supply Box"],
 		["Land_PortableLight_double_F",30,""],
-		["Land_PortableLight_single_F",30,""],
-		["Land_Camping_Light_F",30,""],
+		["Land_PortableLight_single_F",50,""],
+		["Land_Camping_Light_F",20,""],
 		["Land_PortableHelipadLight_01_F",30,""],
 		["PortableHelipadLight_01_blue_F",30,""],
 		["PortableHelipadLight_01_green_F",30,""],
@@ -1200,9 +1204,10 @@ OT_Placeables = [
 		["PortableHelipadLight_01_yellow_F",30,""],
 		["Land_Campfire_F",30,""],
 		["Land_PortableLight_02_single_yellow_F",30,""],
-		["Land_PortableLight_02_double_yellow_F",30,""],
-		["Land_PortableLight_02_quad_yellow_F",30,""],
+		["Land_PortableLight_02_double_yellow_F",40,""],
+		["Land_PortableLight_02_quad_yellow_F",50,""],
 		["Land_PowerPoleWooden_L_F",30,""],
+		["Land_LampStreet_small_F",50,""],
 		["RoadBarrier_F",30,""],
 		["RoadBarrier_small_F",30,""],
 		["RoadCone_F",30,""],
@@ -1218,24 +1223,24 @@ OT_Placeables = [
 OT_allSquads = OT_Squadables apply { _x params ["_name"]; _name };
 
 OT_workshop = [
-	["Static MG","C_Offroad_01_F",51250,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.25,-2,1]],0],
-	["Mounted Dshkm","C_Offroad_01_F",51250,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[0.25,-2,1]],0],
-	["Static GL","C_Offroad_01_F",64750,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.25,-2,1]],0],
-	["Static AT","C_Offroad_01_F",187500,"I_AT_01_weapon_F","I_static_AT_F",[[0,-1.5,0.25],180]],
-	["Static AA","C_Offroad_01_F",187500,"I_AA_01_weapon_F","I_static_AA_F",[[0,-1.5,0.25],180]],
-	["Mounted HMG","RHS_Ural_Open_Civ_01",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted HMG","RHS_Ural_Open_Civ_02",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted HMG","RHS_Ural_Open_Civ_03",69500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted Dshkm","RHS_Ural_Open_Civ_01",69500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.300,-1.570,1.5]],0],
-	["Mounted Dshkm","RHS_Ural_Open_Civ_02",69500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[0.300,-1.570,1.5]],0],
-	["Mounted Dshkm","RHS_Ural_Open_Civ_03",69500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.300,-1.570,1.5]],0],
-	["Mounted GMG","RHS_Ural_Open_Civ_01",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted GMG","RHS_Ural_Open_Civ_02",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted GMG","RHS_Ural_Open_Civ_03",83000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
-	["Mounted Mortar","RHS_Ural_Open_Civ_01",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
-	["Mounted Mortar","RHS_Ural_Open_Civ_02",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
-	["Mounted Mortar","RHS_Ural_Open_Civ_03",216000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
-	["Mounted Dshkm","C_Van_01_transport_F",25,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.001,-2.74,1.0]],0]
+	["Mounted MG","C_Offroad_01_F",45250,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.25,-2,1]],0],
+	["Mounted Dshkm","C_Offroad_01_F",45250,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[0.25,-2,1]],0],
+	["Static GL","C_Offroad_01_F",70750,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.25,-2,1]],0],
+	["Static AT","C_Offroad_01_F",87500,"I_AT_01_weapon_F","I_static_AT_F",[[0,-1.5,0.25],180]],
+	["Static AA","C_Offroad_01_F",87500,"I_AA_01_weapon_F","I_static_AA_F",[[0,-1.5,0.25],180]],
+	["Mounted HMG","RHS_Ural_Open_Civ_01",50500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted HMG","RHS_Ural_Open_Civ_02",50500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted HMG","RHS_Ural_Open_Civ_03",50500,"I_HMG_02_high_weapon_F","I_HMG_02_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted Dshkm","RHS_Ural_Open_Civ_01",50500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.300,-1.570,1.5]],0],
+	["Mounted Dshkm","RHS_Ural_Open_Civ_02",50500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[0.300,-1.570,1.5]],0],
+	["Mounted Dshkm","RHS_Ural_Open_Civ_03",50500,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.300,-1.570,1.5]],0],
+	["Mounted GMG","RHS_Ural_Open_Civ_01",75000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted GMG","RHS_Ural_Open_Civ_02",75000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted GMG","RHS_Ural_Open_Civ_03",75000,"I_GMG_01_high_weapon_F","I_GMG_01_high_F",[[0.224,-1.887,1.5]],0],
+	["Mounted Mortar","RHS_Ural_Open_Civ_01",110000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
+	["Mounted Mortar","RHS_Ural_Open_Civ_02",110000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
+	["Mounted Mortar","RHS_Ural_Open_Civ_03",1145000,"I_Mortar_01_weapon_F","I_Mortar_01_F",[[-0.064,-1.854,0.5]],0],
+	["Mounted Dshkm","C_Van_01_transport_F",45000,"rhsgref_cdf_DSHKM","rhsgref_cdf_DSHKM",[[-0.001,-2.74,1.0]],0]
 ];
 
 OT_repairableRuins = [

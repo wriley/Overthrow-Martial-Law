@@ -1,12 +1,13 @@
 OT_economicData = [
     [[7771.07,7551.41,0],"Lumberyard",[
-		["OT_Wood",				[["OT_Lumber",1]]]
+		["OT_Lumber",				[["OT_Wood",1]]]
 	]],
     [[3648.58,3431.52,0],"La Riviere Olives",[
 		["OT_Olives",			[["OT_Fertilizer",1]]]
 	]],
-    [[3794.2,3136.28,0],"La Riviere Cabernet",[
-		["OT_Grapes",			[["OT_Fertilizer",1]]]
+    [[3794.2,3136.28,0],"La Riviere Cabernet (Secret Explosive Production)",[
+		["OT_Grapes",			[["OT_Fertilizer",1]]],
+    ["OT_Explosivematerials",    [["OT_Asst_Powder_Chems",1]]]
 	]],
     [[4481.35,4279.98,0],"Blanches Cabernet",[
 		["OT_Grapes",			[["OT_Fertilizer",1]]]
@@ -32,8 +33,9 @@ OT_economicData = [
     [[7044.6,9142.94,0],"Saint Louis Wines",[
 		["OT_Wine",				[["OT_Grapes",1]]]
 	]],
-    [[7670.84,3354.29,0],"Malden Fertilizer Factory",[
-		["OT_Fertilizer",		[["OT_Wood",1]]]
+    [[7864.62,3201.85,0],"Malden Processing Plant",[
+		["OT_Asst_Powder_Chems",		[["OT_Rawsources",1]]],
+    ["OT_Steel",    [["OT_Rawsources",1]]]
 	]],
     [[3623.17,3228.52,0],"Ocean Side Medical",[
 		["FirstAidKit",			[["OT_Plastic",1]]],
@@ -43,9 +45,12 @@ OT_economicData = [
 		["ACE_bloodIV_500",		[["OT_Plastic",4]]],
 		["ACE_bloodIV",			[["OT_Plastic",6],["FirstAidKit",1]]]
 	]],
-    [[7842.64,3184.34,0],"Malden Power Plant",[
-		["Money",				[]]
-	]]
+    [[7683.21,3354.92,0],"Malden Power Plant",[
+		["Money",				[["OT_Coal",1]]]
+	]],
+    [[8455.68,3893.41,0],"Malden Plastic",[
+    ["OT_Plastic",    [["OT_Asst_Powder_Chems",1]]]
+  ]]
 ];
 OT_factoryPos = [10079.3,4046.78,0];
 OT_factoryVehicleSpawn = [10102.3,3996.15,0];

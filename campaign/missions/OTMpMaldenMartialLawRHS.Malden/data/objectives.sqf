@@ -11,7 +11,8 @@ OT_objectiveData = [
     [[2739.37,5847.79,0],"Pessagne Outpost",150,150],
     [[7774.97,10787.9,0],"Factory Outpost",150,150],
     [[8266.83,2938.76,0],"Port Outpost",150,150],
-    [[7525.84,4251.57,0],"Port Guard Base",200,500]
+    [[7525.84,4251.57,0],"Port Guard Base",200,500],
+    [[11619.2,4450,0],"Sentry Base",200,150]
 ];
 OT_NATO_HQ = "Moray Airfield";
 OT_NATO_priority = ["Moray Airfield","Malden Int'l Airport","Comms Alpha","Le Port","La Trinite","Larche","Ghost Base","La Riviere"];
