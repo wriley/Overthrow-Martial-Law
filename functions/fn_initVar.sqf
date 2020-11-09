@@ -149,12 +149,12 @@ OT_finishedHolster = true;
 OT_NATO_HQPos = [0,0,0];
 
 OT_fastTime = true; //When true, 1 day will last 6 hrs real time
-OT_spawnDistance = 1000;
+OT_spawnDistance = 1200;
 if (isNil "OT_spawnCivPercentage") then {
 	OT_spawnCivPercentage = 0.01;
 };
 OT_spawnVehiclePercentage = 0.04;
-OT_standardMarkup = 1.2; //Markup in shops is calculated from this
+OT_standardMarkup = 1.5; //Markup in shops is calculated from this
 OT_randomSpawnTown = false; //if true, every player will start in a different town, if false, all players start in the same town (Multiplayer only)
 OT_distroThreshold = 500; //Size a towns order must be before a truck is sent (in dollars)
 OT_saving = false;
@@ -166,7 +166,7 @@ OT_crateBuyTarget = objNull;
 OT_currentWarehouse = "";
 OT_whTransferring = false;
 OT_maximumNATOFobs = 5;
-OT_startingMoney = [5000,4000,2000];
+OT_startingMoney = [15000,10000,5000];
 
 OT_garrisonBuildings = ["Land_Bunker_01_tall_F","Land_Cargo_Patrol_V1_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V3_F","Land_Cargo_Patrol_V4_F","Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F","Land_Cargo_HQ_V4_F","Land_Cargo_Tower_V1_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V3_F","Land_Cargo_Tower_V4_F","Land_Cargo_Tower_V1_No1_F","Land_Cargo_Tower_V1_No2_F","Land_Cargo_Tower_V1_No3_F","Land_Cargo_Tower_V1_No4_F","Land_Cargo_Tower_V1_No5_F","Land_Cargo_Tower_V1_No6_F","Land_Cargo_Tower_V1_No7_F","Land_Cargo_Tower_V2_F", "Land_Cargo_Tower_V3_F"]; //Put HMGs in these buildings
 
@@ -1256,7 +1256,8 @@ OT_repairableRuins = [
 	["Land_Cargo_HQ_V2_ruins_F","Land_Cargo_HQ_V2_F",2500],
 	["Land_Cargo_HQ_V3_ruins_F","Land_Cargo_HQ_V3_F",2500],
 	["Land_Cargo_HQ_V4_ruins_F","Land_Cargo_HQ_V4_F",2500],
-	["Land_Warehouse_03_ruins_F","Land_Warehouse_03_F",12500]
+	["Land_Warehouse_03_ruins_F","Land_Warehouse_03_F",10000],
+	["Land_i_Shed_Ind_ruins_F","Land_i_Shed_Ind_F",10000]
 
 ];
 OT_allRepairableRuins = [];

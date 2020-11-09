@@ -102,7 +102,7 @@ if (date select 4 != _lastmin) then {
 									switch (_inputClass) do {
 										case "Money": {
 											_success = true;
-											_costprice = 10 * _inputQty;//changed from 100
+											_costprice = 50 * _inputQty;//changed from 100
 										};
 										default {
 											{

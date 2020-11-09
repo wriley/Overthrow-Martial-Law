@@ -16,13 +16,19 @@ Vcm_Settings =
 	Vcm_ArtilleryArray = []; //Leave this alone
 
 	//VCOM ARTILLERY. Only one kind of advanced artillery can be used at a time.
-	VCM_ARTYENABLE = true; //Enable improved artillery handling from Vcom.
+	VCM_ARTYENABLE = false; //Enable improved artillery handling from Vcom.
+	VCM_ARTYSIDES = [west,east,resistance];  //Sides that will use VCOM/FFE artillery
 	VCM_ARTYLST = []; //List of all AI inside of artillery pieces, leave this alone.
-	VCM_ARTYDELAY = 60; //Delay between squads requesting artillery
+	VCM_ARTYDELAY = 300; //Delay between squads requesting artillery
 	VCM_ARTYWT = -(VCM_ARTYDELAY);
 	VCM_ARTYET = -(VCM_ARTYDELAY);
 	VCM_ARTYRT = -(VCM_ARTYDELAY);
-	VCM_ARTYSIDES = [west,east,resistance];  //Sides that will use VCOM artillery
+	VCM_ARTYSPREAD = 400; //Spread of artillery rounds;
+	Vcm_ArtilleryArray = []; //Leave this alone
+
+	//Fire For Effect Artillery handling. Only one kind of advanced artillery can be used at a time. - https://forums.bohemia.net/forums/topic/159152-fire-for-effect-the-god-of-war-smart-simple-ai-artillery/
+	VCM_FFEARTILLERY = true;
+	
 	VCM_AIMagLimit = 5; //Number of mags remaining before AI looks for ammo.
 	VCM_Debug = false; //Enable debug mode.
 	VCM_MINEENABLED = true; //Enable AI placing mines

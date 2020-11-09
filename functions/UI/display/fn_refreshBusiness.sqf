@@ -70,7 +70,7 @@ private _need = format ["<t size='1.2'>Required (in Store)</t><br/><br/>"];
 				_x params ["_cls", "_qty"];
 				switch (_cls) do {
 					case "Money": {
-						_need = _need + format["<t size='1.2'>$%1</t><br/>", 50*_qty];//changed from 100
+						_need = _need + format["<t size='1.2'>$%1</t><br/>", 10*_qty];//changed from 100
 					};
 					default {
 						private _longname = _cls call OT_fnc_weaponGetName;

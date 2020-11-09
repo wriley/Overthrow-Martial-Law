@@ -70,6 +70,11 @@ OT_economicData = [
   ]],
   [[10237.4,14846.7,0],		"Secret Chemical Plant",[
     ["OT_Explosivematerials",			[["OT_Asst_Powder_Chems",1]]]
+  ]],
+  [[27557.1,24585.7,0],    "Molos Seaside Salvage",[
+    ["OT_Plastic",    [["Money",1]]],
+    ["OT_Steel",	  [["Money",1]]],
+    ["OT_Wood",	  [["Money",1]]]
   ]]
 ];
 OT_factoryPos = [6201.09,16257.1,0];

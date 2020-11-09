@@ -16,7 +16,7 @@
 				VCM_ActivateAI = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 			//VCM_USECBASETTINGS = true; If CBA is enabled on the host, use the CBA default settings. If false, use the filepatching settings instead.
 		[
 			"VCM_USECBASETTINGS", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
@@ -29,8 +29,8 @@
 				params ["_value"];
 				VCM_USECBASETTINGS = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
-		
+		] call CBA_Settings_fnc_init;
+
 		[
 			"VCM_Debug", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -38,12 +38,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			false,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_Debug = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_SIDEENABLED", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"LIST", // setting type
@@ -51,12 +51,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[[[west,east,Resistance],[west,east],[west],[east],[Resistance],[Resistance,west],[Resistance,east]],[["West, East, Resistance"],["West, East"],["West"],["East"],["Resistance"],["Resistance, West"],["Resistance, East"]],0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_SIDEENABLED = _this;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_ARTYENABLE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -64,12 +64,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true, // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_ARTYENABLE = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_ARTYSIDES", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"LIST", // setting type
@@ -77,11 +77,11 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[[[west,east,Resistance],[west,east],[west],[east],[Resistance],[Resistance,west],[Resistance,east]],[["West, East, Resistance"],["West, East"],["West"],["East"],["Resistance"],["Resistance, West"],["Resistance, East"]],0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_ARTYSIDES = _this;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;		
+		] call CBA_Settings_fnc_init;
 		[
 			"VCM_MEDICALACTIVE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -89,12 +89,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_MEDICALACTIVE = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;		
-		
+		] call CBA_Settings_fnc_init;
+
 		[
 			"VCM_CARGOCHNG", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -102,12 +102,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_CARGOCHNG = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_TURRETUNLOAD", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -115,13 +115,13 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_TURRETUNLOAD = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
-		
+
+
 		[
 			"VCM_DISEMBARKRANGE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -129,14 +129,14 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[50,1000,200,0], // data for this setting: [min, max, default, number of shown trailing decimals]
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_DISEMBARKRANGE = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
-		
-		
+
+
+
 		[
 			"VCM_StealVeh", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -144,12 +144,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_StealVeh = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_ClassSteal", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -157,12 +157,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_ClassSteal = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_ForceSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -170,12 +170,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_FullSpeed = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_ADVANCEDMOVEMENT", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -183,12 +183,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_ADVANCEDMOVEMENT = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_FRMCHANGE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -196,12 +196,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_FRMCHANGE = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_SKILLCHANGE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -209,12 +209,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_SKILLCHANGE = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_AIDISTANCEVEHPATH", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -222,12 +222,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,1000,100,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_AIDISTANCEVEHPATH = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_RAGDOLL", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -235,12 +235,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_RAGDOLL = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_RAGDOLLCHC", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -248,13 +248,13 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,100,100,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_RAGDOLLCHC = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
-		
+
+
 		[
 			"VCM_HEARINGDISTANCE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -262,12 +262,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,10000,1200,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_HEARINGDISTANCE = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_SUPDIST", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -275,12 +275,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,10000,200,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_SUPDIST = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;		
-		
+		] call CBA_Settings_fnc_init;
+
 		[
 			"VCM_WARNDIST", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -288,12 +288,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,10000,1000,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_WARNDIST = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_WARNDELAY", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -301,12 +301,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,10000,30,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_WARNDELAY = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_STATICARMT", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -314,12 +314,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,10000,300,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_STATICARMT = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_MINEENABLED", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -327,12 +327,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_MINEENABLED = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_MINECHANCE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -340,12 +340,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,100,75,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_MINECHANCE = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_ARTYDELAY", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -353,13 +353,13 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,5000,30,0], // data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_ARTYDELAY = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
-		
+
+
 		[
 			"VCM_AIMagLimit", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -367,12 +367,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[2,10,5,0], // data for this setting: [min, max, default, number of shown trailing decimals]
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_AIMagLimit = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_AISNIPERS", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -380,12 +380,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_AISNIPERS = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_AISUPPRESS", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -393,12 +393,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_AISUPPRESS = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_ADVANCEDMOVEMENT", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -406,12 +406,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_ADVANCEDMOVEMENT = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"Vcm_DrivingActivated", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -419,13 +419,13 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			false,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				Vcm_DrivingActivated = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
-		
+
+
 		[
 			"Vcm_PlayerAISkills", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -433,12 +433,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				Vcm_PlayerAISkills = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"Vcm_SmokeGrenadeChance", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -450,8 +450,8 @@
 				params ["_value"];
 				Vcm_SmokeChance = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;		
-		
+		] call CBA_Settings_fnc_init;
+
 		[
 			"Vcm_GrenadeChance", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -463,10 +463,171 @@
 				params ["_value"];
 				Vcm_GrenadeChance = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;			
-		
+		] call CBA_Settings_fnc_init;
 
-		
+		//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////Ryd FFE settings/////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+[
+    "RydFFE_Active", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "CHECKBOX", // setting type
+    "FFE Active (Replaces VCOM Artillery)", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    true, // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		VCM_FFEARTILLERY = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_Debug", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "CHECKBOX", // setting type
+    "FFE Debug", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    false, // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_Debug = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_FO_string", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "EDITBOX", // setting type
+    ["FFE Forward Observer"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    "", // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_FO = [];
+		{RydFFE_FO pushBack (missionNamespace getVariable _x)} forEach (_value splitstring ", ");
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_FOClass_string", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "EDITBOX", // setting type
+    ["FFE Forward Observer Classes", "this array holds class names (lowercase only!) of leaders of groups, that will be automatically added to the RydFFE_FO array, if that array already is not empty (means if limited spotting is active)"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    "i_spotter_f, o_spotter_f, b_spotter_f, o_recon_jtac_f, b_recon_jtac_f, i_sniper_f, o_sniper_f, b_sniper_f, i_soldier_m_f, o_soldier_m_f, b_g_soldier_m_f, b_soldier_m_f, o_recon_m_f, b_recon_m_f, o_soldieru_m_f, i_uav_01_f, i_uav_02_cas_f, i_uav_02_f, o_uav_01_f, o_uav_02_cas_f, o_uav_02_f, b_uav_01_f, b_uav_02_cas_f, b_uav_02_f", // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_FOClass = _value splitstring ", ";
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_OnePhase", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "CHECKBOX", // setting type
+    ["FFE One Phase", "By default, spotters will fire 1/6 of salvo as adjustment salvo, with the next one being 'Fire For Effect'. Enabling this skips that."], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    false, // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_OnePhase = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_2PhWithoutFO", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "CHECKBOX", // setting type
+    ["FFE Two Phase without Forward Observer", "Will fire in two phase mode also in 'Unlimited Spotting Mode', as described above."], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    false, // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_2PhWithoutFO = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_Acc", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "SLIDER", // setting type
+    ["FFE Accuracy", "Multiplier of whole salvo drift radius. The bigger value, the bigger the radius."], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    [1, 4, 2, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_Acc = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_Safe", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "SLIDER", // setting type
+    ["FFE Safe Zone", "Salvo will be not planned for coordinates located within this radius (in meters) around any allied group leader."], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    [20, 300, 100, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_Safe = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_Monogamy", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "CHECKBOX", // setting type
+    ["FFE Monogamy", "Each group can only be targeted by one battery."], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    true, // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_Monogamy = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_Amount", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "SLIDER", // setting type
+    "FFE Barrage Size", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    [1, 12, 6, 0], // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_Amount = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_ShellView", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "CHECKBOX", // setting type
+    ["FFE Shellview", "if set to true, in debug mode there is available a tool, that allows to watch shells during their flight marked with orange “drops” in chosen meter radius around position clicked (LMB) on map. Shift + LMB removes that watching circle"], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    false, // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_ShellView = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;
+
+[
+    "RydFFE_FoAccGain", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "SLIDER", // setting type
+    ["FFE Forward Observer Accuracy Gain", "Additional accuracy multiplier in second, FFE step of fire mission due to adjustments after first step. The lesser value, the greater accuracy, must be not negative. It is multiplied by spotter adjustments factor for FFE stage: (0.2 + (random 0.2)) that changes salvo drift radius."], // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    "Fire For Effect", // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    [0.5,3,1,1], // data for this setting: [min, max, default, number of shown trailing decimals]
+    true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {
+        params ["_value"];
+		RydFFE_FoAccGain = _value;
+    } // function that will be executed once on mission start and every time the setting is changed.
+] call CBA_Settings_fnc_init;			
+
+
+
 		//SKILL SETTINGS
 		[
 			"Vcm_AISkills_SideSpecific", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
@@ -475,12 +636,12 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			false,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_SIDESPECIFICSKILL = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-	
+
 		//WEST SIDE SKILLS
 		//WEST SIDE SKILLS
 		//WEST SIDE SKILLS
@@ -498,7 +659,7 @@
 				VCM_AIDIFWEST set [0,['aimingAccuracy',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;			
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_aimingShake", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -511,7 +672,7 @@
 				VCM_AIDIFWEST set [1,['aimingShake',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_aimingSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -524,7 +685,7 @@
 				VCM_AIDIFWEST set [2,['aimingSpeed',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_commanding", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -537,7 +698,7 @@
 				VCM_AIDIFWEST set [3,['commanding',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_courage", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -550,7 +711,7 @@
 				VCM_AIDIFWEST set [4,['courage',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_general", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -563,7 +724,7 @@
 				VCM_AIDIFWEST set [5,['general',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_reloadSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -576,7 +737,7 @@
 				VCM_AIDIFWEST set [6,['reloadSpeed',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_spotDistance", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -589,7 +750,7 @@
 				VCM_AIDIFWEST set [7,['spotDistance',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_West_spotTime", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -602,10 +763,10 @@
 				VCM_AIDIFWEST set [8,['spotTime',_value]];
 				publicVariable "VCM_AIDIFWEST";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
-		
-	
-	
+		] call CBA_Settings_fnc_init;
+
+
+
 		//EAST SIDE SKILLS
 		//EAST SIDE SKILLS
 		//EAST SIDE SKILLS
@@ -623,7 +784,7 @@
 				VCM_AIDIFEast set [0,['aimingAccuracy',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;			
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_aimingShake", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -636,7 +797,7 @@
 				VCM_AIDIFEast set [1,['aimingShake',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_aimingSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -649,7 +810,7 @@
 				VCM_AIDIFEast set [2,['aimingSpeed',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_commanding", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -662,7 +823,7 @@
 				VCM_AIDIFEast set [3,['commanding',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_courage", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -675,7 +836,7 @@
 				VCM_AIDIFEast set [4,['courage',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_general", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -688,7 +849,7 @@
 				VCM_AIDIFEast set [5,['general',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_reloadSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -701,7 +862,7 @@
 				VCM_AIDIFEast set [6,['reloadSpeed',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_spotDistance", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -714,7 +875,7 @@
 				VCM_AIDIFEast set [7,['spotDistance',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_East_spotTime", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -727,10 +888,10 @@
 				VCM_AIDIFEast set [8,['spotTime',_value]];
 				publicVariable "VCM_AIDIFEast";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
-			
-	
-	
+		] call CBA_Settings_fnc_init;
+
+
+
 		//Resistance SIDE SKILLS
 		//Resistance SIDE SKILLS
 		//Resistance SIDE SKILLS
@@ -748,7 +909,7 @@
 				VCM_AIDIFResistance set [0,['aimingAccuracy',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;			
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_aimingShake", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -761,7 +922,7 @@
 				VCM_AIDIFResistance set [1,['aimingShake',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_aimingSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -774,7 +935,7 @@
 				VCM_AIDIFResistance set [2,['aimingSpeed',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_commanding", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -787,7 +948,7 @@
 				VCM_AIDIFResistance set [3,['commanding',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_courage", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -800,7 +961,7 @@
 				VCM_AIDIFResistance set [4,['courage',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_general", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -813,7 +974,7 @@
 				VCM_AIDIFResistance set [5,['general',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_reloadSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -826,7 +987,7 @@
 				VCM_AIDIFResistance set [6,['reloadSpeed',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_spotDistance", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -839,7 +1000,7 @@
 				VCM_AIDIFResistance set [7,['spotDistance',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_Resistance_spotTime", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -852,9 +1013,9 @@
 				VCM_AIDIFResistance set [8,['spotTime',_value]];
 				publicVariable "VCM_AIDIFResistance";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
-	
-	
+		] call CBA_Settings_fnc_init;
+
+
 		//General skills
 		//General skills
 		//General skills
@@ -872,7 +1033,7 @@
 				VCM_AIDIFA set [0,['aimingAccuracy',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;			
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_aimingShake", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -885,7 +1046,7 @@
 				VCM_AIDIFA set [1,['aimingShake',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_aimingSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -898,7 +1059,7 @@
 				VCM_AIDIFA set [2,['aimingSpeed',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_commanding", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -911,7 +1072,7 @@
 				VCM_AIDIFA set [3,['commanding',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_courage", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -924,7 +1085,7 @@
 				VCM_AIDIFA set [4,['courage',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_general", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -937,7 +1098,7 @@
 				VCM_AIDIFA set [5,['general',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_reloadSpeed", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -950,7 +1111,7 @@
 				VCM_AIDIFA set [6,['reloadSpeed',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_spotDistance", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -963,7 +1124,7 @@
 				VCM_AIDIFA set [7,['spotDistance',_value]];
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"Vcm_AISkills_General_spotTime", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -977,7 +1138,7 @@
 				publicVariable "VCM_AIDIFA";
 			} // function that will be executed once on mission start and every time the setting is changed.
 		] call CBA_Settings_fnc_init;
-		
+
 		[
 			"VCM_AISkills_General_EM", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"CHECKBOX", // setting type
@@ -985,11 +1146,11 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			true,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				Vcm_AI_EM = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;	
+		] call CBA_Settings_fnc_init;
 		[
 			"VCM_AISkills_General_EM_CHN", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -997,11 +1158,11 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,100,10,0], // data for this setting: [min, max, default, number of shown trailing decimals]
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				Vcm_AI_EM_CHN = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;		
+		] call CBA_Settings_fnc_init;
 		[
 			"VCM_AISkills_General_EM_CLDWN", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
 			"SLIDER", // setting type
@@ -1009,22 +1170,22 @@
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
 			[0,1000,10,0], // data for this setting: [min, max, default, number of shown trailing decimals]
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-			{  
+			{
 				params ["_value"];
 				VCM_AI_EM_CLDWN = _value;
 			} // function that will be executed once on mission start and every time the setting is changed.
-		] call CBA_Settings_fnc_init;			
+		] call CBA_Settings_fnc_init;
 	//VCM_AIDIFA
-	
-	
-	
-	
+
+
+
+
 	};
-	
+
 	diag_log "VCOM: Loaded CBA settings";
-	
-	
-	
-	
-	
+
+
+
+
+
 };
