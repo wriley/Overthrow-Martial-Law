@@ -63,7 +63,7 @@ if !(_foundWeapons || _foundStolen || _foundStatic) then { //If there is no stat
 	{
 
 		//If weapon found then stop and make wanted
-		if(_x in (OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_illegalUniform + OT_allStaticBackpacks + OT_allOptics)) exitWith {
+		if(_x in (OT_allWeapons + OT_allMagazines + OT_illegalHeadgear + OT_illegalVests + OT_illegalUniform + OT_allStaticBackpacks + OT_allOptics) && {!(_x in OT_legal)}) then {
 				_foundWeapons = true;
 		};
 		//If illegal items found

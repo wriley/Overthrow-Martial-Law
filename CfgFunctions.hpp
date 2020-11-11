@@ -688,11 +688,11 @@ class CfgFunctions
 		};
 	};
 
-	class VCOM
+	class VCM
 	{
 		tag = "VCM";
 
-		class FSM
+		class VCOM_FSM
 		{
 			file = "\overthrow_main\functions\AI\Vcom\FSMS";
 
@@ -713,7 +713,6 @@ class CfgFunctions
 			{
 				ext = ".fsm";
 			};
-
 		};
 
 		class Functions

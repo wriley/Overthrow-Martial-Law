@@ -69,7 +69,7 @@ I do have others but this is good enough for now. . .just ask if a mod can possi
 Because this mod uses Ace3 and Vandeanson's Apocalypse it is extremely customizable in the CBA settings.
 I would suggest for Vandeanson's to only use the World Loot and NOT the Dynamic loot. I do have my own personal settings if people are interested in trying them out. I made one for each map so things may be slighly different on each one. These are located in the discussions area and are only the standard settings for the mods that are needed. I held back the settings for the optional mods. I would also HIGHLY suggest that you make backup copies of Ace3, Vandeanson's Apocalypse and CBA and store them on your local HDD just incase an update Fubar's some stuff.
 
-This mod is based off of the foundation of Overthrow by ARMAzac and still uses the same guides and rules found over at www.armaoverthrow.com.
+This mod is based off of the foundation of Overthrow by ARMAzac and still uses most of the same guides and rules found over at www.armaoverthrow.com.
 I would like to thank Armazac for the Overthrow mod and for allowing others to modify his work.
 I would also like to thank the many people that have helped me and others in the community. Among those are Maxp, Mystic Shadows guys (for letting me torture them by testing in their server), Robodog, Rudyblah, GrimwaldsGaming, Vandeanson and all of those that have offered help, code and support, not only for me but for anyone who has needed it. I know I've forgotten names, damn getting old but please know that I greatly appreciate all of you.
 
