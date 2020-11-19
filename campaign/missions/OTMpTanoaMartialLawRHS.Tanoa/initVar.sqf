@@ -8,7 +8,7 @@ OT_startDate = [2025,7,27,8,00];
 OT_startCameraPos = [1385.17,505.453,1.88826];
 OT_startCameraTarget = [1420,535,5.8];
 
-sleep 5; enableDynamicSimulationSystem false;
+sleep 5; {enableDynamicSimulationSystem false;} remoteExec ["bis_fnc_call", 0];//sleep 5; enableDynamicSimulationSystem false;
 
 OT_faction_NATO = "BLU_T_F";
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town
