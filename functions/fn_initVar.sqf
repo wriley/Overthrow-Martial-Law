@@ -1188,6 +1188,7 @@ OT_Placeables = [
 	["Misc",
 	[
 		["ACE_Wheel",150,"Spare Wheel"],
+		["Land_CanisterFuel_F",200,"Jerry Can"],
 		["ACE_Track",15000,"Spare Tank Tracks"],
 		["Land_Workbench_01_F",30,"Workbench used to craft items"],
 		["Box_Syndicate_Wps_F",100,"Weapons  Supply Box"],
