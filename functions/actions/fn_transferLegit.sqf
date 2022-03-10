@@ -38,10 +38,10 @@ _doTransfer = {
 
 	_full = false;
 	if(_iswarehouse) then {
-		private _warehouse = (getpos player) call OT_fnc_nearestWarehouse select 1;
+		private _wid = (getpos player) call OT_fnc_nearestWarehouse select 1;
 		{
 			private _count = 0;
-			_d = _warehouse getVariable [_x,false];
+			_d = warehouses getVariable [_x,false];
 			if(_d isEqualType []) then {
 				_d params ["_cls",["_num",0,[0]]];
 				if(_num > 0) then {
@@ -53,16 +53,16 @@ _doTransfer = {
 						if (_count > 0) then {
 							_veh addItemCargoGlobal [_cls,_count];
 							if (_count isEqualTo _num) then {
-								_warehouse setVariable [_x,nil,true];
+								warehouses setVariable [_x,nil,true];
 							} else {
-								_warehouse setVariable [_x,[_cls,_num - _count],true];
+								warehouses setVariable [_x,[_cls,_num - _count],true];
 							};
 						};
 					};
 				};
 			};
 			if(_full) exitWith {};
-		} foreach ((allVariables _warehouse) select {((toLower _x select [0,10]) isEqualTo "warehouse-")});
+		} foreach (allVariables warehouses select {((toLower _x select [0,21]) isEqualTo (format["warehouse-%1_",_wid]))});
 	}else{
 		{
 			private _count = 0;
